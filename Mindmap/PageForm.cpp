@@ -43,6 +43,8 @@ void PageForm::OnLButtonDown(UINT nFlags, CPoint point) {
 
 	Branch *clickedBranch=NULL;
 	HitTestVisitor visitor(point,this->mouseAction,&clickedBranch);
+
+
 	this->branch->Accept(visitor);
 
 	this->mouseAction->OnLButtonDown(point, &this->selection, clickedBranch);
@@ -117,6 +119,7 @@ void PageForm::OnClose()
 
 void PageForm::OnLButtonDblClk(UINT nFlags, CPoint point)
 {
-	
+
+	this->mouseAction->ChangeState(SelectionMouse::Instance());
 	CFrameWnd::OnLButtonDblClk(nFlags, point);
 }
