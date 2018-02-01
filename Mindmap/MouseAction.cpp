@@ -1,11 +1,12 @@
 
 #include "MouseAction.h"
 #include "MouseState.h"
-#include "DrawingMouse.h"
+#include "SelectionMouse.h"
 #include "Array.h"
 
 MouseAction::MouseAction() {
-	state = DrawingMouse::Instance();
+	//할당해제? 
+	state = SelectionMouse::Instance();
 }
 void MouseAction::OnLButtonDown(CPoint point, Selection *selection, Branch *branch) {
 	state->OnLButtonDown(this,point,selection,branch);
