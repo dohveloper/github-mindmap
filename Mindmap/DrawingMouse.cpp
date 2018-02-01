@@ -41,15 +41,14 @@ void DrawingMouse::OnLButtonUp(MouseAction *mouseAction, Selection *selection) {
 	Branch *branch;
 	Topic *selectedTopic;
 
-	
-	// 1.라인의 시작점,너비,높이를 구한다.
-	selectedTopic = selection->GetLastSelection()->GetTopic();
-	startX = selectedTopic->GetX() + selectedTopic->GetWidth() / 2;
-	startY = selectedTopic->GetY() + selectedTopic->GetHeight() / 2;
-	lineWidth = this->x + this->width / 2 - startX;
-	lineHeight = this->y + this->height / 2 - startY;
+	if (this->width > minimumTopicWidth && this->height > minimumTopicHeight &&selection->GetLength()>0) {
 
-	if (this->width > minimumTopicWidth && this->height > minimumTopicHeight) {
+		// 1.라인의 시작점,너비,높이를 구한다.
+		selectedTopic = selection->GetLastSelection()->GetTopic();
+		startX = selectedTopic->GetX() + selectedTopic->GetWidth() / 2;
+		startY = selectedTopic->GetY() + selectedTopic->GetHeight() / 2;
+		lineWidth = this->x + this->width / 2 - startX;
+		lineHeight = this->y + this->height / 2 - startY;
 
 		// 2.새 브랜치를 만들고 토픽과 라인을 추가한다.
 	

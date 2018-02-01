@@ -10,6 +10,7 @@
 #include "Branch.h"
 #include "DrawingVisitor.h"
 #include "MouseAction.h"
+#include "DrawingMouse.h"
 #include "SelectionMouse.h"
 #include "HitTestVisitor.h"
 #include "SelectionMarkVisitor.h"
@@ -43,9 +44,15 @@ void PageForm::OnLButtonDown(UINT nFlags, CPoint point) {
 
 	Branch *clickedBranch=NULL;
 	HitTestVisitor visitor(point,this->mouseAction,&clickedBranch);
-
-
+	
 	this->branch->Accept(visitor);
+
+	if (clickedBranch != NULL) {
+		mouseAction->ChangeState(SelectionMouse::Instance());
+	}
+	else {
+		mouseAction->ChangeState(DrawingMouse::Instance());
+	}
 
 	this->mouseAction->OnLButtonDown(point, &this->selection, clickedBranch);
 
