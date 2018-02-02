@@ -1,7 +1,6 @@
 //WriteVisitor.cpp
 
 #include "WriteVisitor.h"
-#include "TextForm.h"
 #include "Row.h"
 #include "Text.h"
 #include "Caret.h"
@@ -28,29 +27,32 @@ WriteVisitor::~WriteVisitor() {
 }
 
 void WriteVisitor::VisitText(Text *text) {
+	string word;
 	Long i = 0;
 	Long length;
+	Long height;
 
 	length = text->GetLength();
+	height = text->GetHeight(this->dc);
 
 	while (i < length) {
-		text->GetAt(i)->Accept(*this);
+		word = text->GetAt(i)->MakeString();
+
+		this->dc->TextOut(0, height * i, (CString)word.c_str());
 		i++;
 	}
 }
 
 void WriteVisitor::VisitRow(Row *row) {
-	string word;
 	Long i = 0;
 	Long length;
 
 	length = row->GetLength();
-	
+
 	while (i < length) {
-		word += row->GetAt(i)->MakeString();
+		row->GetAt(i)->Accept(*this);
 		i++;
 	}
-	this->dc->TextOut(0, this->textForm->fontHeight * this->textForm->text->GetLength()-1, (CString)word.c_str());
 }
 void WriteVisitor::VisitSingleByteCharacter(SingleByteCharacter *singleByteCharacter) {
 	CSize size = dc->GetTextExtent((CString)singleByteCharacter->MakeString().c_str());
