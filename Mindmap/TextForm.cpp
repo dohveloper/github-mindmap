@@ -10,6 +10,7 @@
 #include "Caret.h"
 #include "SelectText.h"
 #include "TextDrag.h"
+#include "DoubleClickSelectText.h"
 #include <imm.h>
 #pragma comment(lib, "imm32.LIB")
 
@@ -22,6 +23,7 @@ BEGIN_MESSAGE_MAP(TextForm, CWnd)
 	ON_WM_LBUTTONDOWN()
 	ON_WM_MOUSEMOVE()
 	ON_WM_LBUTTONUP()
+	ON_WM_LBUTTONDBLCLK()
 END_MESSAGE_MAP()
 
 TextForm::TextForm() {
@@ -232,6 +234,11 @@ void TextForm::OnKeyDown(WPARAM wParam) {
 		this->OnClose();
 		return;
 	}
+	else if (wParam == VK_TAB)
+	{
+		this->text->GetAt(this->caret->GetRowIndex())->Insert(this->caret->GetCharacterIndex(),new SingleByteCharacter('\t'));
+		this->caret->MoveToRight();
+	}
 	RedrawWindow();
 }
 
@@ -239,7 +246,6 @@ void TextForm::OnSetFocus(CWnd* pOldWnd) {
 	CWnd::OnSetFocus(pOldWnd);
 	
 }
-
 
 void TextForm::OnKillFocus(CWnd* pNewWnd) {
 	CWnd::OnKillFocus(pNewWnd);
@@ -296,4 +302,29 @@ void TextForm::OnMouseMove(UINT nFlags, CPoint point) {
 void TextForm::OnLButtonUp(UINT nFlags, CPoint point) {
 	
 	CWnd::OnLButtonUp(nFlags, point);
+}
+
+void TextForm::OnLButtonDblClk(UINT nFlags, CPoint point)
+{
+	CDC *cdc = GetDC();
+	COLORREF blue;
+	COLORREF white;
+
+	CFont fnt;
+	fnt.CreateFont(30, 16, 0, 0, FW_HEAVY, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH, _T("±¼¸²Ã¼"));
+	cdc->SelectObject(&fnt);
+
+	white = cdc->SetTextColor(GetSysColor(COLOR_HIGHLIGHTTEXT));
+	blue = cdc->SetBkColor(GetSysColor(COLOR_HIGHLIGHT));
+
+	this->selectText->SetStartCharacterIndex(this->doubleClickSelectText->CheckStartCharacterIndex(this, cdc));
+	this->selectText->SetStartRowIndex(this->caret->GetRowIndex());
+	this->selectText->SetEndCharacterIndex(this->doubleClickSelectText->CheckEndCharacterIndex(this));
+	this->selectText->SetEndRowIndex(this->caret->GetRowIndex());
+
+	this->selectText->TextAllSelect(this, cdc, point);
+
+	fnt.DeleteObject();
+
+	CWnd::OnLButtonDblClk(nFlags, point);
 }
