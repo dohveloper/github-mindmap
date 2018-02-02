@@ -232,11 +232,6 @@ void TextForm::OnKeyDown(WPARAM wParam) {
 		this->OnClose();
 		return;
 	}
-	else if (wParam == VK_TAB)
-	{
-		this->text->GetAt(this->text->GetLength() - 1)->Insert(this->caret->GetCharacterIndex(),new SingleByteCharacter('\t'));
-		this->caret->MoveToRight();
-	}
 	RedrawWindow();
 }
 

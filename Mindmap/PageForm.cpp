@@ -119,6 +119,7 @@ void PageForm::OnClose()
 
 void PageForm::OnLButtonDblClk(UINT nFlags, CPoint point) {
 	Topic *topic = (Topic*)this->selection.GetAt(0)->GetAt(0);
+
 	this->textForm = new TextForm;
 
 	this->textForm->CreateEx(WS_EX_CLIENTEDGE, TEXT("STATIC"), TEXT("DEMO"), WS_CHILD | WS_VISIBLE | WS_BORDER, topic->GetX(), topic->GetY(), topic->GetWidth(), topic->GetHeight(), m_hWnd, (HMENU)2345);
