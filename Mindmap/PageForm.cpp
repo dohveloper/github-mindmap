@@ -14,6 +14,7 @@
 #include "SelectionStrategy.h"
 #include "HitTestVisitor.h"
 #include "SelectionMarkVisitor.h"
+#include "Topic.h"
 
 
 BEGIN_MESSAGE_MAP(PageForm, CFrameWnd)
@@ -41,13 +42,13 @@ int PageForm::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 void PageForm::OnLButtonDown(UINT nFlags, CPoint point) {
 
-	Branch *clickedBranch=NULL;
-	HitTestVisitor visitor(point,&clickedBranch);
-	
+	Branch *clickedBranch = NULL;
+	HitTestVisitor visitor(point, &clickedBranch);
+
 	this->branch->Accept(visitor);
 
 	this->mouseAction->SetStrategy(clickedBranch);
-	this->mouseAction->OnLButtonDown(point,nFlags, &this->selection, clickedBranch);
+	this->mouseAction->OnLButtonDown(point, nFlags, &this->selection, clickedBranch);
 
 	CFrameWnd::OnLButtonDown(nFlags, point);
 }
@@ -65,7 +66,7 @@ void PageForm::OnMouseMove(UINT nFlags, CPoint point) {
 
 void PageForm::OnLButtonUp(UINT nFlags, CPoint point) {
 
-	this->mouseAction->OnLButtonUp(&this->selection,true);
+	this->mouseAction->OnLButtonUp(&this->selection, true);
 
 	RedrawWindow();
 	CFrameWnd::OnLButtonUp(nFlags, point);
@@ -77,7 +78,7 @@ void PageForm::OnPaint() {
 	Topic *selectedTopic;
 	CPaintDC dc(this);
 	CPen blackPen;
-	
+
 
 	//선택표시하기 
 	SelectionMarkVisitor selectionMarkVisitor(&this->selection, &dc);
@@ -102,31 +103,46 @@ void PageForm::OnPaint() {
 void PageForm::OnClose()
 {
 
-	if(this->branch != NULL)
+	if (this->branch != NULL)
 	{
 		delete this->branch;
 		this->branch = NULL;
 	}
-	
-	if (this->mouseAction != NULL) 
+
+	if (this->mouseAction != NULL)
 	{
 		delete this->mouseAction;
 		this->mouseAction = NULL;
 	}
-	
+
 	CFrameWnd::OnClose();
 }
 
 void PageForm::OnLButtonDblClk(UINT nFlags, CPoint point) {
-	Topic *topic = (Topic*)this->selection.GetAt(0)->GetAt(0);
-	this->textForm = new TextForm;
 
-	this->textForm->CreateEx(WS_EX_CLIENTEDGE, TEXT("STATIC"), TEXT("DEMO"), WS_CHILD | WS_VISIBLE | WS_BORDER, topic->GetX(), topic->GetY(), topic->GetWidth(), topic->GetHeight(), m_hWnd, (HMENU)2345);
+	Branch *clickedBranch = NULL;
+	HitTestVisitor visitor(point, &clickedBranch);
+	Topic *topic;
+
+	this->branch->Accept(visitor);
+
+	this->mouseAction->SetStrategy(clickedBranch);
+	if (clickedBranch != NULL) {
+		this->mouseAction->OnLButtonDown(point, nFlags, &this->selection, clickedBranch);
+	}
+
+	if (selection.GetLength() > 0) {
+		topic = (Topic*)this->selection.GetLastSelection()->GetTopic();
+	}
+
+	this->textForm = new TextForm;
+	this->textForm->CreateEx(WS_EX_CLIENTEDGE, TEXT("STATIC"), TEXT("DEMO"), WS_CHILD | WS_VISIBLE | WS_BORDER,topic->GetX(), topic->GetY(), topic->GetWidth(), topic->GetHeight(), m_hWnd, (HMENU)2345);
 	this->textForm->ShowWindow(SW_SHOW);
 	this->textForm->UpdateWindow();
 	AfxGetApp()->m_pMainWnd = this->textForm;
 
 	this->textForm->SetCapture();
-	
-	CFrameWnd::OnLButtonDblClk(nFlags, point);
+
 }
+
+
