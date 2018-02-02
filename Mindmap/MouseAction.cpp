@@ -1,24 +1,27 @@
 
 #include "MouseAction.h"
-#include "MouseState.h"
-#include "SelectionMouse.h"
-#include "Array.h"
+#include "MouseStrategy.h"
+#include "DrawingStrategy.h"
+#include "SelectionStrategy.h"
 
-MouseAction::MouseAction() {
-	//할당해제? 
-	state = SelectionMouse::Instance();
-}
-void MouseAction::OnLButtonDown(CPoint point, Selection *selection, Branch *branch) {
-	state->OnLButtonDown(this,point,selection,branch);
+
+void MouseAction::OnLButtonDown(CPoint point, UINT flags, Selection *selection, Branch *branch){
+	mouseStrategy->OnLButtonDown(point,flags,selection,branch);
 }
 void MouseAction::OnMouseMove(CPoint point) {
-	state->OnMouseMove(this, point);
+	mouseStrategy->OnMouseMove(point);
 }
-void MouseAction::OnLButtonUp(Selection *selection) {
-	state->OnLButtonUp(this,selection);
+void MouseAction::OnLButtonUp(Selection *selection, bool isOverlapped) {
+	mouseStrategy->OnLButtonUp(selection,true);
 }
-void MouseAction::ChangeState(MouseState* mouseState) {
-	state = mouseState;
+
+void MouseAction::SetStrategy(Branch * clickedBranch)
+{
+	delete this->mouseStrategy;
+	if (clickedBranch == NULL)
+		this->mouseStrategy = new DrawingStrategy();
+	else if (clickedBranch != NULL)
+		this->mouseStrategy = new SelectionStrategy();
 }
 
 

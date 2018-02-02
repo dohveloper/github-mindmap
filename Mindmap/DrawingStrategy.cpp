@@ -1,26 +1,21 @@
-#include "DrawingMouse.h"
+#include "DrawingStrategy.h"
 #include "Array.h"
 #include "Branch.h"
 #include "Topic.h"
 #include "Line.h"
-#include "SelectionMouse.h"
 #define minimumTopicWidth 30
 #define minimumTopicHeight 30
 
-MouseState* DrawingMouse::Instance() {
-	return new DrawingMouse();
-}
-
-DrawingMouse::DrawingMouse() {
+DrawingStrategy::DrawingStrategy() {
 	this->x = 0;
 	this->y = 0;
 	this->width = 0;
 	this->height = 0;
 }
-DrawingMouse::~DrawingMouse() {
+DrawingStrategy::~DrawingStrategy() {
 
 }
-void DrawingMouse::OnLButtonDown(MouseAction *mouseAction, CPoint point, Selection *selection, Branch *branch) {
+void DrawingStrategy::OnLButtonDown( CPoint point,UINT nFlags, Selection *selection, Branch *branch) {
 	this->x = point.x;
 	this->y = point.y;
 	this->width = 0;
@@ -28,11 +23,11 @@ void DrawingMouse::OnLButtonDown(MouseAction *mouseAction, CPoint point, Selecti
 	
 }
 
-void DrawingMouse::OnMouseMove(MouseAction *mouseAction, CPoint point) {
+void DrawingStrategy::OnMouseMove( CPoint point) {
 	this->width = point.x - this->x;
 	this->height = point.y - this->y;
 }
-void DrawingMouse::OnLButtonUp(MouseAction *mouseAction, Selection *selection) {
+void DrawingStrategy::OnLButtonUp( Selection *selection, bool isOverlapped) {
 	
 	Long startX;
 	Long startY;
@@ -41,7 +36,7 @@ void DrawingMouse::OnLButtonUp(MouseAction *mouseAction, Selection *selection) {
 	Branch *branch;
 	Topic *selectedTopic;
 
-	if (this->width > minimumTopicWidth && this->height > minimumTopicHeight &&selection->GetLength()>0) {
+	if (selection->GetLength()>0 && this->width<1 || this->height<1 || this->width > minimumTopicWidth && this->height > minimumTopicHeight) {
 
 		// 1.라인의 시작점,너비,높이를 구한다.
 		selectedTopic = selection->GetLastSelection()->GetTopic();
@@ -64,12 +59,10 @@ void DrawingMouse::OnLButtonUp(MouseAction *mouseAction, Selection *selection) {
 		selection->Clear();
 		selection->Add(branch);
 	}
-	else {
-		//크기 너무 작으면 선택상태로 바꾸기
-		if (this->width <= 1 || this->height <= 1) {
+	else if (selection->GetLength()>0 || this->width < 1 || this->height < 1) {
+				
 			selection->Clear();
-		}
-		mouseAction->ChangeState(SelectionMouse::Instance());
+		
 	}
 
 }

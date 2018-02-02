@@ -3,7 +3,7 @@
 #include "Line.h"
 #include "Branch.h"
 #include "MouseAction.h"
-#include "SelectionMouse.h"
+#include "SelectionStrategy.h"
 
 HitTestVisitor::HitTestVisitor() {
 }
@@ -50,7 +50,6 @@ void HitTestVisitor::VisitBranch(Branch *branch)
 			if (value <= 0.8)
 			{
 				*(this->clickedBranch) = branch;
-				this->mouseAction->ChangeState(new SelectionMouse());
 			}
 			
 		}
