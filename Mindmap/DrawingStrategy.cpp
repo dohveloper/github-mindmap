@@ -3,6 +3,7 @@
 #include "Branch.h"
 #include "Topic.h"
 #include "Line.h"
+#include "Selection.h"
 #define minimumTopicWidth 30
 #define minimumTopicHeight 30
 
@@ -36,7 +37,7 @@ void DrawingStrategy::OnLButtonUp( Selection *selection, bool isOverlapped) {
 	Branch *branch;
 	Topic *selectedTopic;
 
-	if (selection->GetLength()>0 && this->width<1 || this->height<1 || this->width > minimumTopicWidth && this->height > minimumTopicHeight) {
+	if (selection->GetLength()>0 && this->width<1 || this->height<1 || this->width > minimumTopicWidth && this->height > minimumTopicHeight ) {
 
 		// 1.라인의 시작점,너비,높이를 구한다.
 		selectedTopic = selection->GetLastSelection()->GetTopic();

@@ -2,7 +2,6 @@
 #define _SELECTIONSTRATEGY_H
 #include "MouseStrategy.h"
 
-template<typename T> class Array;
 class SelectionStrategy: public MouseStrategy {
 public:
 	SelectionStrategy();

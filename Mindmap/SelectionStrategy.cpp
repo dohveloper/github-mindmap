@@ -1,6 +1,4 @@
 #include "SelectionStrategy.h"
-#include "Array.h"
-#include "Topic.h"
 
 SelectionStrategy::SelectionStrategy() {
 
