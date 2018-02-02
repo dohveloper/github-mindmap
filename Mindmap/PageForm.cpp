@@ -6,7 +6,7 @@
 #include <afxwin.h>
 #include <afxdb.h>
 #include <string>
-//#include "TextForm.h"
+#include "TextForm.h"
 #include "Branch.h"
 #include "DrawingVisitor.h"
 #include "MouseAction.h"
@@ -117,9 +117,16 @@ void PageForm::OnClose()
 	CFrameWnd::OnClose();
 }
 
-void PageForm::OnLButtonDblClk(UINT nFlags, CPoint point)
-{
+void PageForm::OnLButtonDblClk(UINT nFlags, CPoint point) {
+	Topic *topic = (Topic*)this->selection.GetAt(0)->GetAt(0);
+	this->textForm = new TextForm;
 
+	this->textForm->CreateEx(WS_EX_CLIENTEDGE, TEXT("STATIC"), TEXT("DEMO"), WS_CHILD | WS_VISIBLE | WS_BORDER, topic->GetX(), topic->GetY(), topic->GetWidth(), topic->GetHeight(), m_hWnd, (HMENU)2345);
+	this->textForm->ShowWindow(SW_SHOW);
+	this->textForm->UpdateWindow();
+	AfxGetApp()->m_pMainWnd = this->textForm;
+
+	this->textForm->SetCapture();
 	
 	CFrameWnd::OnLButtonDblClk(nFlags, point);
 }

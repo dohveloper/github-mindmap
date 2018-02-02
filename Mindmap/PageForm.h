@@ -12,6 +12,7 @@ using namespace std;
 
 typedef signed long int Long;
 class Page;
+class TextForm;
 class Branch;
 class MouseAction;
 
@@ -19,6 +20,7 @@ class PageForm :public CFrameWnd {
 public:
 	PageForm();
 public:
+	TextForm *textForm;
 	Branch *branch;
 	Selection selection;
 	MouseAction *mouseAction;
