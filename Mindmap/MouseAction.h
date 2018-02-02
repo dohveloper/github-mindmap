@@ -8,7 +8,7 @@ class MouseStrategy;
 
 class MouseAction {
 public:
-	MouseAction(MouseStrategy *mouseStrategy);
+	MouseAction();
 	void OnLButtonDown(CPoint point, UINT flags,Selection *selection, Branch *branch);
 	void OnMouseMove(CPoint point);
 	void OnLButtonUp(Selection *selection,bool isOverlapped);
@@ -21,4 +21,4 @@ private:
 
 };
 
-#endif _MOUSEACTION_H
+#endif // _MOUSEACTION_H

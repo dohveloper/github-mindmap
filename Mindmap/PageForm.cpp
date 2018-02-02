@@ -35,20 +35,19 @@ int PageForm::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	this->branch = new Branch;
 	this->branch->Add(new Topic(387, 150, 200, 200, "메인토픽"));
 	this->selection.Add(this->branch);
-
+	this->mouseAction = new MouseAction();
 	return 0;
 }
 
 void PageForm::OnLButtonDown(UINT nFlags, CPoint point) {
 
 	Branch *clickedBranch=NULL;
-	HitTestVisitor visitor(point,this->mouseAction,&clickedBranch);
+	HitTestVisitor visitor(point,&clickedBranch);
 	
-	//this->branch->Accept(visitor);
+	this->branch->Accept(visitor);
 
-	//mouseAction->SetStrategy(clickedBranch);
-
-	//this->mouseAction->OnLButtonDown(point,nFlags, &this->selection, clickedBranch);
+	this->mouseAction->SetStrategy(clickedBranch);
+	this->mouseAction->OnLButtonDown(point,nFlags, &this->selection, clickedBranch);
 
 	CFrameWnd::OnLButtonDown(nFlags, point);
 }
@@ -57,7 +56,7 @@ void PageForm::OnLButtonDown(UINT nFlags, CPoint point) {
 void PageForm::OnMouseMove(UINT nFlags, CPoint point) {
 	if ((nFlags & MK_LBUTTON) == MK_LBUTTON)
 	{
-		//this->mouseAction->OnMouseMove(point);
+		this->mouseAction->OnMouseMove(point);
 	}
 	CFrameWnd::OnMouseMove(nFlags, point);
 }
@@ -66,7 +65,7 @@ void PageForm::OnMouseMove(UINT nFlags, CPoint point) {
 
 void PageForm::OnLButtonUp(UINT nFlags, CPoint point) {
 
-	//this->mouseAction->OnLButtonUp(&this->selection,true);
+	this->mouseAction->OnLButtonUp(&this->selection,true);
 
 	RedrawWindow();
 	CFrameWnd::OnLButtonUp(nFlags, point);

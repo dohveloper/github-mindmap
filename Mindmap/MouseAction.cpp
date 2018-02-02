@@ -5,25 +5,29 @@
 #include "SelectionStrategy.h"
 
 
-MouseAction::MouseAction(MouseStrategy * mouseStrategy)
+MouseAction::MouseAction()
 {
 	this->mouseStrategy = NULL;
 }
 
 void MouseAction::OnLButtonDown(CPoint point, UINT flags, Selection *selection, Branch *branch){
-	//mouseStrategy->OnLButtonDown(point,flags,selection,branch);
+	mouseStrategy->OnLButtonDown(point,flags,selection,branch);
 }
 void MouseAction::OnMouseMove(CPoint point) {
-	//mouseStrategy->OnMouseMove(point);
+	mouseStrategy->OnMouseMove(point);
 }
 void MouseAction::OnLButtonUp(Selection *selection, bool isOverlapped) {
-	//mouseStrategy->OnLButtonUp(selection,true);
+	mouseStrategy->OnLButtonUp(selection,true);
 }
 
 void MouseAction::SetStrategy(Branch * clickedBranch)
 {
-	delete this->mouseStrategy;
-
+	//할당해제
+	if (this->mouseStrategy != NULL) {
+		delete this->mouseStrategy;
+		this->mouseStrategy = NULL;
+	}
+	
 	if (clickedBranch == NULL) {
 		this->mouseStrategy = new DrawingStrategy();
 	}

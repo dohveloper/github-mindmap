@@ -1,6 +1,5 @@
 #include "MouseStrategy.h"
-#include "MouseAction.h"
-#include "Array.h"
+#include "Selection.h"
 
 
 MouseStrategy::MouseStrategy() {

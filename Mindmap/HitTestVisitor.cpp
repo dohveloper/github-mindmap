@@ -8,10 +8,9 @@
 HitTestVisitor::HitTestVisitor() {
 }
 
-HitTestVisitor::HitTestVisitor(CPoint point, MouseAction * mouseAction, Branch **clickedBranch)
+HitTestVisitor::HitTestVisitor(CPoint point, Branch **clickedBranch)
 {
 	this->point = point;
-	this->mouseAction = mouseAction;
 	this->clickedBranch = clickedBranch;
 }
 

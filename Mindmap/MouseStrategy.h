@@ -2,9 +2,8 @@
 #define _MOUSESTRATEGY_H
 #include "Branch.h"
 #include <afxwin.h>
-#include "MouseAction.h"
 
-template<typename T> class Array;
+class Selection;
 
 class MouseStrategy {
 public:
@@ -13,7 +12,6 @@ public:
 	virtual void OnLButtonDown(CPoint point,UINT flags, Selection *selection, Branch *branch);
 	virtual void OnMouseMove(CPoint point);
 	virtual void OnLButtonUp(Selection *selection, bool isOverlapped);
-
 
 };
 
