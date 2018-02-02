@@ -125,15 +125,12 @@ void PageForm::OnLButtonDblClk(UINT nFlags, CPoint point) {
 	Topic *topic;
 
 	this->branch->Accept(visitor);
-
 	this->mouseAction->SetStrategy(clickedBranch);
 	if (clickedBranch != NULL) {
 		this->mouseAction->OnLButtonDown(point, nFlags, &this->selection, clickedBranch);
-	}
-
-	if (selection.GetLength() > 0) {
+	
 		topic = (Topic*)this->selection.GetLastSelection()->GetTopic();
-	}
+	
 
 	this->textForm = new TextForm;
 	this->textForm->CreateEx(WS_EX_CLIENTEDGE, TEXT("STATIC"), TEXT("DEMO"), WS_CHILD | WS_VISIBLE | WS_BORDER,topic->GetX(), topic->GetY(), topic->GetWidth(), topic->GetHeight(), m_hWnd, (HMENU)2345);
@@ -142,7 +139,7 @@ void PageForm::OnLButtonDblClk(UINT nFlags, CPoint point) {
 	AfxGetApp()->m_pMainWnd = this->textForm;
 
 	this->textForm->SetCapture();
-
+	}
 }
 
 
