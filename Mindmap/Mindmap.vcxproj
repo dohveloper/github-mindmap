@@ -147,6 +147,7 @@
     <ClCompile Include="Clipboard.cpp" />
     <ClCompile Include="Composite.cpp" />
     <ClCompile Include="DoubleByteCharacter.cpp" />
+    <ClCompile Include="DoubleClickSelectText.cpp" />
     <ClCompile Include="DoubleLineDragAction.cpp" />
     <ClCompile Include="DrawingStrategy.cpp" />
     <ClCompile Include="DrawingVisitor.cpp" />
@@ -186,6 +187,7 @@
     <ClInclude Include="Clipboard.h" />
     <ClInclude Include="Composite.h" />
     <ClInclude Include="DoubleByteCharacter.h" />
+    <ClInclude Include="DoubleClickSelectText.h" />
     <ClInclude Include="DoubleLineDragAction.h" />
     <ClInclude Include="DrawingStrategy.h" />
     <ClInclude Include="DrawingVisitor.h" />

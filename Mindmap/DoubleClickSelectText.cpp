@@ -101,7 +101,7 @@ void DoubleClickSelectText::AllSelect(TextForm *textForm, CDC *cdc)
 		i++;
 	}
 
-	cdc->TextOut(textForm->caret->GetX() - this->width, textForm->fontHeight*rowIndex, (CString)word.c_str());
+	cdc->TextOut(textForm->caret->GetX()-this->width, textForm->fontHeight*rowIndex, (CString)word.c_str());
 }
 
 DoubleClickSelectText& DoubleClickSelectText::operator=(const DoubleClickSelectText& soucre)

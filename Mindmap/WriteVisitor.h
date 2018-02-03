@@ -6,12 +6,13 @@
 #include "TextVisitor.h"
 #include <afxwin.h>
 
+typedef signed long int Long;
+
 class TextForm;
-class Caret;
 class WriteVisitor :public TextVisitor {
 public:
 	WriteVisitor();
-	WriteVisitor(CPaintDC *dc, Caret *caret,TextForm *textForm);
+	WriteVisitor(CPaintDC *dc,TextForm *textForm);
 	virtual ~WriteVisitor();
 	virtual void VisitText(Text *text);
 	virtual void VisitRow(Row *row);
@@ -19,8 +20,8 @@ public:
 	virtual void VisitDoubleByteCharacter(DoubleByteCharacter *doubleByteCharacter);
 private:
 	CPaintDC *dc;
-	Caret *caret;
 	TextForm *textForm;
+	Long rowIndex;
 };
 
 #endif //WRITEVISITOR_H

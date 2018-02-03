@@ -79,7 +79,7 @@ void TextForm::OnPaint() {
 	this->fontWidth = 16;
 	dc.SelectObject(&fnt);
 
-	WriteVisitor visitor(&dc,this->caret,this);
+	WriteVisitor visitor(&dc,this);
 
 	this->text->Accept(visitor);
 	this->caret->MoveToIndex(this,&dc);
@@ -304,6 +304,8 @@ void TextForm::OnLButtonUp(UINT nFlags, CPoint point) {
 	CWnd::OnLButtonUp(nFlags, point);
 }
 
+
+
 void TextForm::OnLButtonDblClk(UINT nFlags, CPoint point)
 {
 	CDC *cdc = GetDC();
@@ -317,14 +319,16 @@ void TextForm::OnLButtonDblClk(UINT nFlags, CPoint point)
 	white = cdc->SetTextColor(GetSysColor(COLOR_HIGHLIGHTTEXT));
 	blue = cdc->SetBkColor(GetSysColor(COLOR_HIGHLIGHT));
 
-	this->selectText->SetStartCharacterIndex(this->doubleClickSelectText->CheckStartCharacterIndex(this, cdc));
+	this->selectText->SetStartCharacterIndex(this->selectText->StartCharacterIndex(this, cdc));
 	this->selectText->SetStartRowIndex(this->caret->GetRowIndex());
-	this->selectText->SetEndCharacterIndex(this->doubleClickSelectText->CheckEndCharacterIndex(this));
+	this->selectText->SetEndCharacterIndex(this->selectText->EndCharacterIndex(this));
 	this->selectText->SetEndRowIndex(this->caret->GetRowIndex());
 
 	this->selectText->TextAllSelect(this, cdc, point);
 
 	fnt.DeleteObject();
+
+	CWnd::OnLButtonDblClk(nFlags, point);
 
 	CWnd::OnLButtonDblClk(nFlags, point);
 }

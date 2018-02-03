@@ -5,6 +5,7 @@
 #include "Caret.h"
 #include "Text.h"
 #include "TextDrag.h"
+#include "DoubleClickSelectText.h"
 
 SelectText::SelectText() {
 	this->startCharacterIndex = 0;
@@ -27,20 +28,19 @@ void SelectText::TextDragAction(TextForm *textForm, CDC *cdc, CPoint point) {
 	Long start;
 	Long end;
 	TextDrag textDrag;
-
-	if (point.x < 0 && point.y>=0)
+	if (point.x < 0 && point.y >= 0)
 	{
 		textForm->caret->MoveToPoint(textForm, cdc, CPoint(0, point.y));
 		textForm->selectText->SetEndCharacterIndex(0);
 		textForm->selectText->SetEndRowIndex(textForm->caret->GetRowIndex());
 	}
-	else if (point.x>=0 && point.y < 0 )
+	else if (point.x >= 0 && point.y < 0)
 	{
 		textForm->caret->MoveToPoint(textForm, cdc, CPoint(point.x, 0));
 		textForm->selectText->SetEndCharacterIndex(textForm->caret->GetCharacterIndex());
 		textForm->selectText->SetEndRowIndex(0);
 	}
-	else if(point.x<0 && point.y<0)
+	else if (point.x<0 && point.y<0)
 	{
 		textForm->caret->MoveToPoint(textForm, cdc, CPoint(0, 0));
 		textForm->selectText->SetEndCharacterIndex(0);
@@ -57,18 +57,40 @@ void SelectText::TextDragAction(TextForm *textForm, CDC *cdc, CPoint point) {
 	start = textForm->selectText->GetStartRowIndex();
 	end = textForm->selectText->GetEndRowIndex();
 
-	if (start - end == 0 && textForm->selectText->GetStartCharacterIndex()>=0)
+	if (start - end == 0 && textForm->selectText->GetStartCharacterIndex() >= 0)
 	{
 		textDrag.SingleLineDrag(textForm, cdc);
 	}
-	else if ((start - end == 1 || end - start == 1) && textForm->selectText->GetStartCharacterIndex()>=0)
+	else if ((start - end == 1 || end - start == 1) && textForm->selectText->GetStartCharacterIndex() >= 0)
 	{
 		textDrag.DoubleLineDrag(textForm, cdc);
 	}
-	else if((start - end >= 2 ||	end - start >=2) && textForm->selectText->GetStartCharacterIndex()>=0)
+	else if ((start - end >= 2 || end - start >= 2) && textForm->selectText->GetStartCharacterIndex() >= 0)
 	{
 		textDrag.MultiLineDrag(textForm, cdc);
 	}
+}
+
+void SelectText::TextAllSelect(TextForm *textForm, CDC *cdc, CPoint point) {
+	DoubleClickSelectText doubleClickSelectText;
+
+	doubleClickSelectText.AllSelect(textForm, cdc);
+}
+
+Long SelectText::StartCharacterIndex(TextForm *textForm, CDC *cdc)
+{
+	Long index;
+	DoubleClickSelectText doubleClickSelectText;
+	index = doubleClickSelectText.CheckStartCharacterIndex(textForm, cdc);
+	return index;
+}
+
+Long SelectText::EndCharacterIndex(TextForm *textForm)
+{
+	Long index;
+	DoubleClickSelectText doubleClickSelectText;
+	index = doubleClickSelectText.CheckEndCharacterIndex(textForm);
+	return index;
 }
 
 SelectText& SelectText::operator=(const SelectText& source) {

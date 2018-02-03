@@ -13,6 +13,9 @@ public:
 	~SelectText();
 
 	void TextDragAction(TextForm *textForm, CDC *cdc, CPoint point);
+	void TextAllSelect(TextForm *textForm, CDC *cdc, CPoint point);
+	Long StartCharacterIndex(TextForm *textForm, CDC *cdc);
+	Long EndCharacterIndex(TextForm *textForm);
 
 	SelectText& operator=(const SelectText& source);
 
