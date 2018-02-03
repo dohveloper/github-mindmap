@@ -147,6 +147,7 @@
     <ClCompile Include="DrawingVisitor.cpp" />
     <ClCompile Include="HitTestVisitor.cpp" />
     <ClCompile Include="Line.cpp" />
+    <ClCompile Include="LineIterator.cpp" />
     <ClCompile Include="MouseAction.cpp" />
     <ClCompile Include="MouseStrategy.cpp" />
     <ClCompile Include="MultiSelect.cpp" />
@@ -172,6 +173,7 @@
     <ClInclude Include="HitTestVisitor.h" />
     <ClInclude Include="Iterator.h" />
     <ClInclude Include="Line.h" />
+    <ClInclude Include="LineIterator.h" />
     <ClInclude Include="MouseAction.h" />
     <ClInclude Include="MouseStrategy.h" />
     <ClInclude Include="MultiSelect.h" />
