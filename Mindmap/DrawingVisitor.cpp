@@ -2,7 +2,6 @@
 #include "Topic.h"
 #include "Line.h"
 #include "PageForm.h"
-#include <afxwin.h>
 
 DrawingVisitor::DrawingVisitor() {
 

@@ -14,7 +14,7 @@
 #include "SelectionStrategy.h"
 #include "HitTestVisitor.h"
 #include "SelectionMarkVisitor.h"
-
+#include "DrawLines.h"
 
 BEGIN_MESSAGE_MAP(PageForm, CFrameWnd)
 	ON_WM_CREATE()
@@ -92,10 +92,16 @@ void PageForm::OnPaint() {
 	dc.SelectObject(&blackPen);
 
 	//드로잉 비지터 생성 
-	DrawingVisitor visitor(&dc);
+	//DrawingVisitor visitor(&dc);
 
 	//브랜치 그리기
-	this->branch->Accept(visitor);
+	//this->branch->Accept(visitor);
+
+
+	//반복자로 그리기 테스트
+	DrawLines drawLines(this->branch, &dc);
+
+	drawLines.Traverse();
 
 }
 

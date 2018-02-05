@@ -1,11 +1,12 @@
-﻿#ifndef _LINEITERATOR_H
-#define _LINEITERATOR_H_
+﻿#ifndef _BRANCHITERATOR_H
+#define _BRANCHITERATOR_H
 #include "Iterator.h"
 class Branch;
+class Shape;
 
-class LineIterator :public Iterator{
+class BranchIterator :public Iterator{
 public:
-	LineIterator(Branch* branch);
+	BranchIterator(Branch* branch);
 	virtual void First();
 	virtual void Next();
 	virtual bool IsDone() const;
@@ -13,7 +14,7 @@ public:
 
 private:
 	Branch *branch;
-	Shape *current;
+	long current;
 };
 
-#endif //_LINEITERATOR_H_
+#endif //_BRANCHITERATOR_H
