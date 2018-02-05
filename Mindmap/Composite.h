@@ -14,7 +14,6 @@ public:
 	Composite(const Composite& source);
 	virtual ~Composite()=0;
 
-	Iterator<Composite*>CreateIterator();
 	Long Add(Shape *shape);
 	Long Correct(Long index, Shape *shape);
 	Shape* GetAt(Long index);

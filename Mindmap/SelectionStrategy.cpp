@@ -4,7 +4,7 @@
 #include "Select.h"
 
 SelectionStrategy::SelectionStrategy() {
-
+	this->select = NULL;
 }
 SelectionStrategy::~SelectionStrategy() {
 
@@ -13,8 +13,8 @@ void SelectionStrategy::OnLButtonDown(CPoint point, UINT nFlags, Selection *sele
 
 	//할당해제
 	if (this->select != NULL) {
-		//delete this->select;
-		//this->select = NULL;
+		delete this->select;
+		this->select = NULL;
 	}
 
 	if (nFlags == MK_CONTROL+ MK_LBUTTON)
