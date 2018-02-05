@@ -18,9 +18,6 @@
     <ClCompile Include="MouseAction.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="MouseState.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Page.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -34,9 +31,6 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="SelectionMarkVIsitor.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="SelectionMouse.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Shape.cpp">
@@ -57,9 +51,6 @@
     <ClCompile Include="Composite.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="DrawingMouse.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="DrawingVisitor.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -69,12 +60,27 @@
     <ClCompile Include="Line.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="MouseStrategy.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="DrawingStrategy.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectionStrategy.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="MultiSelect.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Select.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="SingleSelect.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MouseAction.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="MouseState.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Page.h">
@@ -90,9 +96,6 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="SelectionMarkVisitor.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="SelectionMouse.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Shape.h">
@@ -116,19 +119,31 @@
     <ClInclude Include="Composite.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="DrawingMouse.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="DrawingVisitor.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="HitTestVisitor.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Iterator.h">
+    <ClInclude Include="Line.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Line.h">
+    <ClInclude Include="MouseStrategy.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawingStrategy.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectionStrategy.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="MultiSelect.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Select.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="SingleSelect.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

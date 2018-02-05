@@ -143,20 +143,23 @@
     <ClCompile Include="Branch.cpp" />
     <ClCompile Include="Clipboard.cpp" />
     <ClCompile Include="Composite.cpp" />
-    <ClCompile Include="DrawingMouse.cpp" />
+    <ClCompile Include="DrawingStrategy.cpp" />
     <ClCompile Include="DrawingVisitor.cpp" />
     <ClCompile Include="HitTestVisitor.cpp" />
     <ClCompile Include="Line.cpp" />
     <ClCompile Include="MouseAction.cpp" />
-    <ClCompile Include="MouseState.cpp" />
+    <ClCompile Include="MouseStrategy.cpp" />
+    <ClCompile Include="MultiSelect.cpp" />
     <ClCompile Include="Page.cpp" />
     <ClCompile Include="PageApp.cpp" />
     <ClCompile Include="PageForm.cpp" />
+    <ClCompile Include="Select.cpp" />
     <ClCompile Include="Selection.cpp" />
     <ClCompile Include="SelectionMarkVIsitor.cpp" />
-    <ClCompile Include="SelectionMouse.cpp" />
+    <ClCompile Include="SelectionStrategy.cpp" />
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="ShapeVisitor.cpp" />
+    <ClCompile Include="SingleSelect.cpp" />
     <ClCompile Include="Topic.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -164,21 +167,23 @@
     <ClInclude Include="Branch.h" />
     <ClInclude Include="Clipboard.h" />
     <ClInclude Include="Composite.h" />
-    <ClInclude Include="DrawingMouse.h" />
+    <ClInclude Include="DrawingStrategy.h" />
     <ClInclude Include="DrawingVisitor.h" />
     <ClInclude Include="HitTestVisitor.h" />
-    <ClInclude Include="Iterator.h" />
     <ClInclude Include="Line.h" />
     <ClInclude Include="MouseAction.h" />
-    <ClInclude Include="MouseState.h" />
+    <ClInclude Include="MouseStrategy.h" />
+    <ClInclude Include="MultiSelect.h" />
     <ClInclude Include="Page.h" />
     <ClInclude Include="PageApp.h" />
     <ClInclude Include="PageForm.h" />
+    <ClInclude Include="Select.h" />
     <ClInclude Include="Selection.h" />
     <ClInclude Include="SelectionMarkVisitor.h" />
-    <ClInclude Include="SelectionMouse.h" />
+    <ClInclude Include="SelectionStrategy.h" />
     <ClInclude Include="Shape.h" />
     <ClInclude Include="ShapeVisitor.h" />
+    <ClInclude Include="SingleSelect.h" />
     <ClInclude Include="Topic.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

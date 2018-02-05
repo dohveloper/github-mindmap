@@ -1,27 +1,24 @@
 #ifndef _MOUSEACTION_H
 #define _MOUSEACTION_H
 #include "Branch.h"
-#include "Selection.h"
 #include <afxwin.h>
 
-template<typename T> class Array;
-class MouseState;
+class Selection;
+class MouseStrategy;
 
 class MouseAction {
 public:
 	MouseAction();
-	void OnLButtonDown(CPoint point,Selection *selection, Branch *branch);
+	void OnLButtonDown(CPoint point, UINT flags,Selection *selection, Branch *branch);
 	void OnMouseMove(CPoint point);
-	void OnLButtonUp(Selection *selection);
-	void ChangeState(MouseState* mouseState);
+	void OnLButtonUp(Selection *selection,bool isOverlapped);
+	
+	void SetStrategy(Branch* clickedBranch);
 
-private:
-	friend class MouseState;
-	
 	
 private:
-	MouseState* state;
+	MouseStrategy *mouseStrategy;
 
 };
 
-#endif
+#endif // _MOUSEACTION_H

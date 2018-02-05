@@ -10,8 +10,8 @@
 #include "Branch.h"
 #include "DrawingVisitor.h"
 #include "MouseAction.h"
-#include "DrawingMouse.h"
-#include "SelectionMouse.h"
+#include "DrawingStrategy.h"
+#include "SelectionStrategy.h"
 #include "HitTestVisitor.h"
 #include "SelectionMarkVisitor.h"
 
@@ -36,25 +36,18 @@ int PageForm::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	this->branch->Add(new Topic(387, 150, 200, 200, "메인토픽"));
 	this->selection.Add(this->branch);
 	this->mouseAction = new MouseAction();
-
 	return 0;
 }
 
 void PageForm::OnLButtonDown(UINT nFlags, CPoint point) {
 
 	Branch *clickedBranch=NULL;
-	HitTestVisitor visitor(point,this->mouseAction,&clickedBranch);
+	HitTestVisitor visitor(point,&clickedBranch);
 	
 	this->branch->Accept(visitor);
 
-	if (clickedBranch != NULL) {
-		mouseAction->ChangeState(SelectionMouse::Instance());
-	}
-	else {
-		mouseAction->ChangeState(DrawingMouse::Instance());
-	}
-
-	this->mouseAction->OnLButtonDown(point, &this->selection, clickedBranch);
+	this->mouseAction->SetStrategy(clickedBranch);
+	this->mouseAction->OnLButtonDown(point,nFlags, &this->selection, clickedBranch);
 
 	CFrameWnd::OnLButtonDown(nFlags, point);
 }
@@ -72,7 +65,7 @@ void PageForm::OnMouseMove(UINT nFlags, CPoint point) {
 
 void PageForm::OnLButtonUp(UINT nFlags, CPoint point) {
 
-	this->mouseAction->OnLButtonUp(&this->selection);
+	this->mouseAction->OnLButtonUp(&this->selection,true);
 
 	RedrawWindow();
 	CFrameWnd::OnLButtonUp(nFlags, point);
@@ -127,6 +120,6 @@ void PageForm::OnClose()
 void PageForm::OnLButtonDblClk(UINT nFlags, CPoint point)
 {
 
-	this->mouseAction->ChangeState(SelectionMouse::Instance());
+	
 	CFrameWnd::OnLButtonDblClk(nFlags, point);
 }

@@ -3,15 +3,14 @@
 #include "Line.h"
 #include "Branch.h"
 #include "MouseAction.h"
-#include "SelectionMouse.h"
+#include "SelectionStrategy.h"
 
 HitTestVisitor::HitTestVisitor() {
 }
 
-HitTestVisitor::HitTestVisitor(CPoint point, MouseAction * mouseAction, Branch **clickedBranch)
+HitTestVisitor::HitTestVisitor(CPoint point, Branch **clickedBranch)
 {
 	this->point = point;
-	this->mouseAction = mouseAction;
 	this->clickedBranch = clickedBranch;
 }
 
@@ -50,7 +49,6 @@ void HitTestVisitor::VisitBranch(Branch *branch)
 			if (value <= 0.8)
 			{
 				*(this->clickedBranch) = branch;
-				this->mouseAction->ChangeState(new SelectionMouse());
 			}
 			
 		}
