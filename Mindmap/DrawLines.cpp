@@ -1,7 +1,7 @@
 ﻿#include "DrawLines.h"
 #include "Branch.h"
 #include "Shape.h"
-
+#include "Line.h"
 
 DrawLines::DrawLines(Branch *branch, CPaintDC *dc)
 	:BranchTraverser(branch)
@@ -9,16 +9,14 @@ DrawLines::DrawLines(Branch *branch, CPaintDC *dc)
 	this->dc = dc;
 }
 
-bool DrawLines::ProcessItem(Shape* shape)
+bool DrawLines::ProcessItem(Shape *shape)
 {
 	Long x;
 	Long y;
 	Long width;
 	Long height;
 
-	if (typeid(*shape) == typeid("Line")) {
-		//라인을 그리는 코드
-
+	if (typeid(*shape) == typeid(Line)) {
 		x = shape->GetX();
 		y = shape->GetY();
 		width = shape->GetWidth();
@@ -27,9 +25,9 @@ bool DrawLines::ProcessItem(Shape* shape)
 		this->dc->LineTo(x + width, y + height);
 	}
 
-	if (typeid(*shape) == typeid("Branch")) {
+	if (typeid(*shape) == typeid(Branch)) {
 		if ((((Branch*)shape))->GetIsHidden() == false) {
-			DrawLines drawLines((Branch*)shape, this->dc);
+			DrawLines drawLines((Branch*)shape,this->dc);
 			drawLines.Traverse();
 		}
 	}
