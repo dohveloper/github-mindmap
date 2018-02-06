@@ -6,15 +6,14 @@
 #include <afxwin.h>
 #include <afxdb.h>
 #include <string>
-//#include "TextForm.h"
 #include "Branch.h"
-#include "DrawingVisitor.h"
 #include "MouseAction.h"
 #include "DrawingStrategy.h"
 #include "SelectionStrategy.h"
 #include "HitTestVisitor.h"
 #include "SelectionMarkVisitor.h"
-
+#include "DrawLines.h"
+#include "DrawTopics.h"
 
 BEGIN_MESSAGE_MAP(PageForm, CFrameWnd)
 	ON_WM_CREATE()
@@ -91,11 +90,13 @@ void PageForm::OnPaint() {
 	blackPen.CreatePen(PS_SOLID, 1, RGB(0, 0, 0));
 	dc.SelectObject(&blackPen);
 
-	//드로잉 비지터 생성 
-	DrawingVisitor visitor(&dc);
-
-	//브랜치 그리기
-	this->branch->Accept(visitor);
+	//선 그리기 
+	DrawLines drawLines(this->branch, &dc);
+	drawLines.Traverse();
+	
+	//토픽 그리기 
+	DrawTopics drawTopics(this->branch, &dc);
+	drawTopics.Traverse();
 
 }
 

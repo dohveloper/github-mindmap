@@ -51,9 +51,6 @@
     <ClCompile Include="Composite.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="DrawingVisitor.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="HitTestVisitor.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -76,6 +73,21 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="SingleSelect.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="BranchTraverser.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="BranchIterator.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="DrawLines.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Iterator.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="DrawTopics.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -119,10 +131,10 @@
     <ClInclude Include="Composite.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="DrawingVisitor.h">
+    <ClInclude Include="HitTestVisitor.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="HitTestVisitor.h">
+    <ClInclude Include="Iterator.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Line.h">
@@ -144,6 +156,18 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="SingleSelect.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="BranchTraverser.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="BranchIterator.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawLines.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawTopics.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

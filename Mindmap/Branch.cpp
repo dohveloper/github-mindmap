@@ -7,6 +7,7 @@
 Branch::Branch(Long capacity)
 	:Composite(capacity)
 {
+	this->isHidden = false;
 
 }
 Branch::Branch(const Branch& source)
@@ -28,6 +29,12 @@ Topic* Branch::GetTopic()
 
 	return (Topic*)topic;
 }
+
+bool Branch::GetIsHidden()
+{
+	return isHidden;
+}
+
 
 void Branch::Accept(ShapeVisitor& visitor) {
 	visitor.VisitBranch(this);

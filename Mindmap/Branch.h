@@ -15,11 +15,15 @@ public:
 	virtual ~Branch();
 	
 	Topic* GetTopic();
+	bool GetIsHidden();
 
 	virtual void Accept(ShapeVisitor& visitor);
 	
 	Branch* Clone();
 	Branch& operator=(const Branch& source);
+
+private:
+	bool isHidden;
 
 };
 #endif //TOPIC_H
