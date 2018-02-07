@@ -4,6 +4,7 @@
 #define _BRANCH_H
 
 #include "Composite.h"
+#include "Mark.h"
 using namespace std;
 typedef signed long int Long;
 
@@ -15,15 +16,31 @@ public:
 	virtual ~Branch();
 	
 	Topic* GetTopic();
-	bool GetIsHidden();
 
 	virtual void Accept(ShapeVisitor& visitor);
-	
+	void Fold();
+	void UnFold();
+
 	Branch* Clone();
 	Branch& operator=(const Branch& source);
 
+	bool GetIsFolded() const;
+	Mark& GetMark() const;
 private:
-	bool isHidden;
+	Mark mark;
+	bool isFolded;
 
 };
+
+
+inline bool Branch::GetIsFolded() const
+{
+	return this->isFolded;
+}
+
+inline Mark& Branch::GetMark() const {
+
+	return const_cast<Mark&>(this->mark);
+}
+
 #endif //TOPIC_H

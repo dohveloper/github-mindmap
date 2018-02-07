@@ -14,6 +14,7 @@
 #include "SelectionMarkVisitor.h"
 #include "DrawLines.h"
 #include "DrawTopics.h"
+#include "Mark.h"
 
 BEGIN_MESSAGE_MAP(PageForm, CFrameWnd)
 	ON_WM_CREATE()
@@ -120,7 +121,28 @@ void PageForm::OnClose()
 
 void PageForm::OnLButtonDblClk(UINT nFlags, CPoint point)
 {
+	//Mark mark;
+	CString a;
+	int qqq = 1212;
+	string type;
 
+	//branch->GetMark().GetContent();
+
+	//branch->GetMark().changeContent(type);
+
+	//branch->GetMark().GetIsShowned();
+	//if (branch->GetMark().GetContent().compare("+") == 0)
+
+	//branch->GetMark().GetX();
+
+	if (branch->GetMark().GetIsShowned() != true)
+	{
+		qqq = 2424;
+	}
+	a.Format("%d", qqq);
+	this->MessageBox(a);
+	//branch->GetMark().GetX()
+	//this->mouseAction->ChangeState(SelectionMouse::Instance());
 	
 	CFrameWnd::OnLButtonDblClk(nFlags, point);
 }

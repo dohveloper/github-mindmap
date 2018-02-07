@@ -5,13 +5,13 @@
 #include "Topic.h"
 #include "Line.h"
 Branch::Branch(Long capacity)
-	:Composite(capacity)
+	:Composite(capacity), mark()
 {
-	this->isHidden = false;
-
+	this->isFolded = false;
 }
 Branch::Branch(const Branch& source)
 	:Composite(source) {
+	this->isFolded = source.isFolded;
 
 }
 Branch::~Branch()
@@ -30,16 +30,17 @@ Topic* Branch::GetTopic()
 	return (Topic*)topic;
 }
 
-bool Branch::GetIsHidden()
-{
-	return isHidden;
-}
-
-
 void Branch::Accept(ShapeVisitor& visitor) {
 	visitor.VisitBranch(this);
 }
 
+void Branch::Fold() {
+	this->isFolded = true;//isFolded = true는 접힌다는 것.
+}
+
+void Branch::UnFold() {
+	this->isFolded = false;
+}
 
 Branch * Branch::Clone()
 {
@@ -51,7 +52,8 @@ Branch& Branch::operator=(const Branch& source)
 	this->shapes = source.shapes;
 	this->capacity = source.capacity;
 	this->length = source.length;
-
+	this->mark = source.mark;
+	this->isFolded = source.isFolded;
 	return *this;
 }
 /*
