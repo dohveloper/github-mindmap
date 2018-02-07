@@ -192,6 +192,9 @@ bool TextForm::OnChar(WPARAM wParam) {
 		}
 		this->caret->MoveToRight();
 		this->compose = FALSE;
+
+		CDC *cdc = GetDC();
+		this->textFormSize->TextFormWidthSize(this, cdc);
 	}
 	RedrawWindow();
 
@@ -239,7 +242,14 @@ void TextForm::OnKeyDown(WPARAM wParam) {
 	}
 	else if (wParam == VK_TAB)
 	{
-		this->text->GetAt(this->caret->GetRowIndex())->Insert(this->caret->GetCharacterIndex(),new SingleByteCharacter('\t'));
+		if (this->caret->GetCharacterIndex() > this->text->GetAt(this->caret->GetRowIndex())->GetLength() - 1)
+		{
+			this->text->GetAt(this->caret->GetRowIndex())->Write(new SingleByteCharacter('\t'));
+		}
+		else if (this->caret->GetCharacterIndex() < this->text->GetAt(this->caret->GetRowIndex())->GetLength())
+		{
+			this->text->GetAt(this->caret->GetRowIndex())->Insert(this->caret->GetCharacterIndex(), new SingleByteCharacter('\t'));
+		}
 		this->caret->MoveToRight();
 	}
 	RedrawWindow();
