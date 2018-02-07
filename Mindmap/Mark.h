@@ -16,21 +16,21 @@ public:
 	Mark(const Mark& source);
 	virtual ~Mark();
 
-	void setContent(string content);
+	void SetContent(string content);
 	void ShowMark();
 	void HideMark();
 	void Accept(ShapeVisitor& visitor);
 	Mark& operator=(const Mark& source);
 
-	bool GetIsShowned() const;
+	bool GetIsShown() const;
 
 private:
-	bool isShowned;
+	bool isShown;
 };
 
-inline bool Mark::GetIsShowned() const
+inline bool Mark::GetIsShown() const
 {
-	return this->isShowned;
+	return this->isShown;
 }
 
 #endif // MARK_H

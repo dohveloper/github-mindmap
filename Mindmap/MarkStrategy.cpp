@@ -14,20 +14,20 @@ MarkStrategy::~MarkStrategy()
 }
 void MarkStrategy::OnLButtonDown(CPoint point, UINT nFlags, Selection *selection, Branch *branch) 
 {
-	string type;
+	string markContent;
 
-	if (branch->GetMark().GetContent() == "+")
+	markContent = branch->GetMark().GetContent();
+
+	if (markContent == "+")
 	{
-		branch->UnFold();//펼친다.
-		type = "-";
-		branch->GetMark().setContent(type);
-		//하위 브랜치를 펼친다. 비지터 사용?
+		branch->UnFold();	//펼친다.
+		branch->GetMark().SetContent("-");
+		//하위 브랜치를 펼친다.
 	}
-	else
+	else if (markContent == "-")
 	{
-		branch->Fold();//접는다.
-		type = "+";
-		branch->GetMark().setContent(type);
+		branch->Fold();	//접는다.
+		branch->GetMark().SetContent("+");
 		//하위 브랜치를 접는다.
 	}
 

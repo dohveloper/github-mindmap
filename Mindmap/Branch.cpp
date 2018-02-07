@@ -35,7 +35,8 @@ void Branch::Accept(ShapeVisitor& visitor) {
 }
 
 void Branch::Fold() {
-	this->isFolded = true;//isFolded = true는 접힌다는 것.
+	//isFolded = true는 접힌다는 것.
+	this->isFolded = true;
 }
 
 void Branch::UnFold() {
