@@ -7,11 +7,12 @@
 #include "ShapeVisitor.h"
 using namespace std;
 typedef signed long int Long;
+class Branch;
 
 class Shape {
     public:
     	Shape();
-    	Shape(Long x, Long y, Long width, Long height, string content);
+    	Shape(Long x, Long y, Long width, Long height, string content,Branch *branch=NULL);
     	Shape(const Shape& source);
     	virtual ~Shape() = 0;
     
@@ -32,13 +33,16 @@ class Shape {
     	Long GetWidth() const;
     	Long GetHeight() const;
     	string& GetContent() const;
-    	
+		Branch* GetOwnerBranch() const;
+		void SetOwnerBranch(Branch *branch);
+
     protected:
     	Long x;
     	Long y;
     	Long height;
     	Long width;
     	string content;
+		Branch *ownerBranch;
 };
 
 inline Long Shape::GetX() const {
@@ -55,6 +59,16 @@ inline Long Shape::GetHeight() const {
 }
 inline string& Shape::GetContent() const {
 	return const_cast<string&>(this->content);
+}
+
+inline Branch* Shape::GetOwnerBranch() const
+{
+	return const_cast<Branch*>(this->ownerBranch);
+}
+
+inline void Shape::SetOwnerBranch(Branch *branch)
+{
+	this->ownerBranch=branch;
 }
 
 

@@ -10,10 +10,11 @@ typedef signed long int Long;
 
 class Branch : public Composite {
 public:
-	Branch(Long capacity = 256);
+	Branch(Long capacity = 256, Branch* branch = NULL);
 	Branch(const Branch& source);
 	virtual ~Branch();
-	
+
+	Long Add(Shape *shape);
 	Topic* GetTopic();
 	bool GetIsHidden();
 

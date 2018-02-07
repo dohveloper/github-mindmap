@@ -2,16 +2,18 @@
 
 #include "Composite.h"
 
-Composite::Composite(Long capacity)
+Composite::Composite(Long capacity, Branch* branch)
 :shapes(capacity) {
 	this->capacity = capacity;
 	this->length = 0;
+	this->ownerBranch = branch;
 }
 
 Composite::Composite(const Composite& source)
 : shapes(source.shapes) {
 	this->capacity = source.capacity;
 	this->length = source.length;
+	this->ownerBranch = source.ownerBranch;
 }
 
 Composite::~Composite()

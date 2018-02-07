@@ -3,19 +3,21 @@
 //#include "Line.h"
 
 Shape::Shape()
-:content("") {
+:content(""){
 	this->x = 0;
 	this->y = 0;
 	this->width = 0;
 	this->height = 0;
+	this->ownerBranch = NULL;
 }
 
-Shape::Shape(Long x, Long y, Long width, Long height, string content)
-	: content(content) {
+Shape::Shape(Long x, Long y, Long width, Long height, string content,Branch *branch)
+	: content(content){
 	this->x = x;
 	this->y = y;
 	this->width = width;
 	this->height = height;
+	this->ownerBranch = branch;
 }
 
 Shape::Shape(const Shape& source)
@@ -24,6 +26,7 @@ Shape::Shape(const Shape& source)
 	this->y = source.y;
 	this->width = source.width;
 	this->height = source.height;
+	this->ownerBranch = source.ownerBranch;
 }
 
 Shape::~Shape() {}

@@ -8,14 +8,14 @@ Topic::Topic()
 
 }
 
-Topic::Topic(Long x, Long y, Long width, Long height, string content) 
-:Shape(x,y,width,height,content)
+Topic::Topic(Long x, Long y, Long width, Long height, string content, Branch *branch)
+:Shape(x,y,width,height,content,branch)
 {
 
 }
 
 Topic::Topic(const Topic& source)
-: Shape(source.x, source.y, source.width, source.height, source.content)
+: Shape(source.x, source.y, source.width, source.height, source.content,source.ownerBranch)
 {
 	
 }

@@ -13,7 +13,7 @@ typedef signed long int Long;
 class Line : public Shape {
 public:
 	Line();
-	Line(Long x, Long y, Long width, Long height, string content);
+	Line(Long x, Long y, Long width, Long height, string content, Branch *branch = NULL);
 	Line(const Line& source);
 	virtual ~Line();
 

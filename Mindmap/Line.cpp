@@ -10,14 +10,14 @@ Line::Line()
 
 }
 
-Line::Line(Long x, Long y, Long width, Long height, string content)
-:Shape(x, y, width, height, content)
+Line::Line(Long x, Long y, Long width, Long height, string content, Branch *branch)
+:Shape(x, y, width, height, content,branch)
 {
 
 }
 
 Line::Line(const Line&source)
-:Shape(source.x, source.y, source.width, source.height, source.content)
+:Shape(source.x, source.y, source.width, source.height, source.content,source.ownerBranch)
 {
 
 }

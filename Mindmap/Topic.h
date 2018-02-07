@@ -13,7 +13,7 @@ typedef signed long int Long;
 class Topic : public Shape {
 public:
 	Topic();
-	Topic(Long x,Long y,Long width,Long height,string content);
+	Topic(Long x,Long y,Long width,Long height,string content, Branch *branch = NULL);
 	Topic(const Topic& source);
 	virtual ~Topic();
 
