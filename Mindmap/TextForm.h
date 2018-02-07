@@ -12,6 +12,7 @@ class Caret;
 class Row;
 class Text;
 class DoubleClickSelectText;
+class TextFormSize;
 class TextForm :public CWnd {
 public:
 	TextForm();
@@ -25,6 +26,7 @@ public:
 	Caret *caret;
 	SelectText *selectText;
 	DoubleClickSelectText *doubleClickSelectText;
+	TextFormSize *textFormSize;
 	bool hangul;
 	bool compose;
 	Long fontWidth;
@@ -38,8 +40,7 @@ protected:
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
-	DECLARE_MESSAGE_MAP()
-public:
 	afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);
+	DECLARE_MESSAGE_MAP()
 };
 #endif //_TEXTFORM_H

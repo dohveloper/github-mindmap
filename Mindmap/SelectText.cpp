@@ -28,19 +28,19 @@ void SelectText::TextDragAction(TextForm *textForm, CDC *cdc, CPoint point) {
 	Long start;
 	Long end;
 	TextDrag textDrag;
-	if (point.x < 0 && point.y >= 0)
+	if (point.x < 0 && point.y>=0)
 	{
 		textForm->caret->MoveToPoint(textForm, cdc, CPoint(0, point.y));
 		textForm->selectText->SetEndCharacterIndex(0);
 		textForm->selectText->SetEndRowIndex(textForm->caret->GetRowIndex());
 	}
-	else if (point.x >= 0 && point.y < 0)
+	else if (point.x>=0 && point.y < 0 )
 	{
 		textForm->caret->MoveToPoint(textForm, cdc, CPoint(point.x, 0));
 		textForm->selectText->SetEndCharacterIndex(textForm->caret->GetCharacterIndex());
 		textForm->selectText->SetEndRowIndex(0);
 	}
-	else if (point.x<0 && point.y<0)
+	else if(point.x<0 && point.y<0)
 	{
 		textForm->caret->MoveToPoint(textForm, cdc, CPoint(0, 0));
 		textForm->selectText->SetEndCharacterIndex(0);
@@ -57,15 +57,15 @@ void SelectText::TextDragAction(TextForm *textForm, CDC *cdc, CPoint point) {
 	start = textForm->selectText->GetStartRowIndex();
 	end = textForm->selectText->GetEndRowIndex();
 
-	if (start - end == 0 && textForm->selectText->GetStartCharacterIndex() >= 0)
+	if (start - end == 0 && textForm->selectText->GetStartCharacterIndex()>=0)
 	{
 		textDrag.SingleLineDrag(textForm, cdc);
 	}
-	else if ((start - end == 1 || end - start == 1) && textForm->selectText->GetStartCharacterIndex() >= 0)
+	else if ((start - end == 1 || end - start == 1) && textForm->selectText->GetStartCharacterIndex()>=0)
 	{
 		textDrag.DoubleLineDrag(textForm, cdc);
 	}
-	else if ((start - end >= 2 || end - start >= 2) && textForm->selectText->GetStartCharacterIndex() >= 0)
+	else if((start - end >= 2 ||	end - start >=2) && textForm->selectText->GetStartCharacterIndex()>=0)
 	{
 		textDrag.MultiLineDrag(textForm, cdc);
 	}
@@ -73,23 +73,78 @@ void SelectText::TextDragAction(TextForm *textForm, CDC *cdc, CPoint point) {
 
 void SelectText::TextAllSelect(TextForm *textForm, CDC *cdc, CPoint point) {
 	DoubleClickSelectText doubleClickSelectText;
+	
+	Long caretIndex;
+	Row* row;
+	Long width;
+	string word;
 
-	doubleClickSelectText.AllSelect(textForm, cdc);
+	caretIndex = textForm->caret->GetCharacterIndex()-1;
+	
+	row = (Row*)textForm->text->GetAt(textForm->caret->GetRowIndex());
+
+	while (caretIndex >= 0 && row->GetAt(caretIndex)->MakeString() != " ")
+	{
+		word += row->GetAt(caretIndex)->MakeString();
+
+		caretIndex--;
+	}
+	width = cdc->GetTextExtent((CString)word.c_str()).cx;
+
+	doubleClickSelectText.AllSelect(textForm, cdc, width);
+
 }
 
-Long SelectText::StartCharacterIndex(TextForm *textForm, CDC *cdc)
+Long SelectText::CheckStartCharacterIndex(TextForm *textForm)
 {
+	Long caretIndex;
+	Row* row;
 	Long index;
-	DoubleClickSelectText doubleClickSelectText;
-	index = doubleClickSelectText.CheckStartCharacterIndex(textForm, cdc);
+
+	caretIndex = textForm->caret->GetCharacterIndex()-1;
+	row = (Row*)textForm->text->GetAt(textForm->caret->GetRowIndex());
+	
+
+	while (caretIndex >= 0 && row->GetAt(caretIndex)->MakeString() != " ")
+	{
+		caretIndex--;	
+	}
+
+	if (caretIndex == -1)
+	{
+		caretIndex = 0;
+	}
+
+	if (caretIndex != 0 && row->GetAt(caretIndex)->MakeString() == " ")
+	{
+
+		caretIndex +=1;
+	}
+
+
+	index = caretIndex;
+
 	return index;
 }
 
-Long SelectText::EndCharacterIndex(TextForm *textForm)
+Long SelectText::CheckEndCharacterIndex(TextForm *textForm)
 {
+	Long caretIndex;
+	Row* row;
+	Long length;
 	Long index;
-	DoubleClickSelectText doubleClickSelectText;
-	index = doubleClickSelectText.CheckEndCharacterIndex(textForm);
+
+	caretIndex = textForm->caret->GetCharacterIndex();
+	row = (Row*)textForm->text->GetAt(textForm->caret->GetRowIndex());
+	length = row->GetLength();
+
+	while (caretIndex < length && row->GetAt(caretIndex)->MakeString() != " ")
+	{
+
+		caretIndex++;
+	}
+
+	index = caretIndex;
 	return index;
 }
 

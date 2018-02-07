@@ -11,6 +11,7 @@
 #include "SelectText.h"
 #include "TextDrag.h"
 #include "DoubleClickSelectText.h"
+#include "TextFormSize.h"
 #include <imm.h>
 #pragma comment(lib, "imm32.LIB")
 
@@ -31,6 +32,7 @@ TextForm::TextForm() {
 	this->caret = NULL;
 	this->hangul = FALSE;
 	this->compose = FALSE;
+	this->textFormSize = FALSE;
 	this->fontHeight = 0;
 	this->fontWidth = 0;
 }
@@ -40,6 +42,7 @@ int TextForm::OnCreate(LPCREATESTRUCT lpCreateStruct) {
 	this->caret = new Caret;
 	this->text = new Text;
 	this->selectText = new SelectText;
+	this->textFormSize = new TextFormSize;
 
 	this->text->Write(new Row);
 	return 0;
@@ -79,7 +82,7 @@ void TextForm::OnPaint() {
 	this->fontWidth = 16;
 	dc.SelectObject(&fnt);
 
-	WriteVisitor visitor(&dc,this);
+	WriteVisitor visitor(&dc,this->caret,this);
 
 	this->text->Accept(visitor);
 	this->caret->MoveToIndex(this,&dc);
@@ -304,8 +307,6 @@ void TextForm::OnLButtonUp(UINT nFlags, CPoint point) {
 	CWnd::OnLButtonUp(nFlags, point);
 }
 
-
-
 void TextForm::OnLButtonDblClk(UINT nFlags, CPoint point)
 {
 	CDC *cdc = GetDC();
@@ -319,16 +320,13 @@ void TextForm::OnLButtonDblClk(UINT nFlags, CPoint point)
 	white = cdc->SetTextColor(GetSysColor(COLOR_HIGHLIGHTTEXT));
 	blue = cdc->SetBkColor(GetSysColor(COLOR_HIGHLIGHT));
 
-	this->selectText->SetStartCharacterIndex(this->selectText->StartCharacterIndex(this, cdc));
+	this->selectText->SetStartCharacterIndex(this->selectText->CheckStartCharacterIndex(this));
 	this->selectText->SetStartRowIndex(this->caret->GetRowIndex());
-	this->selectText->SetEndCharacterIndex(this->selectText->EndCharacterIndex(this));
+	this->selectText->SetEndCharacterIndex(this->selectText->CheckEndCharacterIndex(this));
 	this->selectText->SetEndRowIndex(this->caret->GetRowIndex());
-
 	this->selectText->TextAllSelect(this, cdc, point);
 
 	fnt.DeleteObject();
-
-	CWnd::OnLButtonDblClk(nFlags, point);
 
 	CWnd::OnLButtonDblClk(nFlags, point);
 }
