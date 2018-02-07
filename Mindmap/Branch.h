@@ -19,24 +19,24 @@ public:
 	Topic* GetTopic();
 
 	virtual void Accept(ShapeVisitor& visitor);
-	void Fold();
-	void UnFold();
+	void Show();
+	void Hide();
 
 	Branch* Clone();
 	Branch& operator=(const Branch& source);
 
-	bool GetIsFolded() const;
+	bool GetIsShown() const;
 	Mark& GetMark() const;
 private:
 	Mark mark;
-	bool isFolded;
+	bool isShown;
 
 };
 
 
-inline bool Branch::GetIsFolded() const
+inline bool Branch::GetIsShown() const
 {
-	return this->isFolded;
+	return this->isShown;
 }
 
 inline Mark& Branch::GetMark() const {

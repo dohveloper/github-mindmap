@@ -7,11 +7,11 @@
 Branch::Branch(Long capacity, Branch* branch)
 	:Composite(capacity,branch),mark()
 {
-	this->isFolded = false;
+	this->isShown = false;
 }
 Branch::Branch(const Branch& source)
 	:Composite(source),mark(source.mark) {
-	this->isFolded = source.isFolded;
+	this->isShown = source.isShown;
 
 }
 Branch::~Branch()
@@ -42,13 +42,12 @@ void Branch::Accept(ShapeVisitor& visitor) {
 	visitor.VisitBranch(this);
 }
 
-void Branch::Fold() {
-	//isFolded = true는 접힌다는 것.
-	this->isFolded = true;
+void Branch::Show() {
+	this->isShown = true;
 }
 
-void Branch::UnFold() {
-	this->isFolded = false;
+void Branch::Hide() {
+	this->isShown = false;
 }
 
 Branch * Branch::Clone()
@@ -62,7 +61,7 @@ Branch& Branch::operator=(const Branch& source)
 	this->capacity = source.capacity;
 	this->length = source.length;
 	this->mark = source.mark;
-	this->isFolded = source.isFolded;
+	this->isShown = source.isShown;
 	return *this;
 }
 /*
