@@ -15,67 +15,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="TextFormSize.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="SelectText.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="DoubleClickSelectText.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="TextForm.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="WriteVisitor.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="PageForm.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="DrawingStrategy.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="HitTestVisitor.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="MouseAction.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="MouseStrategy.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="MultiSelect.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Select.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="SelectionStrategy.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="SingleSelect.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Branch.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Clipboard.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Composite.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="DrawingVisitor.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Line.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Page.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="PageApp.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="PageForm.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Selection.cpp">
@@ -93,117 +42,66 @@
     <ClCompile Include="Topic.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Caret.cpp">
+    <ClCompile Include="Branch.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Row.cpp">
+    <ClCompile Include="Clipboard.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="DoubleByteCharacter.cpp">
+    <ClCompile Include="Composite.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="SingleByteCharacter.cpp">
+    <ClCompile Include="HitTestVisitor.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Character.cpp">
+    <ClCompile Include="Line.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="TextVisitor.cpp">
+    <ClCompile Include="MouseStrategy.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Text.cpp">
+    <ClCompile Include="DrawingStrategy.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="TextDrag.cpp">
+    <ClCompile Include="SelectionStrategy.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="SingleLineDragAction.cpp">
+    <ClCompile Include="MultiSelect.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="DoubleLineDragAction.cpp">
+    <ClCompile Include="Select.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="MultiLineDragAction.cpp">
+    <ClCompile Include="SingleSelect.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="DrawingMouse.cpp">
+    <ClCompile Include="BranchTraverser.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="SelectionMouse.cpp">
+    <ClCompile Include="BranchIterator.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="TextComposite.cpp">
+    <ClCompile Include="DrawLines.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="MouseState.cpp">
+    <ClCompile Include="Iterator.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="DrawTopics.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="TextFormSize.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="SelectText.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="DoubleClickSelectText.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="TextForm.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="PageForm.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="DrawingStrategy.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="HitTestVisitor.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="MouseAction.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="MouseStrategy.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="MultiSelect.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Select.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="SelectionStrategy.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="SingleSelect.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Array.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Branch.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Clipboard.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Composite.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="DrawingVisitor.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Iterator.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Line.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Page.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="PageApp.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="PageForm.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Selection.h">
@@ -221,52 +119,55 @@
     <ClInclude Include="Topic.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="WriteVisitor.h">
+    <ClInclude Include="Array.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="DoubleByteCharacter.h">
+    <ClInclude Include="Branch.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="SingleByteCharacter.h">
+    <ClInclude Include="Clipboard.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Character.h">
+    <ClInclude Include="Composite.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="TextVisitor.h">
+    <ClInclude Include="HitTestVisitor.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Row.h">
+    <ClInclude Include="Iterator.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Text.h">
+    <ClInclude Include="Line.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="TextDrag.h">
+    <ClInclude Include="MouseStrategy.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="DoubleLineDragAction.h">
+    <ClInclude Include="DrawingStrategy.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="MultiLineDragAction.h">
+    <ClInclude Include="SelectionStrategy.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="SingleLineDragAction.h">
+    <ClInclude Include="MultiSelect.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="DrawingMouse.h">
+    <ClInclude Include="Select.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="TextComposite.h">
+    <ClInclude Include="SingleSelect.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="SelectionMouse.h">
+    <ClInclude Include="BranchTraverser.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="MouseState.h">
+    <ClInclude Include="BranchIterator.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Caret.h">
+    <ClInclude Include="DrawLines.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawTopics.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

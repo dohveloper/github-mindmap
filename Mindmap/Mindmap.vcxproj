@@ -18,94 +18,6 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Branch.cpp" />
-    <ClCompile Include="Caret.cpp" />
-    <ClCompile Include="Character.cpp" />
-    <ClCompile Include="Clipboard.cpp" />
-    <ClCompile Include="Composite.cpp" />
-    <ClCompile Include="DoubleByteCharacter.cpp" />
-    <ClCompile Include="DoubleClickSelectText.cpp" />
-    <ClCompile Include="DoubleLineDragAction.cpp" />
-    <ClCompile Include="DrawingMouse.cpp" />
-    <ClCompile Include="DrawingStrategy.cpp" />
-    <ClCompile Include="DrawingVisitor.cpp" />
-    <ClCompile Include="HitTestVisitor.cpp" />
-    <ClCompile Include="Line.cpp" />
-    <ClCompile Include="MouseAction.cpp" />
-    <ClCompile Include="MouseState.cpp" />
-    <ClCompile Include="MouseStrategy.cpp" />
-    <ClCompile Include="MultiLineDragAction.cpp" />
-    <ClCompile Include="MultiSelect.cpp" />
-    <ClCompile Include="Page.cpp" />
-    <ClCompile Include="PageApp.cpp" />
-    <ClCompile Include="PageForm.cpp" />
-    <ClCompile Include="Row.cpp" />
-    <ClCompile Include="Select.cpp" />
-    <ClCompile Include="Selection.cpp" />
-    <ClCompile Include="SelectionMarkVIsitor.cpp" />
-    <ClCompile Include="SelectionMouse.cpp" />
-    <ClCompile Include="SelectionStrategy.cpp" />
-    <ClCompile Include="SelectText.cpp" />
-    <ClCompile Include="Shape.cpp" />
-    <ClCompile Include="ShapeVisitor.cpp" />
-    <ClCompile Include="SingleByteCharacter.cpp" />
-    <ClCompile Include="SingleLineDragAction.cpp" />
-    <ClCompile Include="SingleSelect.cpp" />
-    <ClCompile Include="Text.cpp" />
-    <ClCompile Include="TextComposite.cpp" />
-    <ClCompile Include="TextDrag.cpp" />
-    <ClCompile Include="TextForm.cpp" />
-    <ClCompile Include="TextFormSize.cpp" />
-    <ClCompile Include="TextVisitor.cpp" />
-    <ClCompile Include="Topic.cpp" />
-    <ClCompile Include="WriteVisitor.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Array.h" />
-    <ClInclude Include="Branch.h" />
-    <ClInclude Include="Caret.h" />
-    <ClInclude Include="Character.h" />
-    <ClInclude Include="Clipboard.h" />
-    <ClInclude Include="Composite.h" />
-    <ClInclude Include="DoubleByteCharacter.h" />
-    <ClInclude Include="DoubleClickSelectText.h" />
-    <ClInclude Include="DoubleLineDragAction.h" />
-    <ClInclude Include="DrawingMouse.h" />
-    <ClInclude Include="DrawingStrategy.h" />
-    <ClInclude Include="DrawingVisitor.h" />
-    <ClInclude Include="HitTestVisitor.h" />
-    <ClInclude Include="Iterator.h" />
-    <ClInclude Include="Line.h" />
-    <ClInclude Include="MouseAction.h" />
-    <ClInclude Include="MouseState.h" />
-    <ClInclude Include="MouseStrategy.h" />
-    <ClInclude Include="MultiLineDragAction.h" />
-    <ClInclude Include="MultiSelect.h" />
-    <ClInclude Include="Page.h" />
-    <ClInclude Include="PageApp.h" />
-    <ClInclude Include="PageForm.h" />
-    <ClInclude Include="Row.h" />
-    <ClInclude Include="Select.h" />
-    <ClInclude Include="Selection.h" />
-    <ClInclude Include="SelectionMarkVisitor.h" />
-    <ClInclude Include="SelectionMouse.h" />
-    <ClInclude Include="SelectionStrategy.h" />
-    <ClInclude Include="SelectText.h" />
-    <ClInclude Include="Shape.h" />
-    <ClInclude Include="ShapeVisitor.h" />
-    <ClInclude Include="SingleByteCharacter.h" />
-    <ClInclude Include="SingleLineDragAction.h" />
-    <ClInclude Include="SingleSelect.h" />
-    <ClInclude Include="Text.h" />
-    <ClInclude Include="TextComposite.h" />
-    <ClInclude Include="TextDrag.h" />
-    <ClInclude Include="TextForm.h" />
-    <ClInclude Include="TextFormSize.h" />
-    <ClInclude Include="TextVisitor.h" />
-    <ClInclude Include="Topic.h" />
-    <ClInclude Include="WriteVisitor.h" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{6684996A-86AD-46BF-8C6B-72F19A6FD9C5}</ProjectGuid>
@@ -132,8 +44,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
-    <CharacterSet>NotSet</CharacterSet>
-    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -228,6 +139,61 @@
       <SubSystem>Windows</SubSystem>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Branch.cpp" />
+    <ClCompile Include="Clipboard.cpp" />
+    <ClCompile Include="Composite.cpp" />
+    <ClCompile Include="DrawingStrategy.cpp" />
+    <ClCompile Include="DrawLines.cpp" />
+    <ClCompile Include="DrawTopics.cpp" />
+    <ClCompile Include="HitTestVisitor.cpp" />
+    <ClCompile Include="Iterator.cpp" />
+    <ClCompile Include="Line.cpp" />
+    <ClCompile Include="BranchTraverser.cpp" />
+    <ClCompile Include="BranchIterator.cpp" />
+    <ClCompile Include="MouseAction.cpp" />
+    <ClCompile Include="MouseStrategy.cpp" />
+    <ClCompile Include="MultiSelect.cpp" />
+    <ClCompile Include="Page.cpp" />
+    <ClCompile Include="PageApp.cpp" />
+    <ClCompile Include="PageForm.cpp" />
+    <ClCompile Include="Select.cpp" />
+    <ClCompile Include="Selection.cpp" />
+    <ClCompile Include="SelectionMarkVIsitor.cpp" />
+    <ClCompile Include="SelectionStrategy.cpp" />
+    <ClCompile Include="Shape.cpp" />
+    <ClCompile Include="ShapeVisitor.cpp" />
+    <ClCompile Include="SingleSelect.cpp" />
+    <ClCompile Include="Topic.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Array.h" />
+    <ClInclude Include="Branch.h" />
+    <ClInclude Include="Clipboard.h" />
+    <ClInclude Include="Composite.h" />
+    <ClInclude Include="DrawingStrategy.h" />
+    <ClInclude Include="DrawLines.h" />
+    <ClInclude Include="DrawTopics.h" />
+    <ClInclude Include="HitTestVisitor.h" />
+    <ClInclude Include="Iterator.h" />
+    <ClInclude Include="Line.h" />
+    <ClInclude Include="BranchTraverser.h" />
+    <ClInclude Include="BranchIterator.h" />
+    <ClInclude Include="MouseAction.h" />
+    <ClInclude Include="MouseStrategy.h" />
+    <ClInclude Include="MultiSelect.h" />
+    <ClInclude Include="Page.h" />
+    <ClInclude Include="PageApp.h" />
+    <ClInclude Include="PageForm.h" />
+    <ClInclude Include="Select.h" />
+    <ClInclude Include="Selection.h" />
+    <ClInclude Include="SelectionMarkVisitor.h" />
+    <ClInclude Include="SelectionStrategy.h" />
+    <ClInclude Include="Shape.h" />
+    <ClInclude Include="ShapeVisitor.h" />
+    <ClInclude Include="SingleSelect.h" />
+    <ClInclude Include="Topic.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
