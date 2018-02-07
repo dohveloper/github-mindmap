@@ -10,7 +10,7 @@ Branch::Branch(Long capacity, Branch* branch)
 	this->isFolded = false;
 }
 Branch::Branch(const Branch& source)
-	:Composite(source) {
+	:Composite(source),mark(source.mark) {
 	this->isFolded = source.isFolded;
 
 }
