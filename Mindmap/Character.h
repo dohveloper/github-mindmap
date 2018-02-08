@@ -19,6 +19,7 @@ public:
 	virtual Long Write(Character *character);
 	virtual Long Insert(Long index, Character *character);
 	virtual Long Correct(Long index, Character *character);
+	virtual Long Delete(Long index);
 	virtual Character* GetAt(Long index);
 	virtual string MakeString();
 	virtual string MakeString(Long start,Long end);

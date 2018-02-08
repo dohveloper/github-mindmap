@@ -22,6 +22,10 @@ Long Character::Correct(Long index, Character *character) {
 	return -1;
 }
 
+Long Character::Delete(Long index) {
+	return -1;
+}
+
 Character* Character::GetAt(Long index) {
 	return 0;
 }
