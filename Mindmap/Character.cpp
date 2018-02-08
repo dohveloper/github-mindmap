@@ -29,6 +29,9 @@ Character* Character::GetAt(Long index) {
 string Character::MakeString() {
 	return 0;
 }
+string Character::MakeString(Long start, Long end) {
+	return 0;
+}
 
 bool Character::IsEqual(const Character& other) {
 	return 0;

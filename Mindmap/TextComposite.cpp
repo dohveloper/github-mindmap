@@ -61,6 +61,28 @@ string TextComposite::MakeString() {
 	return 0;
 }
 
+string TextComposite::MakeString(Long start, Long end) {
+
+	string text = "";
+	Character *character;
+
+	while (start < end)
+	{
+		if (this->GetAt(start)->MakeString().compare("\t") == 0)
+		{
+			text += "        ";
+		}
+		else
+		{
+			text += this->GetAt(start)->MakeString();
+		}
+		start++;
+	}
+	return text;
+
+
+}
+
 Long TextComposite::GetRowWidth(CDC *cdc,Long start,Long end) {
 	string word;
 	Long width=0;

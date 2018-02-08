@@ -26,19 +26,23 @@ WriteVisitor::~WriteVisitor() {
 }
 
 void WriteVisitor::VisitText(Text *text) {
+	string word;
 	Long i = 0;
 	Long length;
+	Long height;
 
 	length = text->GetLength();
 
 	while (i < length) {
-		this->rowIndex = i;
-		text->GetAt(i)->Accept(*this);
+		word = text->GetAt(i)->MakeString();
+
+		this->dc->TextOut(0, this->textForm->fontHeight * i, (CString)word.c_str());
 		i++;
 	}
 }
 
 void WriteVisitor::VisitRow(Row *row) {
+	/*
 	Long i = 0;
 	Long length;
 	string word;
@@ -62,11 +66,12 @@ void WriteVisitor::VisitRow(Row *row) {
 		i++;
 	}
 	dc->TextOut(0, this->rowIndex*this->textForm->fontHeight, (CString)word.c_str());
+	*/
 }
 
 void WriteVisitor::VisitSingleByteCharacter(SingleByteCharacter *singleByteCharacter) {
-	CSize size = dc->GetTextExtent((CString)singleByteCharacter->MakeString().c_str());
+	//CSize size = dc->GetTextExtent((CString)singleByteCharacter->MakeString().c_str());
 }
 void WriteVisitor::VisitDoubleByteCharacter(DoubleByteCharacter *doubleByteCharacter) {
-	CSize size = dc->GetTextExtent((CString)doubleByteCharacter->MakeString().c_str());
+	//CSize size = dc->GetTextExtent((CString)doubleByteCharacter->MakeString().c_str());
 }

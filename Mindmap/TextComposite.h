@@ -18,6 +18,7 @@ public:
 	Long Correct(Long index, Character *character);
 	Character* GetAt(Long index);
 	virtual string MakeString();
+	string MakeString(Long start, Long end);
 	TextComposite& operator=(const TextComposite& source);
 
 	Long GetRowWidth(CDC *cdc,Long start,Long end);

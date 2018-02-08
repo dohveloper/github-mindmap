@@ -23,22 +23,18 @@ TextDoubleClickSelectAction::~TextDoubleClickSelectAction()
 
 void TextDoubleClickSelectAction::AllSelect(TextForm *textForm, CDC *cdc, Long width)
 {
-
 	Long start = 0;
 	Long end = 0;
 	string word;
 	Long rowIndex = textForm->selectText->GetStartRowIndex();
 
-
 	start = textForm->selectText->GetStartCharacterIndex();
 	end = textForm->selectText->GetEndCharacterIndex();
 
-	Long i = start;
-
-	while (i < end)
+	while (start < end)
 	{
-		word += textForm->text->GetAt(rowIndex)->GetAt(i)->MakeString();
-		i++;
+		word += textForm->text->GetAt(rowIndex)->GetAt(start)->MakeString();
+		start++;
 	}
 
 	cdc->TextOut(textForm->caret->GetX()-width, textForm->fontHeight*rowIndex, (CString)word.c_str());

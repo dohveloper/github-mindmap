@@ -32,33 +32,13 @@ void DoubleLineDragAction::DragUp(TextForm *textForm, CDC *cdc) {
 	endRowIndex = textForm->selectText->GetEndRowIndex();
 	start = textForm->selectText->GetStartCharacterIndex();
 	end = textForm->selectText->GetEndCharacterIndex();
-	while (i < start)
-	{
-		if (textForm->text->GetAt(startRowIndex)->GetAt(i)->MakeString().compare("\t") == 0)
-		{
-			startWord += "        ";
-		}
-		else
-		{
-			startWord += textForm->text->GetAt(startRowIndex)->GetAt(i)->MakeString();
-		}
-		i++;
-	}
+	
+	startWord = textForm->text->GetAt(startRowIndex)->MakeString(0, start);
+	
 	cdc->TextOut(0, startRowIndex*textForm->fontHeight, (CString)startWord.c_str());
 
-	i = end;
-	while (i < textForm->text->GetAt(endRowIndex)->GetLength())
-	{
-		if (textForm->text->GetAt(endRowIndex)->GetAt(i)->MakeString().compare("\t") == 0)
-		{
-			endWord += "        ";
-		}
-		else
-		{
-			endWord += textForm->text->GetAt(endRowIndex)->GetAt(i)->MakeString();
-		}
-		i++;
-	}
+	endWord = textForm->text->GetAt(endRowIndex)->MakeString(end, textForm->text->GetAt(endRowIndex)->GetLength());
+
 	width = cdc->GetTextExtent((CString)textForm->text->GetAt(endRowIndex)->MakeString().c_str()).cx;
 	size = cdc->GetTextExtent((CString)endWord.c_str());
 
@@ -81,35 +61,13 @@ void DoubleLineDragAction::DragDown(TextForm *textForm, CDC *cdc) {
 	start = textForm->selectText->GetStartCharacterIndex();
 	end = textForm->selectText->GetEndCharacterIndex();
 
-	i = start;
-	while (i < textForm->text->GetAt(startRowIndex)->GetLength())
-	{
-		if (textForm->text->GetAt(startRowIndex)->GetAt(i)->MakeString().compare("\t") == 0)
-		{
-			startWord += "        ";
-		}
-		else
-		{
-			startWord += textForm->text->GetAt(startRowIndex)->GetAt(i)->MakeString();
-		}
-		i++;
-	}
+	startWord = textForm->text->GetAt(startRowIndex)->MakeString(start, textForm->text->GetAt(startRowIndex)->GetLength());
+
 	width = cdc->GetTextExtent((CString)textForm->text->GetAt(startRowIndex)->MakeString().c_str()).cx;
 	size = cdc->GetTextExtent((CString)startWord.c_str());
 	cdc->TextOut(width - size.cx, startRowIndex*textForm->fontHeight, (CString)startWord.c_str());
 
-	i = 0;
-	while (i < end)
-	{
-		if (textForm->text->GetAt(endRowIndex)->GetAt(i)->MakeString().compare("\t") == 0)
-		{
-			endWord += "        ";
-		}
-		else
-		{
-			endWord += textForm->text->GetAt(endRowIndex)->GetAt(i)->MakeString();
-		}
-		i++;
-	}
+	endWord = textForm->text->GetAt(endRowIndex)->MakeString(0, end);
+
 	cdc->TextOut(0, endRowIndex*textForm->fontHeight, (CString)endWord.c_str());
 }

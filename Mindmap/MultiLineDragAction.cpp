@@ -36,21 +36,11 @@ void MultiLineDragAction::DragDown(TextForm *textForm, CDC *cdc) {
 	end = textForm->selectText->GetEndCharacterIndex();
 	y = startRowIndex;
 	//start line
-	x = start;
-	while (x < textForm->text->GetAt(startRowIndex)->GetLength())
-	{
-		if (textForm->text->GetAt(startRowIndex)->GetAt(x)->MakeString().compare("\t") == 0)
-		{
-			startWord += "        ";
-		}
-		else
-		{
-			startWord += textForm->text->GetAt(startRowIndex)->GetAt(x)->MakeString();
-		}
-		x++;
-	}
+	startWord = textForm->text->GetAt(startRowIndex)->MakeString(start, textForm->text->GetAt(startRowIndex)->GetLength());
+
 	width = cdc->GetTextExtent((CString)textForm->text->GetAt(startRowIndex)->MakeString().c_str()).cx;
 	size = cdc->GetTextExtent((CString)startWord.c_str());
+
 	cdc->TextOut(width - size.cx, startRowIndex*textForm->fontHeight, (CString)startWord.c_str());
 
 	//middle line
@@ -63,19 +53,8 @@ void MultiLineDragAction::DragDown(TextForm *textForm, CDC *cdc) {
 	}
 
 	//end line
-	x = 0;
-	while (x < end)
-	{
-		if (textForm->text->GetAt(endRowIndex)->GetAt(x)->MakeString().compare("\t") == 0)
-		{
-			endWord += "        ";
-		}
-		else
-		{
-			endWord += textForm->text->GetAt(endRowIndex)->GetAt(x)->MakeString();
-		}
-		x++;
-	}
+	endWord = textForm->text->GetAt(endRowIndex)->MakeString(0, end);
+
 	cdc->TextOut(0, endRowIndex*textForm->fontHeight, (CString)endWord.c_str());
 }
 
@@ -98,18 +77,8 @@ void MultiLineDragAction::DragUp(TextForm *textForm, CDC *cdc) {
 	end = textForm->selectText->GetEndCharacterIndex();
 
 	// start line
-	while (x < start)
-	{
-		if (textForm->text->GetAt(startRowIndex)->GetAt(x)->MakeString().compare("\t") == 0)
-		{
-			startWord += "        ";
-		}
-		else
-		{
-			startWord += textForm->text->GetAt(startRowIndex)->GetAt(x)->MakeString();
-		}
-		x++;
-	}
+	startWord = textForm->text->GetAt(startRowIndex)->MakeString(0, start);
+
 	size = cdc->GetTextExtent((CString)startWord.c_str());
 	cdc->TextOut(0, startRowIndex*textForm->fontHeight, (CString)startWord.c_str());
 
@@ -123,19 +92,8 @@ void MultiLineDragAction::DragUp(TextForm *textForm, CDC *cdc) {
 	}
 
 	//end line
-	x = end;
-	while (x < textForm->text->GetAt(endRowIndex)->GetLength())
-	{
-		if (textForm->text->GetAt(endRowIndex)->GetAt(x)->MakeString().compare("\t") == 0)
-		{
-			endWord += "        ";
-		}
-		else
-		{
-			endWord += textForm->text->GetAt(endRowIndex)->GetAt(x)->MakeString();
-		}
-		x++;
-	}
+	endWord = textForm->text->GetAt(endRowIndex)->MakeString(end, textForm->text->GetAt(endRowIndex)->GetLength());
+
 	width = cdc->GetTextExtent((CString)textForm->text->GetAt(endRowIndex)->MakeString().c_str()).cx;
 	size = cdc->GetTextExtent((CString)endWord.c_str());
 	cdc->TextOut(width - size.cx, endRowIndex*textForm->fontHeight, (CString)endWord.c_str());
