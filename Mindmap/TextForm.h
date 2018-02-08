@@ -12,6 +12,8 @@ class Caret;
 class Row;
 class Text;
 class TextFormSize;
+class WriteKorean;
+class WriteEnglish;
 class TextForm :public CWnd {
 public:
 	TextForm();
@@ -25,6 +27,8 @@ public:
 	Caret *caret;
 	SelectText *selectText;
 	TextFormSize *textFormSize;
+	WriteKorean *writeKorean;
+	WriteEnglish *writeEnglish;
 	bool hangul;
 	bool compose;
 	Long fontWidth;

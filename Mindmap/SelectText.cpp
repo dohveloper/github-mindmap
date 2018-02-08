@@ -74,6 +74,8 @@ void SelectText::TextDragAction(TextForm *textForm, CDC *cdc, CPoint point) {
 void SelectText::TextDoubleClickAction(TextForm *textForm, CDC *cdc) {
 	TextDoubleClick textdoubleClick;
 
+
+
 	textdoubleClick.TextDoubleClickSelect(textForm, cdc);
 
 }

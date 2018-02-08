@@ -64,6 +64,7 @@
     <ClInclude Include="TextFormSize.h" />
     <ClInclude Include="TextVisitor.h" />
     <ClInclude Include="Topic.h" />
+    <ClInclude Include="WriteEnglish.h" />
     <ClInclude Include="WriteKorean.h" />
     <ClInclude Include="WriteVisitor.h" />
   </ItemGroup>
@@ -111,6 +112,8 @@
     <ClCompile Include="TextFormSize.cpp" />
     <ClCompile Include="TextVisitor.cpp" />
     <ClCompile Include="Topic.cpp" />
+    <ClCompile Include="WriteEnglish.cpp" />
+    <ClCompile Include="WriteKorean.cpp" />
     <ClCompile Include="WriteVisitor.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
