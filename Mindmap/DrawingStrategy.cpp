@@ -29,7 +29,7 @@ void DrawingStrategy::OnMouseMove(CPoint point) {
 	this->width = point.x - this->x;
 	this->height = point.y - this->y;
 }
-void DrawingStrategy::OnLButtonUp(Selection *selection, UINT nflags) {
+void DrawingStrategy::OnLButtonUp(Selection *selection, UINT nFlags) {
 	Long startX;
 	Long startY;
 	Long lineWidth;
@@ -37,7 +37,7 @@ void DrawingStrategy::OnLButtonUp(Selection *selection, UINT nflags) {
 	Branch *branch;
 	Topic *selectedTopic;
 
-	if (selection->GetLength() > 0 && this->width > 1 && this->height > 1 && this->width > minimumTopicWidth && this->height > minimumTopicHeight) {
+	if (selection->GetLength() > 0 && this->width > 1 && this->height > 1 && this->width > minimumTopicWidth && this->height > minimumTopicHeight&&nFlags != MK_CONTROL + MK_LBUTTON) {
 		// 1.라인의 시작점,너비,높이를 구한다.
 		selectedTopic = selection->GetLastSelection()->GetTopic();
 		startX = selectedTopic->GetX() + selectedTopic->GetWidth() / 2;
@@ -56,7 +56,7 @@ void DrawingStrategy::OnLButtonUp(Selection *selection, UINT nflags) {
 
 		selection->GetLastSelection()->Accept(visitor);//새 브랜치 추가시 하위 브랜치 펼친다
 
-		// 3.선택된 브랜치에 새 브랜치를 추가한다.
+													   // 3.선택된 브랜치에 새 브랜치를 추가한다.
 		selection->GetLastSelection()->Add(branch);
 
 		//선택된 브랜치의 마크를 +에서 -로 바꾼다.
@@ -67,7 +67,7 @@ void DrawingStrategy::OnLButtonUp(Selection *selection, UINT nflags) {
 		selection->Add(branch);
 	}
 
-	else if (selection->GetLength() > 0 && this->width < 1 && this->height < 1) {
+	else if (selection->GetLength() > 0 && this->width < 1 && this->height < 1 && nFlags == MK_CONTROL + MK_LBUTTON) {
 		selection->Clear();
 	}
 }

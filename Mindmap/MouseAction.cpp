@@ -19,8 +19,8 @@ void MouseAction::OnLButtonDown(CPoint point, UINT flags, Selection *selection, 
 void MouseAction::OnMouseMove(CPoint point) {
 	mouseStrategy->OnMouseMove(point);
 }
-void MouseAction::OnLButtonUp(Selection *selection, UINT nflags) {
-	mouseStrategy->OnLButtonUp(selection, nflags);
+void MouseAction::OnLButtonUp(Selection *selection, UINT nFlags) {
+	mouseStrategy->OnLButtonUp(selection, nFlags);
 }
 
 void MouseAction::SetStrategy(Shape *shape)
