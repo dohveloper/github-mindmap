@@ -37,7 +37,7 @@ void DrawingStrategy::OnLButtonUp(Selection *selection, UINT nFlags) {
 	Branch *branch;
 	Topic *selectedTopic;
 
-	if (selection->GetLength() > 0 && this->width > 1 && this->height > 1 && this->width > minimumTopicWidth && this->height > minimumTopicHeight&&nFlags != MK_CONTROL + MK_LBUTTON) {
+	if (selection->GetLength() > 0 && this->width > 1 && this->height > 1 && this->width > minimumTopicWidth && this->height > minimumTopicHeight) {
 		// 1.라인의 시작점,너비,높이를 구한다.
 		selectedTopic = selection->GetLastSelection()->GetTopic();
 		startX = selectedTopic->GetX() + selectedTopic->GetWidth() / 2;
@@ -67,7 +67,7 @@ void DrawingStrategy::OnLButtonUp(Selection *selection, UINT nFlags) {
 		selection->Add(branch);
 	}
 
-	else if (selection->GetLength() > 0 && this->width < 1 && this->height < 1 && nFlags == MK_CONTROL + MK_LBUTTON) {
+	else if (selection->GetLength() > 0 && this->width < 1 && this->height < 1) {
 		selection->Clear();
 	}
 }

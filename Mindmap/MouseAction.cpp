@@ -13,8 +13,8 @@ MouseAction::MouseAction()
 	this->mouseStrategy = NULL;
 }
 
-void MouseAction::OnLButtonDown(CPoint point, UINT flags, Selection *selection, Shape *shape) {
-	mouseStrategy->OnLButtonDown(point, flags, selection, shape);
+void MouseAction::OnLButtonDown(CPoint point, UINT nFlags, Selection *selection, Shape *shape) {
+	mouseStrategy->OnLButtonDown(point, nFlags, selection, shape);
 }
 void MouseAction::OnMouseMove(CPoint point) {
 	mouseStrategy->OnMouseMove(point);

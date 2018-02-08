@@ -141,42 +141,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Branch.cpp" />
-    <ClCompile Include="Clipboard.cpp" />
-    <ClCompile Include="Composite.cpp" />
-    <ClCompile Include="DrawingStrategy.cpp" />
-    <ClCompile Include="DrawingVisitor.cpp" />
-    <ClCompile Include="DrawLines.cpp" />
-    <ClCompile Include="DrawMarks.cpp" />
-    <ClCompile Include="DrawTopics.cpp" />
-    <ClCompile Include="FoldVisitor.cpp" />
-    <ClCompile Include="HitTester.cpp" />
-    <ClCompile Include="HitTestVisitor.cpp" />
-    <ClCompile Include="Iterator.cpp" />
-    <ClCompile Include="Line.cpp" />
-    <ClCompile Include="BranchTraverser.cpp" />
-    <ClCompile Include="BranchIterator.cpp" />
-    <ClCompile Include="Mark.cpp" />
-    <ClCompile Include="MarkHitTest.cpp" />
-    <ClCompile Include="MarkStrategy.cpp" />
-    <ClCompile Include="MouseAction.cpp" />
-    <ClCompile Include="MouseStrategy.cpp" />
-    <ClCompile Include="MultiSelect.cpp" />
-    <ClCompile Include="Page.cpp" />
-    <ClCompile Include="PageApp.cpp" />
-    <ClCompile Include="PageForm.cpp" />
-    <ClCompile Include="Select.cpp" />
-    <ClCompile Include="Selection.cpp" />
-    <ClCompile Include="SelectionMarkVIsitor.cpp" />
-    <ClCompile Include="SelectionStrategy.cpp" />
-    <ClCompile Include="Shape.cpp" />
-    <ClCompile Include="ShapeVisitor.cpp" />
-    <ClCompile Include="SingleSelect.cpp" />
-    <ClCompile Include="Topic.cpp" />
-    <ClCompile Include="TopicHitTest.cpp" />
-    <ClCompile Include="UnFoldVisitor.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="Array.h" />
     <ClInclude Include="Branch.h" />
     <ClInclude Include="Clipboard.h" />
@@ -212,6 +176,42 @@
     <ClInclude Include="Topic.h" />
     <ClInclude Include="TopicHitTest.h" />
     <ClInclude Include="UnFoldVisitor.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Branch.cpp" />
+    <ClCompile Include="BranchIterator.cpp" />
+    <ClCompile Include="BranchTraverser.cpp" />
+    <ClCompile Include="Clipboard.cpp" />
+    <ClCompile Include="Composite.cpp" />
+    <ClCompile Include="DrawingStrategy.cpp" />
+    <ClCompile Include="DrawingVisitor.cpp" />
+    <ClCompile Include="DrawLines.cpp" />
+    <ClCompile Include="DrawMarks.cpp" />
+    <ClCompile Include="DrawTopics.cpp" />
+    <ClCompile Include="FoldVisitor.cpp" />
+    <ClCompile Include="HitTester.cpp" />
+    <ClCompile Include="HitTestVisitor.cpp" />
+    <ClCompile Include="Iterator.cpp" />
+    <ClCompile Include="Line.cpp" />
+    <ClCompile Include="Mark.cpp" />
+    <ClCompile Include="MarkHitTest.cpp" />
+    <ClCompile Include="MarkStrategy.cpp" />
+    <ClCompile Include="MouseAction.cpp" />
+    <ClCompile Include="MouseStrategy.cpp" />
+    <ClCompile Include="MultiSelect.cpp" />
+    <ClCompile Include="Page.cpp" />
+    <ClCompile Include="PageApp.cpp" />
+    <ClCompile Include="PageForm.cpp" />
+    <ClCompile Include="Select.cpp" />
+    <ClCompile Include="Selection.cpp" />
+    <ClCompile Include="SelectionMarkVIsitor.cpp" />
+    <ClCompile Include="SelectionStrategy.cpp" />
+    <ClCompile Include="Shape.cpp" />
+    <ClCompile Include="ShapeVisitor.cpp" />
+    <ClCompile Include="SingleSelect.cpp" />
+    <ClCompile Include="Topic.cpp" />
+    <ClCompile Include="TopicHitTest.cpp" />
+    <ClCompile Include="UnFoldVisitor.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
