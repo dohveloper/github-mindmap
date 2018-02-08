@@ -21,10 +21,20 @@ Selection::~Selection()
 Long Selection::Add(Branch * branch)
 {
 	Long index;
+	Long i = 0;
+	bool isFound = false;
+	Shape *current = NULL;
 
 	//선택된 브랜치에 하위토픽이 있으면 선택된 브랜치의 마크를 보이게 한다.
-
-	branch->GetMark()->Show();
+	while (i < branch->GetLength() && isFound == false)
+	{
+		current = branch->GetAt(i);
+		if (typeid(*current) == typeid(Branch)) {
+			branch->GetMark()->Show();
+			isFound = true;
+		}
+		i++;
+	}
 
 	// branch를 배열에 추가한다.
 	if (this->length < this->capacity) {
