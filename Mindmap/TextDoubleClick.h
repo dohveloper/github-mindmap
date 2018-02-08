@@ -15,6 +15,8 @@ public:
 	~TextDoubleClick();
 
 	void TextDoubleClickSelect(TextForm *textForm, CDC *cdc);
+	Long CheckStartCharacterIndex(TextForm *textForm);
+	Long CheckEndCharacterIndex(TextForm *textForm);
 
 };
 

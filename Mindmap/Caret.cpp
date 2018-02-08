@@ -104,58 +104,6 @@ Long Caret::SetCharacterIndex(Long index) {
 	return this->characterIndex;
 }
 
-Long Caret::CheckStartCharacterIndex(TextForm *textForm)
-{
-	Long caretIndex;
-	Row* row;
-	Long index;
-
-	caretIndex = textForm->caret->GetCharacterIndex() - 1;
-	row = (Row*)textForm->text->GetAt(textForm->caret->GetRowIndex());
-
-
-	while (caretIndex >= 0 && row->GetAt(caretIndex)->MakeString() != " ")
-	{
-		caretIndex--;
-	}
-
-	if (caretIndex == -1)
-	{
-		caretIndex = 0;
-	}
-
-	if (caretIndex != 0 && row->GetAt(caretIndex)->MakeString() == " ")
-	{
-
-		caretIndex += 1;
-	}
-
-
-	index = caretIndex;
-
-	return index;
-}
-
-Long Caret::CheckEndCharacterIndex(TextForm *textForm)
-{
-	Long caretIndex;
-	Row* row;
-	Long length;
-	Long index;
-
-	caretIndex = textForm->caret->GetCharacterIndex();
-	row = (Row*)textForm->text->GetAt(textForm->caret->GetRowIndex());
-	length = row->GetLength();
-
-	while (caretIndex < length && row->GetAt(caretIndex)->MakeString() != " ")
-	{
-
-		caretIndex++;
-	}
-
-	index = caretIndex;
-	return index;
-}
 
 Long Caret::SetRowIndex(Long index) {
 	this->rowIndex = index;
