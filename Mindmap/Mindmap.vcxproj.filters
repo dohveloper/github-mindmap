@@ -102,6 +102,9 @@
     <ClCompile Include="UnFoldVisitor.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="DrawingVisitor.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MouseAction.h">
@@ -192,6 +195,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="UnFoldVisitor.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawingVisitor.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

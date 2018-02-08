@@ -145,6 +145,7 @@
     <ClCompile Include="Clipboard.cpp" />
     <ClCompile Include="Composite.cpp" />
     <ClCompile Include="DrawingStrategy.cpp" />
+    <ClCompile Include="DrawingVisitor.cpp" />
     <ClCompile Include="DrawLines.cpp" />
     <ClCompile Include="DrawTopics.cpp" />
     <ClCompile Include="FoldVisitor.cpp" />
@@ -177,6 +178,7 @@
     <ClInclude Include="Clipboard.h" />
     <ClInclude Include="Composite.h" />
     <ClInclude Include="DrawingStrategy.h" />
+    <ClInclude Include="DrawingVisitor.h" />
     <ClInclude Include="DrawLines.h" />
     <ClInclude Include="DrawTopics.h" />
     <ClInclude Include="FoldVisitor.h" />

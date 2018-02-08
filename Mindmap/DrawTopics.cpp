@@ -43,7 +43,7 @@ bool DrawTopics::ProcessItem(Shape *shape)
 	}
 
 	if (typeid(*shape) == typeid(Branch)) {
-		if ((((Branch*)shape))->GetIsShown() == false) {
+		if ((((Branch*)shape))->GetIsShown() == true) {
 			DrawTopics drawLines((Branch*)shape, this->dc);
 			drawLines.Traverse();
 		}

@@ -15,6 +15,7 @@
 #include "DrawLines.h"
 #include "DrawTopics.h"
 #include "Mark.h"
+#include "DrawingVisitor.h"
 
 BEGIN_MESSAGE_MAP(PageForm, CFrameWnd)
 	ON_WM_CREATE()
@@ -91,13 +92,18 @@ void PageForm::OnPaint() {
 	blackPen.CreatePen(PS_SOLID, 1, RGB(0, 0, 0));
 	dc.SelectObject(&blackPen);
 
+	DrawingVisitor visitor(&dc);
+
+	this->branch->Accept(visitor);
+
+
 	//선 그리기 
-	DrawLines drawLines(this->branch, &dc);
-	drawLines.Traverse();
+	//DrawLines drawLines(this->branch, &dc);
+	//drawLines.Traverse();
 	
 	//토픽 그리기 
-	DrawTopics drawTopics(this->branch, &dc);
-	drawTopics.Traverse();
+	//DrawTopics drawTopics(this->branch, &dc);
+	//drawTopics.Traverse();
 
 }
 
