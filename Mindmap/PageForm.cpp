@@ -33,6 +33,7 @@ int PageForm::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	CFrameWnd::OnCreate(lpCreateStruct);
 	this->branch = new Branch;
 	this->branch->Add(new Topic(387, 150, 200, 200, "메인토픽"));
+	this->branch->Add(new Mark(573, 200));
 	this->selection.Add(this->branch);
 	this->mouseAction = new MouseAction();
 	return 0;
