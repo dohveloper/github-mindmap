@@ -73,7 +73,6 @@ void SelectText::TextDragAction(TextForm *textForm, CDC *cdc, CPoint point) {
 
 void SelectText::TextAllSelect(TextForm *textForm, CDC *cdc, CPoint point) {
 	DoubleClickSelectText doubleClickSelectText;
-	
 	Long caretIndex;
 	Row* row;
 	Long width;
@@ -92,7 +91,6 @@ void SelectText::TextAllSelect(TextForm *textForm, CDC *cdc, CPoint point) {
 	width = cdc->GetTextExtent((CString)word.c_str()).cx;
 
 	doubleClickSelectText.AllSelect(textForm, cdc, width);
-
 }
 
 Long SelectText::CheckStartCharacterIndex(TextForm *textForm)
@@ -117,11 +115,8 @@ Long SelectText::CheckStartCharacterIndex(TextForm *textForm)
 
 	if (caretIndex != 0 && row->GetAt(caretIndex)->MakeString() == " ")
 	{
-
 		caretIndex +=1;
 	}
-
-
 	index = caretIndex;
 
 	return index;
@@ -140,10 +135,8 @@ Long SelectText::CheckEndCharacterIndex(TextForm *textForm)
 
 	while (caretIndex < length && row->GetAt(caretIndex)->MakeString() != " ")
 	{
-
 		caretIndex++;
 	}
-
 	index = caretIndex;
 	return index;
 }

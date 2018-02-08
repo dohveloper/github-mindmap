@@ -107,6 +107,7 @@
     <ClInclude Include="TextFormSize.h" />
     <ClInclude Include="TextVisitor.h" />
     <ClInclude Include="Topic.h" />
+    <ClInclude Include="WriteKorean.h" />
     <ClInclude Include="WriteVisitor.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

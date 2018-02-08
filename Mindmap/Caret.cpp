@@ -23,11 +23,12 @@ Caret::~Caret() {
 Caret* Caret::MoveToPoint(TextForm *textForm, CDC *cdc,CPoint point) {
 	Long width = 0;
 	Long textLength = 0;
+	Long length;
+	Long wordWidth;
 	string word;
 	CFont fnt;
 
 	fnt.CreateFont(30, 16, 0, 0, FW_HEAVY, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH, _T("굴림체"));
-
 	cdc->SelectObject(&fnt);
 
 	this ->characterIndex = 0;
@@ -35,25 +36,32 @@ Caret* Caret::MoveToPoint(TextForm *textForm, CDC *cdc,CPoint point) {
 
 	textLength = textForm->text->GetLength()-1;
 
+	//아마 수정(나중에)
 	this->rowIndex = point.y / textForm->fontHeight;
 
 	if (this->rowIndex > textLength)
 	{
 		this->rowIndex = textLength;
 	}
-	Long length = textForm->text->GetAt(this->rowIndex)->GetLength();
+	length = textForm->text->GetAt(this->rowIndex)->GetLength();
 
 	while (width <= point.x && this->characterIndex < length)
 	{
-		word = textForm->text->GetAt(this->rowIndex)->GetAt(this->characterIndex)->MakeString();
-
+		if (textForm->text->GetAt(this->rowIndex)->GetAt(this->characterIndex)->MakeString().compare("\t") == 0)
+		{
+			word = "        ";
+		}
+		else
+		{
+			word = textForm->text->GetAt(this->rowIndex)->GetAt(this->characterIndex)->MakeString();
+		}
 		width += cdc->GetTextExtent((CString)word.c_str()).cx;
 
 		this->characterIndex++;
 	}
-	Long wordWIdth = cdc->GetTextExtent((CString)word.c_str()).cx;
+	wordWidth = cdc->GetTextExtent((CString)word.c_str()).cx;
 
-	if (point.x < width - wordWIdth/2)
+	if (point.x < width - wordWidth /2)
 	{
 		this->characterIndex--;
 	}
@@ -64,7 +72,7 @@ Caret* Caret::MoveToPoint(TextForm *textForm, CDC *cdc,CPoint point) {
 }
 
 Caret* Caret::MoveToIndex(TextForm *textForm,CDC *cdc) {
-	this->currentX = textForm->text->GetAt(this->rowIndex)->GetRowWidth(cdc, this->characterIndex);
+	this->currentX = textForm->text->GetAt(this->rowIndex)->GetRowWidth(cdc, 0,this->characterIndex);
 	
 	this->currentY = this->rowIndex * textForm->fontHeight;
 

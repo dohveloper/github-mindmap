@@ -23,7 +23,7 @@ public:
 	virtual string MakeString();
 	virtual bool IsEqual(const Character& source);
 	virtual bool IsNotEqual(const Character& source);
-	virtual Long GetRowWidth(CDC *cdc,Long index);
+	virtual Long GetRowWidth(CDC *cdc,Long start,Long end);
 	virtual Long GetHeight(CDC *cdc);
 	virtual void Accept(TextVisitor& textVisitor);
 	virtual char GetCharacter() const;

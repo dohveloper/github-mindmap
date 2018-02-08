@@ -57,36 +57,27 @@ Character* TextComposite::GetAt(Long index) {
 }
 
 string TextComposite::MakeString() {
-	string text = "";
-	Long i = 0;
-	Character *character;
-
-	while (i < this->length)
-	{
-		character = this->characters[i];
-		
-		text = text + character->MakeString();
-		
-		i++;
-	}
 	
-	return text;
+	return 0;
 }
 
-Long TextComposite::GetRowWidth(CDC *cdc,Long index) {
-	Long i = 0;
+Long TextComposite::GetRowWidth(CDC *cdc,Long start,Long end) {
 	string word;
 	Long width=0;
 	
-	while (i < index)
+	while (start < end)
 	{
-		word = this->GetAt(i)->MakeString();
-
-		width += cdc->GetTextExtent((CString)word.c_str()).cx;
-		
-		i++;
+		if (this->GetAt(start)->MakeString().compare("\t")==0)
+		{
+			word += "        ";
+		}
+		else
+		{
+			word += this->GetAt(start)->MakeString();
+		}
+		start++;
 	}
-	
+	width = cdc->GetTextExtent((CString)word.c_str()).cx;
 	return width;
 }
 

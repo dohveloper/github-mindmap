@@ -13,6 +13,8 @@ public:
 	Row(const Row& source);
 	virtual ~Row();
 
+	string MakeString();
+
 	void Accept(TextVisitor& textVisitor);
 	Row& operator=(const Row& source);
 };

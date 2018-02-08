@@ -17,10 +17,10 @@ public:
 	Long Insert(Long index, Character *character);
 	Long Correct(Long index, Character *character);
 	Character* GetAt(Long index);
-	string MakeString();
+	virtual string MakeString();
 	TextComposite& operator=(const TextComposite& source);
 
-	Long GetRowWidth(CDC *cdc,Long index);
+	Long GetRowWidth(CDC *cdc,Long start,Long end);
 	Long GetHeight(CDC *cdc);
 
 	Long GetCapacity() const;

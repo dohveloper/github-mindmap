@@ -17,6 +17,26 @@ Row::~Row()
 
 }
 
+string Row::MakeString() {
+	string text = "";
+	Long i = 0;
+	Character *character;
+
+	while (i < this->length)
+	{
+		if (this->GetAt(i)->MakeString().compare("\t") == 0)
+		{
+			text += "        ";
+		}
+		else
+		{
+			text += this->GetAt(i)->MakeString();
+		}
+		i++;
+	}
+	return text;
+}
+
 void Row::Accept(TextVisitor& textVisitor) {
 	textVisitor.VisitRow(this);
 }

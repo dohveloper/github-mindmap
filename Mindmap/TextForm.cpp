@@ -82,7 +82,7 @@ void TextForm::OnPaint() {
 	this->fontWidth = 16;
 	dc.SelectObject(&fnt);
 
-	WriteVisitor visitor(&dc,this->caret,this);
+	WriteVisitor visitor(&dc, this);
 
 	this->text->Accept(visitor);
 	this->caret->MoveToIndex(this,&dc);
@@ -128,6 +128,7 @@ bool TextForm::OnComposition(LPARAM lParam) {
 
 	hWnd = GetSafeHwnd();
 	hIMC = ImmGetContext(hWnd);
+
 	//조합안된 한글
 	if (lParam & GCS_COMPSTR)
 	{
@@ -167,7 +168,6 @@ bool TextForm::OnComposition(LPARAM lParam) {
 		}
 		this->compose = FALSE;
 	}
-
 	RedrawWindow();
 	ImmReleaseContext(hWnd, hIMC);
 
@@ -194,6 +194,7 @@ bool TextForm::OnChar(WPARAM wParam) {
 		this->compose = FALSE;
 
 		CDC *cdc = GetDC();
+
 		this->textFormSize->TextFormWidthSize(this, cdc);
 	}
 	RedrawWindow();

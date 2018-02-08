@@ -38,7 +38,7 @@ bool Character::IsNotEqual(const Character& other) {
 	return 0;
 }
 
-Long Character::GetRowWidth(CDC *cdc,Long index) {
+Long Character::GetRowWidth(CDC *cdc,Long start,Long end) {
 	return -1;
 }
 

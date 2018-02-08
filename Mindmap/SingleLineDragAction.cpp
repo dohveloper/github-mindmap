@@ -30,7 +30,14 @@ void SingleLineDragAction::DragLeft(TextForm *textForm,CDC *cdc) {
 
 	while (i < start)
 	{
-		word += textForm->text->GetAt(rowIndex)->GetAt(i)->MakeString();
+		if (textForm->text->GetAt(rowIndex)->GetAt(i)->MakeString().compare("\t") == 0)
+		{
+			word += "        ";
+		}
+		else
+		{
+			word += textForm->text->GetAt(rowIndex)->GetAt(i)->MakeString();
+		}
 		i++;
 	}
 	cdc->TextOut(textForm->caret->GetX(), textForm->fontHeight*rowIndex, (CString)word.c_str());
@@ -51,7 +58,14 @@ void SingleLineDragAction::DragRight(TextForm *textForm, CDC *cdc) {
 
 	while (i < end)
 	{
-		word += textForm->text->GetAt(rowIndex)->GetAt(i)->MakeString();
+		if (textForm->text->GetAt(rowIndex)->GetAt(i)->MakeString().compare("\t") == 0)
+		{
+			word += "        ";
+		}
+		else
+		{
+			word += textForm->text->GetAt(rowIndex)->GetAt(i)->MakeString();
+		}
 		i++;
 	}
 	Long width = cdc->GetTextExtent((CString)word.c_str()).cx;

@@ -18,6 +18,20 @@ Text::~Text()
 
 }
 
+string Text::MakeString() {
+	string text = "";
+	Long i = 0;
+	Character *character;
+
+	while (i < this->length)
+	{
+		text += this->GetAt(i)->MakeString();
+
+		i++;
+	}
+	return text;
+}
+
 Text& Text::operator=(const Text& source)
 {
 	this->characters = source.characters;

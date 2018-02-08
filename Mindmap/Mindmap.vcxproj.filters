@@ -278,5 +278,8 @@
     <ClInclude Include="Topic.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="WriteKorean.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

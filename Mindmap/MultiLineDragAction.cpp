@@ -39,7 +39,14 @@ void MultiLineDragAction::DragDown(TextForm *textForm, CDC *cdc) {
 	x = start;
 	while (x < textForm->text->GetAt(startRowIndex)->GetLength())
 	{
-		startWord += textForm->text->GetAt(startRowIndex)->GetAt(x)->MakeString();
+		if (textForm->text->GetAt(startRowIndex)->GetAt(x)->MakeString().compare("\t") == 0)
+		{
+			startWord += "        ";
+		}
+		else
+		{
+			startWord += textForm->text->GetAt(startRowIndex)->GetAt(x)->MakeString();
+		}
 		x++;
 	}
 	width = cdc->GetTextExtent((CString)textForm->text->GetAt(startRowIndex)->MakeString().c_str()).cx;
@@ -59,7 +66,14 @@ void MultiLineDragAction::DragDown(TextForm *textForm, CDC *cdc) {
 	x = 0;
 	while (x < end)
 	{
-		endWord += textForm->text->GetAt(endRowIndex)->GetAt(x)->MakeString();
+		if (textForm->text->GetAt(endRowIndex)->GetAt(x)->MakeString().compare("\t") == 0)
+		{
+			endWord += "        ";
+		}
+		else
+		{
+			endWord += textForm->text->GetAt(endRowIndex)->GetAt(x)->MakeString();
+		}
 		x++;
 	}
 	cdc->TextOut(0, endRowIndex*textForm->fontHeight, (CString)endWord.c_str());
@@ -86,7 +100,14 @@ void MultiLineDragAction::DragUp(TextForm *textForm, CDC *cdc) {
 	// start line
 	while (x < start)
 	{
-		startWord += textForm->text->GetAt(startRowIndex)->GetAt(x)->MakeString();
+		if (textForm->text->GetAt(startRowIndex)->GetAt(x)->MakeString().compare("\t") == 0)
+		{
+			startWord += "        ";
+		}
+		else
+		{
+			startWord += textForm->text->GetAt(startRowIndex)->GetAt(x)->MakeString();
+		}
 		x++;
 	}
 	size = cdc->GetTextExtent((CString)startWord.c_str());
@@ -105,7 +126,14 @@ void MultiLineDragAction::DragUp(TextForm *textForm, CDC *cdc) {
 	x = end;
 	while (x < textForm->text->GetAt(endRowIndex)->GetLength())
 	{
-		endWord += textForm->text->GetAt(endRowIndex)->GetAt(x)->MakeString();
+		if (textForm->text->GetAt(endRowIndex)->GetAt(x)->MakeString().compare("\t") == 0)
+		{
+			endWord += "        ";
+		}
+		else
+		{
+			endWord += textForm->text->GetAt(endRowIndex)->GetAt(x)->MakeString();
+		}
 		x++;
 	}
 	width = cdc->GetTextExtent((CString)textForm->text->GetAt(endRowIndex)->MakeString().c_str()).cx;
