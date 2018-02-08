@@ -145,8 +145,10 @@
     <ClCompile Include="Clipboard.cpp" />
     <ClCompile Include="Composite.cpp" />
     <ClCompile Include="DrawingStrategy.cpp" />
+    <ClCompile Include="DrawingVisitor.cpp" />
     <ClCompile Include="DrawLines.cpp" />
     <ClCompile Include="DrawTopics.cpp" />
+    <ClCompile Include="FoldVisitor.cpp" />
     <ClCompile Include="HitTestVisitor.cpp" />
     <ClCompile Include="Iterator.cpp" />
     <ClCompile Include="Line.cpp" />
@@ -170,6 +172,7 @@
     <ClCompile Include="SingleSelect.cpp" />
     <ClCompile Include="Topic.cpp" />
     <ClCompile Include="TopicHitTest.cpp" />
+    <ClCompile Include="UnFoldVisitor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Array.h" />
@@ -177,8 +180,10 @@
     <ClInclude Include="Clipboard.h" />
     <ClInclude Include="Composite.h" />
     <ClInclude Include="DrawingStrategy.h" />
+    <ClInclude Include="DrawingVisitor.h" />
     <ClInclude Include="DrawLines.h" />
     <ClInclude Include="DrawTopics.h" />
+    <ClInclude Include="FoldVisitor.h" />
     <ClInclude Include="HitTestVisitor.h" />
     <ClInclude Include="Iterator.h" />
     <ClInclude Include="Line.h" />
@@ -202,6 +207,7 @@
     <ClInclude Include="SingleSelect.h" />
     <ClInclude Include="Topic.h" />
     <ClInclude Include="TopicHitTest.h" />
+    <ClInclude Include="UnFoldVisitor.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

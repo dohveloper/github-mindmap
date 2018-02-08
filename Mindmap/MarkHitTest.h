@@ -3,7 +3,7 @@
 #include "BranchTraverser.h"
 #include <afxwin.h>
 
-typedef signed int long;
+typedef signed long int Long;
 class Topic;
 class MarkHitTest :public BranchTraverser {
 public:

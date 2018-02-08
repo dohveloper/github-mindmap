@@ -17,22 +17,15 @@ public:
 
 	Long Add(Shape *shape);
 	Topic* GetTopic();
+	Mark* GetMark();
 
 	virtual void Accept(ShapeVisitor& visitor);
 
 	Branch* Clone();
 	Branch& operator=(const Branch& source);
 
-	Mark& GetMark() const;
-private:
-	Mark mark;
-	
 
 };
 
-inline Mark& Branch::GetMark() const {
-
-	return const_cast<Mark&>(this->mark);
-}
 
 #endif //TOPIC_H

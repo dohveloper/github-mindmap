@@ -21,14 +21,14 @@ void MarkStrategy::OnLButtonDown(CPoint point, UINT nFlags, Selection *selection
 	if (markContent == "+")
 	{
 		UnFoldVisitor visitor;
-		shape->GetOwnerBranch()->GetMark().SetContent("-");
+		shape->GetOwnerBranch()->GetMark()->SetContent("-");
 		shape->GetOwnerBranch()->Accept(visitor);//하위 브랜치를 펼친다.
 		
 	}
 	else if (markContent == "-")
 	{
 		FoldVisitor visitor;
-		shape->GetOwnerBranch()->GetMark().SetContent("+");
+		shape->GetOwnerBranch()->GetMark()->SetContent("+");
 		shape->GetOwnerBranch()->Accept(visitor);//하위 브랜치를 접는다.
 	}
 }
