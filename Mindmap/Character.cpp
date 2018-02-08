@@ -42,7 +42,7 @@ Long Character::GetRowWidth(CDC *cdc,Long index) {
 	return -1;
 }
 
-Long Character::GetHeight(CDC *cdc) {
+Long Character::GetHeight(CDC *cdc, Long index) {
 	return -1;
 }
 

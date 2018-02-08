@@ -24,7 +24,7 @@ public:
 	virtual bool IsEqual(const Character& source);
 	virtual bool IsNotEqual(const Character& source);
 	virtual Long GetRowWidth(CDC *cdc,Long index);
-	virtual Long GetHeight(CDC *cdc);
+	virtual Long GetHeight(CDC *cdc, Long index);
 	virtual void Accept(TextVisitor& textVisitor);
 	virtual char GetCharacter() const;
 	virtual string GetCharacters() const;

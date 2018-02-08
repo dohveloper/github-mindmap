@@ -17,7 +17,7 @@ public:
 	~TextFormSize();
 
 	void TextFormWidthSize(TextForm *textForm, CDC *cdc);
-	void TextFormHeightSize(TextForm *textForm);
+	void TextFormHeightSize(TextForm *textForm, CDC *cdc);
 
 	Long SetX(Long index);
 	Long SetY(Long index);

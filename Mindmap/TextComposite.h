@@ -21,7 +21,7 @@ public:
 	TextComposite& operator=(const TextComposite& source);
 
 	Long GetRowWidth(CDC *cdc,Long index);
-	Long GetHeight(CDC *cdc);
+	Long GetHeight(CDC *cdc, Long index);
 
 	Long GetCapacity() const;
 	Long GetLength() const;

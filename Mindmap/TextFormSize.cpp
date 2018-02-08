@@ -3,6 +3,7 @@
 #include "TextFormSize.h"
 #include "TextForm.h"
 #include "PageForm.h"
+#include "SelectText.h"
 #include "Caret.h"
 #include "Text.h"
 #include <string>
@@ -46,11 +47,12 @@ void TextFormSize::TextFormWidthSize(TextForm *textForm, CDC *cdc)
 	Long caretIndex;
 	Long wordWidth;
 	CFont fnt;
-
+	Long addTextFormWidth;
+	Long textWindowRato = 1.07;
+	Long maxWidthSize = 600;
 	fnt.CreateFont(30, 16, 0, 0, FW_HEAVY, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH, _T("±¼¸²Ã¼"));
 
 	cdc->SelectObject(&fnt);
-
 
 	row = (Row*)textForm->text->GetAt(textForm->caret->GetRowIndex());
 	length = row->GetLength();
@@ -66,28 +68,53 @@ void TextFormSize::TextFormWidthSize(TextForm *textForm, CDC *cdc)
 	textFormWidth = this->width;
 	textFormHeight = this->height;
 
-
-	
-
-	
-
-
-	if (width*1.06 > textFormWidth && wordWidth == 17)
+	if (width*textWindowRato > textFormWidth &&width*textWindowRato < maxWidthSize)
 	{
-		textForm->MoveWindow(textFormX, textFormY, textFormWidth+18.07 , textFormHeight);
+		addTextFormWidth = wordWidth*textWindowRato;
+		textFormWidth += addTextFormWidth;
+		textForm->MoveWindow(textFormX, textFormY, textFormWidth, textFormHeight);
 	}
-
-	else if (width*1.01 > textFormWidth && wordWidth == 33)
-	{
-		textForm->MoveWindow(textFormX, textFormY, textFormWidth + 34.02, textFormHeight);
-	}
+	this->width = textFormWidth;
+	
 	fnt.DeleteObject();
 }
 
-void TextFormSize::TextFormHeightSize(TextForm *textForm)
+void TextFormSize::TextFormHeightSize(TextForm *textForm, CDC *cdc)
 {
+	Long height;
+	Long textFormX;
+	Long textFormY;
+	Long textFormWidth;
+	Long textFormHeight;
+	Long rowHeight;
+	CFont fnt;
+	Long addTextFormHeight;
+	Long textWindowRato = 1.1;
+	Long maxHeightSize = 600;
+	fnt.CreateFont(30, 16, 0, 0, FW_HEAVY, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH, _T("±¼¸²Ã¼"));
+	cdc->SelectObject(&fnt);
+	
 
+	height = textForm->fontHeight;
+	rowHeight = textForm->text->GetLength()*height;
+	
+	textFormX = this->x;
+	textFormY = this->y;
+	textFormWidth = this->width;
+	textFormHeight = this->height;
+	
+
+	if (rowHeight*textWindowRato > textFormHeight && rowHeight*textWindowRato<maxHeightSize)
+	{
+		addTextFormHeight = height * textWindowRato;
+		textFormHeight += addTextFormHeight;
+		textForm->MoveWindow(textFormX, textFormY, textFormWidth, textFormHeight);
+	}
+	this->height = textFormHeight;
+
+	fnt.DeleteObject();
 }
+
 
 Long TextFormSize::SetX(Long index)
 {

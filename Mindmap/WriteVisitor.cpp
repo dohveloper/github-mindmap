@@ -31,14 +31,14 @@ void WriteVisitor::VisitText(Text *text) {
 	Long i = 0;
 	Long length;
 	Long height;
-
+	
+	
 	length = text->GetLength();
-	height = text->GetHeight(this->dc);
 
 	while (i < length) {
 		word = text->GetAt(i)->MakeString();
 
-		this->dc->TextOut(0, height * i, (CString)word.c_str());
+		this->dc->TextOut(0, this->textForm->fontHeight * i, (CString)word.c_str());
 		i++;
 	}
 }
