@@ -57,7 +57,7 @@ void TextFormSize::TextFormWidthSize(TextForm *textForm, CDC *cdc)
 	width = row->GetRowWidth(cdc, length);
 
 	caretIndex = textForm->caret->GetCharacterIndex();
-	textForm->MessageBox("");
+
 	word = row->GetAt(caretIndex)->MakeString();
 	wordWidth = cdc->GetTextExtent((CString)word.c_str()).cx;
 
@@ -65,7 +65,7 @@ void TextFormSize::TextFormWidthSize(TextForm *textForm, CDC *cdc)
 	textFormY = this->y;
 	textFormWidth = this->width;
 	textFormHeight = this->height;
-	textForm->MessageBox("");
+
 
 	
 
@@ -77,10 +77,10 @@ void TextFormSize::TextFormWidthSize(TextForm *textForm, CDC *cdc)
 		textForm->MoveWindow(textFormX, textFormY, textFormWidth+18.07 , textFormHeight);
 	}
 
-	/*else if (width*1.02 > wordWidth && wordWidth == 32)
+	else if (width*1.02 > textFormWidth && wordWidth == 33)
 	{
 		textForm->MoveWindow(textFormX, textFormY, textFormWidth + 34.02, textFormHeight);
-	}*/
+	}
 	fnt.DeleteObject();
 }
 

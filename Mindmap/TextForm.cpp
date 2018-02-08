@@ -151,9 +151,10 @@ bool TextForm::OnComposition(LPARAM lParam) {
 				this->text->GetAt(this->caret->GetRowIndex())->Insert(this->caret->GetCharacterIndex(), doubleByte);
 			}
 		}
-		this->compose = TRUE;
 		CDC *cdc = GetDC();
 		this->textFormSize->TextFormWidthSize(this, cdc);
+		this->compose = TRUE;
+
 	}
 	//조합된 한글
 	if (lParam & GCS_RESULTSTR)
@@ -168,6 +169,7 @@ bool TextForm::OnComposition(LPARAM lParam) {
 			this->text->GetAt(this->caret->GetRowIndex())->Correct(this->caret->GetCharacterIndex(), doubleByte);
 			this->caret->MoveToRight();
 		}
+
 		this->compose = FALSE;
 	}
 

@@ -19,6 +19,54 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Array.h" />
+    <ClInclude Include="Branch.h" />
+    <ClInclude Include="BranchIterator.h" />
+    <ClInclude Include="BranchTraverser.h" />
+    <ClInclude Include="Caret.h" />
+    <ClInclude Include="Character.h" />
+    <ClInclude Include="Clipboard.h" />
+    <ClInclude Include="Composite.h" />
+    <ClInclude Include="DoubleByteCharacter.h" />
+    <ClInclude Include="DoubleLineDragAction.h" />
+    <ClInclude Include="DrawingMouse.h" />
+    <ClInclude Include="DrawingStrategy.h" />
+    <ClInclude Include="DrawingVisitor.h" />
+    <ClInclude Include="DrawLines.h" />
+    <ClInclude Include="DrawTopics.h" />
+    <ClInclude Include="HitTestVisitor.h" />
+    <ClInclude Include="Iterator.h" />
+    <ClInclude Include="Line.h" />
+    <ClInclude Include="MouseAction.h" />
+    <ClInclude Include="MouseStrategy.h" />
+    <ClInclude Include="MultiLineDragAction.h" />
+    <ClInclude Include="MultiSelect.h" />
+    <ClInclude Include="Page.h" />
+    <ClInclude Include="PageApp.h" />
+    <ClInclude Include="PageForm.h" />
+    <ClInclude Include="Row.h" />
+    <ClInclude Include="Select.h" />
+    <ClInclude Include="Selection.h" />
+    <ClInclude Include="SelectionMarkVisitor.h" />
+    <ClInclude Include="SelectionStrategy.h" />
+    <ClInclude Include="SelectText.h" />
+    <ClInclude Include="Shape.h" />
+    <ClInclude Include="ShapeVisitor.h" />
+    <ClInclude Include="SingleByteCharacter.h" />
+    <ClInclude Include="SingleLineDragAction.h" />
+    <ClInclude Include="SingleSelect.h" />
+    <ClInclude Include="Text.h" />
+    <ClInclude Include="TextComposite.h" />
+    <ClInclude Include="TextDoubleClick.h" />
+    <ClInclude Include="TextDoubleClickSelectAction.h" />
+    <ClInclude Include="TextDrag.h" />
+    <ClInclude Include="TextForm.h" />
+    <ClInclude Include="TextFormSize.h" />
+    <ClInclude Include="TextVisitor.h" />
+    <ClInclude Include="Topic.h" />
+    <ClInclude Include="WriteVisitor.h" />
+  </ItemGroup>
+  <ItemGroup>
     <ClCompile Include="Branch.cpp" />
     <ClCompile Include="BranchIterator.cpp" />
     <ClCompile Include="BranchTraverser.cpp" />
@@ -27,7 +75,6 @@
     <ClCompile Include="Clipboard.cpp" />
     <ClCompile Include="Composite.cpp" />
     <ClCompile Include="DoubleByteCharacter.cpp" />
-    <ClCompile Include="DoubleClickSelectText.cpp" />
     <ClCompile Include="DoubleLineDragAction.cpp" />
     <ClCompile Include="DrawingStrategy.cpp" />
     <ClCompile Include="DrawingVisitor.cpp" />
@@ -56,58 +103,14 @@
     <ClCompile Include="SingleSelect.cpp" />
     <ClCompile Include="Text.cpp" />
     <ClCompile Include="TextComposite.cpp" />
+    <ClCompile Include="TextDoubleClick.cpp" />
+    <ClCompile Include="TextDoubleClickSelectAction.cpp" />
     <ClCompile Include="TextDrag.cpp" />
     <ClCompile Include="TextForm.cpp" />
     <ClCompile Include="TextFormSize.cpp" />
     <ClCompile Include="TextVisitor.cpp" />
     <ClCompile Include="Topic.cpp" />
     <ClCompile Include="WriteVisitor.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Array.h" />
-    <ClInclude Include="Branch.h" />
-    <ClInclude Include="BranchIterator.h" />
-    <ClInclude Include="BranchTraverser.h" />
-    <ClInclude Include="Caret.h" />
-    <ClInclude Include="Character.h" />
-    <ClInclude Include="Clipboard.h" />
-    <ClInclude Include="Composite.h" />
-    <ClInclude Include="DoubleByteCharacter.h" />
-    <ClInclude Include="DoubleClickSelectText.h" />
-    <ClInclude Include="DoubleLineDragAction.h" />
-    <ClInclude Include="DrawingStrategy.h" />
-    <ClInclude Include="DrawingVisitor.h" />
-    <ClInclude Include="DrawLines.h" />
-    <ClInclude Include="DrawTopics.h" />
-    <ClInclude Include="HitTestVisitor.h" />
-    <ClInclude Include="Iterator.h" />
-    <ClInclude Include="Line.h" />
-    <ClInclude Include="MouseAction.h" />
-    <ClInclude Include="MouseStrategy.h" />
-    <ClInclude Include="MultiLineDragAction.h" />
-    <ClInclude Include="MultiSelect.h" />
-    <ClInclude Include="Page.h" />
-    <ClInclude Include="PageApp.h" />
-    <ClInclude Include="PageForm.h" />
-    <ClInclude Include="Row.h" />
-    <ClInclude Include="Select.h" />
-    <ClInclude Include="Selection.h" />
-    <ClInclude Include="SelectionMarkVisitor.h" />
-    <ClInclude Include="SelectionStrategy.h" />
-    <ClInclude Include="SelectText.h" />
-    <ClInclude Include="Shape.h" />
-    <ClInclude Include="ShapeVisitor.h" />
-    <ClInclude Include="SingleByteCharacter.h" />
-    <ClInclude Include="SingleLineDragAction.h" />
-    <ClInclude Include="SingleSelect.h" />
-    <ClInclude Include="Text.h" />
-    <ClInclude Include="TextComposite.h" />
-    <ClInclude Include="TextDrag.h" />
-    <ClInclude Include="TextForm.h" />
-    <ClInclude Include="TextFormSize.h" />
-    <ClInclude Include="TextVisitor.h" />
-    <ClInclude Include="Topic.h" />
-    <ClInclude Include="WriteVisitor.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
