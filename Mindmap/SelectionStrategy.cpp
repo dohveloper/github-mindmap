@@ -7,9 +7,9 @@ SelectionStrategy::SelectionStrategy() {
 	this->select = NULL;
 }
 SelectionStrategy::~SelectionStrategy() {
-
 }
 void SelectionStrategy::OnLButtonDown(CPoint point, UINT nFlags, Selection *selection, Shape *shape) {
+	Branch *branch;
 
 	//할당해제
 	if (this->select != NULL) {
@@ -17,7 +17,7 @@ void SelectionStrategy::OnLButtonDown(CPoint point, UINT nFlags, Selection *sele
 		this->select = NULL;
 	}
 
-	if (nFlags == MK_CONTROL+ MK_LBUTTON)
+	if (nFlags == MK_CONTROL + MK_LBUTTON)
 	{
 		this->select = new MultiSelect;
 	}
@@ -26,8 +26,6 @@ void SelectionStrategy::OnLButtonDown(CPoint point, UINT nFlags, Selection *sele
 		this->select = new SingleSelect;
 	}
 
-		this->select->SelectBranch(selection, (Branch*)shape);
-		
+	branch = shape->GetOwnerBranch();
+	this->select->SelectBranch(selection, branch);
 }
-
-

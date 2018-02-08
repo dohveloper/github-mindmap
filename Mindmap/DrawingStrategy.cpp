@@ -44,12 +44,6 @@ void DrawingStrategy::OnLButtonUp(Selection *selection, bool isOverlapped) {
 		lineWidth = this->x + this->width / 2 - startX;
 		lineHeight = this->y + this->height / 2 - startY;
 
-		// 2.새 브랜치를 만들고 토픽,라인,마크를 추가한다.
-
-		branch = new Branch();
-		branch->Add(new Line(startX, startY, lineWidth, lineHeight, "", branch));
-		branch->Add(new Topic(this->x, this->y, this->width, this->height, "", branch));
-
 		// 2.새 브랜치를 만들고 토픽과 라인, 마크를 추가한다.
 
 		branch = new Branch();
@@ -64,6 +58,7 @@ void DrawingStrategy::OnLButtonUp(Selection *selection, bool isOverlapped) {
 		selection->Clear();
 		selection->Add(branch);
 	}
+
 	else if (selection->GetLength() > 0 && this->width < 1 && this->height < 1) {
 		selection->Clear();
 	}

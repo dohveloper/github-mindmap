@@ -111,10 +111,10 @@
     <ClCompile Include="DrawingVisitor.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="HitTester.cpp">
-      <Filter>헤더 파일</Filter>
-    </ClCompile>
     <ClCompile Include="DrawMarks.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="HitTester.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -218,10 +218,10 @@
     <ClInclude Include="DrawingVisitor.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="HitTester.h">
-      <Filter>소스 파일</Filter>
-    </ClInclude>
     <ClInclude Include="DrawMarks.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="HitTester.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

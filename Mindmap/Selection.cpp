@@ -22,6 +22,9 @@ Long Selection::Add(Branch * branch)
 {
 	Long index;
 
+	//선택된 브랜치의 마크를 보이게 한다.
+	branch->GetMark()->Show();
+
 	// branch를 배열에 추가한다.
 	if (this->length < this->capacity) {
 		index = this->selections.Store(this->length, branch);
@@ -30,9 +33,6 @@ Long Selection::Add(Branch * branch)
 		index = this->selections.AppendFromRear(branch);
 		this->capacity++;
 	}
-
-	//선택된 브랜치의 마크를 보이게 한다.
-	branch->GetMark()->Show();
 
 	this->length++;
 	return index;
@@ -45,13 +45,13 @@ Long Selection::Remove(Branch * branch)
 	//찾는다.
 	index = this->selections.LinearSearchUnique(&branch, CompareBranches);
 
-	//찾으면 지우고 마크를 없앤다.
+	//찾으면 마크를 없애고 지운다.
 	if (index != -1) {
+		branch->GetMark()->Hide();
+
 		this->selections.Delete(index);
 		index = -1;
 		this->length--;
-
-		branch->GetMark()->Hide();
 	}
 	return index;
 }
@@ -62,13 +62,12 @@ void Selection::Clear()
 	Long i = 0;
 
 	while (i < this->length) {
-		//선택 해제한다.
-		this->selections.Delete(i);
-
 		//마크표시를 지운다.
 		branch = this->selections.GetAt(i);
 		branch->GetMark()->Hide();
 		i++;
+		//선택 해제한다.
+		this->selections.Delete(i);
 	}
 	this->length = 0;
 }
