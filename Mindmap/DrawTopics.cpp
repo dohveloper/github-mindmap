@@ -32,7 +32,7 @@ bool DrawTopics::ProcessItem(Shape *shape)
 		content = shape->GetContent();
 
 		this->dc->Ellipse(x, y, x + width, y + height);
-		this->dc->TextOut(x + width / 2 - 25, y + height / 2, (CString)content.c_str());
+		this->dc->TextOut(x + width / 2 - 30, y + height / 2, (CString)content.c_str());
 	}
 
 	if (typeid(*shape) == typeid(Branch)) {

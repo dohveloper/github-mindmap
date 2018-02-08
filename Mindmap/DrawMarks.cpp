@@ -32,8 +32,8 @@ bool DrawMarks::ProcessItem(Shape *shape)
 			height = shape->GetHeight();
 			content = shape->GetContent();
 
-			this->dc->Ellipse(x, y, x + width, y + height);
-			this->dc->TextOut(x + 14 * width / 15 -12, y + height / 4 - 13, (CString)(content.c_str()));
+			this->dc->Ellipse(x, y, x + width, y - height);
+			this->dc->TextOut(x + 14 * width / 15 -12, y + height / 4 - 23, (CString)(content.c_str()));
 		}
 	}
 
