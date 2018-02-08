@@ -10,7 +10,7 @@ class MarkStrategy: public MouseStrategy {
 public:
 	MarkStrategy();
 	~MarkStrategy();
-	virtual void OnLButtonDown(CPoint point,UINT nFlags, Selection *selection, Branch *branch);
+	virtual void OnLButtonDown(CPoint point,UINT nFlags, Selection *selection, Shape *shape);
 
 };
 

@@ -19,25 +19,16 @@ public:
 	Topic* GetTopic();
 
 	virtual void Accept(ShapeVisitor& visitor);
-	void Show();
-	void Hide();
 
 	Branch* Clone();
 	Branch& operator=(const Branch& source);
 
-	bool GetIsShown() const;
 	Mark& GetMark() const;
 private:
 	Mark mark;
-	bool isShown;
+	
 
 };
-
-
-inline bool Branch::GetIsShown() const
-{
-	return this->isShown;
-}
 
 inline Mark& Branch::GetMark() const {
 

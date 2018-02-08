@@ -8,7 +8,7 @@ class SelectionStrategy: public MouseStrategy {
 public:
 	SelectionStrategy();
 	~SelectionStrategy();
-	virtual void OnLButtonDown(CPoint point,UINT nFlags, Selection *selection, Branch *branch);
+	virtual void OnLButtonDown(CPoint point,UINT nFlags, Selection *selection, Shape *shape);
 private:
 	Select *select;
 };

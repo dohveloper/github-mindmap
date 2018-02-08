@@ -12,25 +12,14 @@ typedef signed long int Long;
 class Mark : public Shape {
 public:
 	Mark();
-	Mark(Long x, Long y, Long width, Long height, string content);
+	Mark(Long x, Long y, Long width, Long height, string content, Branch *branch);
 	Mark(const Mark& source);
 	virtual ~Mark();
 
 	void SetContent(string content);
-	void ShowMark();
-	void HideMark();
 	void Accept(ShapeVisitor& visitor);
 	Mark& operator=(const Mark& source);
 
-	bool GetIsShown() const;
-
-private:
-	bool isShown;
 };
-
-inline bool Mark::GetIsShown() const
-{
-	return this->isShown;
-}
 
 #endif // MARK_H

@@ -21,7 +21,8 @@ class Shape {
     	virtual Shape* GetAt(Long index);
 
 		virtual void Accept(ShapeVisitor& visitor);
-		
+		virtual void Show();
+		virtual void Hide();
     
     	virtual bool IsEqual(const Shape& other);
     	virtual bool IsNotEqual(const Shape& other);
@@ -34,6 +35,7 @@ class Shape {
     	Long GetHeight() const;
     	string& GetContent() const;
 		Branch* GetOwnerBranch() const;
+		bool GetIsShown() const;
 		void SetOwnerBranch(Branch *branch);
 
     protected:
@@ -43,6 +45,7 @@ class Shape {
     	Long width;
     	string content;
 		Branch *ownerBranch;
+		bool isShown;
 };
 
 inline Long Shape::GetX() const {
@@ -71,5 +74,9 @@ inline void Shape::SetOwnerBranch(Branch *branch)
 	this->ownerBranch=branch;
 }
 
+inline bool Shape::GetIsShown() const
+{
+	return this->isShown;
+}
 
 #endif //_SHAPE_H

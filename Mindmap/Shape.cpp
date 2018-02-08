@@ -9,15 +9,18 @@ Shape::Shape()
 	this->width = 0;
 	this->height = 0;
 	this->ownerBranch = NULL;
+	this->isShown = true;
 }
 
-Shape::Shape(Long x, Long y, Long width, Long height, string content,Branch *branch)
+Shape::Shape(Long x, Long y, Long width, Long height, string content, Branch *branch)
 	: content(content){
 	this->x = x;
 	this->y = y;
 	this->width = width;
 	this->height = height;
 	this->ownerBranch = branch;
+	this->isShown = true;
+
 }
 
 Shape::Shape(const Shape& source)
@@ -27,6 +30,7 @@ Shape::Shape(const Shape& source)
 	this->width = source.width;
 	this->height = source.height;
 	this->ownerBranch = source.ownerBranch;
+	this->isShown = source.isShown;
 }
 
 Shape::~Shape() {}
@@ -46,6 +50,13 @@ void Shape::Accept(ShapeVisitor& visitor) {
 
 }
 
+void Shape::Show() {
+	this->isShown = true;
+}
+
+void Shape::Hide() {
+	this->isShown = false;
+}
 
 bool Shape::IsEqual(const Shape& other) {
 	return 0;
@@ -61,6 +72,8 @@ Shape& Shape::operator=(const Shape& source) {
 	this->width = source.width;
 	this->height = source.height;
 	this->content = source.content;
+	this->ownerBranch = source.ownerBranch;
+	this->isShown = source.isShown;
 
 	return *this;
 

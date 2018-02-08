@@ -15,8 +15,7 @@
 #include "DrawLines.h"
 #include "DrawTopics.h"
 #include "Mark.h"
-
-#include "TopicHitTest.h"
+#include "DrawingVisitor.h"
 
 BEGIN_MESSAGE_MAP(PageForm, CFrameWnd)
 	ON_WM_CREATE()
@@ -26,7 +25,6 @@ BEGIN_MESSAGE_MAP(PageForm, CFrameWnd)
 	ON_WM_PAINT()
 	ON_WM_CLOSE()
 	ON_WM_LBUTTONDBLCLK()
-	ON_WM_RBUTTONDOWN()
 END_MESSAGE_MAP()
 
 PageForm::PageForm() {
@@ -35,7 +33,7 @@ int PageForm::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 	CFrameWnd::OnCreate(lpCreateStruct);
 	this->branch = new Branch;
-	this->branch->Add(new Topic(387, 150, 200, 200, "메인토픽", NULL));
+	this->branch->Add(new Topic(387, 150, 200, 200, "메인토픽"));
 	this->selection.Add(this->branch);
 	this->mouseAction = new MouseAction();
 	return 0;
@@ -93,13 +91,19 @@ void PageForm::OnPaint() {
 	blackPen.CreatePen(PS_SOLID, 1, RGB(0, 0, 0));
 	dc.SelectObject(&blackPen);
 
-	//선 그리기
-	DrawLines drawLines(this->branch, &dc);
-	drawLines.Traverse();
+	DrawingVisitor visitor(&dc);
 
-	//토픽 그리기
-	DrawTopics drawTopics(this->branch, &dc);
-	drawTopics.Traverse();
+	this->branch->Accept(visitor);
+
+
+	//선 그리기 
+	//DrawLines drawLines(this->branch, &dc);
+	//drawLines.Traverse();
+	
+	//토픽 그리기 
+	//DrawTopics drawTopics(this->branch, &dc);
+	//drawTopics.Traverse();
+
 }
 
 void PageForm::OnClose()
@@ -124,15 +128,14 @@ void PageForm::OnLButtonDblClk(UINT nFlags, CPoint point)
 	CFrameWnd::OnLButtonDblClk(nFlags, point);
 }
 
-void PageForm::OnRButtonDown(UINT nFlags, CPoint point)
-{
-	Branch *branch;
-	//TopicHitTest 테스트
-	TopicHitTest topicHitTest(this->branch, point);
-	topicHitTest.Traverse();
-	branch = topicHitTest.GetHitTopic()->GetOwnerBranch();
-	this->selection.Add(branch);
-	RedrawWindow();
-
-	CFrameWnd::OnRButtonDown(nFlags, point);
+	if (branch->GetMark().GetIsShowned() != true)
+	{
+		qqq = 2424;
+	}
+	a.Format("%d", qqq);
+	this->MessageBox(a);
+	//branch->GetMark().GetX()
+	//this->mouseAction->ChangeState(SelectionMouse::Instance());
+	
+	CFrameWnd::OnLButtonDblClk(nFlags, point);
 }

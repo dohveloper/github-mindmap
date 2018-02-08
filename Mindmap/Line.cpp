@@ -33,7 +33,7 @@ void Line::Accept(ShapeVisitor& visitor) {
 bool Line::IsEqual(const Line& other) {
 	bool ret = false;
 
-	if (this->x == other.x && this->y == other.y && this->width == other.width && this->height == other.height && this->content.compare(other.content) == 0)
+	if (this->x == other.x && this->y == other.y && this->width == other.width && this->height == other.height && this->content.compare(other.content) || this->ownerBranch != other.ownerBranch == 0)
 	{
 		ret = true;
 	}
@@ -43,7 +43,7 @@ bool Line::IsEqual(const Line& other) {
 bool Line::IsNotEqual(const Line& other) {
 	bool ret = false;
 
-	if (this->x != other.x || this->y != other.y || this->width != other.width || this->height != other.height || this->content.compare(other.content) != 0)
+	if (this->x != other.x || this->y != other.y || this->width != other.width || this->height != other.height || this->content.compare(other.content) || this->ownerBranch != other.ownerBranch != 0)
 	{
 		ret = true;
 	}
@@ -53,7 +53,7 @@ bool Line::IsNotEqual(const Line& other) {
 bool Line::operator==(const Line& other) {
 	bool ret = false;
 
-	if (this->x == other.x && this->y == other.y && this->width == other.width && this->height == other.height && this->content.compare(other.content) == 0)
+	if (this->x == other.x && this->y == other.y && this->width == other.width && this->height == other.height && this->content.compare(other.content) || this->ownerBranch != other.ownerBranch == 0)
 	{
 		ret = true;
 	}
@@ -64,7 +64,7 @@ bool Line::operator==(const Line& other) {
 bool Line::operator!=(const Line& other) {
 	bool ret = false;
 
-	if (this->x != other.x || this->y != other.y || this->width != other.width || this->height != other.height || this->content.compare(other.content) != 0)
+	if (this->x != other.x || this->y != other.y || this->width != other.width || this->height != other.height || this->content.compare(other.content) || this->ownerBranch != other.ownerBranch != 0)
 	{
 		ret = true;
 	}
@@ -78,6 +78,7 @@ Line& Line::operator=(const Line& source) {
 	this->width = source.width;
 	this->height = source.height;
 	this->content = source.content;
+	this->ownerBranch = source.ownerBranch;
 
 	return *this;
 }

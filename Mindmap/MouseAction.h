@@ -9,11 +9,11 @@ class MouseStrategy;
 class MouseAction {
 public:
 	MouseAction();
-	void OnLButtonDown(CPoint point, UINT flags,Selection *selection, Branch *branch);
+	void OnLButtonDown(CPoint point, UINT flags,Selection *selection, Shape *shape);
 	void OnMouseMove(CPoint point);
 	void OnLButtonUp(Selection *selection,bool isOverlapped);
 	
-	void SetStrategy(Branch* clickedBranch);
+	void SetStrategy(Shape *shape);
 
 	
 private:
