@@ -1,7 +1,7 @@
 //Caret.cpp
 #include "Caret.h"
 #include "Text.h"
-using namespace std;
+#include "TextFont.h"
 
 Caret::Caret() {
 	this->currentX = 0;
@@ -28,7 +28,7 @@ Caret* Caret::MoveToPoint(TextForm *textForm, CDC *cdc,CPoint point) {
 	string word;
 	CFont fnt;
 
-	fnt.CreateFont(30, 16, 0, 0, FW_HEAVY, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH, _T("굴림체"));
+	fnt.CreateFont(textForm->textFont->GetHeight(), textForm->textFont->GetWidth(), 0, 0, textForm->textFont->GetWeight(), textForm->textFont->GetItalic(), textForm->textFont->GetUnderline(), textForm->textFont->GetStrikeOut(), DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH, _T(textForm->textFont->GetLpszFacename()));
 	cdc->SelectObject(&fnt);
 
 	this ->characterIndex = 0;
@@ -37,7 +37,7 @@ Caret* Caret::MoveToPoint(TextForm *textForm, CDC *cdc,CPoint point) {
 	textLength = textForm->text->GetLength()-1;
 
 	//아마 수정(나중에)
-	this->rowIndex = point.y / textForm->fontHeight;
+	this->rowIndex = point.y / textForm->textFont->GetHeight();
 
 	if (this->rowIndex > textLength)
 	{
@@ -74,17 +74,17 @@ Caret* Caret::MoveToPoint(TextForm *textForm, CDC *cdc,CPoint point) {
 Caret* Caret::MoveToIndex(TextForm *textForm,CDC *cdc) {
 	this->currentX = textForm->text->GetAt(this->rowIndex)->GetRowWidth(cdc, 0,this->characterIndex);
 	
-	this->currentY = this->rowIndex * textForm->fontHeight;
+	this->currentY = this->rowIndex * textForm->textFont->GetHeight();
 
 	if (textForm->compose == FALSE)
 	{
-		textForm->CreateSolidCaret(3, textForm->fontHeight);
+		textForm->CreateSolidCaret(3, textForm->textFont->GetHeight());
 	}
 	else
 	{
 		string word = textForm->text->GetAt(this->rowIndex)->GetAt(this->characterIndex)->MakeString();
 		CSize size = cdc->GetTextExtent((CString)word.c_str());
-		textForm->CreateSolidCaret(size.cx, textForm->fontHeight);
+		textForm->CreateSolidCaret(size.cx, textForm->textFont->GetHeight());
 	}
 	textForm->SetCaretPos(CPoint(this->currentX,this->currentY));
 

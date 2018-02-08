@@ -7,6 +7,7 @@
 #include "SingleByteCharacter.h"
 #include "DoubleByteCharacter.h"
 #include <afxdb.h>  
+#include "TextFont.h"
 #include "string"
 using namespace std;
 
@@ -36,7 +37,7 @@ void WriteVisitor::VisitText(Text *text) {
 	while (i < length) {
 		word = text->GetAt(i)->MakeString();
 
-		this->dc->TextOut(0, this->textForm->fontHeight * i, (CString)word.c_str());
+		this->dc->TextOut(0, this->textForm->textFont->GetHeight() * i, (CString)word.c_str());
 		i++;
 	}
 }

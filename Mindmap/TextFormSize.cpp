@@ -5,8 +5,8 @@
 #include "PageForm.h"
 #include "Caret.h"
 #include "Text.h"
+#include "TextFont.h"
 #include <string>
-
 using namespace std;
 
 TextFormSize::TextFormSize()
@@ -47,7 +47,7 @@ void TextFormSize::TextFormWidthSize(TextForm *textForm, CDC *cdc)
 	Long wordWidth;
 	CFont fnt;
 
-	fnt.CreateFont(30, 16, 0, 0, FW_HEAVY, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH, _T("±¼¸²Ã¼"));
+	fnt.CreateFont(textForm->textFont->GetHeight(), textForm->textFont->GetWidth(), 0, 0, textForm->textFont->GetWeight(), textForm->textFont->GetItalic(), textForm->textFont->GetUnderline(), textForm->textFont->GetStrikeOut(), DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH, _T(textForm->textFont->GetLpszFacename()));
 
 	cdc->SelectObject(&fnt);
 
@@ -65,11 +65,6 @@ void TextFormSize::TextFormWidthSize(TextForm *textForm, CDC *cdc)
 	textFormY = this->y;
 	textFormWidth = this->width;
 	textFormHeight = this->height;
-
-
-	
-
-	
 
 
 	if (width*1.06 > textFormWidth && wordWidth == 17)

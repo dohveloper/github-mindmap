@@ -6,6 +6,7 @@
 #include "SelectText.h"
 #include "Text.h"
 #include "Caret.h"
+#include "TextFont.h"
 #include <string>
 using namespace std;
 
@@ -41,21 +42,21 @@ void MultiLineDragAction::DragDown(TextForm *textForm, CDC *cdc) {
 	width = cdc->GetTextExtent((CString)textForm->text->GetAt(startRowIndex)->MakeString().c_str()).cx;
 	size = cdc->GetTextExtent((CString)startWord.c_str());
 
-	cdc->TextOut(width - size.cx, startRowIndex*textForm->fontHeight, (CString)startWord.c_str());
+	cdc->TextOut(width - size.cx, startRowIndex*textForm->textFont->GetHeight(), (CString)startWord.c_str());
 
 	//middle line
 	y++;
 	while (y < endRowIndex)
 	{
 		middleWord = textForm->text->GetAt(y)->MakeString();
-		cdc->TextOut(0, y*textForm->fontHeight, (CString)middleWord.c_str());
+		cdc->TextOut(0, y*textForm->textFont->GetHeight(), (CString)middleWord.c_str());
 		y++;
 	}
 
 	//end line
 	endWord = textForm->text->GetAt(endRowIndex)->MakeString(0, end);
 
-	cdc->TextOut(0, endRowIndex*textForm->fontHeight, (CString)endWord.c_str());
+	cdc->TextOut(0, endRowIndex*textForm->textFont->GetHeight(), (CString)endWord.c_str());
 }
 
 void MultiLineDragAction::DragUp(TextForm *textForm, CDC *cdc) {
@@ -80,14 +81,14 @@ void MultiLineDragAction::DragUp(TextForm *textForm, CDC *cdc) {
 	startWord = textForm->text->GetAt(startRowIndex)->MakeString(0, start);
 
 	size = cdc->GetTextExtent((CString)startWord.c_str());
-	cdc->TextOut(0, startRowIndex*textForm->fontHeight, (CString)startWord.c_str());
+	cdc->TextOut(0, startRowIndex*textForm->textFont->GetHeight(), (CString)startWord.c_str());
 
 	//middle line
 	y = startRowIndex - 1;
 	while (y > endRowIndex && y > 0)
 	{
 		middleWord = textForm->text->GetAt(y)->MakeString();
-		cdc->TextOut(0, y*textForm->fontHeight, (CString)middleWord.c_str());
+		cdc->TextOut(0, y*textForm->textFont->GetHeight(), (CString)middleWord.c_str());
 		y--;
 	}
 
@@ -96,5 +97,5 @@ void MultiLineDragAction::DragUp(TextForm *textForm, CDC *cdc) {
 
 	width = cdc->GetTextExtent((CString)textForm->text->GetAt(endRowIndex)->MakeString().c_str()).cx;
 	size = cdc->GetTextExtent((CString)endWord.c_str());
-	cdc->TextOut(width - size.cx, endRowIndex*textForm->fontHeight, (CString)endWord.c_str());
+	cdc->TextOut(width - size.cx, endRowIndex*textForm->textFont->GetHeight(), (CString)endWord.c_str());
 }
