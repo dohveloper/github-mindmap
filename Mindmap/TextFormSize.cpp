@@ -6,8 +6,8 @@
 #include "SelectText.h"
 #include "Caret.h"
 #include "Text.h"
+#include "TextFont.h"
 #include <string>
-
 using namespace std;
 
 TextFormSize::TextFormSize()
@@ -50,8 +50,7 @@ void TextFormSize::TextFormWidthSize(TextForm *textForm, CDC *cdc)
 	Long addTextFormWidth;
 	Long textWindowRato = 1.07;
 	Long maxWidthSize = 600;
-	fnt.CreateFont(30, 16, 0, 0, FW_HEAVY, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH, _T("±¼¸²Ã¼"));
-
+	fnt.CreateFont(textForm->textFont->GetHeight(), textForm->textFont->GetWidth(), 0, 0, textForm->textFont->GetWeight(), textForm->textFont->GetItalic(), textForm->textFont->GetUnderline(), textForm->textFont->GetStrikeOut(), DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH, textForm->textFont->GetLpszFacename());
 	cdc->SelectObject(&fnt);
 
 	row = (Row*)textForm->text->GetAt(textForm->caret->GetRowIndex());
@@ -89,13 +88,16 @@ void TextFormSize::TextFormHeightSize(TextForm *textForm, CDC *cdc)
 	Long rowHeight;
 	CFont fnt;
 	Long addTextFormHeight;
+
 	Long textWindowRato = 1.1;
+
 	Long maxHeightSize = 600;
-	fnt.CreateFont(30, 16, 0, 0, FW_HEAVY, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH, _T("±¼¸²Ã¼"));
+
+	fnt.CreateFont(textForm->textFont->GetHeight(), textForm->textFont->GetWidth(), 0, 0, textForm->textFont->GetWeight(), textForm->textFont->GetItalic(), textForm->textFont->GetUnderline(), textForm->textFont->GetStrikeOut(), DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH, textForm->textFont->GetLpszFacename());
 	cdc->SelectObject(&fnt);
 	
 
-	height = textForm->fontHeight;
+	height = textForm->textFont->GetHeight();
 	rowHeight = textForm->text->GetLength()*height;
 	
 	textFormX = this->x;

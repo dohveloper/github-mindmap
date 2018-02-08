@@ -14,6 +14,7 @@ class Text;
 class TextFormSize;
 class WriteKorean;
 class WriteEnglish;
+class TextFont;
 class TextForm :public CWnd {
 public:
 	TextForm();
@@ -29,10 +30,9 @@ public:
 	TextFormSize *textFormSize;
 	WriteKorean *writeKorean;
 	WriteEnglish *writeEnglish;
+	TextFont *textFont;
 	bool hangul;
 	bool compose;
-	Long fontWidth;
-	Long fontHeight;
 protected:
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnClose();

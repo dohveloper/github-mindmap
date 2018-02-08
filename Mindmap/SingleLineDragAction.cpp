@@ -6,6 +6,7 @@
 #include "SelectText.h"
 #include "Text.h"
 #include "Caret.h"
+#include "TextFont.h"
 #include <string>
 using namespace std;
 
@@ -29,7 +30,7 @@ void SingleLineDragAction::DragLeft(TextForm *textForm,CDC *cdc) {
 	//왼쪽으로 드래그
 	word = textForm->text->GetAt(rowIndex)->MakeString(end,start);
 	
-	cdc->TextOut(textForm->caret->GetX(), textForm->fontHeight*rowIndex, (CString)word.c_str());
+	cdc->TextOut(textForm->caret->GetX(), textForm->textFont->GetHeight()*rowIndex, (CString)word.c_str());
 }
 
 
@@ -46,5 +47,5 @@ void SingleLineDragAction::DragRight(TextForm *textForm, CDC *cdc) {
 	word = textForm->text->GetAt(rowIndex)->MakeString(start, end);
 
 	Long width = cdc->GetTextExtent((CString)word.c_str()).cx;
-	cdc->TextOut(textForm->caret->GetX() - width, textForm->fontHeight*rowIndex, (CString)word.c_str());
+	cdc->TextOut(textForm->caret->GetX() - width, textForm->textFont->GetHeight()*rowIndex, (CString)word.c_str());
 }

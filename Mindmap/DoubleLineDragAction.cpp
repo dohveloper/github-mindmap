@@ -6,6 +6,7 @@
 #include "SelectText.h"
 #include "Text.h"
 #include "Caret.h"
+#include "TextFont.h"
 #include <string>
 using namespace std;
 
@@ -35,14 +36,14 @@ void DoubleLineDragAction::DragUp(TextForm *textForm, CDC *cdc) {
 	
 	startWord = textForm->text->GetAt(startRowIndex)->MakeString(0, start);
 	
-	cdc->TextOut(0, startRowIndex*textForm->fontHeight, (CString)startWord.c_str());
+	cdc->TextOut(0, startRowIndex*textForm->textFont->GetHeight(), (CString)startWord.c_str());
 
 	endWord = textForm->text->GetAt(endRowIndex)->MakeString(end, textForm->text->GetAt(endRowIndex)->GetLength());
 
 	width = cdc->GetTextExtent((CString)textForm->text->GetAt(endRowIndex)->MakeString().c_str()).cx;
 	size = cdc->GetTextExtent((CString)endWord.c_str());
 
-	cdc->TextOut(width - size.cx, endRowIndex*textForm->fontHeight, (CString)endWord.c_str());
+	cdc->TextOut(width - size.cx, endRowIndex*textForm->textFont->GetHeight(), (CString)endWord.c_str());
 }
 
 void DoubleLineDragAction::DragDown(TextForm *textForm, CDC *cdc) {
@@ -65,9 +66,9 @@ void DoubleLineDragAction::DragDown(TextForm *textForm, CDC *cdc) {
 
 	width = cdc->GetTextExtent((CString)textForm->text->GetAt(startRowIndex)->MakeString().c_str()).cx;
 	size = cdc->GetTextExtent((CString)startWord.c_str());
-	cdc->TextOut(width - size.cx, startRowIndex*textForm->fontHeight, (CString)startWord.c_str());
+	cdc->TextOut(width - size.cx, startRowIndex*textForm->textFont->GetHeight(), (CString)startWord.c_str());
 
 	endWord = textForm->text->GetAt(endRowIndex)->MakeString(0, end);
 
-	cdc->TextOut(0, endRowIndex*textForm->fontHeight, (CString)endWord.c_str());
+	cdc->TextOut(0, endRowIndex*textForm->textFont->GetHeight(), (CString)endWord.c_str());
 }

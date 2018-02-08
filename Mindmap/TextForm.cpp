@@ -10,6 +10,7 @@
 #include "WriteEnglish.h"
 #include <afxdb.h>  
 #include "Caret.h"
+#include "TextFont.h"
 #include "SelectText.h"
 #include "TextDrag.h"
 #include "TextDoubleClick.h"
@@ -37,10 +38,9 @@ TextForm::TextForm() {
 	this->writeEnglish = NULL;
 	this->selectText = NULL;
 	this->textFormSize = NULL;
+	this->textFont = NULL;
 	this->hangul = FALSE;
 	this->compose = FALSE;
-	this->fontHeight = 0;
-	this->fontWidth = 0;
 }
 
 int TextForm::OnCreate(LPCREATESTRUCT lpCreateStruct) {
@@ -51,6 +51,7 @@ int TextForm::OnCreate(LPCREATESTRUCT lpCreateStruct) {
 	this->textFormSize = new TextFormSize;
 	this->writeKorean = new WriteKorean;
 	this->writeEnglish = new WriteEnglish;
+	this->textFont = new TextFont(30,16, FW_HEAVY, FALSE, FALSE, FALSE,"±¼¸²Ã¼");
 
 	this->text->Write(new Row);
 	return 0;
@@ -85,9 +86,8 @@ void TextForm::OnPaint() {
 
 	CFont fnt;
 
-	fnt.CreateFont(30, 16, 0, 0, FW_HEAVY, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH, _T("±¼¸²Ã¼"));
-	this->fontHeight = 30;
-	this->fontWidth = 16;
+	fnt.CreateFont(this->textFont->GetHeight(), this->textFont->GetWidth(), 0, 0, this->textFont->GetWeight(), this->textFont->GetItalic(), this->textFont->GetUnderline(), this->textFont->GetStrikeOut(), DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH, _T(this->textFont->GetLpszFacename()));
+	
 	dc.SelectObject(&fnt);
 
 	WriteVisitor visitor(&dc, this);
@@ -272,7 +272,7 @@ void TextForm::OnMouseMove(UINT nFlags, CPoint point) {
 		COLORREF white;
 
 		CFont fnt;
-		fnt.CreateFont(30, 16, 0, 0, FW_HEAVY, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH, _T("±¼¸²Ã¼"));
+		fnt.CreateFont(this->textFont->GetHeight(), this->textFont->GetWidth(), 0, 0, this->textFont->GetWeight(), this->textFont->GetItalic(), this->textFont->GetUnderline(), this->textFont->GetStrikeOut(), DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH, _T(this->textFont->GetLpszFacename()));
 		cdc->SelectObject(&fnt);
 
 		white = cdc->SetTextColor(GetSysColor(COLOR_HIGHLIGHTTEXT));
@@ -297,7 +297,7 @@ void TextForm::OnLButtonDblClk(UINT nFlags, CPoint point)
 	COLORREF white;
 
 	CFont fnt;
-	fnt.CreateFont(30, 16, 0, 0, FW_HEAVY, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH, _T("±¼¸²Ã¼"));
+	fnt.CreateFont(this->textFont->GetHeight(), this->textFont->GetWidth(), 0, 0, this->textFont->GetWeight(), this->textFont->GetItalic(), this->textFont->GetUnderline(), this->textFont->GetStrikeOut(), DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH, _T(this->textFont->GetLpszFacename()));
 	cdc->SelectObject(&fnt);
 
 	white = cdc->SetTextColor(GetSysColor(COLOR_HIGHLIGHTTEXT));

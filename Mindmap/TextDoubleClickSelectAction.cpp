@@ -6,9 +6,9 @@
 #include "Caret.h"
 #include "SelectText.h"
 #include "Text.h"
+#include "TextFont.h"
 #include <string>
 using namespace std;
-typedef signed long int Long;
 
 
 TextDoubleClickSelectAction::TextDoubleClickSelectAction()
@@ -37,7 +37,7 @@ void TextDoubleClickSelectAction::AllSelect(TextForm *textForm, CDC *cdc, Long w
 		start++;
 	}
 
-	cdc->TextOut(textForm->caret->GetX()-width, textForm->fontHeight*rowIndex, (CString)word.c_str());
+	cdc->TextOut(textForm->caret->GetX()-width, textForm->textFont->GetHeight()*rowIndex, (CString)word.c_str());
 }
 
 
