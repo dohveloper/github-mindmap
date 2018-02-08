@@ -15,13 +15,9 @@ bool DrawTopics::ProcessItem(Shape *shape)
 	Long y;
 	Long width;
 	Long height;
+	string content;
 
 	if (typeid(*shape) == typeid(Topic)) {
-		Long x;
-		Long y;
-		Long width;
-		Long height;
-		string content;
 
 		CFont fnt;
 		fnt.CreatePointFont(14, "system");

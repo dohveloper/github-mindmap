@@ -15,14 +15,10 @@ bool DrawMarks::ProcessItem(Shape *shape)
 	Long y;
 	Long width;
 	Long height;
+	string content;
 
 	if (typeid(*shape) == typeid(Mark)) {
 		if ((((Mark*)shape))->GetIsShown() == true) {
-			Long x;
-			Long y;
-			Long width;
-			Long height;
-			string content;
 
 			CFont fnt;
 			fnt.CreatePointFont(14, "system");
@@ -37,7 +33,7 @@ bool DrawMarks::ProcessItem(Shape *shape)
 			content = shape->GetContent();
 
 			this->dc->Ellipse(x, y, x + width, y + height);
-			//dc.TextOut(x + width / 2 - 10, y + height / 2, (CString)content.c_str());
+			this->dc->TextOutA(x + 14 * width / 15 -12, y + height / 4 - 13, (CString)(content.c_str()));
 		}
 	}
 
