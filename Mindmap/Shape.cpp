@@ -3,7 +3,7 @@
 //#include "Line.h"
 
 Shape::Shape()
-:content(""){
+	:content("") {
 	this->x = 0;
 	this->y = 0;
 	this->width = 0;
@@ -12,15 +12,14 @@ Shape::Shape()
 	this->isShown = true;
 }
 
-Shape::Shape(Long x, Long y, Long width, Long height, string content, Branch *branch)
-	: content(content){
+Shape::Shape(Long x, Long y, Long width, Long height, string content, Branch *branch, bool isShown)
+	: content(content) {
 	this->x = x;
 	this->y = y;
 	this->width = width;
 	this->height = height;
 	this->ownerBranch = branch;
-	this->isShown = true;
-
+	this->isShown = isShown;
 }
 
 Shape::Shape(const Shape& source)
@@ -47,7 +46,6 @@ Shape* Shape::GetAt(Long index) {
 }
 
 void Shape::Accept(ShapeVisitor& visitor) {
-
 }
 
 void Shape::Show() {
@@ -76,5 +74,4 @@ Shape& Shape::operator=(const Shape& source) {
 	this->isShown = source.isShown;
 
 	return *this;
-
 }

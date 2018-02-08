@@ -6,18 +6,17 @@
 #include <afxwin.h>
 
 Mark::Mark()
-	:Shape(0,0,0,0,"+")
+	:Shape(0, 0, 0, 0, "+", NULL, false)
 {
 }
 
 Mark::Mark(Long x, Long y, Long width, Long height, string content, Branch *branch)
-	: Shape(x, y, width, height, content, branch)
+	: Shape(x, y, width, height, content, branch, false)
 {
 }
 
-
 Mark::Mark(const Mark& source)
-	: Shape(source.x, source.y, source.width, source.height, source.content, source.ownerBranch)
+	: Shape(source.x, source.y, source.width, source.height, source.content, source.ownerBranch, source.isShown)
 {
 }
 
