@@ -51,7 +51,7 @@ int TextForm::OnCreate(LPCREATESTRUCT lpCreateStruct) {
 	this->textFormSize = new TextFormSize;
 	this->writeKorean = new WriteKorean;
 	this->writeEnglish = new WriteEnglish;
-	this->textFont = new TextFont(30,16, FW_HEAVY, FALSE, FALSE, FALSE,"±¼¸²Ã¼");
+	this->textFont = new TextFont(30,15, FW_HEAVY, FALSE, FALSE, FALSE,"±¼¸²Ã¼");
 
 	this->text->Write(new Row);
 	return 0;
