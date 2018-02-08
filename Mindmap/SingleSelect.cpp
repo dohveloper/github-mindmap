@@ -2,7 +2,6 @@
 #include "SingleSelect.h"
 #include "Selection.h"
 
-
 SingleSelect::SingleSelect()
 {
 }
@@ -33,7 +32,6 @@ void SingleSelect::SelectBranch(Selection *selection, Branch *branch)
 
 	//선택된 브랜치의 마크표식을 드러낸다.
 	branch->GetMark().Show();
-	
 }
 
 SingleSelect& SingleSelect::operator=(const SingleSelect& source)

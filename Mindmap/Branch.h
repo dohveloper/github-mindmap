@@ -8,7 +8,6 @@
 using namespace std;
 typedef signed long int Long;
 
-
 class Branch : public Composite {
 public:
 	Branch(Long capacity = 256, Branch* branch = NULL);
@@ -26,12 +25,9 @@ public:
 	Mark& GetMark() const;
 private:
 	Mark mark;
-	
-
 };
 
 inline Mark& Branch::GetMark() const {
-
 	return const_cast<Mark&>(this->mark);
 }
 
