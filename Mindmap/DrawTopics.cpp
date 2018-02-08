@@ -18,6 +18,7 @@ bool DrawTopics::ProcessItem(Shape *shape)
 	string content;
 
 	if (typeid(*shape) == typeid(Topic)) {
+
 		CFont fnt;
 		fnt.CreatePointFont(14, "system");
 		this->dc->SelectObject(&fnt);
@@ -31,7 +32,7 @@ bool DrawTopics::ProcessItem(Shape *shape)
 		content = shape->GetContent();
 
 		this->dc->Ellipse(x, y, x + width, y + height);
-		//dc.TextOut(x + width / 2 - 10, y + height / 2, (CString)content.c_str());
+		this->dc->TextOut(x + width / 2 - 25, y + height / 2, (CString)content.c_str());
 	}
 
 	if (typeid(*shape) == typeid(Branch)) {
