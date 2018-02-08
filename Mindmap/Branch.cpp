@@ -7,11 +7,9 @@
 Branch::Branch(Long capacity, Branch* branch)
 	:Composite(capacity, branch)
 {
-	this->isShown = true;
 }
 Branch::Branch(const Branch& source)
 	: Composite(source){
-	this->isShown = source.isShown;
 }
 Branch::~Branch()
 {
@@ -37,6 +35,36 @@ Topic* Branch::GetTopic()
 	return (Topic*)topic;
 }
 
+Mark* Branch::GetMark()
+{
+	Shape *mark;
+	Long length;
+	Long i = 0;
+
+	length=this->shapes.GetLength();
+
+	while (i < length)
+	{
+		mark = this->shapes.GetAt(i);
+
+		if (typeid(*mark) == typeid(Mark)) 
+		{
+			i = length;
+		}
+		i++;
+	}
+	/*
+	mark = this->shapes.GetAt(1);
+	if (typeid(*mark) == typeid(Mark)) 
+	{
+		mark = this->shapes.GetAt(2);
+	}
+	*/
+	return (Mark*)mark;
+}
+
+
+
 void Branch::Accept(ShapeVisitor& visitor) {
 	visitor.VisitBranch(this);
 }
@@ -51,7 +79,6 @@ Branch& Branch::operator=(const Branch& source)
 	this->shapes = source.shapes;
 	this->capacity = source.capacity;
 	this->length = source.length;
-	this->mark = source.mark;
 	return *this;
 }
 /*
