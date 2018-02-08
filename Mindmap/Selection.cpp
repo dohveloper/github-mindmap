@@ -85,8 +85,12 @@ void Selection::Clear()
 		branch = this->selections.GetAt(i);
 		branch->GetMark()->Hide();
 		i++;
+	}
+	i = 0;
+	while (i < this->length) {
 		//선택 해제한다.
 		this->selections.Delete(i);
+		i++;
 	}
 	this->length = 0;
 }
