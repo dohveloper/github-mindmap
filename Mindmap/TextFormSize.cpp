@@ -56,7 +56,7 @@ void TextFormSize::TextFormWidthSize(TextForm *textForm, CDC *cdc)
 
 	row = (Row*)textForm->text->GetAt(textForm->caret->GetRowIndex());
 	length = row->GetLength();
-	width = row->GetRowWidth(cdc, length);
+	width = row->GetRowWidth(cdc, 0,length);
 
 	caretIndex = textForm->caret->GetCharacterIndex();
 

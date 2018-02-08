@@ -13,6 +13,8 @@ public:
 	Text(const Text& source);
 	virtual ~Text();
 
+	string MakeString();
+
 	virtual void Accept(TextVisitor& textVisitor);
 
 	Text& operator=(const Text& source);

@@ -1,11 +1,13 @@
 #include "TextForm.h"
 #include "PageForm.h"
 #include "Topic.h"
+#include "WriteKorean.h"
 #include "Text.h"
 #include "Row.h"
 #include "SingleByteCharacter.h"
 #include "DoubleByteCharacter.h"
 #include "WriteVisitor.h"
+#include "WriteEnglish.h"
 #include <afxdb.h>  
 #include "Caret.h"
 #include "SelectText.h"
@@ -31,9 +33,12 @@ END_MESSAGE_MAP()
 TextForm::TextForm() {
 	this->text = NULL;
 	this->caret = NULL;
+	this->writeKorean = NULL;
+	this->writeEnglish = NULL;
+	this->selectText = NULL;
+	this->textFormSize = NULL;
 	this->hangul = FALSE;
 	this->compose = FALSE;
-	this->textFormSize = FALSE;
 	this->fontHeight = 0;
 	this->fontWidth = 0;
 }
@@ -44,6 +49,8 @@ int TextForm::OnCreate(LPCREATESTRUCT lpCreateStruct) {
 	this->text = new Text;
 	this->selectText = new SelectText;
 	this->textFormSize = new TextFormSize;
+	this->writeKorean = new WriteKorean;
+	this->writeEnglish = new WriteEnglish;
 
 	this->text->Write(new Row);
 	return 0;
@@ -83,7 +90,7 @@ void TextForm::OnPaint() {
 	this->fontWidth = 16;
 	dc.SelectObject(&fnt);
 
-	WriteVisitor visitor(&dc,this->caret,this);
+	WriteVisitor visitor(&dc, this);
 
 	this->text->Accept(visitor);
 	this->caret->MoveToIndex(this,&dc);
@@ -123,56 +130,22 @@ BOOL TextForm::PreTranslateMessage(MSG* pMsg) {
 bool TextForm::OnComposition(LPARAM lParam) {
 	HWND hWnd;
 	HIMC hIMC;
-	Long len;
-	char str[3] = "";
-	DoubleByteCharacter *doubleByte;
+	CDC *cdc;
+	cdc = GetDC();
 
 	hWnd = GetSafeHwnd();
 	hIMC = ImmGetContext(hWnd);
+
 	//조합안된 한글
 	if (lParam & GCS_COMPSTR)
 	{
-		len = ImmGetCompositionString(hIMC, GCS_COMPSTR, NULL, 0);
-		ImmGetCompositionString(hIMC, GCS_COMPSTR, str, len);
-
-		doubleByte = new DoubleByteCharacter(str);
-		if (this->compose == TRUE)
-		{
-			this->text->GetAt(this->caret->GetRowIndex())->Correct(this->caret->GetCharacterIndex(), doubleByte);
-		}
-		else
-		{
-			if (this->caret->GetCharacterIndex() > this->text->GetAt(this->caret->GetRowIndex())->GetLength() - 1)
-			{
-				this->text->GetAt(this->caret->GetRowIndex())->Write(doubleByte);
-			}
-			else
-			{
-				this->text->GetAt(this->caret->GetRowIndex())->Insert(this->caret->GetCharacterIndex(), doubleByte);
-			}
-		}
-		CDC *cdc = GetDC();
-		this->textFormSize->TextFormWidthSize(this, cdc);
-		this->compose = TRUE;
-
+		this->writeKorean->KoreanMixing(this,hIMC,hWnd,cdc);
 	}
 	//조합된 한글
 	if (lParam & GCS_RESULTSTR)
 	{
-		len = ImmGetCompositionString(hIMC, GCS_RESULTSTR, NULL, 0);
-		ImmGetCompositionString(hIMC, GCS_RESULTSTR, str, len);
-
-		doubleByte = new DoubleByteCharacter(str);
-
-		if (this->compose == TRUE)
-		{
-			this->text->GetAt(this->caret->GetRowIndex())->Correct(this->caret->GetCharacterIndex(), doubleByte);
-			this->caret->MoveToRight();
-		}
-
-		this->compose = FALSE;
+		this->writeKorean->KoreanMixed(this, hIMC, hWnd);
 	}
-
 	RedrawWindow();
 	ImmReleaseContext(hWnd, hIMC);
 
@@ -182,23 +155,11 @@ bool TextForm::OnComposition(LPARAM lParam) {
 //영어 실행
 bool TextForm::OnChar(WPARAM wParam) {
 	char word = wParam;
-	char empty = ' ';
-	Long textLength;
+	CDC *cdc = GetDC();
 
 	if (this->hangul == FALSE && wParam != VK_RETURN && wParam != VK_BACK && wParam != VK_ESCAPE && wParam >= 32 && wParam <= 128)
 	{
-		if (this->caret->GetCharacterIndex() > this->text->GetAt(this->caret->GetRowIndex())->GetLength()-1)
-		{
-			this->text->GetAt(this->caret->GetRowIndex())->Write(new SingleByteCharacter(word));
-		}
-		else if(this->caret->GetCharacterIndex() < this->text->GetAt(this->caret->GetRowIndex())->GetLength())
-		{
-			this->text->GetAt(this->caret->GetRowIndex())->Insert(this->caret->GetCharacterIndex(),new SingleByteCharacter(word));
-		}
-		CDC *cdc = GetDC();
-		this->textFormSize->TextFormWidthSize(this, cdc);
-		this->caret->MoveToRight();
-		this->compose = FALSE;
+		this->writeEnglish->Write(this,cdc,word);
 	}
 	RedrawWindow();
 

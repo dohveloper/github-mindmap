@@ -31,7 +31,7 @@ void TextDoubleClick::TextDoubleClickSelect(TextForm *textForm, CDC *cdc)
 
 	row = (Row*)textForm->text->GetAt(textForm->caret->GetRowIndex());
 
-	while (caretIndex >= 0 && row->GetAt(caretIndex)->MakeString() != " ")
+	while (caretIndex >= 0 && row->GetAt(caretIndex)->MakeString() != " " && row->GetAt(caretIndex)->MakeString().compare("\t") != 0)
 	{
 		word += row->GetAt(caretIndex)->MakeString();
 
@@ -46,13 +46,12 @@ Long TextDoubleClick::CheckStartCharacterIndex(TextForm *textForm)
 {
 	Long caretIndex;
 	Row* row;
-	Long index;
 
 	caretIndex = textForm->caret->GetCharacterIndex() - 1;
 	row = (Row*)textForm->text->GetAt(textForm->caret->GetRowIndex());
 
 
-	while (caretIndex >= 0 && row->GetAt(caretIndex)->MakeString() != " ")
+	while (caretIndex >= 0 &&  row->GetAt(caretIndex)->MakeString().compare(" ") != 0 && row->GetAt(caretIndex)->MakeString().compare("\t") != 0)
 	{
 		caretIndex--;
 	}
@@ -62,16 +61,12 @@ Long TextDoubleClick::CheckStartCharacterIndex(TextForm *textForm)
 		caretIndex = 0;
 	}
 
-	if (caretIndex != 0 && row->GetAt(caretIndex)->MakeString() == " ")
+	if (caretIndex != 0 && (row->GetAt(caretIndex)->MakeString().compare(" ") != 0 || row->GetAt(caretIndex)->MakeString().compare("\t") != 0))
 	{
-
 		caretIndex += 1;
 	}
 
-
-	index = caretIndex;
-
-	return index;
+	return caretIndex;
 }
 
 Long TextDoubleClick::CheckEndCharacterIndex(TextForm *textForm)
@@ -79,18 +74,15 @@ Long TextDoubleClick::CheckEndCharacterIndex(TextForm *textForm)
 	Long caretIndex;
 	Row* row;
 	Long length;
-	Long index;
 
 	caretIndex = textForm->caret->GetCharacterIndex();
 	row = (Row*)textForm->text->GetAt(textForm->caret->GetRowIndex());
 	length = row->GetLength();
 
-	while (caretIndex < length && row->GetAt(caretIndex)->MakeString() != " ")
+	while (caretIndex < length && row->GetAt(caretIndex)->MakeString().compare(" ") != 0 && row->GetAt(caretIndex)->MakeString().compare("\t") != 0)
 	{
-
 		caretIndex++;
 	}
 
-	index = caretIndex;
-	return index;
+	return caretIndex;
 }

@@ -153,6 +153,12 @@
     <ClInclude Include="WriteVisitor.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="WriteKorean.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="WriteEnglish.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Branch.cpp">
@@ -285,6 +291,12 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="WriteVisitor.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="WriteKorean.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="WriteEnglish.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

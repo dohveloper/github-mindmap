@@ -26,13 +26,9 @@ void SingleLineDragAction::DragLeft(TextForm *textForm,CDC *cdc) {
 	start = textForm->selectText->GetStartCharacterIndex();
 	end = textForm->selectText->GetEndCharacterIndex();
 
-	Long i = end;
-
-	while (i < start)
-	{
-		word += textForm->text->GetAt(rowIndex)->GetAt(i)->MakeString();
-		i++;
-	}
+	//왼쪽으로 드래그
+	word = textForm->text->GetAt(rowIndex)->MakeString(end,start);
+	
 	cdc->TextOut(textForm->caret->GetX(), textForm->fontHeight*rowIndex, (CString)word.c_str());
 }
 
@@ -47,13 +43,8 @@ void SingleLineDragAction::DragRight(TextForm *textForm, CDC *cdc) {
 	end = textForm->selectText->GetEndCharacterIndex();
 
 	//오른쪽으로 드래그
-	Long i = start;
+	word = textForm->text->GetAt(rowIndex)->MakeString(start, end);
 
-	while (i < end)
-	{
-		word += textForm->text->GetAt(rowIndex)->GetAt(i)->MakeString();
-		i++;
-	}
 	Long width = cdc->GetTextExtent((CString)word.c_str()).cx;
 	cdc->TextOut(textForm->caret->GetX() - width, textForm->fontHeight*rowIndex, (CString)word.c_str());
 }

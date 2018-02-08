@@ -21,6 +21,7 @@ public:
 	virtual Long Correct(Long index, Character *character);
 	virtual Character* GetAt(Long index);
 	virtual string MakeString();
+	virtual string MakeString(Long start,Long end);
 	virtual bool IsEqual(const Character& source);
 	virtual bool IsNotEqual(const Character& source);
 	virtual Long GetRowWidth(CDC *cdc,Long index);

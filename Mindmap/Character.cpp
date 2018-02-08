@@ -29,6 +29,9 @@ Character* Character::GetAt(Long index) {
 string Character::MakeString() {
 	return 0;
 }
+string Character::MakeString(Long start, Long end) {
+	return 0;
+}
 
 bool Character::IsEqual(const Character& other) {
 	return 0;
@@ -38,7 +41,7 @@ bool Character::IsNotEqual(const Character& other) {
 	return 0;
 }
 
-Long Character::GetRowWidth(CDC *cdc,Long index) {
+Long Character::GetRowWidth(CDC *cdc,Long start,Long end) {
 	return -1;
 }
 
