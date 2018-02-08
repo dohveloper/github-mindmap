@@ -295,10 +295,6 @@ void TextForm::OnLButtonDblClk(UINT nFlags, CPoint point)
 	white = cdc->SetTextColor(GetSysColor(COLOR_HIGHLIGHTTEXT));
 	blue = cdc->SetBkColor(GetSysColor(COLOR_HIGHLIGHT));
 
-	this->selectText->SetStartCharacterIndex(this->caret->CheckStartCharacterIndex(this));
-	this->selectText->SetStartRowIndex(this->caret->GetRowIndex());
-	this->selectText->SetEndCharacterIndex(this->caret->CheckEndCharacterIndex(this));
-	this->selectText->SetEndRowIndex(this->caret->GetRowIndex());
 	this->selectText->TextDoubleClickAction(this, cdc);
 
 	fnt.DeleteObject();

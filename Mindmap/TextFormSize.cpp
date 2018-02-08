@@ -66,12 +66,18 @@ void TextFormSize::TextFormWidthSize(TextForm *textForm, CDC *cdc)
 	textFormWidth = this->width;
 	textFormHeight = this->height;
 
-	if (width*1.07 > textFormWidth && wordWidth == 17)
+
+	
+
+	
+
+
+	if (width*1.06 > textFormWidth && wordWidth == 17)
 	{
 		textForm->MoveWindow(textFormX, textFormY, textFormWidth+18.07 , textFormHeight);
 	}
 
-	else if (width*1.02 > textFormWidth && wordWidth == 33)
+	else if (width*1.01 > textFormWidth && wordWidth == 33)
 	{
 		textForm->MoveWindow(textFormX, textFormY, textFormWidth + 34.02, textFormHeight);
 	}

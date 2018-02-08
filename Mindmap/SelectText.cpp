@@ -72,11 +72,14 @@ void SelectText::TextDragAction(TextForm *textForm, CDC *cdc, CPoint point) {
 }
 
 void SelectText::TextDoubleClickAction(TextForm *textForm, CDC *cdc) {
-	TextDoubleClick textdoubleClick;
+	TextDoubleClick textDoubleClick;
 
+	this->SetStartCharacterIndex(textDoubleClick.CheckStartCharacterIndex(textForm));
+	this->SetStartRowIndex(textForm->caret->GetRowIndex());
+	this->SetEndCharacterIndex(textDoubleClick.CheckEndCharacterIndex(textForm));
+	this->SetEndRowIndex(textForm->caret->GetRowIndex());
 
-
-	textdoubleClick.TextDoubleClickSelect(textForm, cdc);
+	textDoubleClick.TextDoubleClickSelect(textForm, cdc);
 
 }
 
