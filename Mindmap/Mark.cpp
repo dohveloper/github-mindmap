@@ -8,20 +8,17 @@
 Mark::Mark()
 	:Shape(0,0,0,0,"+")
 {
-	this->isShown = false;
 }
 
-Mark::Mark(Long x, Long y, Long width, Long height, string content)
-	: Shape(x, y, width, height, content)
+Mark::Mark(Long x, Long y, Long width, Long height, string content, Branch *branch)
+	: Shape(x, y, width, height, content, branch)
 {
-	this->isShown = false;
 }
 
 
 Mark::Mark(const Mark& source)
-	: Shape(source.x, source.y, source.width, source.height, source.content)
+	: Shape(source.x, source.y, source.width, source.height, source.content, source.ownerBranch)
 {
-	this->isShown = source.isShown;
 }
 
 Mark::~Mark()
@@ -31,16 +28,6 @@ Mark::~Mark()
 void Mark::SetContent(string content)
 {
 	this->content = content;
-}
-
-void Mark::ShowMark()
-{
-	this->isShown = true;
-}
-
-void Mark::HideMark()
-{
-	this->isShown = false;
 }
 
 void Mark::Accept(ShapeVisitor& visitor) {
@@ -54,6 +41,7 @@ Mark& Mark::operator=(const Mark& source)
 	this->width = source.width;
 	this->height = source.height;
 	this->content = source.content;
+	this->ownerBranch = source.ownerBranch;
 	this->isShown = source.isShown;
 	return *this;
 }

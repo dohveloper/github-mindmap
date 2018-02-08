@@ -8,7 +8,7 @@ MouseStrategy::MouseStrategy() {
 MouseStrategy::~MouseStrategy() {
 
 }
-void MouseStrategy::OnLButtonDown(CPoint point, UINT flags, Selection *selection, Branch *branch) {
+void MouseStrategy::OnLButtonDown(CPoint point, UINT flags, Selection *selection, Shape *shape) {
 
 }
 void MouseStrategy::OnMouseMove(CPoint point) {

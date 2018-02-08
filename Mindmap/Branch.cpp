@@ -7,11 +7,9 @@
 Branch::Branch(Long capacity, Branch* branch)
 	:Composite(capacity,branch),mark()
 {
-	this->isShown = false;
 }
 Branch::Branch(const Branch& source)
 	:Composite(source),mark(source.mark) {
-	this->isShown = source.isShown;
 
 }
 Branch::~Branch()
@@ -42,14 +40,6 @@ void Branch::Accept(ShapeVisitor& visitor) {
 	visitor.VisitBranch(this);
 }
 
-void Branch::Show() {
-	this->isShown = true;
-}
-
-void Branch::Hide() {
-	this->isShown = false;
-}
-
 Branch * Branch::Clone()
 {
 	return new Branch(*this);
@@ -61,7 +51,6 @@ Branch& Branch::operator=(const Branch& source)
 	this->capacity = source.capacity;
 	this->length = source.length;
 	this->mark = source.mark;
-	this->isShown = source.isShown;
 	return *this;
 }
 /*

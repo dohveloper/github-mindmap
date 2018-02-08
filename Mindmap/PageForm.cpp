@@ -126,6 +126,7 @@ void PageForm::OnLButtonDblClk(UINT nFlags, CPoint point)
 	int qqq = 1212;
 	string type;
 
+	//this->branch->Fold();
 	//branch->GetMark().GetContent();
 
 	//branch->GetMark().changeContent(type);
@@ -135,7 +136,7 @@ void PageForm::OnLButtonDblClk(UINT nFlags, CPoint point)
 
 	//branch->GetMark().GetX();
 
-	if (branch->GetMark().GetIsShowned() != true)
+	if (branch->GetMark().GetIsShown() != true)
 	{
 		qqq = 2424;
 	}

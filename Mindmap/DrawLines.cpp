@@ -26,7 +26,7 @@ bool DrawLines::ProcessItem(Shape *shape)
 	}
 
 	if (typeid(*shape) == typeid(Branch)) {
-		if ((((Branch*)shape))->GetIsFolded() == false) {
+		if ((((Branch*)shape))->GetIsShown() == false) {
 			DrawLines drawLines((Branch*)shape,this->dc);
 			drawLines.Traverse();
 		}

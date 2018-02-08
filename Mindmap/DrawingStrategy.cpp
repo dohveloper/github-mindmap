@@ -16,7 +16,7 @@ DrawingStrategy::DrawingStrategy() {
 DrawingStrategy::~DrawingStrategy() {
 
 }
-void DrawingStrategy::OnLButtonDown( CPoint point,UINT nFlags, Selection *selection, Branch *branch) {
+void DrawingStrategy::OnLButtonDown( CPoint point,UINT nFlags, Selection *selection, Shape *shape) {
 	this->x = point.x;
 	this->y = point.y;
 	this->width = 0;

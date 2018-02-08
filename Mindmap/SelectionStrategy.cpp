@@ -9,7 +9,7 @@ SelectionStrategy::SelectionStrategy() {
 SelectionStrategy::~SelectionStrategy() {
 
 }
-void SelectionStrategy::OnLButtonDown(CPoint point, UINT nFlags, Selection *selection, Branch *branch) {
+void SelectionStrategy::OnLButtonDown(CPoint point, UINT nFlags, Selection *selection, Shape *shape) {
 
 	//할당해제
 	if (this->select != NULL) {
@@ -26,7 +26,7 @@ void SelectionStrategy::OnLButtonDown(CPoint point, UINT nFlags, Selection *sele
 		this->select = new SingleSelect;
 	}
 
-		this->select->SelectBranch(selection, branch);
+		this->select->SelectBranch(selection, (Branch*)shape);
 		
 }
 

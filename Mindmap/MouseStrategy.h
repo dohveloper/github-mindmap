@@ -9,7 +9,7 @@ class MouseStrategy {
 public:
 	MouseStrategy();
 	virtual ~MouseStrategy() = 0;
-	virtual void OnLButtonDown(CPoint point,UINT flags, Selection *selection, Branch *branch);
+	virtual void OnLButtonDown(CPoint point,UINT flags, Selection *selection, Shape *shape);
 	virtual void OnMouseMove(CPoint point);
 	virtual void OnLButtonUp(Selection *selection, bool isOverlapped);
 
