@@ -31,7 +31,8 @@ void WriteVisitor::VisitText(Text *text) {
 	Long i = 0;
 	Long length;
 	Long height;
-
+	
+	
 	length = text->GetLength();
 
 	while (i < length) {

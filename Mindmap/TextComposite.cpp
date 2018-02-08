@@ -103,15 +103,22 @@ Long TextComposite::GetRowWidth(CDC *cdc,Long start,Long end) {
 	return width;
 }
 
-Long TextComposite::GetHeight(CDC *cdc) {
+Long TextComposite::GetHeight(CDC *cdc, Long index) 
+{
 	string word;
+	Long i = 0;
+	Long height=0;
 
-	word = this->GetAt(0)->MakeString();
-
-	Long height = cdc->GetTextExtent((CString)word.c_str()).cy;
+	while (i < index)
+	{
+		word = this->GetAt(i)->MakeString();
+		height += cdc->GetTextExtent((CString)word.c_str()).cy;
+		i++;
+	}
 
 	return height;
 }
+
 
 TextComposite& TextComposite::operator=(const TextComposite& source) {
 	this->characters = source.characters;

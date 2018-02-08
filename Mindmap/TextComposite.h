@@ -21,8 +21,8 @@ public:
 	string MakeString(Long start, Long end);
 	TextComposite& operator=(const TextComposite& source);
 
-	Long GetRowWidth(CDC *cdc,Long start,Long end);
-	Long GetHeight(CDC *cdc);
+	Long GetRowWidth(CDC *cdc, Long start, Long end);
+	Long GetHeight(CDC *cdc, Long index);
 
 	Long GetCapacity() const;
 	Long GetLength() const;

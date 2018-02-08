@@ -24,8 +24,8 @@ public:
 	virtual string MakeString(Long start,Long end);
 	virtual bool IsEqual(const Character& source);
 	virtual bool IsNotEqual(const Character& source);
-	virtual Long GetRowWidth(CDC *cdc,Long start,Long end);
-	virtual Long GetHeight(CDC *cdc);
+	virtual Long GetRowWidth(CDC *cdc,Long start, Long end);
+	virtual Long GetHeight(CDC *cdc, Long index);
 	virtual void Accept(TextVisitor& textVisitor);
 	virtual char GetCharacter() const;
 	virtual string GetCharacters() const;

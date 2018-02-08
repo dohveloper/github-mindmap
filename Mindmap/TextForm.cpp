@@ -184,6 +184,8 @@ void TextForm::OnKeyDown(WPARAM wParam) {
 		Row *row = new Row;
 		this->text->Write(row);
 		this->caret->MoveToDown();
+		CDC *cdc = GetDC();
+		this->textFormSize->TextFormHeightSize(this, cdc);
 		this->caret->SetCharacterIndex(0);
 	}
 	else if (wParam == VK_RIGHT)
