@@ -2,6 +2,7 @@
 
 #include "TextFormSize.h"
 #include "TextForm.h"
+#include "PageForm.h"
 #include "Caret.h"
 #include "Text.h"
 #include <string>
@@ -12,12 +13,25 @@ TextFormSize::TextFormSize()
 {
 }
 
+TextFormSize::TextFormSize(Long x, Long y, Long width, Long height)
+{
+	this->x = x;
+	this->y = y;
+	this->width = width;
+	this->height = height;
+}
+
+TextFormSize::TextFormSize(const TextFormSize& source)
+{
+	this->x = source.x;
+	this->y = source.y;
+	this->width = source.width;
+	this->width = source.height;
+}
 
 TextFormSize::~TextFormSize()
 {
 }
-
-
 
 void TextFormSize::TextFormWidthSize(TextForm *textForm, CDC *cdc)
 {
@@ -25,35 +39,94 @@ void TextFormSize::TextFormWidthSize(TextForm *textForm, CDC *cdc)
 	string word;
 	Long length;
 	Long width;
+	Long textFormX;
+	Long textFormY;
+	Long textFormWidth;
+	Long textFormHeight;
+	Long caretIndex;
+	Long wordWidth;
+	CFont fnt;
+
+	fnt.CreateFont(30, 16, 0, 0, FW_HEAVY, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH, _T("±¼¸²Ã¼"));
+
+	cdc->SelectObject(&fnt);
+
 
 	row = (Row*)textForm->text->GetAt(textForm->caret->GetRowIndex());
-	length = row->GetLength()-1;
+	length = row->GetLength();
+	width = row->GetRowWidth(cdc, length);
 
-	while (length >= 0)
+	caretIndex = textForm->caret->GetCharacterIndex();
+
+	word = row->GetAt(caretIndex)->MakeString();
+	wordWidth = cdc->GetTextExtent((CString)word.c_str()).cx;
+
+	textFormX = this->x;
+	textFormY = this->y;
+	textFormWidth = this->width;
+	textFormHeight = this->height;
+
+
+	
+
+	
+
+
+	if (width*1.07 > textFormWidth && wordWidth == 17)
 	{
-		word += row->GetAt(length)->MakeString();
-
-		length--;
+		textForm->MoveWindow(textFormX, textFormY, textFormWidth+18.07 , textFormHeight);
 	}
-	width = cdc->GetTextExtent((CString)word.c_str()).cx;
 
-	CRect rect;
-	Long a = 20;
-	textForm->GetWindowRect(rect);
-	textForm->ScreenToClient(rect);
-	if (width > rect.right)
+	else if (width*1.02 > textFormWidth && wordWidth == 33)
 	{
-		CString b;
-		b.Format("%d", rect.left);
-		textForm->MessageBox(b);
-		textForm->MoveWindow(rect.left,rect.top,rect.right+100,rect.bottom);
+		textForm->MoveWindow(textFormX, textFormY, textFormWidth + 34.02, textFormHeight);
 	}
+	fnt.DeleteObject();
 }
 
 void TextFormSize::TextFormHeightSize(TextForm *textForm)
 {
 
 }
+
+Long TextFormSize::SetX(Long index)
+{
+	this->x = index;
+
+	return this->x;
+}
+
+Long TextFormSize::SetY(Long index)
+{
+	this->y = index;
+
+	return this->y;
+}
+
+Long TextFormSize::SetWidth(Long index)
+{
+	this->width = index;
+
+	return this->width;
+}
+
+Long TextFormSize::SetHeight(Long index)
+{
+	this->height = index;
+
+	return this->height;
+}
+
+TextFormSize& TextFormSize::operator=(const TextFormSize& source)
+{
+	this->x = source.x;
+	this->y = source.y;
+	this->width = source.width;
+	this->width = source.height;
+
+	return *this;
+}
+
 
 
 

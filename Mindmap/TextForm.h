@@ -11,7 +11,6 @@ class SelectText;
 class Caret;
 class Row;
 class Text;
-class DoubleClickSelectText;
 class TextFormSize;
 class TextForm :public CWnd {
 public:
@@ -25,7 +24,6 @@ public:
 	Text *text;
 	Caret *caret;
 	SelectText *selectText;
-	DoubleClickSelectText *doubleClickSelectText;
 	TextFormSize *textFormSize;
 	bool hangul;
 	bool compose;

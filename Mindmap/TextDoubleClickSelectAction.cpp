@@ -1,6 +1,7 @@
-//DoubleClickSelectText.cpp
+//TextDoubleClickSelectAction.cpp
 
-#include "DoubleClickSelectText.h"
+#include "TextDoubleClickSelectAction.h"
+#include "TextDoubleClick.h"
 #include "TextForm.h"
 #include "Caret.h"
 #include "SelectText.h"
@@ -10,17 +11,17 @@ using namespace std;
 typedef signed long int Long;
 
 
-DoubleClickSelectText::DoubleClickSelectText()
+TextDoubleClickSelectAction::TextDoubleClickSelectAction()
 {
 }
 
 
-DoubleClickSelectText::~DoubleClickSelectText()
+TextDoubleClickSelectAction::~TextDoubleClickSelectAction()
 {
 }
 
 
-void DoubleClickSelectText::AllSelect(TextForm *textForm, CDC *cdc, Long width)
+void TextDoubleClickSelectAction::AllSelect(TextForm *textForm, CDC *cdc, Long width)
 {
 
 	Long start = 0;
@@ -31,7 +32,6 @@ void DoubleClickSelectText::AllSelect(TextForm *textForm, CDC *cdc, Long width)
 
 	start = textForm->selectText->GetStartCharacterIndex();
 	end = textForm->selectText->GetEndCharacterIndex();
-
 
 	Long i = start;
 
