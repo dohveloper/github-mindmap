@@ -22,9 +22,6 @@ public:
 
 	Branch* Clone();
 	Branch& operator=(const Branch& source);
-
-
 };
-
 
 #endif //TOPIC_H

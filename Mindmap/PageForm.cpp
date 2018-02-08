@@ -16,7 +16,6 @@
 #include "DrawTopics.h"
 #include "Mark.h"
 #include "DrawingVisitor.h"
-#include "TopicHitTest.h"
 
 BEGIN_MESSAGE_MAP(PageForm, CFrameWnd)
 	ON_WM_CREATE()
@@ -25,7 +24,6 @@ BEGIN_MESSAGE_MAP(PageForm, CFrameWnd)
 	ON_WM_MOUSEMOVE()
 	ON_WM_PAINT()
 	ON_WM_CLOSE()
-	ON_WM_LBUTTONDBLCLK()
 END_MESSAGE_MAP()
 
 PageForm::PageForm() {
