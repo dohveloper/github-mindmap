@@ -58,7 +58,7 @@ void PageForm::OnMouseMove(UINT nFlags, CPoint point) {
 }
 
 void PageForm::OnLButtonUp(UINT nFlags, CPoint point) {
-	this->mouseAction->OnLButtonUp(&this->selection, true);
+	this->mouseAction->OnLButtonUp(&this->selection, nflags);
 
 	RedrawWindow();
 	CFrameWnd::OnLButtonUp(nFlags, point);

@@ -29,7 +29,7 @@ void DrawingStrategy::OnMouseMove(CPoint point) {
 	this->width = point.x - this->x;
 	this->height = point.y - this->y;
 }
-void DrawingStrategy::OnLButtonUp(Selection *selection, bool isOverlapped) {
+void DrawingStrategy::OnLButtonUp(Selection *selection, UINT nflags) {
 	Long startX;
 	Long startY;
 	Long lineWidth;
