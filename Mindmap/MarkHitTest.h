@@ -5,11 +5,12 @@
 
 typedef signed int long;
 class Topic;
+class Mark;
 class MarkHitTest :public BranchTraverser {
 public:
 	MarkHitTest(Branch *branch, CPoint point);
 
-	Topic* GetHitMark() const;
+	Mark* GetHitMark() const;
 	bool GetIsHit() const;
 
 protected:
@@ -21,8 +22,8 @@ private:
 	bool isHit;
 };
 
-inline Topic* MarkHitTest::GetHitMark() const {
-	return const_cast<Topic*>(this->hitMark);
+inline Mark* MarkHitTest::GetHitMark() const {
+	return const_cast<Mark*>(this->hitMark);
 }
 
 inline bool MarkHitTest::GetIsHit() const {

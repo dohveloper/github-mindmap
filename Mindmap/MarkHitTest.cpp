@@ -1,6 +1,7 @@
 #include "MarkHitTest.h"
 #include "Topic.h"
 #include "Branch.h"
+#include "Mark.h"
 
 MarkHitTest::MarkHitTest(Branch *branch, CPoint point)
 	:BranchTraverser(branch)

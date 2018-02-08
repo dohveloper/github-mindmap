@@ -2,6 +2,7 @@
 #include "Shape.h"
 #include "TopicHitTest.h"
 #include "MarkHitTest.h"
+#include "Branch.h"
 
 HitTester::HitTester()
 {

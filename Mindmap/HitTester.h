@@ -3,6 +3,7 @@
 #include <afxwin.h>
 
 class Shape;
+class Branch;
 
 class HitTester
 {
@@ -17,9 +18,20 @@ public:
 	bool TestTopic(CPoint point);
 	bool TestMark(CPoint point);
 
+	Shape* GetHitObject() const;
+	bool GetIsHit() const;
+
 private:
 	Branch * branch;
 	Shape * hitObject;
 	bool isHit;
 };
+
+inline Shape* HitTester::GetHitObject() const {
+	return const_cast<Shape*>(this->hitObject);
+}
+
+inline bool HitTester::GetIsHit() const {
+	return this->isHit;
+}
 #endif //_HITTESTER_H
