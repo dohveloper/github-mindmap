@@ -16,6 +16,7 @@
 #include "DrawTopics.h"
 #include "Mark.h"
 #include "DrawingVisitor.h"
+#include "TopicHitTest.h"
 
 BEGIN_MESSAGE_MAP(PageForm, CFrameWnd)
 	ON_WM_CREATE()
@@ -95,15 +96,13 @@ void PageForm::OnPaint() {
 
 	this->branch->Accept(visitor);
 
-
-	//선 그리기 
+	//선 그리기
 	//DrawLines drawLines(this->branch, &dc);
 	//drawLines.Traverse();
-	
-	//토픽 그리기 
+
+	//토픽 그리기
 	//DrawTopics drawTopics(this->branch, &dc);
 	//drawTopics.Traverse();
-
 }
 
 void PageForm::OnClose()
@@ -121,21 +120,4 @@ void PageForm::OnClose()
 	}
 
 	CFrameWnd::OnClose();
-}
-
-void PageForm::OnLButtonDblClk(UINT nFlags, CPoint point)
-{
-	CFrameWnd::OnLButtonDblClk(nFlags, point);
-}
-
-	if (branch->GetMark().GetIsShowned() != true)
-	{
-		qqq = 2424;
-	}
-	a.Format("%d", qqq);
-	this->MessageBox(a);
-	//branch->GetMark().GetX()
-	//this->mouseAction->ChangeState(SelectionMouse::Instance());
-	
-	CFrameWnd::OnLButtonDblClk(nFlags, point);
 }
