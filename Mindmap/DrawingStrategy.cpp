@@ -52,11 +52,12 @@ void DrawingStrategy::OnLButtonUp(Selection *selection, UINT nFlags) {
 		branch->Add(new Topic(this->x, this->y, this->width, this->height, "", branch));
 		branch->Add(new Mark(this->x + 14 * this->width / 15, this->y + this->height / 4));
 
-		UnFoldVisitor visitor;
-
-		selection->GetLastSelection()->Accept(visitor);//새 브랜치 추가시 하위 브랜치 펼친다
-
-													   // 3.선택된 브랜치에 새 브랜치를 추가한다.
+		//새 브랜치 추가시 하위 브랜치 펼친다
+		if (selection->GetLastSelection()->GetMark()->GetContent() == "+") {
+			UnFoldVisitor visitor;
+			selection->GetLastSelection()->Accept(visitor);
+		}
+		// 3.선택된 브랜치에 새 브랜치를 추가한다.
 		selection->GetLastSelection()->Add(branch);
 
 		//선택된 브랜치의 마크를 +에서 -로 바꾼다.
