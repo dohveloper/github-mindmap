@@ -17,8 +17,6 @@ bool DrawTopics::ProcessItem(Shape *shape)
 	Long height;
 
 	if (typeid(*shape) == typeid(Topic)) {
-	
-
 		Long x;
 		Long y;
 		Long width;
@@ -29,7 +27,7 @@ bool DrawTopics::ProcessItem(Shape *shape)
 		fnt.CreatePointFont(14, "system");
 		this->dc->SelectObject(&fnt);
 
-		//토픽을 그리는 코드 
+		//토픽을 그리는 코드
 
 		x = shape->GetX();
 		y = shape->GetY();
@@ -39,11 +37,10 @@ bool DrawTopics::ProcessItem(Shape *shape)
 
 		this->dc->Ellipse(x, y, x + width, y + height);
 		//dc.TextOut(x + width / 2 - 10, y + height / 2, (CString)content.c_str());
-
 	}
 
 	if (typeid(*shape) == typeid(Branch)) {
-		if ((((Branch*)shape))->GetIsFolded() == false) {
+		if ((((Branch*)shape))->GetIsShown() == true) {
 			DrawTopics drawLines((Branch*)shape, this->dc);
 			drawLines.Traverse();
 		}

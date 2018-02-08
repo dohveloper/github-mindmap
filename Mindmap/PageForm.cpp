@@ -16,6 +16,8 @@
 #include "DrawTopics.h"
 #include "Mark.h"
 
+#include "TopicHitTest.h"
+
 BEGIN_MESSAGE_MAP(PageForm, CFrameWnd)
 	ON_WM_CREATE()
 	ON_WM_LBUTTONDOWN()
@@ -24,34 +26,39 @@ BEGIN_MESSAGE_MAP(PageForm, CFrameWnd)
 	ON_WM_PAINT()
 	ON_WM_CLOSE()
 	ON_WM_LBUTTONDBLCLK()
+	ON_WM_RBUTTONDOWN()
 END_MESSAGE_MAP()
 
 PageForm::PageForm() {
-
 }
 int PageForm::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 	CFrameWnd::OnCreate(lpCreateStruct);
 	this->branch = new Branch;
-	this->branch->Add(new Topic(387, 150, 200, 200, "메인토픽",NULL));
+	this->branch->Add(new Topic(387, 150, 200, 200, "메인토픽", NULL));
 	this->selection.Add(this->branch);
 	this->mouseAction = new MouseAction();
 	return 0;
 }
 
 void PageForm::OnLButtonDown(UINT nFlags, CPoint point) {
+	//Branch *clickedBranch = NULL;
+	//HitTestVisitor visitor(point, &clickedBranch);
+	//this->branch->Accept(visitor);
 
-	Branch *clickedBranch=NULL;
-	HitTestVisitor visitor(point,&clickedBranch);
-	
-	this->branch->Accept(visitor);
+	Branch *clickedBranch = NULL;
+	TopicHitTest topicHitTest(this->branch, point);
+	topicHitTest.Traverse();
+	if (topicHitTest.GetIsHit()) {
+		clickedBranch = topicHitTest.GetHitTopic()->GetOwnerBranch();
+	}
 
 	this->mouseAction->SetStrategy(clickedBranch);
-	this->mouseAction->OnLButtonDown(point,nFlags, &this->selection, clickedBranch);
+
+	this->mouseAction->OnLButtonDown(point, nFlags, &this->selection, clickedBranch);
 
 	CFrameWnd::OnLButtonDown(nFlags, point);
 }
-
 
 void PageForm::OnMouseMove(UINT nFlags, CPoint point) {
 	if ((nFlags & MK_LBUTTON) == MK_LBUTTON)
@@ -61,25 +68,20 @@ void PageForm::OnMouseMove(UINT nFlags, CPoint point) {
 	CFrameWnd::OnMouseMove(nFlags, point);
 }
 
-
-
 void PageForm::OnLButtonUp(UINT nFlags, CPoint point) {
-
-	this->mouseAction->OnLButtonUp(&this->selection,true);
+	this->mouseAction->OnLButtonUp(&this->selection, true);
 
 	RedrawWindow();
 	CFrameWnd::OnLButtonUp(nFlags, point);
 }
 
 void PageForm::OnPaint() {
-
 	Long i = 0;
 	Topic *selectedTopic;
 	CPaintDC dc(this);
 	CPen blackPen;
-	
 
-	//선택표시하기 
+	//선택표시하기
 	SelectionMarkVisitor selectionMarkVisitor(&this->selection, &dc);
 	while (i < this->selection.GetLength()) {
 		selectedTopic = this->selection.GetAt(i)->GetTopic();
@@ -91,58 +93,46 @@ void PageForm::OnPaint() {
 	blackPen.CreatePen(PS_SOLID, 1, RGB(0, 0, 0));
 	dc.SelectObject(&blackPen);
 
-	//선 그리기 
+	//선 그리기
 	DrawLines drawLines(this->branch, &dc);
 	drawLines.Traverse();
-	
-	//토픽 그리기 
+
+	//토픽 그리기
 	DrawTopics drawTopics(this->branch, &dc);
 	drawTopics.Traverse();
-
 }
 
 void PageForm::OnClose()
 {
-
-	if(this->branch != NULL)
+	if (this->branch != NULL)
 	{
 		delete this->branch;
 		this->branch = NULL;
 	}
-	
-	if (this->mouseAction != NULL) 
+
+	if (this->mouseAction != NULL)
 	{
 		delete this->mouseAction;
 		this->mouseAction = NULL;
 	}
-	
+
 	CFrameWnd::OnClose();
 }
 
 void PageForm::OnLButtonDblClk(UINT nFlags, CPoint point)
 {
-	//Mark mark;
-	CString a;
-	int qqq = 1212;
-	string type;
-
-	//branch->GetMark().GetContent();
-
-	//branch->GetMark().changeContent(type);
-
-	//branch->GetMark().GetIsShowned();
-	//if (branch->GetMark().GetContent().compare("+") == 0)
-
-	//branch->GetMark().GetX();
-
-	if (branch->GetMark().GetIsShowned() != true)
-	{
-		qqq = 2424;
-	}
-	a.Format("%d", qqq);
-	this->MessageBox(a);
-	//branch->GetMark().GetX()
-	//this->mouseAction->ChangeState(SelectionMouse::Instance());
-	
 	CFrameWnd::OnLButtonDblClk(nFlags, point);
+}
+
+void PageForm::OnRButtonDown(UINT nFlags, CPoint point)
+{
+	Branch *branch;
+	//TopicHitTest 테스트
+	TopicHitTest topicHitTest(this->branch, point);
+	topicHitTest.Traverse();
+	branch = topicHitTest.GetHitTopic()->GetOwnerBranch();
+	this->selection.Add(branch);
+	RedrawWindow();
+
+	CFrameWnd::OnRButtonDown(nFlags, point);
 }

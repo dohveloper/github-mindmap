@@ -5,23 +5,22 @@
 #include "Topic.h"
 #include "Line.h"
 Branch::Branch(Long capacity, Branch* branch)
-	:Composite(capacity,branch),mark()
+	:Composite(capacity, branch), mark()
 {
-	this->isShown = false;
+	this->isShown = true;
 }
 Branch::Branch(const Branch& source)
-	:Composite(source),mark(source.mark) {
+	: Composite(source), mark(source.mark) {
 	this->isShown = source.isShown;
-
 }
 Branch::~Branch()
 {
 }
 
 Long Branch::Add(Shape * shape)
-{	
+{
 	Long index;
-	index=Composite::Add(shape);
+	index = Composite::Add(shape);
 	shape->SetOwnerBranch(this);
 	return index;
 }
@@ -87,7 +86,7 @@ Branch *branch1 = new Branch();
 if (branch1->GetOwnerBranch() == NULL) {
 	cout << "브랜치 널 제대로 됨" << endl;
 }
-//OwnerBranch Add 테스트 
+//OwnerBranch Add 테스트
 Topic *topic2;
 topic2 = topic1->GetOwnerBranch()->GetTopic();
 cout << " 토픽1 " << topic1->GetContent() << " 토픽1 " << topic2->GetContent() << endl;
@@ -98,18 +97,13 @@ Branch *branch2;
 branch2 = (Branch*)branch1->GetOwnerBranch()->GetAt(1);
 cout << " 라인1 " << branch1->GetContent() << " 라인2 " << branch1->GetContent() << endl;
 
-
-
-
 index = branch.Add(new Topic(10, 10, 10, 10, "같은지"));
 cout<<branch.GetAt(index)->GetX()<< branch.GetAt(index)->GetY()<< branch.GetAt(index)->GetWidth()<< branch.GetAt(index)->GetHeight() << branch.GetAt(index)->GetContent() <<endl;
 
 index = branch.Add(new Line(10, 10, 10, 10, "라인"));
 cout << branch.GetAt(index)->GetX() << branch.GetAt(index)->GetY() << branch.GetAt(index)->GetWidth() << branch.GetAt(index)->GetHeight() << branch.GetAt(index)->GetContent() << endl;
 
-
 Branch branch1(branch);
-
 
 branch1.Correct(index,new Line(20,20,20,20,"aaaaaa", &branch1));
 

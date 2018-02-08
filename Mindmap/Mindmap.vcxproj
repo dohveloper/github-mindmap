@@ -93,7 +93,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -153,6 +153,7 @@
     <ClCompile Include="BranchTraverser.cpp" />
     <ClCompile Include="BranchIterator.cpp" />
     <ClCompile Include="Mark.cpp" />
+    <ClCompile Include="MarkHitTest.cpp" />
     <ClCompile Include="MarkStrategy.cpp" />
     <ClCompile Include="MouseAction.cpp" />
     <ClCompile Include="MouseStrategy.cpp" />
@@ -168,6 +169,7 @@
     <ClCompile Include="ShapeVisitor.cpp" />
     <ClCompile Include="SingleSelect.cpp" />
     <ClCompile Include="Topic.cpp" />
+    <ClCompile Include="TopicHitTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Array.h" />
@@ -183,6 +185,7 @@
     <ClInclude Include="BranchTraverser.h" />
     <ClInclude Include="BranchIterator.h" />
     <ClInclude Include="Mark.h" />
+    <ClInclude Include="MarkHitTest.h" />
     <ClInclude Include="MarkStrategy.h" />
     <ClInclude Include="MouseAction.h" />
     <ClInclude Include="MouseStrategy.h" />
@@ -198,6 +201,7 @@
     <ClInclude Include="ShapeVisitor.h" />
     <ClInclude Include="SingleSelect.h" />
     <ClInclude Include="Topic.h" />
+    <ClInclude Include="TopicHitTest.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
