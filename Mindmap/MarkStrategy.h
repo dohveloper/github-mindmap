@@ -4,14 +4,13 @@
 #define _MARKSTRATEGY_H
 #include "MouseStrategy.h"
 
-class Select;
+class Selection;
 
-class MarkStrategy: public MouseStrategy {
+class MarkStrategy : public MouseStrategy {
 public:
 	MarkStrategy();
 	~MarkStrategy();
-	virtual void OnLButtonDown(CPoint point,UINT nFlags, Selection *selection, Shape *shape);
-
+	virtual void OnLButtonDown(CPoint point, UINT nFlags, Selection *selection, Shape *shape);
 };
 
 #endif //MARKSTRATEGY_H

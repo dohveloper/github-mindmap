@@ -173,6 +173,7 @@
     <ClInclude Include="Shape.h" />
     <ClInclude Include="ShapeVisitor.h" />
     <ClInclude Include="SingleSelect.h" />
+    <ClInclude Include="SubBranchDeselect.h" />
     <ClInclude Include="Topic.h" />
     <ClInclude Include="TopicHitTest.h" />
     <ClInclude Include="UnFoldVisitor.h" />
@@ -209,6 +210,7 @@
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="ShapeVisitor.cpp" />
     <ClCompile Include="SingleSelect.cpp" />
+    <ClCompile Include="SubBranchDeselect.cpp" />
     <ClCompile Include="Topic.cpp" />
     <ClCompile Include="TopicHitTest.cpp" />
     <ClCompile Include="UnFoldVisitor.cpp" />

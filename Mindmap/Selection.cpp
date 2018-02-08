@@ -1,4 +1,5 @@
 #include "Selection.h"
+#include "SubBranchDeselect.h"
 
 Selection::Selection(Long capacity)
 	:selections(capacity)
@@ -65,6 +66,13 @@ Long Selection::Remove(Branch * branch)
 		this->length--;
 	}
 	return index;
+}
+
+Long Selection::RemoveSubBranch(Branch * branch)
+{
+	SubBranchDeselect subBranchDeselect(branch, this);
+	subBranchDeselect.Traverse();
+	return -1;
 }
 
 void Selection::Clear()
