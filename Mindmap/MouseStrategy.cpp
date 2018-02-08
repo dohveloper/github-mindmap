@@ -14,6 +14,6 @@ void MouseStrategy::OnLButtonDown(CPoint point, UINT flags, Selection *selection
 void MouseStrategy::OnMouseMove(CPoint point) {
 
 }
-void MouseStrategy::OnLButtonUp(Selection *selection, bool isOverlapped) {
+void MouseStrategy::OnLButtonUp(Selection *selection, UINT nflags) {
 
 }
