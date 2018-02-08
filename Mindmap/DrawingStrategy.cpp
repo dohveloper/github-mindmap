@@ -55,7 +55,7 @@ void DrawingStrategy::OnLButtonUp(Selection *selection, bool isOverlapped) {
 		branch = new Branch();
 		branch->Add(new Line(startX, startY, lineWidth, lineHeight, "", branch));
 		branch->Add(new Topic(this->x, this->y, this->width, this->height, "", branch));
-		branch->Add(new Mark(this->x + 14 * this->width / 15, this->y + this->height / 4));
+		branch->Add(new Mark(this->x + 14 * this->width / 15, this->y + this->height / 4 * -1));
 
 		// 3.선택된 브랜치에 새 브랜치를 추가한다.
 		selection->GetLastSelection()->Add(branch);
