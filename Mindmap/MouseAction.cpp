@@ -3,6 +3,9 @@
 #include "MouseStrategy.h"
 #include "DrawingStrategy.h"
 #include "SelectionStrategy.h"
+#include "MarkStrategy.h"
+#include "Topic.h"
+#include "Mark.h"
 
 
 MouseAction::MouseAction()
@@ -20,7 +23,7 @@ void MouseAction::OnLButtonUp(Selection *selection, bool isOverlapped) {
 	mouseStrategy->OnLButtonUp(selection,true);
 }
 
-void MouseAction::SetStrategy(Branch * clickedBranch)
+void MouseAction::SetStrategy(Shape *shape)
 {
 	//할당해제
 	if (this->mouseStrategy != NULL) {
@@ -28,11 +31,14 @@ void MouseAction::SetStrategy(Branch * clickedBranch)
 		this->mouseStrategy = NULL;
 	}
 	
-	if (clickedBranch == NULL) {
+	if (shape == NULL) {
 		this->mouseStrategy = new DrawingStrategy();
 	}
-	else if (clickedBranch != NULL) {
+	else if (typeid(*shape) == typeid(Topic)) {
 		this->mouseStrategy = new SelectionStrategy();
+	}
+	else if (typeid(*shape) == typeid(Mark)) {
+		this->mouseStrategy = new MarkStrategy();
 	}
 }
 

@@ -13,7 +13,7 @@ public:
 	void OnMouseMove(CPoint point);
 	void OnLButtonUp(Selection *selection,bool isOverlapped);
 	
-	void SetStrategy(Branch* clickedBranch);
+	void SetStrategy(Shape *shape);
 
 	
 private:
