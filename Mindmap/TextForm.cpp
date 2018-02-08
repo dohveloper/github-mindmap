@@ -188,6 +188,12 @@ void TextForm::OnKeyDown(WPARAM wParam) {
 		this->textFormSize->TextFormHeightSize(this, cdc);
 		this->caret->SetCharacterIndex(0);
 	}
+	else if (wParam == VK_BACK)
+	{
+			this->text->GetAt(this->caret->GetRowIndex())->Delete(this->caret->GetCharacterIndex() - 1);
+			this->caret->MoveToLeft();
+
+	}
 	else if (wParam == VK_RIGHT)
 	{
 		if (this->caret->GetCharacterIndex() < this->text->GetAt(this->caret->GetRowIndex())->GetLength())

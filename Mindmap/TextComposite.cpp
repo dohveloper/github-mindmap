@@ -52,6 +52,13 @@ Long TextComposite::Correct(Long index, Character *character) {
 	return index;
 }
 
+Long TextComposite::Delete(Long index) {
+	index = this->characters.Delete(index);
+	this->capacity--;
+	this->length--;
+	return index;
+}
+
 Character* TextComposite::GetAt(Long index) {
 	return this->characters.GetAt(index);
 }
