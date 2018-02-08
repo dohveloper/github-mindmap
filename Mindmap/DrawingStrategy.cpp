@@ -3,6 +3,7 @@
 #include "Branch.h"
 #include "Topic.h"
 #include "Line.h"
+#include "Mark.h"
 #include "Selection.h"
 #define minimumTopicWidth 30
 #define minimumTopicHeight 30
@@ -46,12 +47,12 @@ void DrawingStrategy::OnLButtonUp( Selection *selection, bool isOverlapped) {
 		lineWidth = this->x + this->width / 2 - startX;
 		lineHeight = this->y + this->height / 2 - startY;
 
-		// 2.새 브랜치를 만들고 토픽과 라인을 추가한다.
+		// 2.새 브랜치를 만들고 토픽과 라인, 마크를 추가한다.
 	
 		branch=new Branch(); 
 		branch->Add(new Line(startX, startY, lineWidth, lineHeight, "",branch));
 		branch->Add(new Topic(this->x, this->y, this->width, this->height, "", branch));
-	
+		branch->Add(new Mark(this->x + 14 * width / 15, this->y + height / 4));
 	
 		// 3.선택된 브랜치에 새 브랜치를 추가한다.
 		selection->GetLastSelection()->Add(branch);
