@@ -8,6 +8,7 @@
 #include <string>
 #include "Branch.h"
 #include "TextForm.h"
+#include "TextFormSize.h"
 #include "MouseAction.h"
 #include "DrawingStrategy.h"
 #include "SelectionStrategy.h"
@@ -134,6 +135,10 @@ void PageForm::OnLButtonDblClk(UINT nFlags, CPoint point)
 
 		this->textForm = new TextForm;
 		this->textForm->CreateEx(WS_EX_CLIENTEDGE, TEXT("STATIC"), TEXT("DEMO"), WS_CHILD | WS_VISIBLE | WS_BORDER, topic->GetX(), topic->GetY(), topic->GetWidth(), topic->GetHeight(), m_hWnd, (HMENU)2345);
+		this->textForm->textFormSize->SetX(topic->GetX());
+		this->textForm->textFormSize->SetY(topic->GetY());
+		this->textForm->textFormSize->SetWidth(topic->GetWidth());
+		this->textForm->textFormSize->SetHeight(topic->GetHeight());
 		this->textForm->ShowWindow(SW_SHOW);
 		this->textForm->UpdateWindow();
 		AfxGetApp()->m_pMainWnd = this->textForm;

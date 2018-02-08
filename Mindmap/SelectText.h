@@ -13,9 +13,7 @@ public:
 	~SelectText();
 
 	void TextDragAction(TextForm *textForm, CDC *cdc, CPoint point);
-	void TextAllSelect(TextForm *textForm, CDC *cdc, CPoint point);
-	Long CheckStartCharacterIndex(TextForm *textForm);
-	Long CheckEndCharacterIndex(TextForm *textForm);
+	void TextDoubleClickAction(TextForm *textForm, CDC *cdc);
 
 	SelectText& operator=(const SelectText& source);
 

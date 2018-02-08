@@ -5,7 +5,7 @@
 #include "Caret.h"
 #include "Text.h"
 #include "TextDrag.h"
-#include "DoubleClickSelectText.h"
+#include "TextDoubleClick.h"
 
 SelectText::SelectText() {
 	this->startCharacterIndex = 0;
@@ -71,82 +71,13 @@ void SelectText::TextDragAction(TextForm *textForm, CDC *cdc, CPoint point) {
 	}
 }
 
-void SelectText::TextAllSelect(TextForm *textForm, CDC *cdc, CPoint point) {
-	DoubleClickSelectText doubleClickSelectText;
-	
-	Long caretIndex;
-	Row* row;
-	Long width;
-	string word;
+void SelectText::TextDoubleClickAction(TextForm *textForm, CDC *cdc) {
+	TextDoubleClick textdoubleClick;
 
-	caretIndex = textForm->caret->GetCharacterIndex()-1;
-	
-	row = (Row*)textForm->text->GetAt(textForm->caret->GetRowIndex());
-
-	while (caretIndex >= 0 && row->GetAt(caretIndex)->MakeString() != " ")
-	{
-		word += row->GetAt(caretIndex)->MakeString();
-
-		caretIndex--;
-	}
-	width = cdc->GetTextExtent((CString)word.c_str()).cx;
-
-	doubleClickSelectText.AllSelect(textForm, cdc, width);
+	textdoubleClick.TextDoubleClickSelect(textForm, cdc);
 
 }
 
-Long SelectText::CheckStartCharacterIndex(TextForm *textForm)
-{
-	Long caretIndex;
-	Row* row;
-	Long index;
-
-	caretIndex = textForm->caret->GetCharacterIndex()-1;
-	row = (Row*)textForm->text->GetAt(textForm->caret->GetRowIndex());
-	
-
-	while (caretIndex >= 0 && row->GetAt(caretIndex)->MakeString() != " ")
-	{
-		caretIndex--;	
-	}
-
-	if (caretIndex == -1)
-	{
-		caretIndex = 0;
-	}
-
-	if (caretIndex != 0 && row->GetAt(caretIndex)->MakeString() == " ")
-	{
-
-		caretIndex +=1;
-	}
-
-
-	index = caretIndex;
-
-	return index;
-}
-
-Long SelectText::CheckEndCharacterIndex(TextForm *textForm)
-{
-	Long caretIndex;
-	Row* row;
-	Long length;
-	Long index;
-
-	caretIndex = textForm->caret->GetCharacterIndex();
-	row = (Row*)textForm->text->GetAt(textForm->caret->GetRowIndex());
-	length = row->GetLength();
-
-	while (caretIndex < length && row->GetAt(caretIndex)->MakeString() != " ")
-	{
-
-		caretIndex++;
-	}
-
-	index = caretIndex;
-	return index;
-}
 
 SelectText& SelectText::operator=(const SelectText& source) {
 	this->startCharacterIndex = source.startCharacterIndex;

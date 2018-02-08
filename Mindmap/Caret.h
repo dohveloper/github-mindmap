@@ -22,6 +22,8 @@ public:
 	void MoveToDown(Long index=1);
 
 	Long SetCharacterIndex(Long index);
+	Long CheckStartCharacterIndex(TextForm *textForm);
+	Long CheckEndCharacterIndex(TextForm *textForm);
 	Long SetRowIndex(Long index);
 	Caret& operator=(const Caret& source);
 

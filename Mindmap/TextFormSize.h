@@ -12,10 +12,25 @@ class TextFormSize
 {
 public:
 	TextFormSize();
+	TextFormSize(Long x, Long y, Long width, Long height);
+	TextFormSize(const TextFormSize& source);
 	~TextFormSize();
+
 	void TextFormWidthSize(TextForm *textForm, CDC *cdc);
 	void TextFormHeightSize(TextForm *textForm);
 
+	Long SetX(Long index);
+	Long SetY(Long index);
+	Long SetWidth(Long index);
+	Long SetHeight(Long index);
+
+	TextFormSize& operator=(const TextFormSize& source);
+
+private:
+	Long x;
+	Long y;
+	Long width;
+	Long height;
 };
 
 #endif //TEXTFORMSIZE_H#pragma once

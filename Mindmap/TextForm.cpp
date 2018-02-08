@@ -10,7 +10,8 @@
 #include "Caret.h"
 #include "SelectText.h"
 #include "TextDrag.h"
-#include "DoubleClickSelectText.h"
+#include "TextDoubleClick.h"
+#include "TextDoubleClickSelectAction.h"
 #include "TextFormSize.h"
 #include <imm.h>
 #pragma comment(lib, "imm32.LIB")
@@ -151,6 +152,8 @@ bool TextForm::OnComposition(LPARAM lParam) {
 			}
 		}
 		this->compose = TRUE;
+		CDC *cdc = GetDC();
+		this->textFormSize->TextFormWidthSize(this, cdc);
 	}
 	//조합된 한글
 	if (lParam & GCS_RESULTSTR)
@@ -190,11 +193,10 @@ bool TextForm::OnChar(WPARAM wParam) {
 		{
 			this->text->GetAt(this->caret->GetRowIndex())->Insert(this->caret->GetCharacterIndex(),new SingleByteCharacter(word));
 		}
-		this->caret->MoveToRight();
-		this->compose = FALSE;
-
 		CDC *cdc = GetDC();
 		this->textFormSize->TextFormWidthSize(this, cdc);
+		this->caret->MoveToRight();
+		this->compose = FALSE;
 	}
 	RedrawWindow();
 
@@ -330,11 +332,11 @@ void TextForm::OnLButtonDblClk(UINT nFlags, CPoint point)
 	white = cdc->SetTextColor(GetSysColor(COLOR_HIGHLIGHTTEXT));
 	blue = cdc->SetBkColor(GetSysColor(COLOR_HIGHLIGHT));
 
-	this->selectText->SetStartCharacterIndex(this->selectText->CheckStartCharacterIndex(this));
+	this->selectText->SetStartCharacterIndex(this->caret->CheckStartCharacterIndex(this));
 	this->selectText->SetStartRowIndex(this->caret->GetRowIndex());
-	this->selectText->SetEndCharacterIndex(this->selectText->CheckEndCharacterIndex(this));
+	this->selectText->SetEndCharacterIndex(this->caret->CheckEndCharacterIndex(this));
 	this->selectText->SetEndRowIndex(this->caret->GetRowIndex());
-	this->selectText->TextAllSelect(this, cdc, point);
+	this->selectText->TextDoubleClickAction(this, cdc);
 
 	fnt.DeleteObject();
 
