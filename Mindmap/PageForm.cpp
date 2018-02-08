@@ -41,20 +41,11 @@ int PageForm::OnCreate(LPCREATESTRUCT lpCreateStruct)
 }
 
 void PageForm::OnLButtonDown(UINT nFlags, CPoint point) {
-	//Branch *clickedBranch = NULL;
-	//HitTestVisitor visitor(point, &clickedBranch);
-	//this->branch->Accept(visitor);
+	Shape *clickedObject = NULL;
 
-	Branch *clickedBranch = NULL;
-	TopicHitTest topicHitTest(this->branch, point);
-	topicHitTest.Traverse();
-	if (topicHitTest.GetIsHit()) {
-		clickedBranch = topicHitTest.GetHitTopic()->GetOwnerBranch();
-	}
-
-	this->mouseAction->SetStrategy(clickedBranch);
-
-	this->mouseAction->OnLButtonDown(point, nFlags, &this->selection, clickedBranch);
+	clickedObject = this->mouseAction->GetClickedObject(this->branch, point);
+	this->mouseAction->SetStrategy(clickedObject);
+	this->mouseAction->OnLButtonDown(point, nFlags, &this->selection, clickedObject);
 
 	CFrameWnd::OnLButtonDown(nFlags, point);
 }
