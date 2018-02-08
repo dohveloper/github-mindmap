@@ -37,6 +37,7 @@ public:
 	Branch* GetOwnerBranch() const;
 	bool GetIsShown() const;
 	void SetOwnerBranch(Branch *branch);
+	void SetContent(string content);
 
 protected:
 	Long x;
@@ -68,15 +69,17 @@ inline Branch* Shape::GetOwnerBranch() const
 {
 	return const_cast<Branch*>(this->ownerBranch);
 }
-
+inline bool Shape::GetIsShown() const
+{
+	return this->isShown;
+}
 inline void Shape::SetOwnerBranch(Branch *branch)
 {
 	this->ownerBranch = branch;
 }
-
-inline bool Shape::GetIsShown() const
+inline void Shape::SetContent(string content)
 {
-	return this->isShown;
+	this->content = content;
 }
 
 #endif //_SHAPE_H

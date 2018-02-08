@@ -19,7 +19,6 @@ public:
 	Mark(const Mark& source);
 	virtual ~Mark();
 
-	void SetContent(string content);
 	void Accept(ShapeVisitor& visitor);
 	Mark& operator=(const Mark& source);
 };

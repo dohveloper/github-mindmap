@@ -22,7 +22,8 @@ Long Selection::Add(Branch * branch)
 {
 	Long index;
 
-	//선택된 브랜치의 마크를 보이게 한다.
+	//선택된 브랜치에 하위토픽이 있으면 선택된 브랜치의 마크를 보이게 한다.
+
 	branch->GetMark()->Show();
 
 	// branch를 배열에 추가한다.

@@ -54,6 +54,9 @@ void DrawingStrategy::OnLButtonUp(Selection *selection, bool isOverlapped) {
 		// 3.선택된 브랜치에 새 브랜치를 추가한다.
 		selection->GetLastSelection()->Add(branch);
 
+		//선택된 브랜치의 마크를 +에서 -로 바꾼다.
+		selection->GetLastSelection()->GetMark()->SetContent("-");
+
 		//모두지우고 추가된 브랜치 선택하기
 		selection->Clear();
 		selection->Add(branch);

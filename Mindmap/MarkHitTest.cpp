@@ -23,9 +23,9 @@ bool MarkHitTest::ProcessItem(Shape *shape)
 	if (typeid(*shape) == typeid(Mark))
 	{
 		x = this->point.x - (shape->GetX() + shape->GetWidth() / 2);
-		y = this->point.y - (shape->GetY() + shape->GetHeight() / 2);
+		y = this->point.y - (shape->GetY() + shape->GetHeight() / -2);
 		a = shape->GetWidth() / 2;
-		b = shape->GetHeight() / 2;
+		b = shape->GetHeight() / -2;
 		value = ((x*x) / (a*a)) + ((y*y) / (b*b)); // 타원방정식 ((x*x) / (a*a)) + ((y*y) / (b*b)) =1
 		if (value <= 0.8)
 		{

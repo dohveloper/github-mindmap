@@ -24,11 +24,6 @@ Mark::~Mark()
 {
 }
 
-void Mark::SetContent(string content)
-{
-	this->content = content;
-}
-
 void Mark::Accept(ShapeVisitor& visitor) {
 	//visitor.VisitTopic(this);
 }
