@@ -17,12 +17,14 @@ public:
 	virtual ~FoldVisitor();
 	virtual void VisitBranch(Branch *branch);
 
-private:
+public:
 	Long x;
 	Long y;
-	Long width;
 	Long height;
+	Long width;
 	bool isOverlapped;
+private:
+
 };
 
 #endif //_FOLDVISITOR_H

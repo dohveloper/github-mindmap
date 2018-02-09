@@ -53,6 +53,13 @@ Mark* Branch::GetMark()
 		}
 		i++;
 	}
+	/*
+	mark = this->shapes.GetAt(1);
+	if (typeid(*mark) == typeid(Mark)) 
+	{
+		mark = this->shapes.GetAt(2);
+	}
+	*/
 	return (Mark*)mark;
 }
 
