@@ -42,6 +42,7 @@ TextForm::TextForm() {
 	this->textFont = NULL;
 	this->hangul = FALSE;
 	this->compose = FALSE;
+	this->lineWrapCount = 0;
 }
 
 int TextForm::OnCreate(LPCREATESTRUCT lpCreateStruct) {
@@ -182,8 +183,7 @@ bool TextForm::OnNotify() {
 
 void TextForm::OnKeyDown(WPARAM wParam) {
 	if (wParam == VK_RETURN) {
-		Row *row = new Row;
-		this->text->Write(row);
+		this->text->Write(new Row);
 		this->caret->MoveToDown();
 		CDC *cdc = GetDC();
 		this->textFormSize->TextFormHeightSize(this, cdc);

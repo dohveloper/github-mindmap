@@ -33,6 +33,7 @@ public:
 	TextFont *textFont;
 	bool hangul;
 	bool compose;
+	Long lineWrapCount;
 protected:
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnClose();

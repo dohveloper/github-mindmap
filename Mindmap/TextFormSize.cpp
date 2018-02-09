@@ -45,7 +45,7 @@ void TextFormSize::TextFormWidthSize(TextForm *textForm, CDC *cdc)
 	Long textFormWidth;
 	Long textFormHeight;
 	CFont fnt;
-	Long maxWidthSize = 600;
+	Long maxWidthSize = 500;
 	fnt.CreateFont(textForm->textFont->GetHeight(), textForm->textFont->GetWidth(), 0, 0, textForm->textFont->GetWeight(), textForm->textFont->GetItalic(), textForm->textFont->GetUnderline(), textForm->textFont->GetStrikeOut(), DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH, textForm->textFont->GetLpszFacename());
 	cdc->SelectObject(&fnt);
 
@@ -62,7 +62,6 @@ void TextFormSize::TextFormWidthSize(TextForm *textForm, CDC *cdc)
 	{
 		textFormWidth = width;
 		textForm->MoveWindow(textFormX, textFormY, textFormWidth+6, textFormHeight);
-
 	}
 	
 	this->width = textFormWidth;
