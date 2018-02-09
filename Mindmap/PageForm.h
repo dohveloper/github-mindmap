@@ -20,7 +20,7 @@ class PageForm :public CFrameWnd {
 public:
 	PageForm();
 public:
-	TextForm *textForm;
+	TextForm * textForm;
 	Branch *branch;
 	Selection selection;
 	MouseAction *mouseAction;

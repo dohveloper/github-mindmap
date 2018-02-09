@@ -18,6 +18,7 @@
 #include "DrawTopics.h"
 #include "Mark.h"
 #include "DrawingVisitor.h"
+#include "SingleSelect.h"
 
 BEGIN_MESSAGE_MAP(PageForm, CFrameWnd)
 	ON_WM_CREATE()
@@ -26,6 +27,7 @@ BEGIN_MESSAGE_MAP(PageForm, CFrameWnd)
 	ON_WM_MOUSEMOVE()
 	ON_WM_PAINT()
 	ON_WM_CLOSE()
+	ON_WM_LBUTTONDBLCLK()
 END_MESSAGE_MAP()
 
 PageForm::PageForm() {
@@ -116,20 +118,21 @@ void PageForm::OnClose()
 
 void PageForm::OnLButtonDblClk(UINT nFlags, CPoint point)
 {
-	Branch *clickedBranch = NULL;
-	HitTestVisitor visitor(point, &clickedBranch);
+	SingleSelect singleSelect;
+	Shape *clickedObject;
 	Topic *topic;
 
-	this->branch->Accept(visitor);
-	this->mouseAction->SetStrategy(clickedBranch);
-	if (clickedBranch != NULL) {
-		this->mouseAction->OnLButtonDown(point, nFlags, &this->selection, clickedBranch);
+	clickedObject = this->mouseAction->GetClickedObject(this->branch, point);
 
+	if (typeid(*clickedObject) == typeid(Topic)) {
+		//클릭된 브랜치를 선택한다.
+		singleSelect.SelectBranch(&this->selection, (Branch*)clickedObject);
+
+		//선택된 토픽을 구한다.
 		topic = (Topic*)this->selection.GetLastSelection()->GetTopic();
 
 		this->textForm = new TextForm;
-		this->textForm->CreateEx(WS_EX_CLIENTEDGE, TEXT("STATIC"), TEXT("DEMO"), WS_CHILD | WS_VISIBLE | WS_BORDER, topic->GetX(), topic->GetY(), topic->GetWidth()+6, topic->GetHeight(), m_hWnd, (HMENU)2345);
-		
+		this->textForm->CreateEx(WS_EX_CLIENTEDGE, TEXT("STATIC"), TEXT("DEMO"), WS_CHILD | WS_VISIBLE | WS_BORDER, topic->GetX(), topic->GetY(), topic->GetWidth() + 6, topic->GetHeight(), m_hWnd, (HMENU)2345);
 
 		this->textForm->textFormSize->SetX(topic->GetX());
 		this->textForm->textFormSize->SetY(topic->GetY());
