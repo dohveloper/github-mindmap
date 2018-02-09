@@ -163,6 +163,7 @@
     <ClInclude Include="MouseAction.h" />
     <ClInclude Include="MouseStrategy.h" />
     <ClInclude Include="MultiSelect.h" />
+    <ClInclude Include="OverlappedConfirmVisitor.h" />
     <ClInclude Include="Page.h" />
     <ClInclude Include="PageApp.h" />
     <ClInclude Include="PageForm.h" />
@@ -200,6 +201,7 @@
     <ClCompile Include="MouseAction.cpp" />
     <ClCompile Include="MouseStrategy.cpp" />
     <ClCompile Include="MultiSelect.cpp" />
+    <ClCompile Include="OverlappedConfirmVisitor.cpp" />
     <ClCompile Include="Page.cpp" />
     <ClCompile Include="PageApp.cpp" />
     <ClCompile Include="PageForm.cpp" />
