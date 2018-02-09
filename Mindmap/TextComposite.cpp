@@ -69,7 +69,6 @@ string TextComposite::MakeString() {
 }
 
 string TextComposite::MakeString(Long start, Long end) {
-
 	string text = "";
 	Character *character;
 
@@ -86,8 +85,6 @@ string TextComposite::MakeString(Long start, Long end) {
 		start++;
 	}
 	return text;
-
-
 }
 
 Long TextComposite::GetRowWidth(CDC *cdc,Long start,Long end) {

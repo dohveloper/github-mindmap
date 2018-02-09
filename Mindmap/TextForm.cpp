@@ -29,6 +29,7 @@ BEGIN_MESSAGE_MAP(TextForm, CWnd)
 	ON_WM_MOUSEMOVE()
 	ON_WM_LBUTTONUP()
 	ON_WM_LBUTTONDBLCLK()
+	ON_WM_ERASEBKGND()
 END_MESSAGE_MAP()
 
 TextForm::TextForm() {
@@ -190,9 +191,11 @@ void TextForm::OnKeyDown(WPARAM wParam) {
 	}
 	else if (wParam == VK_BACK)
 	{
+		if (this->caret->GetCharacterIndex() - 1 >= 0)
+		{
 			this->text->GetAt(this->caret->GetRowIndex())->Delete(this->caret->GetCharacterIndex() - 1);
 			this->caret->MoveToLeft();
-
+		}
 	}
 	else if (wParam == VK_RIGHT)
 	{
@@ -308,4 +311,14 @@ void TextForm::OnLButtonDblClk(UINT nFlags, CPoint point)
 	fnt.DeleteObject();
 
 	CWnd::OnLButtonDblClk(nFlags, point);
+}
+
+
+BOOL TextForm::OnEraseBkgnd(CDC* pDC)
+{
+	CRect rect;
+	GetClientRect(&rect);
+	pDC->FillSolidRect(&rect, RGB(255,255,255));
+
+	return TRUE;
 }
