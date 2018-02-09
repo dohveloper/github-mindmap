@@ -17,7 +17,7 @@ public:
 	virtual ~Shape() = 0;
 
 	virtual Long Add(Shape *shape);
-	virtual Long Remove(Selection *selection, Branch *branch);
+	virtual Long Remove(Long index);
 	virtual Long Correct(Long index, Shape *shape);
 	virtual Shape* GetAt(Long index);
 

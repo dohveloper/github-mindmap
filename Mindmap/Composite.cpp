@@ -39,63 +39,11 @@ Long Composite::Add(Shape *shape)
 	return index;
 }
 
-Long Composite::Remove(Selection *selection, Branch *branch)
+Long Composite::Remove(Long index)
 {
-	Long index = -1;
-	Long i = 0;
-	Long j = 0;
-	Branch *temp;
-	Branch *temp2;
-
-	branch->shapes.Delete(2);
-
-	/*
-	temp = selection->GetAt(0);
-	temp2 = temp->GetOwnerBranch();
-	while (temp->GetLength())
-	{
-		*temp3[j] = *temp->shapes[i];
-		i++;
-		j++;
-	}
-	temp2->shapes[2] = *temp3;
-
-
-	while (i < selection->GetLength()) 
-	{
-
-	temp = selection->GetAt(i);
-	temp2 = temp->GetOwnerBranch();
-
-
-		
-
-		branch->shapes.DeleteFromRear();
-
-		temp = selection->GetAt(i);
-
-		if (this->temp != NULL)
-		{
-		delete [] this->temp;
-		this->temp = NULL;
-		}
-
-
-		temp = selection->GetAt(i);
-		temp->shapes.Delete(0);
-		temp->shapes.Delete(1);
-
-		temp2 = temp->GetOwnerBranch();
-	index = temp2->shapes.LinearSearchUnique(&temp, CompareBranches);
-	index = temp2->shapes.Delete(i);	
-		
-		if (index != -1)
-		{
-			
-		}
-		i++;
-	}
-	*/
+	index = this->shapes.Delete(index);
+	this->capacity--;
+	this->length--;
 
 	return index;
 }

@@ -16,6 +16,7 @@
 #include "DrawTopics.h"
 #include "Mark.h"
 #include "DrawingVisitor.h"
+#include "DeleteVisitor.h"
 
 BEGIN_MESSAGE_MAP(PageForm, CFrameWnd)
 	ON_WM_CREATE()
@@ -115,11 +116,21 @@ void PageForm::OnClose()
 
 void PageForm::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
+	Long i = 0;
 	if (nChar == VK_DELETE)
 	{	
-		//this->branch->Remove(branch.GetLength());
-		this->branch->Remove(&this->selection, this->branch);
+		while (i < selection.GetLength())
+		{
+			Branch *select = this->selection.GetAt(i);
+			DeleteVisitor deleteVisitor(select);
+			this->branch->Accept(deleteVisitor);
+			i++;
+		}
+
+		
+		//Branch *temp = this->selection.GetAt(0)->GetOwnerBranch();
 		this->selection.Clear();
+		//this->selection.Add(temp);
 	}
 
 	RedrawWindow();

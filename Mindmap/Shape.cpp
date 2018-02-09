@@ -39,7 +39,7 @@ Long Shape::Add(Shape *shape) {
 	return -1;
 }
 
-Long Shape::Remove(Selection *selection, Branch *branch)
+Long Shape::Remove(Long index)
 {
 	return -1;
 }

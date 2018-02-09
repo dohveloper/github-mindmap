@@ -145,6 +145,7 @@
     <ClInclude Include="Branch.h" />
     <ClInclude Include="Clipboard.h" />
     <ClInclude Include="Composite.h" />
+    <ClInclude Include="DeleteVisitor.h" />
     <ClInclude Include="DrawingStrategy.h" />
     <ClInclude Include="DrawingVisitor.h" />
     <ClInclude Include="DrawLines.h" />
@@ -185,6 +186,7 @@
     <ClCompile Include="BranchTraverser.cpp" />
     <ClCompile Include="Clipboard.cpp" />
     <ClCompile Include="Composite.cpp" />
+    <ClCompile Include="DeleteVisitor.cpp" />
     <ClCompile Include="DrawingStrategy.cpp" />
     <ClCompile Include="DrawingVisitor.cpp" />
     <ClCompile Include="DrawLines.cpp" />

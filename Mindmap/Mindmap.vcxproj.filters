@@ -126,6 +126,9 @@
     <ClInclude Include="OverlappedConfirmVisitor.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="DeleteVisitor.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Branch.cpp">
@@ -234,6 +237,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="OverlappedConfirmVisitor.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="DeleteVisitor.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
