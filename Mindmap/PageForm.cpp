@@ -119,14 +119,14 @@ void PageForm::OnClose()
 void PageForm::OnLButtonDblClk(UINT nFlags, CPoint point)
 {
 	SingleSelect singleSelect;
-	Shape *clickedObject;
+	Shape *clickedObject = NULL;
 	Topic *topic;
 
 	clickedObject = this->mouseAction->GetClickedObject(this->branch, point);
 
-	if (typeid(*clickedObject) == typeid(Topic)) {
+	if (clickedObject != NULL) {
 		//클릭된 브랜치를 선택한다.
-		singleSelect.SelectBranch(&this->selection, (Branch*)clickedObject);
+		singleSelect.SelectBranch(&this->selection, clickedObject->GetOwnerBranch());
 
 		//선택된 토픽을 구한다.
 		topic = (Topic*)this->selection.GetLastSelection()->GetTopic();
