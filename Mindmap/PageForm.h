@@ -12,6 +12,7 @@ using namespace std;
 
 typedef signed long int Long;
 class Page;
+class TextForm;
 class Branch;
 class MouseAction;
 
@@ -19,7 +20,8 @@ class PageForm :public CFrameWnd {
 public:
 	PageForm();
 public:
-	Branch * branch;
+	TextForm *textForm;
+	Branch *branch;
 	Selection selection;
 	MouseAction *mouseAction;
 
@@ -29,6 +31,7 @@ protected:
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
 	afx_msg void OnPaint();
+	afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);
 	afx_msg void OnClose();
 	DECLARE_MESSAGE_MAP()
 };

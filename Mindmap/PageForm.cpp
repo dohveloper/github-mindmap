@@ -7,6 +7,8 @@
 #include <afxdb.h>
 #include <string>
 #include "Branch.h"
+#include "TextForm.h"
+#include "TextFormSize.h"
 #include "MouseAction.h"
 #include "DrawingStrategy.h"
 #include "SelectionStrategy.h"
@@ -103,4 +105,33 @@ void PageForm::OnClose()
 	}
 
 	CFrameWnd::OnClose();
+}
+
+void PageForm::OnLButtonDblClk(UINT nFlags, CPoint point)
+{
+	Branch *clickedBranch = NULL;
+	HitTestVisitor visitor(point, &clickedBranch);
+	Topic *topic;
+
+	this->branch->Accept(visitor);
+	this->mouseAction->SetStrategy(clickedBranch);
+	if (clickedBranch != NULL) {
+		this->mouseAction->OnLButtonDown(point, nFlags, &this->selection, clickedBranch);
+
+		topic = (Topic*)this->selection.GetLastSelection()->GetTopic();
+
+		this->textForm = new TextForm;
+		this->textForm->CreateEx(WS_EX_CLIENTEDGE, TEXT("STATIC"), TEXT("DEMO"), WS_CHILD | WS_VISIBLE | WS_BORDER, topic->GetX(), topic->GetY(), topic->GetWidth()+6, topic->GetHeight(), m_hWnd, (HMENU)2345);
+		
+
+		this->textForm->textFormSize->SetX(topic->GetX());
+		this->textForm->textFormSize->SetY(topic->GetY());
+		this->textForm->textFormSize->SetWidth(topic->GetWidth());
+		this->textForm->textFormSize->SetHeight(topic->GetHeight());
+		this->textForm->ShowWindow(SW_SHOW);
+		this->textForm->UpdateWindow();
+		AfxGetApp()->m_pMainWnd = this->textForm;
+
+		this->textForm->SetCapture();
+	}
 }
