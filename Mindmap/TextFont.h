@@ -21,7 +21,7 @@ public:
 	void SetUnderline(BYTE underline);
 	void SetStrikeOut(BYTE strikeOut);
 	void SetLpszFacename(CString lpszFacename);
-	
+
 	TextFont& operator=(const TextFont& source);
 
 	Long GetHeight() const;
@@ -37,7 +37,7 @@ private:
 	Long height;
 	//≥–¿Ã
 	Long width;
-	//µŒ≤≤
+	//±Ω±‚
 	Long weight;
 	//±‚øÔ¿”
 	BYTE italic;

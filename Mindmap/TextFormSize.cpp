@@ -44,35 +44,27 @@ void TextFormSize::TextFormWidthSize(TextForm *textForm, CDC *cdc)
 	Long textFormY;
 	Long textFormWidth;
 	Long textFormHeight;
-	Long caretIndex;
-	Long wordWidth;
 	CFont fnt;
-	Long addTextFormWidth;
-	Long textWindowRato = 1.07;
 	Long maxWidthSize = 600;
 	fnt.CreateFont(textForm->textFont->GetHeight(), textForm->textFont->GetWidth(), 0, 0, textForm->textFont->GetWeight(), textForm->textFont->GetItalic(), textForm->textFont->GetUnderline(), textForm->textFont->GetStrikeOut(), DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH, textForm->textFont->GetLpszFacename());
 	cdc->SelectObject(&fnt);
 
 	row = (Row*)textForm->text->GetAt(textForm->caret->GetRowIndex());
 	length = row->GetLength();
-	width = row->GetRowWidth(cdc, 0,length);
-
-	caretIndex = textForm->caret->GetCharacterIndex();
-
-	word = row->GetAt(caretIndex)->MakeString();
-	wordWidth = cdc->GetTextExtent((CString)word.c_str()).cx;
+	width = row->GetRowWidth(cdc, 0,length)+3;
 
 	textFormX = this->x;
 	textFormY = this->y;
 	textFormWidth = this->width;
 	textFormHeight = this->height;
 
-	if (width*textWindowRato > textFormWidth &&width*textWindowRato < maxWidthSize)
+	if (width > textFormWidth && width < maxWidthSize)
 	{
-		addTextFormWidth = wordWidth*textWindowRato;
-		textFormWidth += addTextFormWidth;
-		textForm->MoveWindow(textFormX, textFormY, textFormWidth, textFormHeight);
+		textFormWidth = width;
+		textForm->MoveWindow(textFormX, textFormY, textFormWidth+6, textFormHeight);
+
 	}
+	
 	this->width = textFormWidth;
 	
 	fnt.DeleteObject();

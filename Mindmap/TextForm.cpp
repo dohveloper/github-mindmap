@@ -51,7 +51,7 @@ int TextForm::OnCreate(LPCREATESTRUCT lpCreateStruct) {
 	this->textFormSize = new TextFormSize;
 	this->writeKorean = new WriteKorean;
 	this->writeEnglish = new WriteEnglish;
-	this->textFont = new TextFont(30,16, FW_HEAVY, FALSE, FALSE, FALSE,"±¼¸²Ã¼");
+	this->textFont = new TextFont(30,8, FW_HEAVY, FALSE, FALSE, FALSE,"±¼¸²Ã¼");
 
 	this->text->Write(new Row);
 	return 0;
@@ -190,9 +190,11 @@ void TextForm::OnKeyDown(WPARAM wParam) {
 	}
 	else if (wParam == VK_BACK)
 	{
+		if (this->caret->GetCharacterIndex() - 1 >= 0)
+		{
 			this->text->GetAt(this->caret->GetRowIndex())->Delete(this->caret->GetCharacterIndex() - 1);
 			this->caret->MoveToLeft();
-
+		}
 	}
 	else if (wParam == VK_RIGHT)
 	{
