@@ -29,6 +29,7 @@ BEGIN_MESSAGE_MAP(TextForm, CWnd)
 	ON_WM_MOUSEMOVE()
 	ON_WM_LBUTTONUP()
 	ON_WM_LBUTTONDBLCLK()
+	ON_WM_ERASEBKGND()
 END_MESSAGE_MAP()
 
 TextForm::TextForm() {
@@ -51,7 +52,7 @@ int TextForm::OnCreate(LPCREATESTRUCT lpCreateStruct) {
 	this->textFormSize = new TextFormSize;
 	this->writeKorean = new WriteKorean;
 	this->writeEnglish = new WriteEnglish;
-	this->textFont = new TextFont(30,8, FW_HEAVY, FALSE, FALSE, FALSE,"±¼¸²Ã¼");
+	this->textFont = new TextFont(30,15, FW_HEAVY, FALSE, FALSE, FALSE,"±¼¸²Ã¼");
 
 	this->text->Write(new Row);
 	return 0;
@@ -310,4 +311,14 @@ void TextForm::OnLButtonDblClk(UINT nFlags, CPoint point)
 	fnt.DeleteObject();
 
 	CWnd::OnLButtonDblClk(nFlags, point);
+}
+
+
+BOOL TextForm::OnEraseBkgnd(CDC* pDC)
+{
+	CRect rect;
+	GetClientRect(&rect);
+	pDC->FillSolidRect(&rect, RGB(255,255,255));
+
+	return TRUE;
 }

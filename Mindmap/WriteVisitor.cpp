@@ -30,8 +30,6 @@ void WriteVisitor::VisitText(Text *text) {
 	string word;
 	Long i = 0;
 	Long length;
-	Long height;
-	
 	
 	length = text->GetLength();
 
