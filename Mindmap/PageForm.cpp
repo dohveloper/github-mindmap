@@ -24,6 +24,7 @@ BEGIN_MESSAGE_MAP(PageForm, CFrameWnd)
 	ON_WM_MOUSEMOVE()
 	ON_WM_PAINT()
 	ON_WM_CLOSE()
+	ON_WM_KEYDOWN()
 END_MESSAGE_MAP()
 
 PageForm::PageForm() {
@@ -110,4 +111,17 @@ void PageForm::OnClose()
 	}
 
 	CFrameWnd::OnClose();
+}
+
+void PageForm::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
+{
+	if (nChar == VK_DELETE)
+	{	
+		//this->branch->Remove(branch.GetLength());
+		this->branch->Remove(&this->selection, this->branch);
+		this->selection.Clear();
+	}
+
+	RedrawWindow();
+	CFrameWnd::OnKeyDown(nChar, nRepCnt, nFlags);
 }

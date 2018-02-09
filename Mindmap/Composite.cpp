@@ -1,6 +1,7 @@
 //Composite.cpp
 
 #include "Composite.h"
+#include "Selection.h"
 
 Composite::Composite(Long capacity, Branch* branch)
 :shapes(capacity) {
@@ -35,6 +36,29 @@ Long Composite::Add(Shape *shape)
 		this->capacity++;
 	}
 	this->length++;
+	return index;
+}
+
+Long Composite::Remove(Selection *selection, Branch *branch)
+{
+	Long i = 0;
+	Long index = -1;
+	Branch *temp;
+
+	
+	//selection->GetAt(i)->shapes.LinearSearchUnique();
+
+	while (i < selection->GetLength()) 
+	{
+		temp = selection->GetAt(i);
+		index = temp->GetOwnerBranch()->shapes.LinearSearchUnique(&temp, CompareBranches);
+		if (index != -1)
+		{
+			branch->shapes.Delete(i);
+		}
+		i++;
+	}
+
 	return index;
 }
 
