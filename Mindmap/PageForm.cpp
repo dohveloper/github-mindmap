@@ -119,7 +119,7 @@ void PageForm::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	{	
 		//this->branch->Remove(branch.GetLength());
 		this->branch->Remove(&this->selection, this->branch);
-		this->selection.Clear();
+		//this->selection.Clear();
 	}
 
 	RedrawWindow();

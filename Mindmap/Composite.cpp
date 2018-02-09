@@ -41,23 +41,41 @@ Long Composite::Add(Shape *shape)
 
 Long Composite::Remove(Selection *selection, Branch *branch)
 {
-	Long i = 0;
 	Long index = -1;
-	Branch *temp;
 
-	
-	//selection->GetAt(i)->shapes.LinearSearchUnique();
-
+	/*
 	while (i < selection->GetLength()) 
 	{
+		
+		Long i = 0;
+		Branch *temp;
+		Branch *temp2;
+		branch->shapes.DeleteFromRear();
+
 		temp = selection->GetAt(i);
-		index = temp->GetOwnerBranch()->shapes.LinearSearchUnique(&temp, CompareBranches);
+
+		if (this->temp != NULL)
+		{
+		delete [] this->temp;
+		this->temp = NULL;
+		}
+
+
+		temp = selection->GetAt(i);
+		temp->shapes.Delete(0);
+		temp->shapes.Delete(1);
+
+		temp2 = temp->GetOwnerBranch();
+	index = temp2->shapes.LinearSearchUnique(&temp, CompareBranches);
+	index = temp2->shapes.Delete(i);	
+		
 		if (index != -1)
 		{
-			branch->shapes.Delete(i);
+			
 		}
 		i++;
 	}
+	*/
 
 	return index;
 }
