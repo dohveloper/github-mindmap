@@ -186,7 +186,7 @@ void TextForm::OnKeyDown(WPARAM wParam) {
 		this->text->Write(row);
 		this->caret->MoveToDown();
 		CDC *cdc = GetDC();
-		this->textFormSize->TextFormHeightSize(this, cdc);
+		this->textFormSize->TextFormHeightSizeLong(this, cdc);
 		this->caret->SetCharacterIndex(0);
 	}
 	else if (wParam == VK_BACK)
@@ -194,6 +194,8 @@ void TextForm::OnKeyDown(WPARAM wParam) {
 		if (this->caret->GetCharacterIndex() - 1 >= 0)
 		{
 			this->text->GetAt(this->caret->GetRowIndex())->Delete(this->caret->GetCharacterIndex() - 1);
+			CDC *cdc = GetDC();
+			this->textFormSize->TextFormWidthSizeShort(this, cdc);
 			this->caret->MoveToLeft();
 		}
 	}

@@ -62,7 +62,9 @@
     <ClInclude Include="TextDrag.h" />
     <ClInclude Include="TextFont.h" />
     <ClInclude Include="TextForm.h" />
+    <ClInclude Include="TextFormHeightSizeAction.h" />
     <ClInclude Include="TextFormSize.h" />
+    <ClInclude Include="TextFormWidthSizeAction.h" />
     <ClInclude Include="TextVisitor.h" />
     <ClInclude Include="Topic.h" />
     <ClInclude Include="WriteEnglish.h" />
@@ -111,7 +113,9 @@
     <ClCompile Include="TextDrag.cpp" />
     <ClCompile Include="TextFont.cpp" />
     <ClCompile Include="TextForm.cpp" />
+    <ClCompile Include="TextFormHeightSizeAction.cpp" />
     <ClCompile Include="TextFormSize.cpp" />
+    <ClCompile Include="TextFormWidthSizeAction.cpp" />
     <ClCompile Include="TextVisitor.cpp" />
     <ClCompile Include="Topic.cpp" />
     <ClCompile Include="WriteEnglish.cpp" />

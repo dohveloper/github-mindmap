@@ -134,9 +134,8 @@ void PageForm::OnLButtonDblClk(UINT nFlags, CPoint point)
 		topic = (Topic*)this->selection.GetLastSelection()->GetTopic();
 
 		this->textForm = new TextForm;
-		this->textForm->CreateEx(WS_EX_CLIENTEDGE, TEXT("STATIC"), TEXT("DEMO"), WS_CHILD | WS_VISIBLE | WS_BORDER, topic->GetX(), topic->GetY(), topic->GetWidth()+6, topic->GetHeight(), m_hWnd, (HMENU)2345);
+		this->textForm->CreateEx(WS_EX_CLIENTEDGE, TEXT("STATIC"), TEXT("DEMO"), WS_CHILD | WS_VISIBLE , topic->GetX(), topic->GetY(), topic->GetWidth(), topic->GetHeight(), m_hWnd, (HMENU)2345);
 		
-
 		this->textForm->textFormSize->SetX(topic->GetX());
 		this->textForm->textFormSize->SetY(topic->GetY());
 		this->textForm->textFormSize->SetWidth(topic->GetWidth());
