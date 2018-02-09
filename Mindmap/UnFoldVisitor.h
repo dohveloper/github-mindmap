@@ -17,14 +17,12 @@ public:
 	virtual ~UnFoldVisitor();
 	virtual void VisitBranch(Branch *branch);
 
-public:
+private:
 	Long x;
 	Long y;
-	Long height;
 	Long width;
+	Long height;
 	bool isOverlapped;
-private:
-
 };
 
 #endif //_UNFOLDVISITOR_H

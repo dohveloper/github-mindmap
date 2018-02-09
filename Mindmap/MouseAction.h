@@ -11,7 +11,7 @@ public:
 	MouseAction();
 	void OnLButtonDown(CPoint point, UINT nFlags, Selection *selection, Shape *shape);
 	void OnMouseMove(CPoint point);
-	void OnLButtonUp(Selection *selection, UINT nFlags);
+	void OnLButtonUp(Selection *selection, UINT nFlags, Branch *branch);
 
 	void SetStrategy(Shape *shape);
 	Shape* GetClickedObject(Branch *branch, CPoint point);

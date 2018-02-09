@@ -58,7 +58,7 @@ void PageForm::OnMouseMove(UINT nFlags, CPoint point) {
 }
 
 void PageForm::OnLButtonUp(UINT nFlags, CPoint point) {
-	this->mouseAction->OnLButtonUp(&this->selection, nFlags);
+	this->mouseAction->OnLButtonUp(&this->selection, nFlags, this->branch);
 
 	RedrawWindow();
 	CFrameWnd::OnLButtonUp(nFlags, point);
@@ -86,13 +86,6 @@ void PageForm::OnPaint() {
 
 	this->branch->Accept(visitor);
 
-	//선 그리기
-	//DrawLines drawLines(this->branch, &dc);
-	//drawLines.Traverse();
-
-	//토픽 그리기
-	//DrawTopics drawTopics(this->branch, &dc);
-	//drawTopics.Traverse();
 }
 
 void PageForm::OnClose()
