@@ -74,7 +74,8 @@ void TextFormWidthSizeAction::TextFormWidthShort(TextForm *textForm, CDC *cdc)
 	textFormWidth = textForm->textFormSize->GetWidth();
 	textFormHeight = textForm->textFormSize->GetHeight();
 
-	if (width > minWidthSize)
+
+	if (width < textFormWidth && width > minWidthSize)
 	{
 		textFormWidth = width+6;
 		textForm->MoveWindow(textFormX, textFormY, textFormWidth, textFormHeight);

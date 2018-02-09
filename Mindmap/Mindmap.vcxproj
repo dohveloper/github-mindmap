@@ -65,6 +65,7 @@
     <ClInclude Include="TextFormHeightSizeAction.h" />
     <ClInclude Include="TextFormSize.h" />
     <ClInclude Include="TextFormWidthSizeAction.h" />
+    <ClInclude Include="TextSelectDelete.h" />
     <ClInclude Include="TextVisitor.h" />
     <ClInclude Include="Topic.h" />
     <ClInclude Include="WriteEnglish.h" />

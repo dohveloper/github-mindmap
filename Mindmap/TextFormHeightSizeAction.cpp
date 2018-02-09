@@ -42,7 +42,7 @@ void TextFormHeightSizeAction::TextFormHeightLong(TextForm *textForm, CDC *cdc)
 	{
 		textFormHeight = rowHeight+6;
 		textForm->MoveWindow(textFormX, textFormY, textFormWidth, textFormHeight);
-		textForm->textFormSize->SetWidth(textFormHeight);
+		textForm->textFormSize->SetHeight(textFormHeight);
 	}
 	fnt.DeleteObject();
 }
@@ -73,7 +73,7 @@ void TextFormHeightSizeAction::TextFormHeightShort(TextForm *textForm, CDC *cdc)
 	{
 		textFormHeight = rowHeight+6;
 		textForm->MoveWindow(textFormX, textFormY, textFormWidth, textFormHeight);
-		textForm->textFormSize->SetWidth(textFormHeight);
+		textForm->textFormSize->SetHeight(textFormHeight);
 	}
 	fnt.DeleteObject();
 }
