@@ -19,7 +19,7 @@ class PageForm :public CFrameWnd {
 public:
 	PageForm();
 public:
-	Branch *branch;
+	Branch * branch;
 	Selection selection;
 	MouseAction *mouseAction;
 
@@ -29,7 +29,6 @@ protected:
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
 	afx_msg void OnPaint();
-	afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);
 	afx_msg void OnClose();
 	DECLARE_MESSAGE_MAP()
 };

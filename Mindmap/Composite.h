@@ -10,7 +10,7 @@ typedef signed long int Long;
 class Shape;
 class Composite : public Shape{
 public:
-	Composite(Long capacity = 256);
+	Composite(Long capacity = 256, Branch* branch = NULL);
 	Composite(const Composite& source);
 	virtual ~Composite()=0;
 

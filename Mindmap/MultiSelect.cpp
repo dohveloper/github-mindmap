@@ -2,7 +2,6 @@
 #include "MultiSelect.h"
 #include "Selection.h"
 
-
 MultiSelect::MultiSelect()
 {
 }
@@ -29,7 +28,6 @@ void MultiSelect::SelectBranch(Selection *selection, Branch *branch)
 	{
 		selection->Add(branch);
 	}
-	
 }
 
 MultiSelect& MultiSelect::operator=(const MultiSelect& source)

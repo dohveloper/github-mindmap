@@ -3,37 +3,58 @@
 #include "MouseStrategy.h"
 #include "DrawingStrategy.h"
 #include "SelectionStrategy.h"
-
+#include "MarkStrategy.h"
+#include "Topic.h"
+#include "Mark.h"
+#include "HitTester.h"
 
 MouseAction::MouseAction()
 {
 	this->mouseStrategy = NULL;
 }
 
-void MouseAction::OnLButtonDown(CPoint point, UINT flags, Selection *selection, Branch *branch){
-	mouseStrategy->OnLButtonDown(point,flags,selection,branch);
+void MouseAction::OnLButtonDown(CPoint point, UINT nFlags, Selection *selection, Shape *shape) {
+	mouseStrategy->OnLButtonDown(point, nFlags, selection, shape);
 }
 void MouseAction::OnMouseMove(CPoint point) {
 	mouseStrategy->OnMouseMove(point);
 }
-void MouseAction::OnLButtonUp(Selection *selection, bool isOverlapped) {
-	mouseStrategy->OnLButtonUp(selection,true);
+void MouseAction::OnLButtonUp(Selection *selection, UINT nFlags) {
+	mouseStrategy->OnLButtonUp(selection, nFlags);
 }
 
-void MouseAction::SetStrategy(Branch * clickedBranch)
+void MouseAction::SetStrategy(Shape *shape)
 {
 	//할당해제
 	if (this->mouseStrategy != NULL) {
 		delete this->mouseStrategy;
 		this->mouseStrategy = NULL;
 	}
-	
-	if (clickedBranch == NULL) {
+
+	if (shape == NULL) {
 		this->mouseStrategy = new DrawingStrategy();
 	}
-	else if (clickedBranch != NULL) {
+	else if (typeid(*shape) == typeid(Topic)) {
 		this->mouseStrategy = new SelectionStrategy();
+	}
+	else if (typeid(*shape) == typeid(Mark)) {
+		this->mouseStrategy = new MarkStrategy();
 	}
 }
 
+Shape * MouseAction::GetClickedObject(Branch *branch, CPoint point)
+{
+	Shape *ret = NULL;
 
+	HitTester hitTester(branch);
+
+	if (hitTester.TestTopic(point)) {
+		ret = hitTester.GetHitObject();
+	}
+
+	if (hitTester.TestMark(point)) {
+		ret = hitTester.GetHitObject();
+	}
+
+	return ret;
+}

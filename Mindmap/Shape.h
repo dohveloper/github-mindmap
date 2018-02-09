@@ -7,38 +7,46 @@
 #include "ShapeVisitor.h"
 using namespace std;
 typedef signed long int Long;
+class Branch;
 
 class Shape {
-    public:
-    	Shape();
-    	Shape(Long x, Long y, Long width, Long height, string content);
-    	Shape(const Shape& source);
-    	virtual ~Shape() = 0;
-    
-    	virtual Long Add(Shape *shape);
-    	virtual Long Correct(Long index,Shape *shape);
-    	virtual Shape* GetAt(Long index);
+public:
+	Shape();
+	Shape(Long x, Long y, Long width, Long height, string content, Branch *branch = NULL, bool isShown = true);
+	Shape(const Shape& source);
+	virtual ~Shape() = 0;
 
-		virtual void Accept(ShapeVisitor& visitor);
-		
-    
-    	virtual bool IsEqual(const Shape& other);
-    	virtual bool IsNotEqual(const Shape& other);
-    
-		Shape& operator=(const Shape& source);
+	virtual Long Add(Shape *shape);
+	virtual Long Correct(Long index, Shape *shape);
+	virtual Shape* GetAt(Long index);
 
-    	Long GetX() const;
-    	Long GetY() const;
-    	Long GetWidth() const;
-    	Long GetHeight() const;
-    	string& GetContent() const;
-    	
-    protected:
-    	Long x;
-    	Long y;
-    	Long height;
-    	Long width;
-    	string content;
+	virtual void Accept(ShapeVisitor& visitor);
+	virtual void Show();
+	virtual void Hide();
+
+	virtual bool IsEqual(const Shape& other);
+	virtual bool IsNotEqual(const Shape& other);
+
+	Shape& operator=(const Shape& source);
+
+	Long GetX() const;
+	Long GetY() const;
+	Long GetWidth() const;
+	Long GetHeight() const;
+	string& GetContent() const;
+	Branch* GetOwnerBranch() const;
+	bool GetIsShown() const;
+	void SetOwnerBranch(Branch *branch);
+	void SetContent(string content);
+
+protected:
+	Long x;
+	Long y;
+	Long height;
+	Long width;
+	string content;
+	Branch *ownerBranch;
+	bool isShown;
 };
 
 inline Long Shape::GetX() const {
@@ -57,5 +65,21 @@ inline string& Shape::GetContent() const {
 	return const_cast<string&>(this->content);
 }
 
+inline Branch* Shape::GetOwnerBranch() const
+{
+	return const_cast<Branch*>(this->ownerBranch);
+}
+inline bool Shape::GetIsShown() const
+{
+	return this->isShown;
+}
+inline void Shape::SetOwnerBranch(Branch *branch)
+{
+	this->ownerBranch = branch;
+}
+inline void Shape::SetContent(string content)
+{
+	this->content = content;
+}
 
 #endif //_SHAPE_H

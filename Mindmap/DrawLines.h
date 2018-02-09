@@ -3,16 +3,15 @@
 #include "BranchTraverser.h"
 #include <afxwin.h>
 
-class DrawLines :public BranchTraverser{
+class DrawLines :public BranchTraverser {
 public:
 	DrawLines(Branch *branch, CPaintDC *dc);
 
 protected:
-	virtual bool ProcessItem(Shape*);
-	
+	virtual bool ProcessItem(Shape* shape);
 
 private:
-	CPaintDC *dc;
+	CPaintDC * dc;
 };
 
 #endif _DRAWLINES_H

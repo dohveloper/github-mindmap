@@ -8,14 +8,14 @@ Topic::Topic()
 
 }
 
-Topic::Topic(Long x, Long y, Long width, Long height, string content) 
-:Shape(x,y,width,height,content)
+Topic::Topic(Long x, Long y, Long width, Long height, string content, Branch *branch)
+:Shape(x,y,width,height,content,branch)
 {
 
 }
 
 Topic::Topic(const Topic& source)
-: Shape(source.x, source.y, source.width, source.height, source.content)
+	: Shape(source.x, source.y, source.width, source.height, source.content, source.ownerBranch)
 {
 	
 }
@@ -31,7 +31,7 @@ void Topic::Accept(ShapeVisitor& visitor) {
 bool Topic::IsEqual(const Topic& other) {
 	bool ret = false;
 
-	if (this->x == other.x&&this->y == other.y&&this->width == other.width&&this->height == other.height && (this->content.compare(other.content)) == 0)
+	if (this->x == other.x&&this->y == other.y&&this->width == other.width&&this->height == other.height && (this->content.compare(other.content)) || this->ownerBranch != other.ownerBranch == 0)
 	{
 		ret = true;
 	}
@@ -41,7 +41,7 @@ bool Topic::IsEqual(const Topic& other) {
 bool Topic::IsNotEqual(const Topic& other) {
 	bool ret = false;
 
-	if (this->x != other.x || this->y != other.y || this->width != other.width || this->height != other.height || (this->content.compare(other.content)) != 0)
+	if (this->x != other.x || this->y != other.y || this->width != other.width || this->height != other.height || (this->content.compare(other.content)) || this->ownerBranch != other.ownerBranch != 0)
 	{
 		ret = true;
 	}
@@ -51,7 +51,7 @@ bool Topic::IsNotEqual(const Topic& other) {
 bool Topic::operator==(const Topic& other) {
 	bool ret = false;
 
-	if (this->x == other.x&&this->y == other.y&&this->width == other.width&&this->height == other.height && (this->content.compare(other.content)) == 0)
+	if (this->x == other.x&&this->y == other.y&&this->width == other.width&&this->height == other.height && (this->content.compare(other.content)) || this->ownerBranch != other.ownerBranch == 0)
 	{
 		ret = true;
 	}
@@ -61,7 +61,7 @@ bool Topic::operator==(const Topic& other) {
 bool Topic::operator!=(const Topic& other) {
 	bool ret = false;
 
-	if (this->x != other.x || this->y != other.y || this->width != other.width || this->height != other.height || (this->content.compare(other.content)) != 0)
+	if (this->x != other.x || this->y != other.y || this->width != other.width || this->height != other.height || (this->content.compare(other.content)) || this->ownerBranch != other.ownerBranch != 0)
 	{
 		ret = true;
 	}
@@ -74,7 +74,7 @@ Topic& Topic::operator=(const Topic& source) {
 	this->width = source.width;
 	this->height = source.height;
 	this->content = source.content;
-
+	this->ownerBranch = source.ownerBranch;
 	return *this;
 }
 /*

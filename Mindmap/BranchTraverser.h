@@ -2,7 +2,7 @@
 #define _BRANCHTRAVERSER_H
 #include "BranchIterator.h"
 
-class BranchTraverser{
+class BranchTraverser {
 public:
 	BranchTraverser(Branch* branch);
 	bool Traverse();

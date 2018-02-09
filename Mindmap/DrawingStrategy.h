@@ -6,9 +6,9 @@ class DrawingStrategy : public MouseStrategy {
 public:
 	DrawingStrategy();
 	~DrawingStrategy();
-	virtual void OnLButtonDown(CPoint point, UINT flags, Selection *selection, Branch *branch);
+	virtual void OnLButtonDown(CPoint point, UINT nFlags, Selection *selection, Shape *shape);
 	virtual void OnMouseMove(CPoint point);
-	virtual void OnLButtonUp(Selection *selection, bool isOverlapped);
+	virtual void OnLButtonUp(Selection *selection, UINT nFlags);
 
 private:
 	Long x;
