@@ -42,14 +42,34 @@ Long Composite::Add(Shape *shape)
 Long Composite::Remove(Selection *selection, Branch *branch)
 {
 	Long index = -1;
+	Long i = 0;
+	Long j = 0;
+	Branch *temp;
+	Branch *temp2;
+
+	branch->shapes.Delete(2);
 
 	/*
+	temp = selection->GetAt(0);
+	temp2 = temp->GetOwnerBranch();
+	while (temp->GetLength())
+	{
+		*temp3[j] = *temp->shapes[i];
+		i++;
+		j++;
+	}
+	temp2->shapes[2] = *temp3;
+
+
 	while (i < selection->GetLength()) 
 	{
+
+	temp = selection->GetAt(i);
+	temp2 = temp->GetOwnerBranch();
+
+
 		
-		Long i = 0;
-		Branch *temp;
-		Branch *temp2;
+
 		branch->shapes.DeleteFromRear();
 
 		temp = selection->GetAt(i);
