@@ -38,6 +38,7 @@ int PageForm::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	this->branch->Add(new Mark(573, 200));
 	this->selection.Add(this->branch);
 	this->mouseAction = new MouseAction();
+	this->branch->SetOwnerBranch(this->branch);//메인 브랜치의 오너브랜치는 자기자신
 	return 0;
 }
 
@@ -117,22 +118,50 @@ void PageForm::OnClose()
 void PageForm::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 	Long i = 0;
+	Long length;
 	if (nChar == VK_DELETE)
-	{	
-		while (i < selection.GetLength())
+	{
+		DeleteVisitor visitor;
+		length = selection.GetLength();
+
+		while (i < length) //반복하며 선택브랜치 삭제
 		{
-			Branch *select = this->selection.GetAt(i);
-			DeleteVisitor deleteVisitor(select);
-			this->branch->Accept(deleteVisitor);
+			visitor.TakeBranch(selection.GetAt(i));
+			this->branch->Accept(visitor);
 			i++;
 		}
 
-		
-		//Branch *temp = this->selection.GetAt(0)->GetOwnerBranch();
-		this->selection.Clear();
-		//this->selection.Add(temp);
-	}
+		Branch *compare = NULL;
+		Branch *temp;
 
+		if (0 < length)
+		{
+			temp = this->selection.GetLastSelection()->GetOwnerBranch();//마지막 선택브랜치의 오너브랜치값 저장
+			compare = temp;
+		}
+
+		while (compare != NULL && compare != this->branch)//마지막 선택브랜치의 상위브랜치가 선택배열안에 있는경우 최상위 브랜치의 오너브랜치 선택
+		{
+			i = 0;
+			while (i < length)
+			{
+				if (selection.GetAt(i) == compare)
+				{
+					compare = this->selection.GetAt(i)->GetOwnerBranch();
+					temp = compare;
+					i = -1;
+				}
+				i++;
+			}
+			compare = compare->GetOwnerBranch();
+		}
+
+		if (0 < length)//선택브랜치가 있는 경우 배열을 비우고 저장된 임시브랜치 추가.
+		{
+			this->selection.Clear();
+			this->selection.Add(temp);
+		}
+	}
 	RedrawWindow();
 	CFrameWnd::OnKeyDown(nChar, nRepCnt, nFlags);
 }

@@ -17,6 +17,11 @@ DeleteVisitor::~DeleteVisitor()
 {
 }
 
+void DeleteVisitor::TakeBranch(Branch *select)
+{
+	this->select = select;
+}
+
 void DeleteVisitor::VisitBranch(Branch *branch)
 {
 	Long i = 0;
@@ -31,11 +36,15 @@ void DeleteVisitor::VisitBranch(Branch *branch)
 
 		if (typeid(*currentItem) == typeid(Branch))
 		{
-			if (currentItem ==this->select)
+			if (currentItem == this->select)
 			{
 				branch->Remove(i);
+				i = length;
 			}
-			currentItem->Accept(*this);
+			else
+			{
+				currentItem->Accept(*this);
+			}
 		}
 		i++;
 	}

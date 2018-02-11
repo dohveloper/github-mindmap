@@ -8,17 +8,18 @@ typedef signed long int Long;
 
 
 class Branch;
-class DeleteVisitor: public ShapeVisitor
+class DeleteVisitor : public ShapeVisitor
 {
 public:
 	DeleteVisitor();
 	DeleteVisitor(Branch *select);
+	void TakeBranch(Branch *select);
 	virtual ~DeleteVisitor();
 	virtual void VisitBranch(Branch *branch);
 
 
 private:
-	Branch *select;
+	Branch * select;
 };
 
 
