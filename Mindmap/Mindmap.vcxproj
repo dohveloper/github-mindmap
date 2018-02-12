@@ -117,6 +117,7 @@
     <ClCompile Include="TextFormHeightSizeAction.cpp" />
     <ClCompile Include="TextFormSize.cpp" />
     <ClCompile Include="TextFormWidthSizeAction.cpp" />
+    <ClCompile Include="TextSelectDelete.cpp" />
     <ClCompile Include="TextVisitor.cpp" />
     <ClCompile Include="Topic.cpp" />
     <ClCompile Include="WriteEnglish.cpp" />
