@@ -1,6 +1,7 @@
 //OnHScrollLineRight.cpp
 
 #include "OnHScrollLineRight.h"
+#include "ScrollingVisitor.h"
 
 OnHScrollLineRight::OnHScrollLineRight()
 {
@@ -42,6 +43,10 @@ void OnHScrollLineRight::Scrolling(PageForm *pageForm)
 	}
 
 	pageForm->SetScrollPos(SB_HORZ, currentPosition);
+
+	//ScrollingVisitor visitor(&dc);
+
+	//pageForm->branch->Accept(visitor);
 
 	//length = this->branch->GetLength();
 	/*

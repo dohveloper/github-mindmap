@@ -35,7 +35,7 @@ void ScrollingVisitor::VisitTopic(Topic *topic) {
 	height = topic->GetHeight();
 	content = topic->GetContent();
 
-	this->dc->Ellipse(x-10, y, x + width, y + height);
+	this->dc->Ellipse(x-100, y, x + width, y + height);
 	//dc.TextOut(x + width / 2 - 10, y + height / 2, (CString)content.c_str());
 	
 }

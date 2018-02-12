@@ -109,7 +109,9 @@ void PageForm::OnPaint() {
 	blackPen.CreatePen(PS_SOLID, 1, RGB(0, 0, 0));
 	dc.SelectObject(&blackPen);
 
-	DrawingVisitor visitor(&dc);
+
+	ScrollingVisitor visitor(&dc);
+	//DrawingVisitor visitor(&dc);
 
 	this->branch->Accept(visitor);
 
