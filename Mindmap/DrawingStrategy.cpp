@@ -26,7 +26,7 @@ void DrawingStrategy::OnLButtonDown(CPoint point, UINT nFlags, Selection *select
 	this->height = 0;
 }
 
-void DrawingStrategy::OnMouseMove(CPoint point) {
+void DrawingStrategy::OnMouseMove(CPoint point, UINT nFlags) {
 	this->width = point.x - this->x;
 	this->height = point.y - this->y;
 }

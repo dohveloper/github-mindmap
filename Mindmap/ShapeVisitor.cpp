@@ -21,3 +21,7 @@ void ShapeVisitor::VisitBranch(Branch * branch)
 {
 
 }
+
+void ShapeVisitor::VisitMark(Mark * mark)
+{
+}

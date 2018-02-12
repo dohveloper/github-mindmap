@@ -56,7 +56,7 @@ void PageForm::OnLButtonDown(UINT nFlags, CPoint point) {
 void PageForm::OnMouseMove(UINT nFlags, CPoint point) {
 	if ((nFlags & MK_LBUTTON) == MK_LBUTTON)
 	{
-		this->mouseAction->OnMouseMove(point);
+		this->mouseAction->OnMouseMove(point, nFlags);
 	}
 	CFrameWnd::OnMouseMove(nFlags, point);
 }
