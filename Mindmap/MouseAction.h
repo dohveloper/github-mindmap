@@ -10,7 +10,7 @@ class MouseAction {
 public:
 	MouseAction();
 	void OnLButtonDown(CPoint point, UINT nFlags, Selection *selection, Shape *shape);
-	void OnMouseMove(CPoint point);
+	void OnMouseMove(CPoint point, UINT nFlags);
 	void OnLButtonUp(Selection *selection, UINT nFlags, Branch *branch);
 
 	void SetStrategy(Shape *shape);
