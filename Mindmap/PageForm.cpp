@@ -17,6 +17,8 @@
 #include "Mark.h"
 #include "DrawingVisitor.h"
 #include "DeleteVisitor.h"
+#include "Scroll.h"
+#include "ScrollingVisitor.h"
 
 BEGIN_MESSAGE_MAP(PageForm, CFrameWnd)
 	ON_WM_CREATE()
@@ -26,6 +28,8 @@ BEGIN_MESSAGE_MAP(PageForm, CFrameWnd)
 	ON_WM_PAINT()
 	ON_WM_CLOSE()
 	ON_WM_KEYDOWN()
+	ON_WM_HSCROLL()
+	ON_WM_VSCROLL()
 END_MESSAGE_MAP()
 
 PageForm::PageForm() {
@@ -39,7 +43,27 @@ int PageForm::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	this->selection.Add(this->branch);
 	this->mouseAction = new MouseAction();
 	this->branch->SetOwnerBranch(this->branch);//메인 브랜치의 오너브랜치는 자기자신
+	this->scroll = new Scroll;
 	return 0;
+}
+
+void PageForm::SetScrolls()
+{
+	SCROLLINFO scrollInfo;
+
+	scrollInfo.cbSize = sizeof(SCROLLINFO);
+	scrollInfo.fMask = SIF_PAGE | SIF_RANGE;
+	scrollInfo.nPage = 100;
+	scrollInfo.nMin = 0;
+	scrollInfo.nMax = 1280;
+	SetScrollInfo(SB_HORZ, &scrollInfo, TRUE);
+
+	scrollInfo.cbSize = sizeof(SCROLLINFO);
+	scrollInfo.fMask = SIF_PAGE | SIF_RANGE;
+	scrollInfo.nPage = 80;
+	scrollInfo.nMin = 0;
+	scrollInfo.nMax = 720;
+	SetScrollInfo(SB_VERT, &scrollInfo, TRUE);
 }
 
 void PageForm::OnLButtonDown(UINT nFlags, CPoint point) {
@@ -120,7 +144,7 @@ void PageForm::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	Long i = 0;
 	Long length;
 	if (nChar == VK_DELETE)
-	{
+	{	
 		DeleteVisitor visitor;
 		length = selection.GetLength();
 
@@ -132,7 +156,7 @@ void PageForm::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		}
 
 		Branch *compare = NULL;
-		Branch *temp;
+		Branch *temp = NULL;
 
 		if (0 < length)
 		{
@@ -164,4 +188,20 @@ void PageForm::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	}
 	RedrawWindow();
 	CFrameWnd::OnKeyDown(nChar, nRepCnt, nFlags);
+}
+
+void PageForm::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
+{
+	this->scroll->MoveHScroll(this, nSBCode, nPos, pScrollBar);
+
+	RedrawWindow();
+	CFrameWnd::OnHScroll(nSBCode, nPos, pScrollBar);
+}
+
+void PageForm::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
+{
+	this->scroll->MoveVScroll(this, nSBCode, nPos, pScrollBar);
+
+	RedrawWindow();
+	CFrameWnd::OnHScroll(nSBCode, nPos, pScrollBar);
 }

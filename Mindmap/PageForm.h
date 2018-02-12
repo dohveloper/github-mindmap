@@ -14,14 +14,16 @@ typedef signed long int Long;
 class Page;
 class Branch;
 class MouseAction;
-
+class Scroll;
 class PageForm :public CFrameWnd {
 public:
 	PageForm();
+	void SetScrolls();
 public:
 	Branch * branch;
 	Selection selection;
 	MouseAction *mouseAction;
+	Scroll *scroll;
 
 protected:
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
@@ -31,6 +33,8 @@ protected:
 	afx_msg void OnPaint();
 	afx_msg void OnClose();
 	afx_msg void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
+	afx_msg void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
+	afx_msg void OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
 	DECLARE_MESSAGE_MAP()
 
 };
