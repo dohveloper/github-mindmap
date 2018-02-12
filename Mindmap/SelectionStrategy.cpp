@@ -3,6 +3,7 @@
 #include "MultiSelect.h"
 #include "Select.h"
 #include "Selection.h"
+#include "MoveVisitor.h"
 
 SelectionStrategy::SelectionStrategy() {
 	this->select = NULL;
@@ -59,7 +60,7 @@ void SelectionStrategy::OnMouseMove(CPoint point, UINT nFlags)
 
 		//커서가 움직인만큼 이동한다.
 
-		MovingVisitor visitor(movedX, movedY);
+		MoveVisitor visitor(movedX, movedY);
 		Branch *branch;
 		Long i = 0;
 		while (i < 0) {
