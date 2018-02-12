@@ -145,6 +145,7 @@
     <ClInclude Include="Branch.h" />
     <ClInclude Include="Clipboard.h" />
     <ClInclude Include="Composite.h" />
+    <ClInclude Include="DeleteKey.h" />
     <ClInclude Include="DeleteVisitor.h" />
     <ClInclude Include="DrawingStrategy.h" />
     <ClInclude Include="DrawingVisitor.h" />
@@ -155,6 +156,8 @@
     <ClInclude Include="HitTester.h" />
     <ClInclude Include="HitTestVisitor.h" />
     <ClInclude Include="Iterator.h" />
+    <ClInclude Include="KeyAction.h" />
+    <ClInclude Include="KeyBoard.h" />
     <ClInclude Include="Line.h" />
     <ClInclude Include="BranchTraverser.h" />
     <ClInclude Include="BranchIterator.h" />
@@ -186,6 +189,7 @@
     <ClCompile Include="BranchTraverser.cpp" />
     <ClCompile Include="Clipboard.cpp" />
     <ClCompile Include="Composite.cpp" />
+    <ClCompile Include="DeleteKey.cpp" />
     <ClCompile Include="DeleteVisitor.cpp" />
     <ClCompile Include="DrawingStrategy.cpp" />
     <ClCompile Include="DrawingVisitor.cpp" />
@@ -196,6 +200,8 @@
     <ClCompile Include="HitTester.cpp" />
     <ClCompile Include="HitTestVisitor.cpp" />
     <ClCompile Include="Iterator.cpp" />
+    <ClCompile Include="KeyAction.cpp" />
+    <ClCompile Include="KeyBoard.cpp" />
     <ClCompile Include="Line.cpp" />
     <ClCompile Include="Mark.cpp" />
     <ClCompile Include="MarkHitTest.cpp" />
