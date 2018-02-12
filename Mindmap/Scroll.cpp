@@ -21,6 +21,7 @@
 Scroll::Scroll()
 {
 	this->scrollMove = NULL;
+	this->currentPosition = 0;
 }
 
 Scroll::Scroll(const Scroll & source)
@@ -32,7 +33,7 @@ Scroll::~Scroll()
 {
 }
 
-void Scroll::MoveHScroll(PageForm *pageForm, Long nSBCode, Long nPos, CScrollBar * pScrollBar)
+Long Scroll::MoveHScroll(PageForm *pageForm, Long nSBCode, Long nPos, CScrollBar * pScrollBar)
 {
 	switch (nSBCode)
 	{
@@ -59,6 +60,7 @@ void Scroll::MoveHScroll(PageForm *pageForm, Long nSBCode, Long nPos, CScrollBar
 
 	case SB_LINERIGHT:
 		this->scrollMove = new OnHScrollLineRight;
+		this->currentPosition = scrollMove->GetX();
 		this->scrollMove->Scrolling(pageForm);
 		break;
 
@@ -79,6 +81,7 @@ void Scroll::MoveHScroll(PageForm *pageForm, Long nSBCode, Long nPos, CScrollBar
 		this->scrollMove = NULL;
 	}
 
+	return this->currentPosition;
 }
 
 

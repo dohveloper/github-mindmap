@@ -43,6 +43,7 @@ int PageForm::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	this->selection.Add(this->branch);
 	this->mouseAction = new MouseAction();
 	this->branch->SetOwnerBranch(this->branch);//메인 브랜치의 오너브랜치는 자기자신
+	this->currentPosition = 0;
 	this->scroll = new Scroll;
 	return 0;
 }
@@ -110,7 +111,7 @@ void PageForm::OnPaint() {
 	dc.SelectObject(&blackPen);
 
 
-	ScrollingVisitor visitor(&dc);
+	ScrollingVisitor visitor(&dc, this->currentPosition);
 	//DrawingVisitor visitor(&dc);
 
 	this->branch->Accept(visitor);
@@ -194,7 +195,7 @@ void PageForm::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 void PageForm::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 {
-	this->scroll->MoveHScroll(this, nSBCode, nPos, pScrollBar);
+	this->currentPosition = this->scroll->MoveHScroll(this, nSBCode, nPos, pScrollBar);
 
 	RedrawWindow();
 	CFrameWnd::OnHScroll(nSBCode, nPos, pScrollBar);

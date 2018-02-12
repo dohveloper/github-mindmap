@@ -8,8 +8,10 @@ ScrollingVisitor::ScrollingVisitor() {
 
 }
 
-ScrollingVisitor::ScrollingVisitor(CPaintDC *dc){
+ScrollingVisitor::ScrollingVisitor(CPaintDC *dc, Long currentPosition)
+{
 	this->dc = dc;
+	this->currentPosition = currentPosition;
 }
 
 ScrollingVisitor::~ScrollingVisitor() {
@@ -29,13 +31,13 @@ void ScrollingVisitor::VisitTopic(Topic *topic) {
 	
 	//토픽을 그리는 코드 
 
-	x = topic->GetX();
+	x = topic->GetX() - this->currentPosition;
 	y = topic->GetY();
 	width = topic->GetWidth();
 	height = topic->GetHeight();
 	content = topic->GetContent();
 
-	this->dc->Ellipse(x-100, y, x + width, y + height);
+	this->dc->Ellipse(x, y, x + width, y + height);
 	//dc.TextOut(x + width / 2 - 10, y + height / 2, (CString)content.c_str());
 	
 }

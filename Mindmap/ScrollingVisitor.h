@@ -6,6 +6,7 @@
 
 #include <afxwin.h>
 #include "ShapeVisitor.h"
+typedef signed long int Long;
 class Topic;
 class Line;
 class PageForm;
@@ -13,7 +14,7 @@ class PageForm;
 class ScrollingVisitor: public ShapeVisitor{
 public:
 	ScrollingVisitor();
-	ScrollingVisitor(CPaintDC *dc);
+	ScrollingVisitor(CPaintDC *dc, Long currentPosition);
 	virtual ~ScrollingVisitor();
 	virtual void VisitTopic(Topic *topic);
 	virtual void VisitLine(Line *line);
@@ -21,6 +22,7 @@ public:
 
 private:
 	CPaintDC *dc;
+	Long currentPosition;
 };
 
 #endif _SCROLLINGVISITOR_H

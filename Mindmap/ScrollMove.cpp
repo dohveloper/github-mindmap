@@ -4,6 +4,7 @@
 
 ScrollMove::ScrollMove()
 {
+	this->currentPosition = 0;
 }
 ScrollMove::ScrollMove(const ScrollMove& source)
 {

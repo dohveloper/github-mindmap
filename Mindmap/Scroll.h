@@ -14,12 +14,13 @@ public:
 	Scroll(const Scroll& source);
 	~Scroll();
 
-	void MoveHScroll(PageForm *pageForm, Long nSBCode, Long nPos, CScrollBar* pScrollBar);
+	Long MoveHScroll(PageForm *pageForm, Long nSBCode, Long nPos, CScrollBar* pScrollBar);
 	void MoveVScroll(PageForm *pageForm, Long nSBCode, Long nPos, CScrollBar* pScrollBar);
 	Scroll& operator=(const Scroll& source);
 
 protected:
 	ScrollMove *scrollMove;
+	Long currentPosition;
 };
 
 
