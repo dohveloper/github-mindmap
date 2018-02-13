@@ -75,6 +75,12 @@ Long Selection::RemoveSubBranch(Branch * branch)
 	return -1;
 }
 
+Long Selection::Correct(Long index, Branch * branch)
+{
+	index = this->selections.Modify(index, branch);
+	return index;
+}
+
 void Selection::Clear()
 {
 	Branch* branch;
