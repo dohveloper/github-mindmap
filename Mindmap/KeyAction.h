@@ -2,6 +2,7 @@
 
 #ifndef _KEYACTION_H
 #define _KEYACTION_H
+typedef signed long int Long;
 
 class PageForm;
 class KeyAction
