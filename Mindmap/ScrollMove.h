@@ -14,13 +14,13 @@ public:
 	virtual void ThumbMove(PageForm *pageForm, Long nPos);
 	ScrollMove& operator=(const ScrollMove& source);
 
-	Long GetX() const;
+	Long GetDrawingPosition() const;
 protected:
-	Long currentPosition;
+	Long drawingPosition;
 };
 
-inline Long ScrollMove::GetX() const {
-	return this->currentPosition;
+inline Long ScrollMove::GetDrawingPosition() const {
+	return this->drawingPosition;
 }
 
 #endif // SCROLLMOVE_H

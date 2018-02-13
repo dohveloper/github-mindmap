@@ -28,18 +28,18 @@ void OnHScrollLineRight::Scrolling(PageForm *pageForm)
 	//Long width;
 	//Long height;
 	//string content;
-	//Long drawingPosition;
+	Long currentPosition;
 
 	pageForm->GetScrollRange(SB_HORZ, (int*)&minmumPosition, (int*)&maximumPosition);
 	maximumPosition = (Long)pageForm->GetScrollLimit(SB_HORZ);
-	this->currentPosition = (Long)pageForm->GetScrollPos(SB_HORZ);
+	currentPosition = (Long)pageForm->GetScrollPos(SB_HORZ);
 
-	//drawingPosition = 10;
-	this->currentPosition += 10;
+	this->drawingPosition = 10;
+	currentPosition += 10;
 
-	if (this->currentPosition > maximumPosition)
+	if (currentPosition > maximumPosition)
 	{
-		this->currentPosition = maximumPosition;
+		currentPosition = maximumPosition;
 	}
 
 	pageForm->SetScrollPos(SB_HORZ, currentPosition);

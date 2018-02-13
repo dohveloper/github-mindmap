@@ -8,10 +8,10 @@ ScrollingVisitor::ScrollingVisitor() {
 
 }
 
-ScrollingVisitor::ScrollingVisitor(CPaintDC *dc, Long currentPosition)
+ScrollingVisitor::ScrollingVisitor(CPaintDC *dc, Long drawingPosition)
 {
 	this->dc = dc;
-	this->currentPosition = currentPosition;
+	this->drawingPosition = drawingPosition;
 }
 
 ScrollingVisitor::~ScrollingVisitor() {
@@ -31,7 +31,7 @@ void ScrollingVisitor::VisitTopic(Topic *topic) {
 	
 	//토픽을 그리는 코드 
 
-	x = topic->GetX() - this->currentPosition;
+	x = topic->GetX() - this->drawingPosition;
 	y = topic->GetY();
 	width = topic->GetWidth();
 	height = topic->GetHeight();
@@ -49,7 +49,7 @@ void ScrollingVisitor::VisitLine(Line *line) {
 	Long height;
 
 	//라인을 그리는 코드
-	x = line->GetX();
+	x = line->GetX() - this->drawingPosition;
 	y = line->GetY();
 	width = line->GetWidth();
 	height = line->GetHeight();

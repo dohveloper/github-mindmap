@@ -19,8 +19,7 @@ public:
 	Scroll& operator=(const Scroll& source);
 
 protected:
-	ScrollMove *scrollMove;
-	Long currentPosition;
+	Long drawingPosition;
 };
 
 

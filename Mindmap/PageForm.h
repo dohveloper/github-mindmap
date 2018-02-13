@@ -24,7 +24,7 @@ public:
 	Selection selection;
 	MouseAction *mouseAction;
 	Scroll *scroll;
-	Long currentPosition;
+	Long drawingPosition;
 protected:
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);

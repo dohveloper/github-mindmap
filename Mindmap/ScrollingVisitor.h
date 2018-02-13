@@ -22,7 +22,7 @@ public:
 
 private:
 	CPaintDC *dc;
-	Long currentPosition;
+	Long drawingPosition;
 };
 
 #endif _SCROLLINGVISITOR_H

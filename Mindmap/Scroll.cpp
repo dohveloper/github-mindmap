@@ -20,13 +20,11 @@
 
 Scroll::Scroll()
 {
-	this->scrollMove = NULL;
-	this->currentPosition = 0;
+	this->drawingPosition = 0;
 }
 
 Scroll::Scroll(const Scroll & source)
 {
-	this->scrollMove = source.scrollMove;
 }
 
 Scroll::~Scroll()
@@ -60,12 +58,14 @@ Long Scroll::MoveHScroll(PageForm *pageForm, Long nSBCode, Long nPos, CScrollBar
 	{
 		OnHScrollLineLeft onHScrollLineLeft;
 		onHScrollLineLeft.Scrolling(pageForm);
+
 		break;
 	}
 	case SB_LINERIGHT:
 	{
 		OnHScrollLineRight onHScrollLineRight;
 		onHScrollLineRight.Scrolling(pageForm);
+		this->drawingPosition = onHScrollLineRight.GetDrawingPosition();
 		break;
 	}
 	case SB_PAGELEFT:
@@ -83,13 +83,13 @@ Long Scroll::MoveHScroll(PageForm *pageForm, Long nSBCode, Long nPos, CScrollBar
 	default:
 		break;
 	}
-
-	return this->currentPosition;
+	return this->drawingPosition;
 }
 
 
 void Scroll::MoveVScroll(PageForm *pageForm, Long nSBCode, Long nPos, CScrollBar* pScrollBar)
 {
+	/*
 	switch (nSBCode)
 	{
 
@@ -138,6 +138,7 @@ void Scroll::MoveVScroll(PageForm *pageForm, Long nSBCode, Long nPos, CScrollBar
 	default:
 		break;
 	}
+	*/
 }
 
 Scroll& Scroll::operator=(const Scroll& source)
