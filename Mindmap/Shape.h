@@ -106,6 +106,7 @@ inline void Shape::SetOwnerBranch(Branch *branch)
 inline bool Shape::SetIsShown(bool isShown)
 {
 	this->isShown = isShown;
+	return isShown;
 }
 
 #endif //_SHAPE_H
