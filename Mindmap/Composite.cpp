@@ -3,14 +3,14 @@
 #include "Composite.h"
 
 Composite::Composite(Long capacity, Branch* branch)
-:shapes(capacity) {
+	:shapes(capacity) {
 	this->capacity = capacity;
 	this->length = 0;
 	this->ownerBranch = branch;
 }
 
 Composite::Composite(const Composite& source)
-: shapes(source.shapes) {
+	: shapes(source.shapes) {
 	this->capacity = source.capacity;
 	this->length = source.length;
 	this->ownerBranch = source.ownerBranch;
@@ -18,7 +18,6 @@ Composite::Composite(const Composite& source)
 
 Composite::~Composite()
 {
-
 }
 
 Long Composite::Add(Shape *shape)
@@ -44,6 +43,13 @@ Long Composite::Correct(Long index, Shape *shape)
 	return index;
 }
 
+Long Composite::Find(Shape * shape)
+{
+	Long index;
+	index = this->shapes.LinearSearchUnique(&shape, CompareShapes);
+	return index;
+}
+
 Shape* Composite::GetAt(Long index)
 {
 	Shape *shape;
@@ -58,6 +64,14 @@ Composite& Composite::operator=(const Composite& source)
 	this->shapes = source.shapes;
 	this->capacity = source.capacity;
 	this->length = source.length;
-	
+
 	return *this;
+}
+
+int CompareShapes(void *one, void *other) {
+	int ret = -1;
+	if (*((Shape**)one) == *((Shape**)other)) {
+		ret = 0;
+	}
+	return ret;
 }

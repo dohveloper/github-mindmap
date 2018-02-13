@@ -47,6 +47,8 @@ void SelectionStrategy::OnLButtonDown(CPoint point, UINT nFlags, Selection *sele
 		this->unmovedBranches.Add(copiedBranch);
 		i++;
 	}
+
+	this->selection = selection;
 }
 
 void SelectionStrategy::OnMouseMove(CPoint point, UINT nFlags)
@@ -59,15 +61,26 @@ void SelectionStrategy::OnMouseMove(CPoint point, UINT nFlags)
 		Long movedY = this->clicked.y - point.y;
 
 		//커서가 움직인만큼 이동한다.
-
 		MoveVisitor visitor(movedX, movedY);
-		Branch *branch;
+		Branch *movedBranch;
+		Branch *selectedBranch;
+		Branch *ownerBranch;
+		Long index;
 		Long i = 0;
+
 		while (i < 0) {
-			branch = (Branch*)this->unmovedBranches.GetAt(i);
-			branch->Accept(visitor);
+			movedBranch = (Branch*)this->unmovedBranches.GetAt(i);
+			movedBranch->Accept(visitor);
+
+			selectedBranch = this->selection->GetAt(i);
+			ownerBranch = selectedBranch->GetOwnerBranch();
+			index = ownerBranch->Find(selectedBranch);
+			ownerBranch->Correct(index, movedBranch);
+
 			i++;
 		}
+
+		//
 	}
 }
 

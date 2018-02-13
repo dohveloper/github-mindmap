@@ -63,7 +63,6 @@ void MoveVisitor::VisitBranch(Branch *branch)
 	}
 }
 
-/*
 #include <iostream>
 #include "Mark.h"
 #include "Topic.h"
@@ -74,9 +73,20 @@ int main(int argc, char *argv[]) {
 	Mark mark(20, 20, 20, 20, "마크");
 	Branch branch;
 
-	branch.Add(&topic);
 	branch.Add(&line);
 	branch.Add(&mark);
+	branch.Add(&topic);
+
+	//Find 기능 확인
+	Long index;
+	index = branch.Find(&line);
+	cout << "index : " << index << endl;
+
+	index = branch.Find(&topic);
+	cout << "index : " << index << endl;
+
+	index = branch.Find(&mark);
+	cout << "index : " << index << endl;
 
 	//이동전 값 확인
 	cout << " Line :  " << line.GetX() << " " << line.GetY() << " " << line.GetWidth() << " " << line.GetHeight() << " " << line.GetContent() << " " << endl;
@@ -95,4 +105,3 @@ int main(int argc, char *argv[]) {
 
 	return 0;
 }
-*/
