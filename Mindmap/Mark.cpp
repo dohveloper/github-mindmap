@@ -25,7 +25,7 @@ Mark::~Mark()
 }
 
 void Mark::Accept(ShapeVisitor& visitor) {
-	//visitor.VisitTopic(this);
+	visitor.VisitMark(this);
 }
 
 Mark& Mark::operator=(const Mark& source)
