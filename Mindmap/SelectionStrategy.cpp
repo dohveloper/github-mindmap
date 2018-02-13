@@ -76,9 +76,12 @@ void SelectionStrategy::OnMouseMove(CPoint point, UINT nFlags)
 			movedBranch = (Branch*)this->unmovedBranches.GetAt(i);
 			movedBranch->Accept(visitor);
 
+			//브랜치 수정
 			index = ownerBranch->Find(selectedBranch);
 			ownerBranch->Correct(index, movedBranch);
 
+			//selection 수정
+			this->selection->Correct(i, movedBranch);
 			i++;
 		}
 

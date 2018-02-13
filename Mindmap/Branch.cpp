@@ -1,5 +1,5 @@
 //Branch.cpp
-
+#include "Shape.h"
 #include "Branch.h"
 #include "Composite.h"
 #include "Topic.h"
@@ -9,7 +9,7 @@ Branch::Branch(Long capacity, Branch* branch)
 {
 }
 Branch::Branch(const Branch& source)
-	: Composite(source){
+	: Composite(source) {
 }
 Branch::~Branch()
 {
@@ -41,13 +41,13 @@ Mark* Branch::GetMark()
 	Long length;
 	Long i = 0;
 
-	length=this->shapes.GetLength();
+	length = this->shapes.GetLength();
 
 	while (i < length)
 	{
 		mark = this->shapes.GetAt(i);
 
-		if (typeid(*mark) == typeid(Mark)) 
+		if (typeid(*mark) == typeid(Mark))
 		{
 			i = length;
 		}
@@ -55,15 +55,13 @@ Mark* Branch::GetMark()
 	}
 	/*
 	mark = this->shapes.GetAt(1);
-	if (typeid(*mark) == typeid(Mark)) 
+	if (typeid(*mark) == typeid(Mark))
 	{
 		mark = this->shapes.GetAt(2);
 	}
 	*/
 	return (Mark*)mark;
 }
-
-
 
 void Branch::Accept(ShapeVisitor& visitor) {
 	visitor.VisitBranch(this);
@@ -76,6 +74,9 @@ Branch * Branch::Clone()
 
 Branch& Branch::operator=(const Branch& source)
 {
+	this->ownerBranch = source.ownerBranch;
+	this->isShown = source.isShown;
+
 	this->shapes = source.shapes;
 	this->capacity = source.capacity;
 	this->length = source.length;

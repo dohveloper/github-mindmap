@@ -3,14 +3,14 @@
 #include "Composite.h"
 
 Composite::Composite(Long capacity, Branch* branch)
-	:shapes(capacity) {
+	:Shape(), shapes(capacity) {
 	this->capacity = capacity;
 	this->length = 0;
 	this->ownerBranch = branch;
 }
 
 Composite::Composite(const Composite& source)
-	: shapes(source.shapes) {
+	:Shape(source), shapes(source.shapes) {
 	this->capacity = source.capacity;
 	this->length = source.length;
 	this->ownerBranch = source.ownerBranch;
@@ -61,6 +61,9 @@ Shape* Composite::GetAt(Long index)
 
 Composite& Composite::operator=(const Composite& source)
 {
+	this->ownerBranch = source.ownerBranch;
+	this->isShown = source.isShown;
+
 	this->shapes = source.shapes;
 	this->capacity = source.capacity;
 	this->length = source.length;
