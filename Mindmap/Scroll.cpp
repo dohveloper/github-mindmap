@@ -39,46 +39,49 @@ Long Scroll::MoveHScroll(PageForm *pageForm, Long nSBCode, Long nPos, CScrollBar
 	{
 
 	case SB_THUMBTRACK:
-		this->scrollMove = new OnHThumb;
-		this->scrollMove->ThumbMove(pageForm, nPos);
-		break;
-
-	case SB_LEFT:      
-		this->scrollMove = new OnHScrollLeft;
-		this->scrollMove->Scrolling(pageForm);
-		break;
-
-	case SB_RIGHT:      
-		this->scrollMove = new OnHScrollRight;
-		this->scrollMove->Scrolling(pageForm);
-		break;
-
-	case SB_LINELEFT:
-		this->scrollMove = new OnHScrollLineLeft;
-		this->scrollMove->Scrolling(pageForm);
-		break;
-
-	case SB_LINERIGHT:
-		this->scrollMove = new OnHScrollLineRight;
-		this->currentPosition = scrollMove->GetX();
-		this->scrollMove->Scrolling(pageForm);
-		break;
-
-	case SB_PAGELEFT:
-		this->scrollMove = new OnHScrollPageLeft;
-		this->scrollMove->Scrolling(pageForm);
-		break;
-
-	case SB_PAGERIGHT:
-		this->scrollMove = new OnHScrollPageRight;
-		this->scrollMove->Scrolling(pageForm);
+	{
+		OnHThumb onHThumb;
+		onHThumb.ThumbMove(pageForm, nPos);
 		break;
 	}
-
-	if (this->scrollMove != NULL)
+	case SB_LEFT:
 	{
-		delete this->scrollMove;
-		this->scrollMove = NULL;
+		OnHScrollLeft onHScrollLeft;
+		onHScrollLeft.Scrolling(pageForm);
+		break;
+	}
+	case SB_RIGHT:
+	{
+		OnHScrollRight onHScrollRight;
+		onHScrollRight.Scrolling(pageForm);
+		break;
+	}
+	case SB_LINELEFT:
+	{
+		OnHScrollLineLeft onHScrollLineLeft;
+		onHScrollLineLeft.Scrolling(pageForm);
+		break;
+	}
+	case SB_LINERIGHT:
+	{
+		OnHScrollLineRight onHScrollLineRight;
+		onHScrollLineRight.Scrolling(pageForm);
+		break;
+	}
+	case SB_PAGELEFT:
+	{
+		OnHScrollPageLeft onHScrollPageLeft;
+		onHScrollPageLeft.Scrolling(pageForm);
+		break;
+	}
+	case SB_PAGERIGHT:
+	{
+		OnHScrollPageRight onHScrollPageRight;
+		onHScrollPageRight.Scrolling(pageForm);
+		break;
+	}
+	default:
+		break;
 	}
 
 	return this->currentPosition;
@@ -87,50 +90,53 @@ Long Scroll::MoveHScroll(PageForm *pageForm, Long nSBCode, Long nPos, CScrollBar
 
 void Scroll::MoveVScroll(PageForm *pageForm, Long nSBCode, Long nPos, CScrollBar* pScrollBar)
 {
-
-
 	switch (nSBCode)
 	{
+
 	case SB_THUMBTRACK:
-		this->scrollMove = new OnVThumb;
-		this->scrollMove->ThumbMove(pageForm, nPos);
-		break;
-
-	case SB_TOP:
-		this->scrollMove = new OnVScrollUp;
-		this->scrollMove->Scrolling(pageForm);
-		break;
-
-	case SB_BOTTOM:
-		this->scrollMove = new OnVScrollDown;
-		this->scrollMove->Scrolling(pageForm);
-		break;
-
-	case SB_LINEUP:
-		this->scrollMove = new OnVScrollLineUp;
-		this->scrollMove->Scrolling(pageForm);
-		break;
-
-	case SB_LINEDOWN:
-		this->scrollMove = new OnVScrollLineDown;
-		this->scrollMove->Scrolling(pageForm);
-		break;
-
-	case SB_PAGEUP:
-		this->scrollMove = new OnVScrollPageUp;
-		this->scrollMove->Scrolling(pageForm);
-		break;
-
-	case SB_PAGEDOWN:
-		this->scrollMove = new OnVScrollPageDown;
-		this->scrollMove->Scrolling(pageForm);
+	{
+		OnVThumb onVThumb;
+		onVThumb.Scrolling(pageForm);
 		break;
 	}
-
-	if (this->scrollMove != NULL)
+	case SB_TOP:
 	{
-		delete this->scrollMove;
-		this->scrollMove = NULL;
+		OnVScrollUp onVScrollUp;
+		onVScrollUp.Scrolling(pageForm);
+		break;
+	}
+	case SB_BOTTOM:
+	{
+		OnVScrollDown onVScrollDown;
+		onVScrollDown.Scrolling(pageForm);
+		break;
+	}
+	case SB_LINEUP:
+	{
+		OnVScrollLineUp onVScrollLineUp;
+		onVScrollLineUp.Scrolling(pageForm);
+		break;
+	}
+	case SB_LINEDOWN:
+	{
+		OnVScrollLineDown onVScrollLineDown;
+		onVScrollLineDown.Scrolling(pageForm);
+		break;
+	}
+	case SB_PAGEUP:
+	{
+		OnVScrollPageUp onVScrollPageUp;
+		onVScrollPageUp.Scrolling(pageForm);
+		break;
+	}
+	case SB_PAGEDOWN:
+	{
+		OnVScrollPageDown onVScrollPageDown;
+		onVScrollPageDown.Scrolling(pageForm);
+		break;
+	}
+	default:
+		break;
 	}
 }
 
