@@ -14,7 +14,7 @@ public:
 
 private:
 	Select * select;
-	CPoint startPoint;
+	CPoint clicked;
 	Branch unmovedBranches;
 };
 

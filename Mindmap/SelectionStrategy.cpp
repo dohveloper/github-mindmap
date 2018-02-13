@@ -34,7 +34,7 @@ void SelectionStrategy::OnLButtonDown(CPoint point, UINT nFlags, Selection *sele
 	//테스트
 
 	//클릭된 좌표를 기억한다.
-	this->startPoint = point;
+	this->clicked = point;
 
 	//선택된 브랜치를 기억한다
 	Branch *selectedBranch;
@@ -55,8 +55,8 @@ void SelectionStrategy::OnMouseMove(CPoint point, UINT nFlags)
 		Topic *newTopic;
 
 		//얼마 움직였는지 값을 구한다.
-		Long movedX = this->startPoint.x - point.x;
-		Long movedY = this->startPoint.y - point.y;
+		Long movedX = this->clicked.x - point.x;
+		Long movedY = this->clicked.y - point.y;
 
 		//커서가 움직인만큼 이동한다.
 
