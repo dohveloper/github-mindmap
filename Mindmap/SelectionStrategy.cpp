@@ -4,6 +4,7 @@
 #include "Select.h"
 #include "Selection.h"
 #include "MoveVisitor.h"
+#include "Topic.h"
 
 SelectionStrategy::SelectionStrategy() {
 	this->select = NULL;
@@ -54,8 +55,6 @@ void SelectionStrategy::OnLButtonDown(CPoint point, UINT nFlags, Selection *sele
 void SelectionStrategy::OnMouseMove(CPoint point, UINT nFlags)
 {
 	if ((nFlags & MK_LBUTTON) == MK_LBUTTON) {
-		Topic *newTopic;
-
 		//얼마 움직였는지 값을 구한다.
 		Long movedX = this->clicked.x - point.x;
 		Long movedY = this->clicked.y - point.y;
@@ -68,12 +67,15 @@ void SelectionStrategy::OnMouseMove(CPoint point, UINT nFlags)
 		Long index;
 		Long i = 0;
 
-		while (i < 0) {
+		//ownerBranch = selectedBranch->GetOwnerBranch();
+
+		while (i < unmovedBranches.GetLength()) {
+			selectedBranch = this->selection->GetAt(i);
+			ownerBranch = selectedBranch->GetOwnerBranch();
+
 			movedBranch = (Branch*)this->unmovedBranches.GetAt(i);
 			movedBranch->Accept(visitor);
 
-			selectedBranch = this->selection->GetAt(i);
-			ownerBranch = selectedBranch->GetOwnerBranch();
 			index = ownerBranch->Find(selectedBranch);
 			ownerBranch->Correct(index, movedBranch);
 

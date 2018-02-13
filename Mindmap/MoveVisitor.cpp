@@ -17,34 +17,34 @@ MoveVisitor::~MoveVisitor() {
 
 void MoveVisitor::VisitLine(Line *line)
 {
-	Long x;
-	Long y;
-	x = line->GetX();
-	y = line->GetY();
+	Long newX;
+	Long newY;
+	newX = line->GetX() - this->x;
+	newY = line->GetY() - this->y;
 
-	line->SetX(x + this->x);
-	line->SetY(y + this->y);
+	line->SetX(newX);
+	line->SetY(newY);
 }
 
 void MoveVisitor::VisitTopic(Topic *topic) {
-	Long x;
-	Long y;
-	x = topic->GetX();
-	y = topic->GetY();
+	Long newX;
+	Long newY;
+	newX = topic->GetX() - this->x;
+	newY = topic->GetY() - this->y;
 
-	topic->SetX(x + this->x);
-	topic->SetY(y + this->y);
+	topic->SetX(newX);
+	topic->SetY(newY);
 }
 
 void MoveVisitor::VisitMark(Mark * mark)
 {
-	Long x;
-	Long y;
-	x = mark->GetX();
-	y = mark->GetY();
+	Long newX;
+	Long newY;
+	newX = mark->GetX() - this->x;
+	newY = mark->GetY() - this->y;
 
-	mark->SetX(x + this->x);
-	mark->SetY(y + this->y);
+	mark->SetX(newX);
+	mark->SetY(newY);
 }
 
 void MoveVisitor::VisitBranch(Branch *branch)
