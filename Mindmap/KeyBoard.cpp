@@ -1,19 +1,19 @@
-//KeyBoard.cpp
+//Keyboard.cpp
 
-#include "KeyBoard.h"
+#include "Keyboard.h"
 #include "KeyAction.h"
 #include "PageForm.h"
 #include "DeleteKey.h"
 
-KeyBoard::KeyBoard()
+Keyboard::Keyboard()
 {
 }
 
-KeyBoard::~KeyBoard()
+Keyboard::~Keyboard()
 {
 }
 
-void KeyBoard::KeyDown(PageForm *pageForm, UINT nChar, UINT nRepCnt, UINT nFlags)
+void Keyboard::KeyDown(PageForm *pageForm, UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 	switch (nChar)
 	{

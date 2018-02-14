@@ -1,4 +1,4 @@
-//KeyBoard.h
+//Keyboard.h
 
 #ifndef _KEYBOARD_H
 #define _KEYBOARD_H
@@ -6,11 +6,11 @@
 
 class PageForm;
 class KeyAction;
-class KeyBoard
+class Keyboard
 {
 public:
-	KeyBoard();
-	~KeyBoard();
+	Keyboard();
+	~Keyboard();
 	void KeyDown(PageForm *pageForm, UINT nChar, UINT nRepCnt, UINT nFlags);
 
 };

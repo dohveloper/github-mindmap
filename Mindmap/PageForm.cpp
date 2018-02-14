@@ -117,9 +117,9 @@ void PageForm::OnClose()
 
 void PageForm::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
-	KeyBoard keyBoard;
+	Keyboard keyboard;
 	
-	keyBoard.KeyDown(this, nChar, nRepCnt, nFlags);
+	keyboard.KeyDown(this, nChar, nRepCnt, nFlags);
 
 	RedrawWindow();
 	CFrameWnd::OnKeyDown(nChar, nRepCnt, nFlags);
