@@ -69,8 +69,7 @@ void DrawingStrategy::OnLButtonUp(Selection *selection, UINT nFlags, Branch *bra
 		selection->GetLastSelection()->Add(temp);
 
 		//브랜치 정렬
-		BranchArrange branchArrange;
-		branchArrange.Arrange(selection->GetLastSelection());
+		selection->GetLastSelection()->Sort();
 
 
 		//선택된 브랜치의 마크를 +에서 -로 바꾼다.

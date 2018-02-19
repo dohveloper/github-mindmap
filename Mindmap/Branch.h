@@ -15,6 +15,7 @@ public:
 	virtual ~Branch();
 
 	Long Add(Shape *shape);
+	void Sort();
 	Topic* GetTopic();
 	Mark* GetMark();
 
