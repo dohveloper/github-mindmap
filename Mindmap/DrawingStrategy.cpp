@@ -8,7 +8,6 @@
 #include "Selection.h"
 #include "UnFoldVisitor.h"
 #include "OverlappedConfirmVisitor.h"
-#include "BranchArrange.h"
 #define minimumTopicWidth 30
 #define minimumTopicHeight 30
 
