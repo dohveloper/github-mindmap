@@ -8,6 +8,7 @@
 #include "Selection.h"
 #include "UnFoldVisitor.h"
 #include "OverlappedConfirmVisitor.h"
+#include "BranchArrange.h"
 #define minimumTopicWidth 30
 #define minimumTopicHeight 30
 
@@ -66,6 +67,11 @@ void DrawingStrategy::OnLButtonUp(Selection *selection, UINT nFlags, Branch *bra
 		}
 		// 3.선택된 브랜치에 새 브랜치를 추가한다.
 		selection->GetLastSelection()->Add(temp);
+
+		//브랜치 정렬
+		BranchArrange branchArrange;
+		branchArrange.Arrange(selection->GetLastSelection());
+
 
 		//선택된 브랜치의 마크를 +에서 -로 바꾼다.
 		selection->GetLastSelection()->GetMark()->SetContent("-");
