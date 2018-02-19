@@ -29,95 +29,63 @@ void Branch::Sort()
 	Long length;
 	Long i = 0;
 	Shape *currentItem;
+	Long branchPosition = 0;
+	Long centerX;
+	Branch *temp;
 	Long x;
-	Long center;
-	Selection leftSpot;
-	Selection rightSpot;
-	Branch allSpot;
-	Long count = 0;
-	Long j = 0;
-	Long leftSpotLength;
-	Long rightSpotLength;
+	Branch leftBranchs;
+	Branch rightBranchs;
 
 	length = this->shapes.GetLength();
 	
 	while (i < length)
 	{
-		center = this->GetTopic()->GetX() + this->GetTopic()->GetWidth() / 2;
 		currentItem = this->shapes.GetAt(i);
-		
-		if (typeid(*currentItem) == typeid(Branch))
+		if (typeid(*currentItem) != typeid(Branch))
 		{
-			x = currentItem->GetX();
-
-			if (x < center)
-			{
-				leftSpot.Add((Branch*)currentItem);
-			}
-			else
-			{
-				rightSpot.Add((Branch*)currentItem);
-			}
+			branchPosition++;
 		}
 		else
 		{
-			count++;
+			i = length;
 		}
 		i++;
 	}
 
-	i = count;
-	leftSpotLength = leftSpot.GetLength();
-
-	while (j < leftSpotLength)
+	i = branchPosition;
+	while (i < length)
 	{
-		this->shapes.Modify(i, leftSpot.GetAt(j));
+		centerX = this->GetTopic()->GetX() + this->GetTopic()->GetWidth() / 2;
+		temp = (Branch*)this->shapes.GetAt(i);
+
+		x = temp->GetTopic()->GetX();
+
+		if (x < centerX)
+		{
+			leftBranchs.Add(temp);
+		}
+		else
+		{
+			rightBranchs.Add(temp);
+		}
 		i++;
-		j++;
-	}
-
-	j = 0;
-	rightSpotLength = rightSpot.GetLength();
-
-	while (j < rightSpotLength)
-	{
-		this->shapes.Modify(i, rightSpot.GetAt(j));
-		i++;
-		j++;
-	}
-
-	
-	/*
-	leftSpotLength = leftSpot.GetLength();
-	rightSpotLength = rightSpot.GetLength();
-
-	while (j < leftSpotLength)
-	{
-		allSpot.Add(leftSpot.GetAt(j));
-		j++;
-	}
-
-	j = 0;
-
-	while (j < rightSpotLength)
-	{
-		allSpot.Add(rightSpot.GetAt(j));
-		j++;
 	}
 
 	i = 0;
-	j = 0;
-	while (i < length)
+	while (i < leftBranchs.GetLength())
 	{
-		currentItem = this->shapes.GetAt(i);
-		if (typeid(*currentItem) == typeid(Branch))
-		{
-			this->shapes[i] = allSpot.shapes[j];
-			j++;;
-		}
+		this->shapes.Modify(branchPosition, leftBranchs.GetAt(i));
 		i++;
+		branchPosition++;
 	}
-	*/
+
+	i = 0;
+	while (i < rightBranchs.GetLength())
+	{
+		this->shapes.Modify(branchPosition, rightBranchs.GetAt(i));
+		i++;
+		branchPosition++;
+	}
 }
 
 Topic* Branch::GetTopic()
@@ -189,7 +157,7 @@ int main(int argc, char *argv[])
 	Long lenght;
 
 	Branch *branch = new Branch;
-	branch->Add(new Topic(387, 150, 200, 200, "메인토픽"));
+	branch->Add(new Topic(287, 150, 200, 200, "메인토픽"));
 	branch->Add(new Mark(573, 200));
 
 	cout << branch->GetAt(0)->GetX() << endl;
