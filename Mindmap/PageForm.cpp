@@ -79,7 +79,7 @@ void PageForm::OnLButtonDown(UINT nFlags, CPoint point) {
 
 	clickedObject = this->mouseAction->GetClickedObject(this->branch, point);
 	this->mouseAction->SetStrategy(clickedObject);
-	this->mouseAction->OnLButtonDown(point, nFlags, &this->selection, clickedObject);
+	this->mouseAction->OnLButtonDown(this, point, nFlags, clickedObject);
 
 	CFrameWnd::OnLButtonDown(nFlags, point);
 }
@@ -87,13 +87,13 @@ void PageForm::OnLButtonDown(UINT nFlags, CPoint point) {
 void PageForm::OnMouseMove(UINT nFlags, CPoint point) {
 	if ((nFlags & MK_LBUTTON) == MK_LBUTTON)
 	{
-		this->mouseAction->OnMouseMove(point);
+		this->mouseAction->OnMouseMove(this, point);
 	}
 	CFrameWnd::OnMouseMove(nFlags, point);
 }
 
 void PageForm::OnLButtonUp(UINT nFlags, CPoint point) {
-	this->mouseAction->OnLButtonUp(&this->selection, nFlags, this->branch);
+	this->mouseAction->OnLButtonUp(this, nFlags, this->branch);
 
 	RedrawWindow();
 	CFrameWnd::OnLButtonUp(nFlags, point);
