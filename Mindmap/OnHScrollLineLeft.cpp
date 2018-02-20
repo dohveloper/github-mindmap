@@ -25,16 +25,16 @@ void OnHScrollLineLeft::Scroll(PageForm *pageForm, Long nPos)
 	maximumPosition = (Long)pageForm->GetScrollLimit(SB_HORZ);
 	currentPosition = (Long)pageForm->GetScrollPos(SB_HORZ);
 
-	this->movedPosition = 10;
-	currentPosition -= 10;
-
-	if (currentPosition < minmumPosition)
+	if (currentPosition > minmumPosition)
+	{
+		this->movedPosition = 10;
+		currentPosition -= 10;
+	}
+	else
 	{
 		currentPosition = minmumPosition;
 	}
-
 	pageForm->SetScrollPos(SB_HORZ, currentPosition);
-
 }
 
 OnHScrollLineLeft& OnHScrollLineLeft::operator=(const OnHScrollLineLeft& source)

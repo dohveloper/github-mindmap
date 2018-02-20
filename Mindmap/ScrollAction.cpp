@@ -33,9 +33,21 @@ ScrollAction::~ScrollAction()
 {
 }
 
-Long ScrollAction::SetHScrollStrategy(PageForm *pageForm, Long nSBCode, UINT nPos, CScrollBar* pScrollBar)
+Long ScrollAction::Scroll(PageForm *pageForm, UINT nPos)
 {
-	
+	Long movedPosition = 0;
+	if (this->scrollStrategy != NULL)
+	{
+		this->scrollStrategy->Scroll(pageForm, nPos);
+		movedPosition = this->scrollStrategy->GetMovedPosition();
+	}
+	return movedPosition;
+}
+
+
+
+void ScrollAction::SetHScrollStrategy(Long nSBCode)
+{
 	if (this->scrollStrategy != NULL)
 	{
 		delete this->scrollStrategy;
@@ -47,52 +59,45 @@ Long ScrollAction::SetHScrollStrategy(PageForm *pageForm, Long nSBCode, UINT nPo
 	case SB_THUMBTRACK:
 	{
 		this->scrollStrategy = new OnHThumb();
-		this->scrollStrategy->Scroll(pageForm, nPos);
 		break;
 	}
 	case SB_LEFT:
 	{
 		this->scrollStrategy = new OnHScrollLeft();
-		this->scrollStrategy->Scroll(pageForm, nPos);
 		break;
 	}
 	case SB_RIGHT:
 	{
 		this->scrollStrategy = new OnHScrollRight();
-		this->scrollStrategy->Scroll(pageForm, nPos);
 		break;
 	}
 	case SB_LINELEFT:
 	{
 		this->scrollStrategy = new OnHScrollLineLeft();
-		this->scrollStrategy->Scroll(pageForm, nPos);
 		break;
 	}
 	case SB_LINERIGHT:
 	{
 		this->scrollStrategy = new OnHScrollLineRight();
-		this->scrollStrategy->Scroll(pageForm, nPos);
 		break;
 	}
 	case SB_PAGELEFT:
 	{
 		this->scrollStrategy = new OnHScrollPageLeft();
-		this->scrollStrategy->Scroll(pageForm, nPos);
 		break;
 	}
 	case SB_PAGERIGHT:
 	{
 		this->scrollStrategy = new OnHScrollPageRight();
-		this->scrollStrategy->Scroll(pageForm, nPos);
 		break;
 	}
 	default:
 		break;
 	}
-	return this->scrollStrategy->GetMovedPosition();
+
 }
 
-Long ScrollAction::SetVScrollStrategy(PageForm * pageForm, Long nSBCode, UINT nPos, CScrollBar * pScrollBar)
+void ScrollAction::SetVScrollStrategy(Long nSBCode)
 {
 	if (this->scrollStrategy != NULL)
 	{
@@ -105,50 +110,42 @@ Long ScrollAction::SetVScrollStrategy(PageForm * pageForm, Long nSBCode, UINT nP
 	case SB_THUMBTRACK:
 	{
 		this->scrollStrategy = new OnVThumb();
-		this->scrollStrategy->Scroll(pageForm, nPos);
 		break;
 	}
 	case SB_TOP:
 	{
 		this->scrollStrategy = new OnVScrollUp();
-		this->scrollStrategy->Scroll(pageForm, nPos);
 		break;
 	}
 	case SB_BOTTOM:
 	{
 		this->scrollStrategy = new OnVScrollDown();
-		this->scrollStrategy->Scroll(pageForm, nPos);
+
 		break;
 	}
 	case SB_LINEUP:
 	{
 		this->scrollStrategy = new OnVScrollLineUp();
-		this->scrollStrategy->Scroll(pageForm, nPos);
 		break;
 	}
 	case SB_LINEDOWN:
 	{
 		this->scrollStrategy = new OnVScrollLineDown();
-		this->scrollStrategy->Scroll(pageForm, nPos);
 		break;
 	}
 	case SB_PAGEUP:
 	{
 		this->scrollStrategy = new OnVScrollPageUp();
-		this->scrollStrategy->Scroll(pageForm, nPos);
 		break;
 	}
 	case SB_PAGEDOWN:
 	{
 		this->scrollStrategy = new OnVScrollPageDown();
-		this->scrollStrategy->Scroll(pageForm, nPos);
 		break;
 	}
 	default:
 		break;
 	}
-	//this->scrollStrategy->Scroll(pageForm, nPos);
-	
 }
 
 

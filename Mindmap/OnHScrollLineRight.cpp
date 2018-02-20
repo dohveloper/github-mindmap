@@ -1,7 +1,6 @@
 //OnHScrollLineRight.cpp
 
 #include "OnHScrollLineRight.h"
-#include "ScrollingVisitor.h"
 
 OnHScrollLineRight::OnHScrollLineRight()
 {
@@ -25,16 +24,16 @@ void OnHScrollLineRight::Scroll(PageForm *pageForm, Long nPos)
 	maximumPosition = (Long)pageForm->GetScrollLimit(SB_HORZ);
 	currentPosition = (Long)pageForm->GetScrollPos(SB_HORZ);
 
-	this->movedPosition = -10;
-	currentPosition += 10;
-
-	if (currentPosition > maximumPosition)
+	if (currentPosition < maximumPosition)
+	{
+		this->movedPosition = -10;
+		currentPosition += 10;
+	}
+	else
 	{
 		currentPosition = maximumPosition;
 	}
-
 	pageForm->SetScrollPos(SB_HORZ, currentPosition);
-
 }
 
 OnHScrollLineRight& OnHScrollLineRight::operator=(const OnHScrollLineRight& source)

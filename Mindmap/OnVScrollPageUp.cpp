@@ -26,15 +26,15 @@ void OnVScrollPageUp::Scroll(PageForm *pageForm, Long nPos)
 	currentPosition = (Long)pageForm->GetScrollPos(SB_VERT);
 	pageForm->GetScrollInfo(SB_VERT, &info, SIF_ALL);
 
-	this->movedPosition = (int)info.nPage;
-	currentPosition -= (int)info.nPage;
-
-
-	if (currentPosition < minmumPosition)
+	if (currentPosition > minmumPosition)
+	{
+		this->movedPosition = (int)info.nPage;
+		currentPosition -= (int)info.nPage;
+	}
+	else
 	{
 		currentPosition = minmumPosition;
 	}
-
 	pageForm->SetScrollPos(SB_VERT, currentPosition);
 }
 

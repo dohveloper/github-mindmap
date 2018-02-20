@@ -18,7 +18,6 @@
 #include "DrawingVisitor.h"
 #include "DeleteVisitor.h"
 #include "ScrollAction.h"
-#include "ScrollingVisitor.h"
 
 BEGIN_MESSAGE_MAP(PageForm, CFrameWnd)
 	ON_WM_CREATE()
@@ -33,7 +32,10 @@ BEGIN_MESSAGE_MAP(PageForm, CFrameWnd)
 END_MESSAGE_MAP()
 
 PageForm::PageForm() {
+	this->movedX = 0;
+	this->movedY = 0;
 }
+
 int PageForm::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 	CFrameWnd::OnCreate(lpCreateStruct);
@@ -43,8 +45,6 @@ int PageForm::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	this->selection.Add(this->branch);
 	this->mouseAction = new MouseAction();
 	this->branch->SetOwnerBranch(this->branch);//메인 브랜치의 오너브랜치는 자기자신
-	this->movedX = 0;
-	this->movedY = 0;
 	this->scrollAction = new ScrollAction;
 	return 0;
 }
@@ -100,7 +100,7 @@ void PageForm::OnPaint() {
 	CPen blackPen;
 
 	//선택표시하기
-	SelectionMarkVisitor selectionMarkVisitor(&this->selection, &dc);
+	SelectionMarkVisitor selectionMarkVisitor(&this->selection, &dc, this->movedX, this->movedY);
 	while (i < this->selection.GetLength()) {
 		selectedTopic = this->selection.GetAt(i)->GetTopic();
 		selectedTopic->Accept(selectionMarkVisitor);
@@ -111,18 +111,9 @@ void PageForm::OnPaint() {
 	blackPen.CreatePen(PS_SOLID, 1, RGB(0, 0, 0));
 	dc.SelectObject(&blackPen);
 
-	if (this->drawingPosition = 0)
-	{
-		DrawingVisitor visitor(&dc);
-		this->branch->Accept(visitor);
-	}
-	else
-	{
-		ScrollingVisitor visitor(&dc, this->drawingPosition);
-		this->branch->Accept(visitor);
-	}
+	DrawingVisitor visitor(&dc, this->movedX, this->movedY);
 
-	this->drawingPosition = 0;
+	this->branch->Accept(visitor);
 
 }
 
@@ -197,7 +188,8 @@ void PageForm::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 void PageForm::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 {
 	Long movedPosition;
-	movedPosition = this->scrollAction->SetHScrollStrategy(this, nSBCode, nPos, pScrollBar);
+	this->scrollAction->SetHScrollStrategy(nSBCode);
+	movedPosition = this->scrollAction->Scroll(this, nPos);
 	this->movedX += movedPosition;
 
 	RedrawWindow();
@@ -207,8 +199,10 @@ void PageForm::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 void PageForm::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 {
 	Long movedPosition;
-	movedPosition = this->scrollAction->SetVScrollStrategy(this, nSBCode, nPos, pScrollBar);
-	this->movedY
+	this->scrollAction->SetVScrollStrategy(nSBCode);
+	movedPosition = this->scrollAction->Scroll(this, nPos);
+	this->movedY += movedPosition;
+
 	RedrawWindow();
 	CFrameWnd::OnHScroll(nSBCode, nPos, pScrollBar);
 }

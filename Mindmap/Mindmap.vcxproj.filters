@@ -197,9 +197,6 @@
     <ClCompile Include="DrawingStrategy.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="DrawingVisitor.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="DrawLines.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -336,6 +333,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="ScrollAction.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="DrawingVisitor.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,3 +1,5 @@
+//DrawingVisitor.cpp
+
 #include "DrawingVisitor.h"
 #include "Branch.h"
 #include "PageForm.h"
@@ -8,8 +10,11 @@
 DrawingVisitor::DrawingVisitor() {
 }
 
-DrawingVisitor::DrawingVisitor(CPaintDC *dc) {
+DrawingVisitor::DrawingVisitor(CPaintDC * dc, Long movedX, Long movedY)
+{
 	this->dc = dc;
+	this->movedX = movedX;
+	this->movedY = movedY;
 }
 
 DrawingVisitor::~DrawingVisitor() {
@@ -17,12 +22,12 @@ DrawingVisitor::~DrawingVisitor() {
 
 void DrawingVisitor::VisitBranch(Branch *branch)
 {
-	DrawLines drawLines(branch, dc);
+	DrawLines drawLines(branch, this->dc, this->movedX, this->movedY);
 	drawLines.Traverse();
 
-	DrawTopics drawTopics(branch, dc);
+	DrawTopics drawTopics(branch, this->dc, this->movedX, this->movedY);
 	drawTopics.Traverse();
 
-	DrawMarks drawMarks(branch, dc);
+	DrawMarks drawMarks(branch, this->dc, this->movedX, this->movedY);
 	drawMarks.Traverse();
 }

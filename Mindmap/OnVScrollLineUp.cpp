@@ -24,14 +24,15 @@ void OnVScrollLineUp::Scroll(PageForm *pageForm, Long nPos)
 	maximumPosition = (Long)pageForm->GetScrollLimit(SB_VERT);
 	currentPosition = (Long)pageForm->GetScrollPos(SB_VERT);
 	
-	this->movedPosition = 10;
-	currentPosition -= 10;
-
-	if (currentPosition < minmumPosition)
+	if (currentPosition > minmumPosition)
+	{
+		this->movedPosition = 10;
+		currentPosition -= 10;
+	}
+	else
 	{
 		currentPosition = minmumPosition;
 	}
-
 	pageForm->SetScrollPos(SB_VERT, currentPosition);
 }
 

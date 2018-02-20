@@ -13,15 +13,13 @@ public:
 	ScrollAction();
 	ScrollAction(const ScrollAction& source);
 	~ScrollAction();
-	Long SetHScrollStrategy(PageForm *pageForm, Long nSBCode, UINT nPos, CScrollBar* pScrollBar);
-	Long SetVScrollStrategy(PageForm *pageForm, Long nSBCode, UINT nPos, CScrollBar* pScrollBar);
+	Long Scroll(PageForm *pageForm, UINT nPos);
+	void SetHScrollStrategy(Long nSBCode);
+	void SetVScrollStrategy(Long nSBCode);
 	ScrollAction& operator=(const ScrollAction& source);
 
 private:
 	ScrollStrategy *scrollStrategy;
-	//ScrollStrategy *hScrollStrategy;
-	//ScrollStrategy *vScrollStrategy;
-
 };
 	
 
