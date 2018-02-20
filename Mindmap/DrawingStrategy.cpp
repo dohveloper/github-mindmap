@@ -19,18 +19,18 @@ DrawingStrategy::DrawingStrategy() {
 }
 DrawingStrategy::~DrawingStrategy() {
 }
-void DrawingStrategy::OnLButtonDown(CPoint point, UINT nFlags, Selection *selection, Shape *shape) {
+void DrawingStrategy::OnLButtonDown(PageForm *pageForm, CPoint point, UINT nFlags, Shape *shape) {
 	this->x = point.x;
 	this->y = point.y;
 	this->width = 0;
 	this->height = 0;
 }
 
-void DrawingStrategy::OnMouseMove(CPoint point) {
+void DrawingStrategy::OnMouseMove(PageForm *pageForm, CPoint point) {
 	this->width = point.x - this->x;
 	this->height = point.y - this->y;
 }
-void DrawingStrategy::OnLButtonUp(Selection *selection, UINT nFlags, Branch *branch) {
+void DrawingStrategy::OnLButtonUp(PageForm *pageForm, UINT nFlags, Branch *branch) {
 	bool isOverlapped;
 	Long startX;
 	Long startY;
