@@ -4,13 +4,13 @@
 
 class Select;
 
-class SelectionStrategy: public MouseStrategy {
+class SelectionStrategy : public MouseStrategy {
 public:
 	SelectionStrategy();
 	~SelectionStrategy();
-	virtual void OnLButtonDown(CPoint point,UINT nFlags, Selection *selection, Shape *shape);
+	virtual void OnLButtonDown(PageForm *pageForm, CPoint point, UINT nFlags, Shape *shape);
 private:
-	Select *select;
+	Select * select;
 };
 
 #endif

@@ -2,13 +2,14 @@
 #include "SingleSelect.h"
 #include "MultiSelect.h"
 #include "Select.h"
+#include "PageForm.h"
 
 SelectionStrategy::SelectionStrategy() {
 	this->select = NULL;
 }
 SelectionStrategy::~SelectionStrategy() {
 }
-void SelectionStrategy::OnLButtonDown(CPoint point, UINT nFlags, Selection *selection, Shape *shape) {
+void SelectionStrategy::OnLButtonDown(PageForm *pageForm, CPoint point, UINT nFlags, Shape *shape) {
 	Branch *branch;
 
 	//할당해제
