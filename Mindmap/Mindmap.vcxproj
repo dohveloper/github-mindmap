@@ -141,6 +141,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ArrangeVisitor.h" />
     <ClInclude Include="Array.h" />
     <ClInclude Include="Branch.h" />
     <ClInclude Include="Clipboard.h" />
@@ -184,6 +185,7 @@
     <ClInclude Include="UnFoldVisitor.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ArrangeVisitor.cpp" />
     <ClCompile Include="Branch.cpp" />
     <ClCompile Include="BranchIterator.cpp" />
     <ClCompile Include="BranchTraverser.cpp" />

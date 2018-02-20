@@ -39,6 +39,7 @@ public:
 	bool GetIsShown() const;
 	void SetOwnerBranch(Branch *branch);
 	void SetContent(string content);
+	void SetX(Long x);
 
 protected:
 	Long x;
@@ -81,6 +82,11 @@ inline void Shape::SetOwnerBranch(Branch *branch)
 inline void Shape::SetContent(string content)
 {
 	this->content = content;
+}
+
+inline void Shape::SetX(Long x)
+{
+	this->x = x;
 }
 
 #endif //_SHAPE_H
