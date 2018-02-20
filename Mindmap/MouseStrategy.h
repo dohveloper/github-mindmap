@@ -4,14 +4,15 @@
 #include <afxwin.h>
 
 class Selection;
+class PageForm;
 
 class MouseStrategy {
 public:
 	MouseStrategy();
 	virtual ~MouseStrategy() = 0;
-	virtual void OnLButtonDown(CPoint point, UINT nFlags, Selection *selection, Shape *shape);
-	virtual void OnMouseMove(CPoint point);
-	virtual void OnLButtonUp(Selection *selection, UINT nFlags, Branch *branch);
+	virtual void OnLButtonDown(PageForm *pageForm, CPoint point, UINT nFlags, Shape *shape);
+	virtual void OnMouseMove(PageForm *pageForm, CPoint point);
+	virtual void OnLButtonUp(PageForm *pageForm, UINT nFlags, Branch *branch);
 };
 
 #endif
