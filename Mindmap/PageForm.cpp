@@ -68,6 +68,12 @@ void PageForm::SetScrolls()
 	SetScrollInfo(SB_VERT, &scrollInfo, TRUE);
 }
 
+CPoint PageForm::GetRealPoint(CPoint point)
+{
+	point.Offset(this->movedX, this->movedY);
+	return point;
+}
+
 void PageForm::OnLButtonDown(UINT nFlags, CPoint point) {
 	Shape *clickedObject = NULL;
 
@@ -114,7 +120,6 @@ void PageForm::OnPaint() {
 	DrawingVisitor visitor(&dc, this->movedX, this->movedY);
 
 	this->branch->Accept(visitor);
-
 }
 
 void PageForm::OnClose()
@@ -139,7 +144,7 @@ void PageForm::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	Long i = 0;
 	Long length;
 	if (nChar == VK_DELETE)
-	{	
+	{
 		DeleteVisitor visitor;
 		length = selection.GetLength();
 
@@ -206,3 +211,21 @@ void PageForm::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 	RedrawWindow();
 	CFrameWnd::OnHScroll(nSBCode, nPos, pScrollBar);
 }
+
+/*
+#include <iostream>
+int main(int argc, char *argv[]) {
+CPoint point(10, 10);
+PageForm pageForm;
+pageForm.movedX = 10;
+pageForm.movedY = 10;
+
+cout << " 이전    x : " << point.x << " y : " << point.y << endl;
+cout << endl;
+
+point = pageForm.GetRealPoint(point);
+cout << " 이후    x : " << point.x << " y : " << point.y << endl;
+
+return 0;
+}
+*/

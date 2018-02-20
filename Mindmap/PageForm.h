@@ -19,6 +19,7 @@ class PageForm :public CFrameWnd {
 public:
 	PageForm();
 	void SetScrolls();
+	CPoint GetRealPoint(CPoint point);
 public:
 	Branch * branch;
 	Selection selection;
@@ -37,7 +38,6 @@ protected:
 	afx_msg void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
 	afx_msg void OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
 	DECLARE_MESSAGE_MAP()
-
 };
 
 #endif //_PAGEFORM_H
