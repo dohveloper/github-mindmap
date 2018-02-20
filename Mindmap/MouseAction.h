@@ -1,3 +1,5 @@
+2. mouoseAction ¼öÁ¤
+
 #ifndef _MOUSEACTION_H
 #define _MOUSEACTION_H
 #include "Branch.h"
@@ -5,13 +7,14 @@
 
 class Selection;
 class MouseStrategy;
+class PageForm;
 
 class MouseAction {
 public:
 	MouseAction();
-	void OnLButtonDown(CPoint point, UINT nFlags, Selection *selection, Shape *shape);
-	void OnMouseMove(CPoint point);
-	void OnLButtonUp(Selection *selection, UINT nFlags, Branch *branch);
+	void OnLButtonDown(PageForm *pageForm, CPoint point, UINT nFlags, Shape *shape);
+	void OnMouseMove(PageForm *pageForm, CPoint point);
+	void OnLButtonUp(PageForm *pageForm, UINT nFlags, Branch *branch);
 
 	void SetStrategy(Shape *shape);
 	Shape* GetClickedObject(Branch *branch, CPoint point);

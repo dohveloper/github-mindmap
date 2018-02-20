@@ -7,20 +7,21 @@
 #include "Topic.h"
 #include "Mark.h"
 #include "HitTester.h"
+#include "PageForm.h"
 
 MouseAction::MouseAction()
 {
 	this->mouseStrategy = NULL;
 }
 
-void MouseAction::OnLButtonDown(CPoint point, UINT nFlags, Selection *selection, Shape *shape) {
-	mouseStrategy->OnLButtonDown(point, nFlags, selection, shape);
+void MouseAction::OnLButtonDown(PageForm *pageForm, CPoint point, UINT nFlags, Shape *shape) {
+	mouseStrategy->OnLButtonDown(pageForm, point, nFlags, shape);
 }
-void MouseAction::OnMouseMove(CPoint point) {
-	mouseStrategy->OnMouseMove(point);
+void MouseAction::OnMouseMove(PageForm *pageForm, CPoint point) {
+	mouseStrategy->OnMouseMove(pageForm, point);
 }
-void MouseAction::OnLButtonUp(Selection *selection, UINT nFlags, Branch *branch) {
-	mouseStrategy->OnLButtonUp(selection, nFlags, branch);
+void MouseAction::OnLButtonUp(PageForm *pageForm, UINT nFlags, Branch *branch) {
+	mouseStrategy->OnLButtonUp(pageForm, nFlags, branch);
 }
 
 void MouseAction::SetStrategy(Shape *shape)
