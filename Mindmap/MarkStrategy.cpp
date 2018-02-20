@@ -31,6 +31,6 @@ void MarkStrategy::OnLButtonDown(PageForm *pageForm, CPoint point, UINT nFlags, 
 		FoldVisitor visitor;
 		shape->GetOwnerBranch()->GetMark()->SetContent("+");
 		shape->GetOwnerBranch()->Accept(visitor);//하위 브랜치를 접는다.
-		selection->RemoveSubBranch(shape->GetOwnerBranch());
+		pageForm->selection.RemoveSubBranch(shape->GetOwnerBranch());
 	}
 }

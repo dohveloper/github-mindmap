@@ -28,5 +28,5 @@ void SelectionStrategy::OnLButtonDown(PageForm *pageForm, CPoint point, UINT nFl
 	}
 
 	branch = shape->GetOwnerBranch();
-	this->select->SelectBranch(selection, branch);
+	this->select->SelectBranch(&pageForm->selection, branch);
 }
