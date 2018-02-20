@@ -2,16 +2,16 @@
 
 #ifndef _ONVSCROLLPAGEUP_H
 #define _ONVSCROLLPAGEUP_H
-#include "ScrollMove.h"
+#include "ScrollStrategy.h"
 
-class OnVScrollPageUp : public ScrollMove {
+class OnVScrollPageUp : public ScrollStrategy {
 public:
 	OnVScrollPageUp();
 	~OnVScrollPageUp();
 	OnVScrollPageUp(const OnVScrollPageUp& source);
 
 	OnVScrollPageUp& operator=(const OnVScrollPageUp& socrce);
-	virtual void Scrolling(PageForm *pageForm);
+	virtual void Scroll(PageForm *pageForm, Long nPos);
 
 };
 #endif // _ONVSCROLLPAGEUP_H

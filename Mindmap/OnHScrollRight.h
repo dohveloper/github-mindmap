@@ -2,14 +2,14 @@
 
 #ifndef _ONHSCROLLRIGHT_H
 #define _ONHSCROLLRIGHT_H
-#include "ScrollMove.h"
+#include "ScrollStrategy.h"
 
-class OnHScrollRight : public ScrollMove{
+class OnHScrollRight : public ScrollStrategy {
 public:
 	OnHScrollRight();
 	OnHScrollRight(const OnHScrollRight& source);
 	~OnHScrollRight();
-	virtual void Scrolling(PageForm *pageForm);
+	virtual void Scroll(PageForm *pageForm, Long nPos);
 	OnHScrollRight& operator=(const OnHScrollRight& source);
 };
 #endif // ONHSCROLLRIGHT_H

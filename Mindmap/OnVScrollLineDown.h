@@ -2,16 +2,16 @@
 
 #ifndef _ONVSCROLLLINEDOWN_H
 #define _ONVSCROLLLINEDOWN_H
-#include "ScrollMove.h"
+#include "ScrollStrategy.h"
 
-class OnVScrollLineDown : public ScrollMove{
+class OnVScrollLineDown : public ScrollStrategy {
 public:
 	OnVScrollLineDown();
 	~OnVScrollLineDown();
 	OnVScrollLineDown(const OnVScrollLineDown& source);
 
 	OnVScrollLineDown& operator=(const OnVScrollLineDown& socrce);
-	virtual void Scrolling(PageForm *pageForm);
+	virtual void Scroll(PageForm *pageForm, Long nPos);
 
 };
 #endif // ONVSCROLLLINEDOWN_H

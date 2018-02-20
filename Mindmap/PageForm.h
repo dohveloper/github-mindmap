@@ -14,7 +14,7 @@ typedef signed long int Long;
 class Page;
 class Branch;
 class MouseAction;
-class Scroll;
+class ScrollAction;
 class PageForm :public CFrameWnd {
 public:
 	PageForm();
@@ -23,8 +23,9 @@ public:
 	Branch * branch;
 	Selection selection;
 	MouseAction *mouseAction;
-	Scroll *scroll;
-	Long drawingPosition;
+	ScrollAction *scrollAction;
+	Long movedX;
+	Long movedY;
 protected:
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);

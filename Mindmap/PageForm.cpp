@@ -17,7 +17,7 @@
 #include "Mark.h"
 #include "DrawingVisitor.h"
 #include "DeleteVisitor.h"
-#include "Scroll.h"
+#include "ScrollAction.h"
 #include "ScrollingVisitor.h"
 
 BEGIN_MESSAGE_MAP(PageForm, CFrameWnd)
@@ -43,8 +43,9 @@ int PageForm::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	this->selection.Add(this->branch);
 	this->mouseAction = new MouseAction();
 	this->branch->SetOwnerBranch(this->branch);//메인 브랜치의 오너브랜치는 자기자신
-	this->drawingPosition = 0;
-	this->scroll = new Scroll;
+	this->movedX = 0;
+	this->movedY = 0;
+	this->scrollAction = new ScrollAction;
 	return 0;
 }
 
@@ -193,18 +194,21 @@ void PageForm::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	CFrameWnd::OnKeyDown(nChar, nRepCnt, nFlags);
 }
 
-void PageForm::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
+void PageForm::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 {
-	this->drawingPosition = this->scroll->MoveHScroll(this, nSBCode, nPos, pScrollBar);
+	Long movedPosition;
+	movedPosition = this->scrollAction->SetHScrollStrategy(this, nSBCode, nPos, pScrollBar);
+	this->movedX += movedPosition;
 
 	RedrawWindow();
 	CFrameWnd::OnHScroll(nSBCode, nPos, pScrollBar);
 }
 
-void PageForm::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
+void PageForm::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 {
-	this->scroll->MoveVScroll(this, nSBCode, nPos, pScrollBar);
-
+	Long movedPosition;
+	movedPosition = this->scrollAction->SetVScrollStrategy(this, nSBCode, nPos, pScrollBar);
+	this->movedY
 	RedrawWindow();
 	CFrameWnd::OnHScroll(nSBCode, nPos, pScrollBar);
 }

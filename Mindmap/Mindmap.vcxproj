@@ -182,9 +182,8 @@
     <ClInclude Include="Page.h" />
     <ClInclude Include="PageApp.h" />
     <ClInclude Include="PageForm.h" />
-    <ClInclude Include="Scroll.h" />
-    <ClInclude Include="ScrollingVisitor.h" />
-    <ClInclude Include="ScrollMove.h" />
+    <ClInclude Include="ScrollAction.h" />
+    <ClInclude Include="ScrollStrategy.h" />
     <ClInclude Include="Select.h" />
     <ClInclude Include="Selection.h" />
     <ClInclude Include="SelectionMarkVisitor.h" />
@@ -238,9 +237,8 @@
     <ClCompile Include="Page.cpp" />
     <ClCompile Include="PageApp.cpp" />
     <ClCompile Include="PageForm.cpp" />
-    <ClCompile Include="Scroll.cpp" />
-    <ClCompile Include="ScrollingVisitor.cpp" />
-    <ClCompile Include="ScrollMove.cpp" />
+    <ClCompile Include="ScrollAction.cpp" />
+    <ClCompile Include="ScrollStrategy.cpp" />
     <ClCompile Include="Select.cpp" />
     <ClCompile Include="Selection.cpp" />
     <ClCompile Include="SelectionMarkVIsitor.cpp" />

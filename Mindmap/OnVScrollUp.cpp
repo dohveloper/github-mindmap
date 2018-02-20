@@ -14,7 +14,7 @@ OnVScrollUp::OnVScrollUp(const OnVScrollUp& source)
 {
 }
 
-void OnVScrollUp::Scrolling(PageForm *pageForm)
+void OnVScrollUp::Scroll(PageForm *pageForm, Long nPos)
 {
 	int minmumPosition;
 	int maximumPosition;
@@ -24,8 +24,7 @@ void OnVScrollUp::Scrolling(PageForm *pageForm)
 	maximumPosition = (Long)pageForm->GetScrollLimit(SB_VERT);
 	currentPosition = (Long)pageForm->GetScrollPos(SB_VERT);
 
-
-
+	this->movedPosition = currentPosition - minmumPosition;
 	currentPosition = minmumPosition;
 
 	pageForm->SetScrollPos(SB_VERT, currentPosition);

@@ -2,14 +2,14 @@
 
 #ifndef _ONVTHUMB_H
 #define _ONVTHUMB_H
-#include "ScrollMove.h"
+#include "ScrollStrategy.h"
 
-class OnVThumb : public ScrollMove{
+class OnVThumb : public ScrollStrategy {
 public:
 	OnVThumb();
 	OnVThumb(const OnVThumb& source);
 	~OnVThumb();
-	virtual void ThumbMove(PageForm *pageForm, Long nPos);
+	virtual void Scroll(PageForm *pageForm, Long nPos);
 	OnVThumb& operator=(const OnVThumb& source);
 };
 #endif // ONVTHUMB_H

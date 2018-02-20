@@ -14,7 +14,7 @@ OnHThumb::~OnHThumb()
 {
 }
 
-void OnHThumb::ThumbMove(PageForm *pageForm, Long nPos)
+void OnHThumb::Scroll(PageForm *pageForm, Long nPos)
 {
 	Long minmumPosition;
 	Long maximumPosition;
@@ -24,6 +24,7 @@ void OnHThumb::ThumbMove(PageForm *pageForm, Long nPos)
 	maximumPosition = (Long)pageForm->GetScrollLimit(SB_HORZ);
 	currentPosition = (Long)pageForm->GetScrollPos(SB_HORZ);
 
+	this->movedPosition = currentPosition - nPos;
 	currentPosition = nPos;
 
 	pageForm->SetScrollPos(SB_HORZ, nPos);

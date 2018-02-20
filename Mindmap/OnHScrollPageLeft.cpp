@@ -14,7 +14,7 @@ OnHScrollPageLeft::~OnHScrollPageLeft()
 {
 }
 
-void OnHScrollPageLeft::Scrolling(PageForm * pageForm)
+void OnHScrollPageLeft::Scroll(PageForm *pageForm, Long nPos)
 {
 	Long minmumPosition;
 	Long maximumPosition;
@@ -26,12 +26,12 @@ void OnHScrollPageLeft::Scrolling(PageForm * pageForm)
 	currentPosition = (Long)pageForm->GetScrollPos(SB_HORZ);
 	pageForm->GetScrollInfo(SB_HORZ, &info, SIF_ALL);
 
+	this->movedPosition = (int)info.nPage;
+	currentPosition -= (int)info.nPage;
 
-	currentPosition -= 100;
-
-	if (currentPosition > minmumPosition)
+	if (currentPosition < minmumPosition)
 	{
-		currentPosition = max(minmumPosition, currentPosition - (int)info.nPage);
+		currentPosition = minmumPosition;
 	}
 
 	pageForm->SetScrollPos(SB_HORZ, currentPosition);

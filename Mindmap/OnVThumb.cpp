@@ -14,7 +14,7 @@ OnVThumb::~OnVThumb()
 {
 }
 
-void OnVThumb::ThumbMove(PageForm *pageForm, Long nPos)
+void OnVThumb::Scroll(PageForm *pageForm, Long nPos)
 {
 	Long minmumPosition;
 	Long maximumPosition;
@@ -24,6 +24,7 @@ void OnVThumb::ThumbMove(PageForm *pageForm, Long nPos)
 	maximumPosition = (Long)pageForm->GetScrollLimit(SB_VERT);
 	currentPosition = (Long)pageForm->GetScrollPos(SB_VERT);
 
+	this->movedPosition = currentPosition - nPos;
 	currentPosition = nPos;
 
 	pageForm->SetScrollPos(SB_VERT, nPos);

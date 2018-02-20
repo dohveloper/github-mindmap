@@ -129,9 +129,6 @@
     <ClInclude Include="DeleteVisitor.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Scroll.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="OnVThumb.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -174,10 +171,10 @@
     <ClInclude Include="OnHScrollLeft.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="ScrollMove.h">
+    <ClInclude Include="ScrollStrategy.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="ScrollingVisitor.h">
+    <ClInclude Include="ScrollAction.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
@@ -293,9 +290,6 @@
     <ClCompile Include="DeleteVisitor.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Scroll.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="OnVThumb.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -338,10 +332,10 @@
     <ClCompile Include="OnHScrollLeft.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="ScrollMove.cpp">
+    <ClCompile Include="ScrollStrategy.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="ScrollingVisitor.cpp">
+    <ClCompile Include="ScrollAction.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

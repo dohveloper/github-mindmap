@@ -14,7 +14,7 @@ OnHScrollRight::~OnHScrollRight()
 {
 }
 
-void OnHScrollRight::Scrolling(PageForm *pageForm)
+void OnHScrollRight::Scroll(PageForm *pageForm, Long nPos)
 {
 	Long minmumPosition;
 	Long maximumPosition;
@@ -24,6 +24,7 @@ void OnHScrollRight::Scrolling(PageForm *pageForm)
 	maximumPosition = (Long)pageForm->GetScrollLimit(SB_HORZ);
 	currentPosition = (Long)pageForm->GetScrollPos(SB_HORZ);
 
+	this->movedPosition = currentPosition - maximumPosition;
 	currentPosition = maximumPosition;
 
 	pageForm->SetScrollPos(SB_HORZ, currentPosition);
