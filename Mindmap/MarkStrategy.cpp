@@ -6,6 +6,7 @@
 #include "FoldVisitor.h"
 #include "UnFoldVisitor.h"
 #include "Selection.h"
+#include "PageForm.h"
 
 MarkStrategy::MarkStrategy()
 {
@@ -13,7 +14,7 @@ MarkStrategy::MarkStrategy()
 MarkStrategy::~MarkStrategy()
 {
 }
-void MarkStrategy::OnLButtonDown(CPoint point, UINT nFlags, Selection *selection, Shape *shape)
+void MarkStrategy::OnLButtonDown(PageForm *pageForm, CPoint point, UINT nFlags, Shape *shape)
 {
 	string markContent;
 
