@@ -1,5 +1,3 @@
-2. mouoseAction ¼öÁ¤
-
 #ifndef _MOUSEACTION_H
 #define _MOUSEACTION_H
 #include "Branch.h"
