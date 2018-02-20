@@ -68,18 +68,12 @@ void PageForm::SetScrolls()
 	SetScrollInfo(SB_VERT, &scrollInfo, TRUE);
 }
 
-CPoint PageForm::GetRealPoint(CPoint point)
-{
-	point.Offset(this->movedX, this->movedY);
-	return point;
-}
-
 void PageForm::OnLButtonDown(UINT nFlags, CPoint point) {
 	Shape *clickedObject = NULL;
 
 	clickedObject = this->mouseAction->GetClickedObject(this->branch, point);
 	this->mouseAction->SetStrategy(clickedObject);
-	this->mouseAction->OnLButtonDown(this, point, nFlags, clickedObject);
+	this->mouseAction->OnLButtonDown(point, nFlags, &this->selection, clickedObject);
 
 	CFrameWnd::OnLButtonDown(nFlags, point);
 }
@@ -87,13 +81,13 @@ void PageForm::OnLButtonDown(UINT nFlags, CPoint point) {
 void PageForm::OnMouseMove(UINT nFlags, CPoint point) {
 	if ((nFlags & MK_LBUTTON) == MK_LBUTTON)
 	{
-		this->mouseAction->OnMouseMove(this, point);
+		this->mouseAction->OnMouseMove(point);
 	}
 	CFrameWnd::OnMouseMove(nFlags, point);
 }
 
 void PageForm::OnLButtonUp(UINT nFlags, CPoint point) {
-	this->mouseAction->OnLButtonUp(this, nFlags, this->branch);
+	this->mouseAction->OnLButtonUp(&this->selection, nFlags, this->branch);
 
 	RedrawWindow();
 	CFrameWnd::OnLButtonUp(nFlags, point);
@@ -106,7 +100,7 @@ void PageForm::OnPaint() {
 	CPen blackPen;
 
 	//선택표시하기
-	SelectionMarkVisitor selectionMarkVisitor(&this->selection, &dc, this->movedX, this->movedY);
+	SelectionMarkVisitor selectionMarkVisitor(&this->selection, &dc);
 	while (i < this->selection.GetLength()) {
 		selectedTopic = this->selection.GetAt(i)->GetTopic();
 		selectedTopic->Accept(selectionMarkVisitor);
@@ -117,7 +111,7 @@ void PageForm::OnPaint() {
 	blackPen.CreatePen(PS_SOLID, 1, RGB(0, 0, 0));
 	dc.SelectObject(&blackPen);
 
-	DrawingVisitor visitor(&dc, this->movedX, this->movedY);
+	DrawingVisitor visitor(&dc);
 
 	this->branch->Accept(visitor);
 }
@@ -211,21 +205,3 @@ void PageForm::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 	RedrawWindow();
 	CFrameWnd::OnHScroll(nSBCode, nPos, pScrollBar);
 }
-
-/*
-#include <iostream>
-int main(int argc, char *argv[]) {
-CPoint point(10, 10);
-PageForm pageForm;
-pageForm.movedX = 10;
-pageForm.movedY = 10;
-
-cout << " 이전    x : " << point.x << " y : " << point.y << endl;
-cout << endl;
-
-point = pageForm.GetRealPoint(point);
-cout << " 이후    x : " << point.x << " y : " << point.y << endl;
-
-return 0;
-}
-*/

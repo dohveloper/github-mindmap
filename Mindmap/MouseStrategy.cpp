@@ -1,20 +1,13 @@
 #include "MouseStrategy.h"
 #include "Selection.h"
-#include "PageForm.h"
 
 MouseStrategy::MouseStrategy() {
 }
 MouseStrategy::~MouseStrategy() {
 }
-
-void MouseStrategy::OnLButtonDown(PageForm * pageForm, CPoint point, UINT nFlags, Shape * shape)
-{
+void MouseStrategy::OnLButtonDown(CPoint point, UINT nFlags, Selection *selection, Shape *shape) {
 }
-
-void MouseStrategy::OnMouseMove(PageForm * pageForm, CPoint point)
-{
+void MouseStrategy::OnMouseMove(CPoint point) {
 }
-
-void MouseStrategy::OnLButtonUp(PageForm * pageForm, UINT nFlags, Branch * branch)
-{
+void MouseStrategy::OnLButtonUp(Selection *selection, UINT nFlags, Branch *branch) {
 }

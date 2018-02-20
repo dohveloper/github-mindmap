@@ -5,11 +5,12 @@
 #include "MouseStrategy.h"
 
 class Selection;
+
 class MarkStrategy : public MouseStrategy {
 public:
 	MarkStrategy();
 	~MarkStrategy();
-	virtual void OnLButtonDown(PageForm *pageForm, CPoint point, UINT nFlags, Shape *shape);
+	virtual void OnLButtonDown(CPoint point, UINT nFlags, Selection *selection, Shape *shape);
 };
 
 #endif //MARKSTRATEGY_H

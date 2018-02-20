@@ -3,12 +3,10 @@
 #include "Shape.h"
 #include "Topic.h"
 
-DrawTopics::DrawTopics(Branch *branch, CPaintDC *dc, Long movedX, Long movedY)
+DrawTopics::DrawTopics(Branch *branch, CPaintDC *dc)
 	:BranchTraverser(branch)
 {
 	this->dc = dc;
-	this->movedX = movedX;
-	this->movedY = movedY;
 }
 
 bool DrawTopics::ProcessItem(Shape *shape)
@@ -27,8 +25,8 @@ bool DrawTopics::ProcessItem(Shape *shape)
 
 		//토픽을 그리는 코드
 
-		x = shape->GetX() + this->movedX;
-		y = shape->GetY() + this->movedY;
+		x = shape->GetX();
+		y = shape->GetY();
 		width = shape->GetWidth();
 		height = shape->GetHeight();
 		content = shape->GetContent();
@@ -39,7 +37,7 @@ bool DrawTopics::ProcessItem(Shape *shape)
 
 	if (typeid(*shape) == typeid(Branch)) {
 		if ((((Branch*)shape))->GetIsShown() == true) {
-			DrawTopics drawLines((Branch*)shape, this->dc, this->movedX, this->movedY);
+			DrawTopics drawLines((Branch*)shape, this->dc);
 			drawLines.Traverse();
 		}
 	}

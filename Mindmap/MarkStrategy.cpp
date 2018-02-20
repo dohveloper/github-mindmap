@@ -6,7 +6,6 @@
 #include "FoldVisitor.h"
 #include "UnFoldVisitor.h"
 #include "Selection.h"
-#include "PageForm.h"
 
 MarkStrategy::MarkStrategy()
 {
@@ -14,7 +13,7 @@ MarkStrategy::MarkStrategy()
 MarkStrategy::~MarkStrategy()
 {
 }
-void MarkStrategy::OnLButtonDown(PageForm *pageForm, CPoint point, UINT nFlags, Shape *shape)
+void MarkStrategy::OnLButtonDown(CPoint point, UINT nFlags, Selection *selection, Shape *shape)
 {
 	string markContent;
 
@@ -31,6 +30,6 @@ void MarkStrategy::OnLButtonDown(PageForm *pageForm, CPoint point, UINT nFlags, 
 		FoldVisitor visitor;
 		shape->GetOwnerBranch()->GetMark()->SetContent("+");
 		shape->GetOwnerBranch()->Accept(visitor);//하위 브랜치를 접는다.
-		pageForm->selection.RemoveSubBranch(shape->GetOwnerBranch());
+		selection->RemoveSubBranch(shape->GetOwnerBranch());
 	}
 }
