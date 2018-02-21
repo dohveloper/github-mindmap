@@ -21,13 +21,11 @@ void OnHScrollLeft::Scroll(PageForm *pageForm, Long nPos)
 	Long currentPosition;
 
 	pageForm->GetScrollRange(SB_HORZ, (int*)&minmumPosition, (int*)&maximumPosition);
-	maximumPosition = (Long)pageForm->GetScrollLimit(SB_HORZ);
 	currentPosition = (Long)pageForm->GetScrollPos(SB_HORZ);
 
 	this->movedPosition = currentPosition - minmumPosition;
-	currentPosition = minmumPosition;
 
-	pageForm->SetScrollPos(SB_HORZ, currentPosition);
+	pageForm->SetScrollPos(SB_HORZ, minmumPosition);
 }
 
 OnHScrollLeft& OnHScrollLeft::operator=(const OnHScrollLeft& source)

@@ -21,18 +21,14 @@ void OnVScrollLineDown::Scroll(PageForm *pageForm, Long nPos) //세로 스크롤에서 
 	Long currentPosition;
 
 	pageForm->GetScrollRange(SB_VERT, &minmumPosition, &maximumPosition); //세로 스크롤바의 최소,최대 이동값 가져오기
-	maximumPosition = (Long)pageForm->GetScrollLimit(SB_VERT); //세로 스크롤바의 이동 한계 값 가져오기 (여기선 최대값이 받아질듯)
-	currentPosition = (Long)pageForm->GetScrollPos(SB_VERT); //현재 세로 스크롤바에서 썸의 위치 가져오기 
+	currentPosition = (Long)pageForm->GetScrollPos(SB_VERT); //현재 세로 스크롤바에서 썸의 위치 가져오기
 
 	if (currentPosition < maximumPosition)
 	{
 		this->movedPosition = -10;
 		currentPosition += 10;
 	}
-	else
-	{
-		currentPosition = maximumPosition;
-	}
+
 	pageForm->SetScrollPos(SB_VERT, currentPosition); //지정된 값으로 썸의 위치를 변경한다.
 }
 

@@ -21,13 +21,11 @@ void OnVScrollUp::Scroll(PageForm *pageForm, Long nPos)
 	Long currentPosition;
 
 	pageForm->GetScrollRange(SB_VERT, &minmumPosition, &maximumPosition);
-	maximumPosition = (Long)pageForm->GetScrollLimit(SB_VERT);
 	currentPosition = (Long)pageForm->GetScrollPos(SB_VERT);
 
 	this->movedPosition = currentPosition - minmumPosition;
-	currentPosition = minmumPosition;
 
-	pageForm->SetScrollPos(SB_VERT, currentPosition);
+	pageForm->SetScrollPos(SB_VERT, minmumPosition);
 }
 
 OnVScrollUp& OnVScrollUp::operator=(const OnVScrollUp& soucre)

@@ -25,9 +25,8 @@ void OnHScrollRight::Scroll(PageForm *pageForm, Long nPos)
 	currentPosition = (Long)pageForm->GetScrollPos(SB_HORZ);
 
 	this->movedPosition = currentPosition - maximumPosition;
-	currentPosition = maximumPosition;
 
-	pageForm->SetScrollPos(SB_HORZ, currentPosition);
+	pageForm->SetScrollPos(SB_HORZ, maximumPosition);
 }
 
 OnHScrollRight& OnHScrollRight::operator=(const OnHScrollRight& source)

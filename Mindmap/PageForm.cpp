@@ -219,7 +219,7 @@ void PageForm::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 
 BOOL PageForm::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 {
-	movedPosition = this->scrollAction->Scroll(this, nPos);
+	//movedPosition = this->scrollAction->Scroll(this, nPos);
 	this->movedY += zDelta;
 	RedrawWindow();
 	return CFrameWnd::OnMouseWheel(nFlags, zDelta, pt);
