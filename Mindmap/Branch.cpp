@@ -42,6 +42,8 @@ void Branch::Sort()
 	while (typeid(*currentItem) != typeid(Branch))
 	{
 		branchPosition++;
+		i++;
+		currentItem = this->shapes.GetAt(i);
 	}
 
 	i = branchPosition;
