@@ -28,6 +28,11 @@ void ArrangeVisitor::VisitBranch(Branch *branch)
 	Long totalHeight = 0;
 	Long mostUp = 0;
 	Long tempY;
+	Long centerY;
+	Long currentY;
+	Long selectTopic;
+	Array<Branch*> temp;
+	Long k = 0;
 
 	length = branch->GetLength();
 
@@ -47,19 +52,13 @@ void ArrangeVisitor::VisitBranch(Branch *branch)
 
 	i = 0;
 	j = branchPosition;
-	while (i < branchCount / 2)//가장 왼쪽, 위쪽에 위치한 브랜치(토픽)찾기
+	while (i < branchCount / 2)//가장 왼쪽위치한 브랜치(토픽)찾기
 	{
 		tempX = branch->GetOwnerBranch()->GetAt(j)->GetX() - hInterval - branch->GetTopic()->GetWidth();
-		tempY = branch->GetOwnerBranch()->GetAt(j)->GetY();
 
 		if (tempX < mostLeft)
 		{
 			mostLeft = tempX;
-		}
-
-		if (tempY > mostUp)
-		{
-			mostUp = tempY;
 		}
 	}
 
@@ -74,7 +73,7 @@ void ArrangeVisitor::VisitBranch(Branch *branch)
 
 	/////////////////////
 
-
+	/*
 	i = 0;
 	j = branchPosition;
 	while (i < branchCount / 2)//세로 총높이  ???하위 브랜치 있으면 계산해야함.
@@ -84,9 +83,30 @@ void ArrangeVisitor::VisitBranch(Branch *branch)
 		i++;
 	}
 
+	centerY = branch->GetOwnerBranch()->GetTopic()->GetY() + branch->GetOwnerBranch()->GetTopic()->GetHeight() / 2;
+	currentY = centerY + totalHeight / 2;
 	
+	i = 0;
+	j = branchPosition;
+	while (i < branchCount / 2)
+	{
+		tempY = branch->GetOwnerBranch()->GetAt(j)->GetY();
 
-	
-	
-	//branch->GetOwnerBranch()->GetTopic()->GetX() - hInterval - branch->GetTopic()->GetWidth();
+
+		if (tempY > mostUp)
+		{
+			mostUp = tempY;
+			selectTopic = j;
+			temp[k] = ;
+
+		}
+
+	}
+
+	branch->GetOwnerBranch()->GetAt(j)->SetY(currentY);
+
+	*/
+
+
+
 }

@@ -40,6 +40,7 @@ public:
 	void SetOwnerBranch(Branch *branch);
 	void SetContent(string content);
 	void SetX(Long x);
+	void SetY(Long y);
 
 protected:
 	Long x;
@@ -87,6 +88,11 @@ inline void Shape::SetContent(string content)
 inline void Shape::SetX(Long x)
 {
 	this->x = x;
+}
+
+inline void Shape::SetY(Long y)
+{
+	this->y = y;
 }
 
 #endif //_SHAPE_H
