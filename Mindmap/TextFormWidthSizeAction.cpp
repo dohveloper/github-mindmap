@@ -2,6 +2,7 @@
 
 #include "TextFormSize.h"
 #include "TextFormWidthSizeAction.h"
+#include "SelectText.h"
 #include "TextForm.h"
 #include "PageForm.h"
 #include "Caret.h"
@@ -34,7 +35,7 @@ void TextFormWidthSizeAction::TextFormWidthLong(TextForm *textForm, CDC *cdc)
 
 	row = (Row*)textForm->text->GetAt(textForm->caret->GetRowIndex());
 	length = row->GetLength();
-	width = row->GetRowWidth(cdc, 0, length)+3;
+	width = row->GetRowWidth(cdc, 0, length);
 
 	textFormX = textForm->textFormSize->GetX();
 	textFormY = textForm->textFormSize->GetY();
@@ -56,6 +57,8 @@ void TextFormWidthSizeAction::TextFormWidthShort(TextForm *textForm, CDC *cdc)
 	Row* row;
 	Long length;
 	Long width;
+	Long rightDirectionSelectWidth;
+	Long leftDirectionSelectWidth;
 	Long textFormX;
 	Long textFormY;
 	Long textFormWidth;
@@ -67,7 +70,9 @@ void TextFormWidthSizeAction::TextFormWidthShort(TextForm *textForm, CDC *cdc)
 
 	row = (Row*)textForm->text->GetAt(textForm->caret->GetRowIndex());
 	length = row->GetLength();
-	width = row->GetRowWidth(cdc, 0, length)+3;
+	width = row->GetRowWidth(cdc, 0, length);
+	//rightDirectionSelectWidth = row->GetRowWidth(cdc, );
+	//leftDirectionSelectWidth
 
 	textFormX = textForm->textFormSize->GetX();
 	textFormY = textForm->textFormSize->GetY();

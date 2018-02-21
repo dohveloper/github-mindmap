@@ -11,7 +11,7 @@ public:
 	TextSelectDelete();
 	~TextSelectDelete();
 
-	void TextSelectDeleteAction(TextForm *textForm, Long start, Long end);
+	void TextSelectDeleteAction(TextForm *textForm);
 
 };
 

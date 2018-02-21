@@ -16,6 +16,9 @@
 #include "TextDoubleClick.h"
 #include "TextDoubleClickSelectAction.h"
 #include "TextFormSize.h"
+#include "TextSelectDelete.h"
+#include "TextCopy.h"
+#include "TextClipboard.h"
 #include <imm.h>
 #pragma comment(lib, "imm32.LIB")
 
@@ -52,7 +55,7 @@ int TextForm::OnCreate(LPCREATESTRUCT lpCreateStruct) {
 	this->textFormSize = new TextFormSize;
 	this->writeKorean = new WriteKorean;
 	this->writeEnglish = new WriteEnglish;
-	this->textFont = new TextFont(30,15, FW_HEAVY, FALSE, FALSE, FALSE,"굴림체");
+	this->textFont = new TextFont(30,15, FW_NORMAL, FALSE, FALSE, FALSE,"굴림체");
 
 	this->text->Write(new Row);
 	return 0;
@@ -147,6 +150,9 @@ bool TextForm::OnComposition(LPARAM lParam) {
 	{
 		this->writeKorean->KoreanMixed(this, hIMC, hWnd);
 	}
+	//선택해제
+	this->selectText->SetIsNotSelect();
+
 	RedrawWindow();
 	ImmReleaseContext(hWnd, hIMC);
 
@@ -162,6 +168,8 @@ bool TextForm::OnChar(WPARAM wParam) {
 	{
 		this->writeEnglish->Write(this,cdc,word);
 	}
+	//선택해제
+	this->selectText->SetIsNotSelect();
 	RedrawWindow();
 
 	return TRUE;
@@ -191,7 +199,14 @@ void TextForm::OnKeyDown(WPARAM wParam) {
 	}
 	else if (wParam == VK_BACK)
 	{
-		if (this->caret->GetCharacterIndex() - 1 >= 0)
+		if (this->selectText->GetIsSelect() == true)
+		{
+			this->textSelectDelete->TextSelectDeleteAction(this);
+			CDC *cdc = GetDC();
+			this->textFormSize->TextFormWidthSizeShort(this, cdc);
+		}
+
+		else if (this->caret->GetCharacterIndex() - 1 >= 0)
 		{
 			this->text->GetAt(this->caret->GetRowIndex())->Delete(this->caret->GetCharacterIndex() - 1);
 			CDC *cdc = GetDC();
@@ -220,6 +235,7 @@ void TextForm::OnKeyDown(WPARAM wParam) {
 	}
 	else if (wParam == VK_TAB)
 	{
+		CDC *cdc = GetDC();
 		if (this->caret->GetCharacterIndex() > this->text->GetAt(this->caret->GetRowIndex())->GetLength() - 1)
 		{
 			this->text->GetAt(this->caret->GetRowIndex())->Write(new SingleByteCharacter('\t'));
@@ -228,19 +244,30 @@ void TextForm::OnKeyDown(WPARAM wParam) {
 		{
 			this->text->GetAt(this->caret->GetRowIndex())->Insert(this->caret->GetCharacterIndex(), new SingleByteCharacter('\t'));
 		}
+		this->textFormSize->TextFormWidthSizeLong(this, cdc);
 		this->caret->MoveToRight();
 	}
+	else if (wParam == VK_CAPITAL)
+	{
+		this->textCopy->Copy(this);
+	}
+	//선택해제
+	this->selectText->SetIsNotSelect();
 	RedrawWindow();
 }
 
 void TextForm::OnSetFocus(CWnd* pOldWnd) {
+
 	CWnd::OnSetFocus(pOldWnd);
+	//선택해제
+	this->selectText->SetIsNotSelect();
 	
 }
 
 void TextForm::OnKillFocus(CWnd* pNewWnd) {
 	CWnd::OnKillFocus(pNewWnd);
-
+	//선택해제
+	this->selectText->SetIsNotSelect();
 	DestroyCaret();
 }
 
@@ -263,6 +290,9 @@ void TextForm::OnLButtonDown(UINT nFlags, CPoint point) {
 	this->selectText->SetEndCharacterIndex(this->caret->GetCharacterIndex());
 	this->selectText->SetEndRowIndex(this->caret->GetRowIndex());
 
+	//선택해제
+	this->selectText->SetIsNotSelect();
+
 	RedrawWindow();
 	CWnd::OnLButtonDown(nFlags, point);
 }
@@ -284,6 +314,7 @@ void TextForm::OnMouseMove(UINT nFlags, CPoint point) {
 		blue = cdc->SetBkColor(GetSysColor(COLOR_HIGHLIGHT));
 
 		this->selectText->TextDragAction(this,cdc,point);
+		this->selectText->SetIsSelect();
 
 		fnt.DeleteObject();
 	}
@@ -291,7 +322,7 @@ void TextForm::OnMouseMove(UINT nFlags, CPoint point) {
 }
 
 void TextForm::OnLButtonUp(UINT nFlags, CPoint point) {
-	
+
 	CWnd::OnLButtonUp(nFlags, point);
 }
 
@@ -308,10 +339,10 @@ void TextForm::OnLButtonDblClk(UINT nFlags, CPoint point)
 	white = cdc->SetTextColor(GetSysColor(COLOR_HIGHLIGHTTEXT));
 	blue = cdc->SetBkColor(GetSysColor(COLOR_HIGHLIGHT));
 
-	this->selectText->TextDoubleClickAction(this, cdc);
-
+	this->selectText->TextDoubleClickAction(this, cdc,point);
+	//선택됨
+	this->selectText->SetIsSelect();
 	fnt.DeleteObject();
-
 	CWnd::OnLButtonDblClk(nFlags, point);
 }
 

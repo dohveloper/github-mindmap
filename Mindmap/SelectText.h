@@ -13,7 +13,7 @@ public:
 	~SelectText();
 
 	void TextDragAction(TextForm *textForm, CDC *cdc, CPoint point);
-	void TextDoubleClickAction(TextForm *textForm, CDC *cdc);
+	void TextDoubleClickAction(TextForm *textForm, CDC *cdc, CPoint point);
 
 	SelectText& operator=(const SelectText& source);
 
@@ -21,11 +21,14 @@ public:
 	Long SetStartRowIndex(Long index);
 	Long SetEndCharacterIndex(Long index);
 	Long SetEndRowIndex(Long index);
+	void SetIsSelect();
+	void SetIsNotSelect();
 
 	Long GetStartCharacterIndex() const;
 	Long GetStartRowIndex() const;
 	Long GetEndCharacterIndex() const;
 	Long GetEndRowIndex() const;
+	bool GetIsSelect() const;
 private:
 	//시작
 	Long startCharacterIndex;
@@ -33,6 +36,8 @@ private:
 	//마지막
 	Long endCharacterIndex;
 	Long endRowIndex;
+
+	bool IsSelect;
 };
 
 inline Long SelectText::GetStartCharacterIndex() const {
@@ -48,6 +53,10 @@ inline Long SelectText::GetEndCharacterIndex() const {
 
 inline Long SelectText::GetEndRowIndex() const {
 	return this->endRowIndex;
+}
+
+inline bool SelectText::GetIsSelect() const {
+	return this->IsSelect;
 }
 
 #endif //_SELECTTEXT_H

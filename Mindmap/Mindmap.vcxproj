@@ -56,7 +56,9 @@
     <ClInclude Include="SingleLineDragAction.h" />
     <ClInclude Include="SingleSelect.h" />
     <ClInclude Include="Text.h" />
+    <ClInclude Include="TextClipboard.h" />
     <ClInclude Include="TextComposite.h" />
+    <ClInclude Include="TextCopy.h" />
     <ClInclude Include="TextDoubleClick.h" />
     <ClInclude Include="TextDoubleClickSelectAction.h" />
     <ClInclude Include="TextDrag.h" />
@@ -108,7 +110,9 @@
     <ClCompile Include="SingleLineDragAction.cpp" />
     <ClCompile Include="SingleSelect.cpp" />
     <ClCompile Include="Text.cpp" />
+    <ClCompile Include="TextClipboard.cpp" />
     <ClCompile Include="TextComposite.cpp" />
+    <ClCompile Include="TextCopy.cpp" />
     <ClCompile Include="TextDoubleClick.cpp" />
     <ClCompile Include="TextDoubleClickSelectAction.cpp" />
     <ClCompile Include="TextDrag.cpp" />

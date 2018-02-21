@@ -47,7 +47,7 @@ Long TextDoubleClick::CheckStartCharacterIndex(TextForm *textForm)
 	Long caretIndex;
 	Row* row;
 
-	caretIndex = textForm->caret->GetCharacterIndex() - 1;
+	caretIndex = textForm->caret->GetCharacterIndex()-1;
 	row = (Row*)textForm->text->GetAt(textForm->caret->GetRowIndex());
 
 
@@ -61,10 +61,11 @@ Long TextDoubleClick::CheckStartCharacterIndex(TextForm *textForm)
 		caretIndex = 0;
 	}
 
-	if (caretIndex != 0 && (row->GetAt(caretIndex)->MakeString().compare(" ") != 0 || row->GetAt(caretIndex)->MakeString().compare("\t") != 0))
+	else if (row->GetAt(caretIndex)->MakeString().compare(" ") != 0 || row->GetAt(caretIndex)->MakeString().compare("\t") != 0)
 	{
 		caretIndex += 1;
 	}
+
 
 	return caretIndex;
 }
