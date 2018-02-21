@@ -17,6 +17,8 @@
 #include "OnVScrollPageUp.h"
 #include "OnVScrollPageDown.h"
 #include "OnMouseWheel.h"
+#include "OnMouseWheelUp.h"
+#include "OnMouseWheelDown.h"
 
 ScrollAction::ScrollAction()
 {
@@ -46,9 +48,20 @@ Long ScrollAction::Scroll(PageForm *pageForm, UINT nPos)
 Long ScrollAction::Scroll(PageForm * pageForm, short zDelta)
 {
 	Long movedPosition;
-	OnMouseWheel onMouseWheel;
+	OnMouseWheel *onMouseWheel = NULL;
 
-	movedPosition = onMouseWheel.Scroll(pageForm, zDelta);
+	if (zDelta > 0) {
+		onMouseWheel = new OnMouseWheelUp();
+	}
+	else if (zDelta < 0) {
+		onMouseWheel = new OnMouseWheelDown();
+	}
+
+	movedPosition = onMouseWheel->Scroll(pageForm, zDelta);
+
+	if (onMouseWheel != NULL) {
+		delete onMouseWheel;
+	}
 
 	return movedPosition;
 }
