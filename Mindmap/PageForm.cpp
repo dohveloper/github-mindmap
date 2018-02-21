@@ -20,6 +20,7 @@
 #include "DrawingVisitor.h"
 #include "DeleteVisitor.h"
 #include "ScrollAction.h"
+#include "SingleSelect.h"
 
 BEGIN_MESSAGE_MAP(PageForm, CFrameWnd)
 	ON_WM_CREATE()
@@ -167,7 +168,6 @@ void PageForm::OnLButtonDblClk(UINT nFlags, CPoint point)
 
 		this->textForm->SetCapture();
 	}
-}
 }
 
 void PageForm::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
