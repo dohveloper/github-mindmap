@@ -71,24 +71,26 @@ void PageForm::SetScrolls()
 
 CPoint PageForm::GetRealPoint(CPoint point)
 {
-	point.Offset(this->movedX, this->movedY*-1);
+	point.Offset(this->movedX*-1, this->movedY*-1);
 	return point;
 }
 
 void PageForm::OnLButtonDown(UINT nFlags, CPoint point) {
 	Shape *clickedObject = NULL;
 
-	point.Offset(this->movedX, this->movedY *-1);
+	point.Offset(this->movedX*-1, this->movedY *-1);
 
 	clickedObject = this->mouseAction->GetClickedObject(this->branch, point);
 	this->mouseAction->SetStrategy(clickedObject);
 	this->mouseAction->OnLButtonDown(point, nFlags, &this->selection, clickedObject);
-
+	CString string;
+	string.Format(_T("x : %d , y: %d   movedX : %d  movedY: %d"), point.x, point.y, this->movedX, this->movedY);
+	AfxMessageBox(string);
 	CFrameWnd::OnLButtonDown(nFlags, point);
 }
 
 void PageForm::OnMouseMove(UINT nFlags, CPoint point) {
-	point.Offset(this->movedX, this->movedY* -1);
+	point.Offset(this->movedX*-1, this->movedY* -1);
 	if ((nFlags & MK_LBUTTON) == MK_LBUTTON)
 	{
 		this->mouseAction->OnMouseMove(point);
