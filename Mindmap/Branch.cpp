@@ -64,7 +64,7 @@ void Branch::Sort()
 		}
 		i++;
 	}
-	//leftBranches.shapes.BubbleSort(CompareY);
+	leftBranches.shapes.BubbleSort(CompareY);
 	//leftBranches.shapes.SelectionSort(CompareY);
 	//rightBranches.shapes.BubbleSort(CompareY);
 
@@ -152,17 +152,20 @@ int CompareY(void *one, void *other)
 	//Long front = frontBranch->GetTopic()->GetY();
 	//Long rear = rearBranch->GetTopic()->GetY();
 	int ret = 0;
-
+	//(*(Branch*)one).GetTopic()->GetY()
 	//((Branch*)one)->GetTopic()->GetY()
-	if (((Branch*)one)->GetTopic()->GetY() > ((Branch*)other)->GetTopic()->GetY())
+	(*(Branch*)one).GetTopic()
+
+
+	if ((*(Branch*)one).GetTopic()->GetY() > (*(Branch*)other).GetTopic()->GetY())
 	{
 		ret = -1;
 	}
-	else if (((Branch*)one)->GetTopic()->GetY() == ((Branch*)other)->GetTopic()->GetY())
+	else if ((*(Branch*)one).GetTopic()->GetY() == (*(Branch*)other).GetTopic()->GetY())
 	{
 		ret = 0;
 	}
-	else if (((Branch*)one)->GetTopic()->GetY() < ((Branch*)other)->GetTopic()->GetY())
+	else if ((*(Branch*)one).GetTopic()->GetY() < (*(Branch*)other).GetTopic()->GetY())
 	{
 		ret = 1;
 	}
