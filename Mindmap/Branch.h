@@ -25,4 +25,6 @@ public:
 	Branch& operator=(const Branch& source);
 };
 
+int CompareY(void *one, void *other);
+
 #endif //TOPIC_H

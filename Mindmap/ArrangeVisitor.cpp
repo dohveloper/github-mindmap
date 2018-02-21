@@ -34,18 +34,18 @@ void ArrangeVisitor::VisitBranch(Branch *branch)
 	Array<Branch*> temp;
 	Long k = 0;
 
-	length = branch->GetLength();
+	length = branch->GetOwnerBranch()->GetLength();
 
 	while (i < length)//브랜치개수, 브랜치 시작지점 찾기
 	{
 		currentItem = branch->GetOwnerBranch()->GetAt(i);
 		if (typeid(*currentItem) == typeid(Branch))
 		{
-			branchCount++;
+			branchCount++;//브랜치 개수
 		}
 		else
 		{
-			branchPosition++;
+			branchPosition++;//브랜치가 시작되는 지점
 		}
 		i++;
 	}
@@ -54,7 +54,8 @@ void ArrangeVisitor::VisitBranch(Branch *branch)
 	j = branchPosition;
 	while (i < branchCount / 2)//가장 왼쪽위치한 브랜치(토픽)찾기
 	{
-		tempX = branch->GetOwnerBranch()->GetAt(j)->GetX() - hInterval - branch->GetTopic()->GetWidth();
+		//오너브랜치의 브랜치들 중 가장 좌측의 브랜치 찾기
+		tempX = ((Branch*)branch->GetOwnerBranch()->GetAt(j))->GetTopic()->GetX() - hInterval - branch->GetTopic()->GetWidth();
 
 		if (tempX < mostLeft)
 		{
