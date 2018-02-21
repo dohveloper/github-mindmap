@@ -15,6 +15,7 @@ public:
 	virtual ~Composite()=0;
 
 	Long Add(Shape *shape);
+	Long Remove(Long index);
 	Long Correct(Long index, Shape *shape);
 	Shape* GetAt(Long index);
 	Composite& operator=(const Composite& source);

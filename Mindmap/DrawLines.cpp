@@ -3,10 +3,12 @@
 #include "Shape.h"
 #include "Line.h"
 
-DrawLines::DrawLines(Branch *branch, CPaintDC *dc)
+DrawLines::DrawLines(Branch *branch, CPaintDC *dc, Long movedX, Long movedY)
 	:BranchTraverser(branch)
 {
 	this->dc = dc;
+	this->movedX = movedX;
+	this->movedY = movedY;
 }
 
 bool DrawLines::ProcessItem(Shape *shape)
@@ -17,8 +19,8 @@ bool DrawLines::ProcessItem(Shape *shape)
 	Long height;
 
 	if (typeid(*shape) == typeid(Line)) {
-		x = shape->GetX();
-		y = shape->GetY();
+		x = shape->GetX() + this->movedX;
+		y = shape->GetY() + this->movedY;
 		width = shape->GetWidth();
 		height = shape->GetHeight();
 		this->dc->MoveTo(x, y);
@@ -27,7 +29,7 @@ bool DrawLines::ProcessItem(Shape *shape)
 
 	if (typeid(*shape) == typeid(Branch)) {
 		if ((((Branch*)shape))->GetIsShown() == true) {
-			DrawLines drawLines((Branch*)shape,this->dc);
+			DrawLines drawLines((Branch*)shape,this->dc, this->movedX, this->movedY);
 			drawLines.Traverse();
 		}
 	}

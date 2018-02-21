@@ -1,4 +1,5 @@
 #include "Shape.h"
+#include "Selection.h"
 //#include "Composite.h"
 //#include "Line.h"
 
@@ -35,6 +36,11 @@ Shape::Shape(const Shape& source)
 Shape::~Shape() {}
 
 Long Shape::Add(Shape *shape) {
+	return -1;
+}
+
+Long Shape::Remove(Long index)
+{
 	return -1;
 }
 

@@ -8,7 +8,7 @@ public:
 	SubBranchDeselect(Branch *branch, Selection *selection);
 
 protected:
-	virtual bool ProcessItem(Shape*);
+	virtual bool ProcessItem(Shape *shape);
 
 private:
 	Selection * selection;

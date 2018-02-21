@@ -20,7 +20,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{2CFFCC6D-A977-4B6A-A9B4-E2C7D3F2C51A}</ProjectGuid>
+    <ProjectGuid>{6684996A-86AD-46BF-8C6B-72F19A6FD9C5}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Mindmap</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
@@ -44,7 +44,8 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>NotSet</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -142,15 +143,9 @@
   <ItemGroup>
     <ClInclude Include="Array.h" />
     <ClInclude Include="Branch.h" />
-    <ClInclude Include="BranchIterator.h" />
-    <ClInclude Include="BranchTraverser.h" />
-    <ClInclude Include="Caret.h" />
-    <ClInclude Include="Character.h" />
     <ClInclude Include="Clipboard.h" />
     <ClInclude Include="Composite.h" />
-    <ClInclude Include="DoubleByteCharacter.h" />
-    <ClInclude Include="DoubleLineDragAction.h" />
-    <ClInclude Include="DrawingMouse.h" />
+    <ClInclude Include="DeleteVisitor.h" />
     <ClInclude Include="DrawingStrategy.h" />
     <ClInclude Include="DrawingVisitor.h" />
     <ClInclude Include="DrawLines.h" />
@@ -161,55 +156,56 @@
     <ClInclude Include="HitTestVisitor.h" />
     <ClInclude Include="Iterator.h" />
     <ClInclude Include="Line.h" />
+    <ClInclude Include="BranchTraverser.h" />
+    <ClInclude Include="BranchIterator.h" />
     <ClInclude Include="Mark.h" />
     <ClInclude Include="MarkHitTest.h" />
     <ClInclude Include="MarkStrategy.h" />
     <ClInclude Include="MouseAction.h" />
     <ClInclude Include="MouseStrategy.h" />
-    <ClInclude Include="MultiLineDragAction.h" />
     <ClInclude Include="MultiSelect.h" />
+    <ClInclude Include="OnHScrollLeft.h" />
+    <ClInclude Include="OnHScrollLineLeft.h" />
+    <ClInclude Include="OnHScrollLineRight.h" />
+    <ClInclude Include="OnHScrollPageLeft.h" />
+    <ClInclude Include="OnHScrollPageRight.h" />
+    <ClInclude Include="OnHScrollRight.h" />
+    <ClInclude Include="OnHThumb.h" />
+    <ClInclude Include="OnMouseWheel.h" />
+    <ClInclude Include="OnMouseWheelUp.h" />
+    <ClInclude Include="OnMouseWheelDown.h" />
+    <ClInclude Include="OnVScrollDown.h" />
+    <ClInclude Include="OnVScrollLineDown.h" />
+    <ClInclude Include="OnVScrollLineUp.h" />
+    <ClInclude Include="OnVScrollPageDown.h" />
+    <ClInclude Include="OnVScrollPageUp.h" />
+    <ClInclude Include="OnVScrollUp.h" />
+    <ClInclude Include="OnVThumb.h" />
     <ClInclude Include="OverlappedConfirmVisitor.h" />
     <ClInclude Include="Page.h" />
     <ClInclude Include="PageApp.h" />
     <ClInclude Include="PageForm.h" />
-    <ClInclude Include="Row.h" />
+    <ClInclude Include="ScrollAction.h" />
+    <ClInclude Include="ScrollStrategy.h" />
     <ClInclude Include="Select.h" />
     <ClInclude Include="Selection.h" />
     <ClInclude Include="SelectionMarkVisitor.h" />
     <ClInclude Include="SelectionStrategy.h" />
-    <ClInclude Include="SelectText.h" />
     <ClInclude Include="Shape.h" />
     <ClInclude Include="ShapeVisitor.h" />
-    <ClInclude Include="SingleByteCharacter.h" />
-    <ClInclude Include="SingleLineDragAction.h" />
     <ClInclude Include="SingleSelect.h" />
     <ClInclude Include="SubBranchDeselect.h" />
-    <ClInclude Include="Text.h" />
-    <ClInclude Include="TextComposite.h" />
-    <ClInclude Include="TextDoubleClick.h" />
-    <ClInclude Include="TextDoubleClickSelectAction.h" />
-    <ClInclude Include="TextDrag.h" />
-    <ClInclude Include="TextFont.h" />
-    <ClInclude Include="TextForm.h" />
-    <ClInclude Include="TextFormSize.h" />
-    <ClInclude Include="TextVisitor.h" />
     <ClInclude Include="Topic.h" />
     <ClInclude Include="TopicHitTest.h" />
     <ClInclude Include="UnFoldVisitor.h" />
-    <ClInclude Include="WriteEnglish.h" />
-    <ClInclude Include="WriteKorean.h" />
-    <ClInclude Include="WriteVisitor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Branch.cpp" />
     <ClCompile Include="BranchIterator.cpp" />
     <ClCompile Include="BranchTraverser.cpp" />
-    <ClCompile Include="Caret.cpp" />
-    <ClCompile Include="Character.cpp" />
     <ClCompile Include="Clipboard.cpp" />
     <ClCompile Include="Composite.cpp" />
-    <ClCompile Include="DoubleByteCharacter.cpp" />
-    <ClCompile Include="DoubleLineDragAction.cpp" />
+    <ClCompile Include="DeleteVisitor.cpp" />
     <ClCompile Include="DrawingStrategy.cpp" />
     <ClCompile Include="DrawingVisitor.cpp" />
     <ClCompile Include="DrawLines.cpp" />
@@ -225,39 +221,41 @@
     <ClCompile Include="MarkStrategy.cpp" />
     <ClCompile Include="MouseAction.cpp" />
     <ClCompile Include="MouseStrategy.cpp" />
-    <ClCompile Include="MultiLineDragAction.cpp" />
     <ClCompile Include="MultiSelect.cpp" />
+    <ClCompile Include="OnHScrollLeft.cpp" />
+    <ClCompile Include="OnHScrollLineLeft.cpp" />
+    <ClCompile Include="OnHScrollLineRight.cpp" />
+    <ClCompile Include="OnHScrollPageLeft.cpp" />
+    <ClCompile Include="OnHScrollPageRight.cpp" />
+    <ClCompile Include="OnHScrollRight.cpp" />
+    <ClCompile Include="OnHThumb.cpp" />
+    <ClCompile Include="OnMouseWheel.cpp" />
+    <ClCompile Include="OnMouseWheelUp.cpp" />
+    <ClCompile Include="OnMouseWheelDown.cpp" />
+    <ClCompile Include="OnVScrollDown.cpp" />
+    <ClCompile Include="OnVScrollLineDown.cpp" />
+    <ClCompile Include="OnVScrollLineUp.cpp" />
+    <ClCompile Include="OnVScrollPageDown.cpp" />
+    <ClCompile Include="OnVScrollPageUp.cpp" />
+    <ClCompile Include="OnVScrollUp.cpp" />
+    <ClCompile Include="OnVThumb.cpp" />
     <ClCompile Include="OverlappedConfirmVisitor.cpp" />
     <ClCompile Include="Page.cpp" />
     <ClCompile Include="PageApp.cpp" />
     <ClCompile Include="PageForm.cpp" />
-    <ClCompile Include="Row.cpp" />
+    <ClCompile Include="ScrollAction.cpp" />
+    <ClCompile Include="ScrollStrategy.cpp" />
     <ClCompile Include="Select.cpp" />
     <ClCompile Include="Selection.cpp" />
     <ClCompile Include="SelectionMarkVIsitor.cpp" />
     <ClCompile Include="SelectionStrategy.cpp" />
-    <ClCompile Include="SelectText.cpp" />
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="ShapeVisitor.cpp" />
-    <ClCompile Include="SingleByteCharacter.cpp" />
-    <ClCompile Include="SingleLineDragAction.cpp" />
     <ClCompile Include="SingleSelect.cpp" />
     <ClCompile Include="SubBranchDeselect.cpp" />
-    <ClCompile Include="Text.cpp" />
-    <ClCompile Include="TextComposite.cpp" />
-    <ClCompile Include="TextDoubleClick.cpp" />
-    <ClCompile Include="TextDoubleClickSelectAction.cpp" />
-    <ClCompile Include="TextDrag.cpp" />
-    <ClCompile Include="TextFont.cpp" />
-    <ClCompile Include="TextForm.cpp" />
-    <ClCompile Include="TextFormSize.cpp" />
-    <ClCompile Include="TextVisitor.cpp" />
     <ClCompile Include="Topic.cpp" />
     <ClCompile Include="TopicHitTest.cpp" />
     <ClCompile Include="UnFoldVisitor.cpp" />
-    <ClCompile Include="WriteEnglish.cpp" />
-    <ClCompile Include="WriteKorean.cpp" />
-    <ClCompile Include="WriteVisitor.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

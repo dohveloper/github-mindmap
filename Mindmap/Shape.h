@@ -8,7 +8,7 @@
 using namespace std;
 typedef signed long int Long;
 class Branch;
-
+class Selection;
 class Shape {
 public:
 	Shape();
@@ -17,6 +17,7 @@ public:
 	virtual ~Shape() = 0;
 
 	virtual Long Add(Shape *shape);
+	virtual Long Remove(Long index);
 	virtual Long Correct(Long index, Shape *shape);
 	virtual Shape* GetAt(Long index);
 
