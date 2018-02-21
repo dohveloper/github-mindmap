@@ -29,6 +29,7 @@ BEGIN_MESSAGE_MAP(PageForm, CFrameWnd)
 	ON_WM_KEYDOWN()
 	ON_WM_HSCROLL()
 	ON_WM_VSCROLL()
+	ON_WM_MOUSEWHEEL()
 END_MESSAGE_MAP()
 
 PageForm::PageForm() {
@@ -216,20 +217,10 @@ void PageForm::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 	CFrameWnd::OnHScroll(nSBCode, nPos, pScrollBar);
 }
 
-/*
-#include <iostream>
-int main(int argc, char *argv[]) {
-CPoint point(10, 10);
-PageForm pageForm;
-pageForm.movedX = 10;
-pageForm.movedY = 10;
-
-cout << " 이전    x : " << point.x << " y : " << point.y << endl;
-cout << endl;
-
-point = pageForm.GetRealPoint(point);
-cout << " 이후    x : " << point.x << " y : " << point.y << endl;
-
-return 0;
+BOOL PageForm::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
+{
+	movedPosition = this->scrollAction->Scroll(this, nPos);
+	this->movedY += zDelta;
+	RedrawWindow();
+	return CFrameWnd::OnMouseWheel(nFlags, zDelta, pt);
 }
-*/
