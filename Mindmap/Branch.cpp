@@ -66,7 +66,7 @@ void Branch::Sort()
 	}
 	leftBranches.shapes.BubbleSort(CompareY);
 	//leftBranches.shapes.SelectionSort(CompareY);
-	//rightBranches.shapes.BubbleSort(CompareY);
+	rightBranches.shapes.BubbleSort(CompareY);
 
 	i = 0;
 	while (i < leftBranches.GetLength())
@@ -154,18 +154,18 @@ int CompareY(void *one, void *other)
 	int ret = 0;
 	//(*(Branch*)one).GetTopic()->GetY()
 	//((Branch*)one)->GetTopic()->GetY()
-	(*(Branch*)one).GetTopic()
+	//(*(*(Branch*)one).GetTopic()).GetY();
+	
 
-
-	if ((*(Branch*)one).GetTopic()->GetY() > (*(Branch*)other).GetTopic()->GetY())
+	if ((*(Branch**)one)->GetTopic()->GetY() > (*(Branch**)other)->GetTopic()->GetY())
 	{
 		ret = -1;
 	}
-	else if ((*(Branch*)one).GetTopic()->GetY() == (*(Branch*)other).GetTopic()->GetY())
+	else if ((*(Branch**)one)->GetTopic()->GetY() == (*(Branch**)other)->GetTopic()->GetY())
 	{
 		ret = 0;
 	}
-	else if ((*(Branch*)one).GetTopic()->GetY() < (*(Branch*)other).GetTopic()->GetY())
+	else if ((*(Branch**)one)->GetTopic()->GetY() < (*(Branch**)other)->GetTopic()->GetY())
 	{
 		ret = 1;
 	}
@@ -183,7 +183,7 @@ int main(int argc, char *argv[])
 	Long lenght;
 
 	Branch *branch = new Branch;
-	branch->Add(new Topic(387, 150, 200, 200, "메인토픽"));
+	branch->Add(new Topic(287, 150, 200, 200, "메인토픽"));
 	branch->Add(new Mark(573, 200));
 
 	cout << branch->GetAt(0)->GetX() << endl;
