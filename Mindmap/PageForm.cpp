@@ -69,12 +69,6 @@ void PageForm::SetScrolls()
 	SetScrollInfo(SB_VERT, &scrollInfo, TRUE);
 }
 
-CPoint PageForm::GetRealPoint(CPoint point)
-{
-	point.Offset(this->movedX*-1, this->movedY*-1);
-	return point;
-}
-
 void PageForm::OnLButtonDown(UINT nFlags, CPoint point) {
 	Shape *clickedObject = NULL;
 
@@ -83,9 +77,6 @@ void PageForm::OnLButtonDown(UINT nFlags, CPoint point) {
 	clickedObject = this->mouseAction->GetClickedObject(this->branch, point);
 	this->mouseAction->SetStrategy(clickedObject);
 	this->mouseAction->OnLButtonDown(point, nFlags, &this->selection, clickedObject);
-	CString string;
-	string.Format(_T("x : %d , y: %d   movedX : %d  movedY: %d"), point.x, point.y, this->movedX, this->movedY);
-	AfxMessageBox(string);
 	CFrameWnd::OnLButtonDown(nFlags, point);
 }
 
@@ -221,8 +212,16 @@ void PageForm::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 
 BOOL PageForm::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 {
-	//movedPosition = this->scrollAction->Scroll(this, nPos);
-	this->movedY += zDelta;
+	Long movedPosition;
+	this->scrollAction->SetHScrollStrategy(WM_MOUSEWHEEL);
+	movedPosition = this->scrollAction->Scroll(this, zDelta);
+	this->movedY += movedPosition;
+
+	/*
+		CString string;
+		string.Format(_T("zdelta : %d "), zDelta);
+		AfxMessageBox(string);
+	*/
 	RedrawWindow();
 	return CFrameWnd::OnMouseWheel(nFlags, zDelta, pt);
 }

@@ -177,6 +177,12 @@
     <ClInclude Include="ScrollAction.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="OnMouseWheel.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="OnMouseWheelDown.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Branch.cpp">
@@ -336,6 +342,12 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="DrawingVisitor.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="OnMouseWheelDown.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="OnMouseWheel.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

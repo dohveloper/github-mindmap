@@ -171,6 +171,8 @@
     <ClInclude Include="OnHScrollPageRight.h" />
     <ClInclude Include="OnHScrollRight.h" />
     <ClInclude Include="OnHThumb.h" />
+    <ClInclude Include="OnMouseWheel.h" />
+    <ClInclude Include="OnMouseWheelDown.h" />
     <ClInclude Include="OnVScrollDown.h" />
     <ClInclude Include="OnVScrollLineDown.h" />
     <ClInclude Include="OnVScrollLineUp.h" />
@@ -226,6 +228,8 @@
     <ClCompile Include="OnHScrollPageRight.cpp" />
     <ClCompile Include="OnHScrollRight.cpp" />
     <ClCompile Include="OnHThumb.cpp" />
+    <ClCompile Include="OnMouseWheel.cpp" />
+    <ClCompile Include="OnMouseWheelDown.cpp" />
     <ClCompile Include="OnVScrollDown.cpp" />
     <ClCompile Include="OnVScrollLineDown.cpp" />
     <ClCompile Include="OnVScrollLineUp.cpp" />

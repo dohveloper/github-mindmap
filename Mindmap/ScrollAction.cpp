@@ -16,12 +16,11 @@
 #include "OnVScrollLineDown.h"
 #include "OnVScrollPageUp.h"
 #include "OnVScrollPageDown.h"
-
+#include "OnMouseWheel.h"
 
 ScrollAction::ScrollAction()
 {
 	this->scrollStrategy = NULL;
-	
 }
 
 ScrollAction::ScrollAction(const ScrollAction & source)
@@ -44,7 +43,15 @@ Long ScrollAction::Scroll(PageForm *pageForm, UINT nPos)
 	return movedPosition;
 }
 
+Long ScrollAction::Scroll(PageForm * pageForm, short zDelta)
+{
+	Long movedPosition;
+	OnMouseWheel onMouseWheel;
 
+	movedPosition = onMouseWheel.Scroll(pageForm, zDelta);
+
+	return movedPosition;
+}
 
 void ScrollAction::SetHScrollStrategy(Long nSBCode)
 {
@@ -94,7 +101,6 @@ void ScrollAction::SetHScrollStrategy(Long nSBCode)
 	default:
 		break;
 	}
-
 }
 
 void ScrollAction::SetVScrollStrategy(Long nSBCode)
@@ -143,13 +149,11 @@ void ScrollAction::SetVScrollStrategy(Long nSBCode)
 		this->scrollStrategy = new OnVScrollPageDown();
 		break;
 	}
+
 	default:
 		break;
 	}
 }
-
-
-
 
 ScrollAction& ScrollAction::operator=(const ScrollAction& source)
 {

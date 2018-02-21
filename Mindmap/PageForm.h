@@ -19,7 +19,6 @@ class PageForm :public CFrameWnd {
 public:
 	PageForm();
 	void SetScrolls();
-	CPoint GetRealPoint(CPoint point);
 public:
 	Branch * branch;
 	Selection selection;
