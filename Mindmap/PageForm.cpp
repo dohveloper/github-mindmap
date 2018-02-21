@@ -70,12 +70,14 @@ void PageForm::SetScrolls()
 
 CPoint PageForm::GetRealPoint(CPoint point)
 {
-	point.Offset(this->movedX, this->movedY);
+	point.Offset(this->movedX, this->movedY*-1);
 	return point;
 }
 
 void PageForm::OnLButtonDown(UINT nFlags, CPoint point) {
 	Shape *clickedObject = NULL;
+
+	point.Offset(this->movedX, this->movedY *-1);
 
 	clickedObject = this->mouseAction->GetClickedObject(this->branch, point);
 	this->mouseAction->SetStrategy(clickedObject);
@@ -85,6 +87,7 @@ void PageForm::OnLButtonDown(UINT nFlags, CPoint point) {
 }
 
 void PageForm::OnMouseMove(UINT nFlags, CPoint point) {
+	point.Offset(this->movedX, this->movedY* -1);
 	if ((nFlags & MK_LBUTTON) == MK_LBUTTON)
 	{
 		this->mouseAction->OnMouseMove(point);
@@ -93,6 +96,7 @@ void PageForm::OnMouseMove(UINT nFlags, CPoint point) {
 }
 
 void PageForm::OnLButtonUp(UINT nFlags, CPoint point) {
+	point.Offset(this->movedX, this->movedY);
 	this->mouseAction->OnLButtonUp(&this->selection, nFlags, this->branch);
 
 	RedrawWindow();
@@ -106,7 +110,7 @@ void PageForm::OnPaint() {
 	CPen blackPen;
 
 	//선택표시하기
-	SelectionMarkVisitor selectionMarkVisitor(&this->selection, &dc);
+	SelectionMarkVisitor selectionMarkVisitor(&this->selection, &dc, this->movedX, this->movedY);
 	while (i < this->selection.GetLength()) {
 		selectedTopic = this->selection.GetAt(i)->GetTopic();
 		selectedTopic->Accept(selectionMarkVisitor);
@@ -117,7 +121,7 @@ void PageForm::OnPaint() {
 	blackPen.CreatePen(PS_SOLID, 1, RGB(0, 0, 0));
 	dc.SelectObject(&blackPen);
 
-	DrawingVisitor visitor(&dc);
+	DrawingVisitor visitor(&dc, this->movedX, this->movedY);
 
 	this->branch->Accept(visitor);
 }
