@@ -50,22 +50,22 @@ int PageForm::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	return 0;
 }
 
-void PageForm::SetScrolls()
-{
+void PageForm::SetScrolls() {
+	//胶农费 积己
 	SCROLLINFO scrollInfo;
 
 	scrollInfo.cbSize = sizeof(SCROLLINFO);
 	scrollInfo.fMask = SIF_PAGE | SIF_RANGE;
-	scrollInfo.nPage = 100;
+	scrollInfo.nPage = 1200;
 	scrollInfo.nMin = 0;
-	scrollInfo.nMax = 1280;
+	scrollInfo.nMax = 10000;
 	SetScrollInfo(SB_HORZ, &scrollInfo, TRUE);
 
 	scrollInfo.cbSize = sizeof(SCROLLINFO);
 	scrollInfo.fMask = SIF_PAGE | SIF_RANGE;
-	scrollInfo.nPage = 80;
+	scrollInfo.nPage = 600;
 	scrollInfo.nMin = 0;
-	scrollInfo.nMax = 720;
+	scrollInfo.nMax = 8000;
 	SetScrollInfo(SB_VERT, &scrollInfo, TRUE);
 }
 
