@@ -25,10 +25,15 @@ void OnHScrollPageLeft::Scroll(PageForm *pageForm, Long nPos)
 	currentPosition = (Long)pageForm->GetScrollPos(SB_HORZ);
 	pageForm->GetScrollInfo(SB_HORZ, &info, SIF_ALL);
 
-	if (currentPosition > minmumPosition)
+	if (currentPosition - (int)info.nPage > minmumPosition)
 	{
 		this->movedPosition = (int)info.nPage;
 		currentPosition -= (int)info.nPage;
+	}
+	else
+	{
+		this->movedPosition = currentPosition - minmumPosition;
+		currentPosition = minmumPosition;
 	}
 	pageForm->SetScrollPos(SB_HORZ, currentPosition);
 }

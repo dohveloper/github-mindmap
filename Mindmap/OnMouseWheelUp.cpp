@@ -22,12 +22,12 @@ Long OnMouseWheelUp::Scroll(PageForm * pageForm, short zDelta)
 	current = (Long)pageForm->GetScrollPos(SB_VERT);
 	//pageForm->GetScrollInfo(SB_VERT, &info, SIF_ALL);
 
-	if (current > minimum && current + zDelta >= minimum) {
+	if (current > minimum && current - zDelta >= minimum) {
 		movedPosition = zDelta;
 		current -= zDelta;
 	}
-	else if (current > minimum && current + zDelta > minimum) {
-		movedPosition = minimum - current;
+	else if (current > minimum && current - zDelta < minimum) {
+		movedPosition = current;
 		current = minimum;
 	}
 	pageForm->SetScrollPos(SB_VERT, current);
