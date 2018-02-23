@@ -32,17 +32,17 @@ void WriteVisitor::VisitText(Text *text) {
 	Long i = 0;
 	Long length;
 	CRect rect;
+	Long x;
 
 	length = text->GetLength();
 
-
 	while (i < length) {
 		word = text->GetAt(i)->MakeString();
-		SetRect(&rect,0 ,this->textForm->textFont->GetHeight() * i, this->textForm->textFormSize->GetWidth(), this->textForm->textFormSize->GetHeight());
-		
-		this->dc->DrawText((CString)word.c_str(), &rect, DT_LEFT | DT_WORDBREAK | DT_EDITCONTROL);
 
-		//this->dc->TextOut(0, this->textForm->textFont->GetHeight() * i, (CString)word.c_str());
+		SetRect(&rect, 0, this->textForm->textFont->GetHeight() * i, this->textForm->textFormSize->GetWidth(), this->textForm->textFormSize->GetHeight());
+
+		x = this->dc->DrawText((CString)word.c_str(), &rect, DT_LEFT);
+
 		i++;
 	}
 }

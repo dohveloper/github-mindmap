@@ -4,12 +4,16 @@
 #include "TextVisitor.h"
 
 Row::Row(Long capacity) {
+	this->isWordWrap = false;
+}
 
+Row::Row(bool isWordWrap) {
+	this->isWordWrap = isWordWrap;
 }
 
 Row::Row(const Row& source)
 	:TextComposite(source){
-
+	this->isWordWrap = source.isWordWrap;
 }
 
 Row::~Row()
@@ -47,6 +51,7 @@ Row& Row::operator=(const Row& source)
 	this->characters = source.characters;
 	this->capacity = source.capacity;
 	this->length = source.length;
+	this->isWordWrap = source.isWordWrap;
 
 	return *this;
 }

@@ -10,6 +10,7 @@ typedef signed long int Long;
 class Row : public TextComposite {
 public:
 	Row(Long capacity = 256);
+	Row(bool isWordWrap);
 	Row(const Row& source);
 	virtual ~Row();
 
@@ -17,6 +18,16 @@ public:
 
 	void Accept(TextVisitor& textVisitor);
 	Row& operator=(const Row& source);
+
+	bool GetIsWordWrap() const;
+private:
+	bool isWordWrap;
 };
+
+inline bool Row::GetIsWordWrap() const {
+	return this->isWordWrap;
+}
+
+
 
 #endif //_ROW_H

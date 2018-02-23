@@ -73,15 +73,8 @@ Caret* Caret::MoveToPoint(TextForm *textForm, CDC *cdc,CPoint point) {
 }
 
 Caret* Caret::MoveToIndex(TextForm *textForm,CDC *cdc) {
-	if (textForm->text->GetAt(this->rowIndex)->GetRowWidth(cdc, 0, this->characterIndex)<textForm->textFormSize->GetWidth())
-	{
-		this->currentX = textForm->text->GetAt(this->rowIndex)->GetRowWidth(cdc, 0, this->characterIndex);
-	}
-	else
-	{
-		this->currentX = textForm->text->GetAt(this->rowIndex)->GetRowWidth(cdc, 0, this->characterIndex) - (textForm->textFormSize->GetWidth() * textForm->lineWrapCount);
-	}
-
+	this->currentX = textForm->text->GetAt(this->rowIndex)->GetRowWidth(cdc, 0, this->characterIndex);
+ 
 	this->currentY = this->rowIndex * textForm->textFont->GetHeight();
 
 	if (textForm->compose == FALSE)
@@ -117,7 +110,6 @@ Long Caret::SetCharacterIndex(Long index) {
 
 	return this->characterIndex;
 }
-
 
 Long Caret::SetRowIndex(Long index) {
 	this->rowIndex = index;

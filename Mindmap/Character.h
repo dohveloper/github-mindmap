@@ -32,6 +32,24 @@ public:
 	virtual string GetCharacters() const;
 	virtual Long GetLength() const;
 	virtual Long GetCapacity() const;
+	virtual bool GetIsWordWrap() const;
 };
+inline char Character::GetCharacter() const {
+	return 0;
+}
 
+inline string Character::GetCharacters() const {
+	return 0;
+}
+
+inline Long Character::GetCapacity() const {
+	return -1;
+}
+
+inline Long Character::GetLength() const {
+	return -1;
+}
+inline bool Character::GetIsWordWrap() const {
+	return 0;
+}
 #endif //_CHARACTER_H
