@@ -15,7 +15,10 @@ class TextFormSize;
 class WriteKorean;
 class WriteEnglish;
 class TextFont;
-class TextForm :public CWnd {
+class TextSelectDelete;
+class TextClipboard;
+class TextCopy;
+class TextForm :public CWnd{
 public:
 	TextForm();
 	BOOL PreTranslateMessage(MSG* pMsg);
@@ -31,6 +34,9 @@ public:
 	WriteKorean *writeKorean;
 	WriteEnglish *writeEnglish;
 	TextFont *textFont;
+	TextSelectDelete *textSelectDelete;
+	TextCopy *textCopy;
+	TextClipboard *textClipboard;
 	bool hangul;
 	bool compose;
 	Long wordWrapCount;

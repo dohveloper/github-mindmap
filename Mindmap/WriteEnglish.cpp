@@ -25,7 +25,7 @@ void WriteEnglish::Write(TextForm *textForm,CDC *cdc,char word) {
 	{
 		textForm->text->GetAt(textForm->caret->GetRowIndex())->Insert(textForm->caret->GetCharacterIndex(), new SingleByteCharacter(word));
 	}
-	textForm->textFormSize->TextFormWidthSize(textForm, cdc);
+	textForm->textFormSize->TextFormWidthSizeLong(textForm, cdc);
 	textForm->caret->MoveToRight();
 
 	textForm->compose = FALSE;

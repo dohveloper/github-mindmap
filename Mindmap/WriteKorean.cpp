@@ -39,7 +39,7 @@ void WriteKorean::KoreanMixing(TextForm *textForm, HIMC hIMC,HWND hWnd,CDC *cdc)
 			textForm->text->GetAt(textForm->caret->GetRowIndex())->Insert(textForm->caret->GetCharacterIndex(), doubleByte);
 		}
 	}
-	textForm->textFormSize->TextFormWidthSize(textForm, cdc);
+	textForm->textFormSize->TextFormWidthSizeLong(textForm, cdc);
 
 	textForm->compose = TRUE;
 }

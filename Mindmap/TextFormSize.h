@@ -16,8 +16,10 @@ public:
 	TextFormSize(const TextFormSize& source);
 	~TextFormSize();
 
-	void TextFormWidthSize(TextForm *textForm, CDC *cdc);
-	void TextFormHeightSize(TextForm *textForm, CDC *cdc);
+	void TextFormWidthSizeLong(TextForm *textForm, CDC *cdc);
+	void TextFormWidthSizeShort(TextForm *textForm, CDC *cdc);
+	void TextFormHeightSizeLong(TextForm *textForm, CDC *cdc);
+	void TextFormHeightSizeShort(TextForm *textForm, CDC *cdc);
 
 	Long SetX(Long index);
 	Long SetY(Long index);
@@ -51,4 +53,4 @@ inline Long TextFormSize::GetHeight() const {
 	return this->height;
 }
 
-#endif //TEXTFORMSIZE_H#pragma once
+#endif //TEXTFORMSIZE_H

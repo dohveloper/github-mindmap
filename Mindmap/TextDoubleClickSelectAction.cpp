@@ -30,13 +30,13 @@ void TextDoubleClickSelectAction::AllSelect(TextForm *textForm, CDC *cdc, Long w
 
 	start = textForm->selectText->GetStartCharacterIndex();
 	end = textForm->selectText->GetEndCharacterIndex();
+	textForm->caret->SetCharacterIndex(end);
 
 	while (start < end)
 	{
 		word += textForm->text->GetAt(rowIndex)->GetAt(start)->MakeString();
 		start++;
 	}
-
 	cdc->TextOut(textForm->caret->GetX()-width, textForm->textFont->GetHeight()*rowIndex, (CString)word.c_str());
 }
 

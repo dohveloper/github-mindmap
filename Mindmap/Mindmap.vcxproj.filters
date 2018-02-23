@@ -162,6 +162,21 @@
     <ClInclude Include="TextFont.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="TextFormWidthSizeAction.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="TextFormHeightSizeAction.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="TextSelectDelete.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="TextClipboard.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="TextCopy.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Branch.cpp">
@@ -303,6 +318,21 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="TextFont.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="TextFormWidthSizeAction.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="TextFormHeightSizeAction.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="TextSelectDelete.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="TextClipboard.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="TextCopy.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

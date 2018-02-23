@@ -71,13 +71,16 @@ void SelectText::TextDragAction(TextForm *textForm, CDC *cdc, CPoint point) {
 	}
 }
 
-void SelectText::TextDoubleClickAction(TextForm *textForm, CDC *cdc) {
+void SelectText::TextDoubleClickAction(TextForm *textForm, CDC *cdc, CPoint point) {
 	TextDoubleClick textDoubleClick;
-
-	this->SetStartCharacterIndex(textDoubleClick.CheckStartCharacterIndex(textForm));
-	this->SetStartRowIndex(textForm->caret->GetRowIndex());
-	this->SetEndCharacterIndex(textDoubleClick.CheckEndCharacterIndex(textForm));
-	this->SetEndRowIndex(textForm->caret->GetRowIndex());
+	
+	textForm->selectText->SetStartCharacterIndex(textDoubleClick.CheckStartCharacterIndex(textForm));
+	textForm->selectText->SetStartRowIndex(textForm->caret->GetRowIndex());
+	textForm->selectText->SetEndCharacterIndex(textDoubleClick.CheckEndCharacterIndex(textForm));
+	textForm->selectText->SetEndRowIndex(textForm->caret->GetRowIndex());
+	
+	textForm->caret->SetCharacterIndex(textForm->selectText->GetEndCharacterIndex());
+	textForm->RedrawWindow();
 
 	textDoubleClick.TextDoubleClickSelect(textForm, cdc);
 
@@ -109,4 +112,14 @@ Long SelectText::SetEndCharacterIndex(Long index) {
 Long SelectText::SetEndRowIndex(Long index) {
 	this->endRowIndex = index;
 	return this->endRowIndex;
+}
+
+void SelectText::SetIsSelect()
+{
+	this->IsSelect = true;
+}
+
+void SelectText::SetIsNotSelect()
+{
+	this->IsSelect = false;
 }

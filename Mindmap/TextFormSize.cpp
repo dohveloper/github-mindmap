@@ -1,6 +1,8 @@
 //TextFormSize.cpp
 
 #include "TextFormSize.h"
+#include "TextFormWidthSizeAction.h"
+#include "TextFormHeightSizeAction.h"
 #include "TextForm.h"
 #include "PageForm.h"
 #include "SelectText.h"
@@ -34,111 +36,30 @@ TextFormSize::~TextFormSize()
 {
 }
 
-void TextFormSize::TextFormWidthSize(TextForm *textForm, CDC *cdc)
+void TextFormSize::TextFormWidthSizeLong(TextForm *textForm, CDC *cdc)
 {
-	Row *row;
-	Row *nextRow;
-	string word;
-	Long length;
-	Long width;
-	Long textFormX;
-	Long textFormY;
-	Long textFormWidth;
-	Long textFormHeight;
-	Long i = 0;
-	Character *character;
-	CFont fnt;
-	Long maxWidthSize = 600;
-	fnt.CreateFont(textForm->textFont->GetHeight(), textForm->textFont->GetWidth(), 0, 0, textForm->textFont->GetWeight(), textForm->textFont->GetItalic(), textForm->textFont->GetUnderline(), textForm->textFont->GetStrikeOut(), DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH, textForm->textFont->GetLpszFacename());
-	cdc->SelectObject(&fnt);
-
-	row = (Row*)textForm->text->GetAt(textForm->caret->GetRowIndex());
-	length = row->GetLength();
-	width = row->GetRowWidth(cdc, 0,length);
-
-	textFormX = this->x;
-	textFormY = this->y;
-	textFormWidth = this->width;
-	textFormHeight = this->height;
-
-	if (width > textFormWidth && width < maxWidthSize)
-	{
-		textFormWidth = width;
-		textForm->MoveWindow(textFormX, textFormY, textFormWidth+6, textFormHeight);
-	}
-	else if (width >= maxWidthSize)
-	{
-		i = textForm->caret->GetRowIndex();
-
-		while (i < textForm->text->GetLength() && textForm->text->GetAt(i)->GetRowWidth(cdc, 0, textForm->text->GetAt(i)->GetLength()) >= maxWidthSize)
-		{
-			if (i == textForm->text->GetLength() - 1)
-			{
-				textForm->text->Write(new Row(true));
-			}
-			else if (textForm->text->GetAt(i + 1)->GetIsWordWrap() == false)
-			{
-				textForm->text->Insert(i + 1, new Row(true));
-			}
-			row = (Row*)textForm->text->GetAt(i);
-
-			character = row->GetAt(row->GetLength() - 1);
-
-			row->Delete(row->GetLength() - 1);
-
-			textForm->text->GetAt(i + 1)->Insert(0, character);
-
-			i++;
-		}
-
-		if (textForm->caret->GetCharacterIndex() == row->GetLength())
-		{
-			textForm->caret->MoveToDown();
-			textForm->caret->SetCharacterIndex(0);
-		}
-	}
-	this->width = textFormWidth;
+	TextFormWidthSizeAction textFormWidthSizeAction;
+	textFormWidthSizeAction.TextFormWidthLong(textForm, cdc);
 	
-	fnt.DeleteObject();
 }
 
-void TextFormSize::TextFormHeightSize(TextForm *textForm, CDC *cdc)
+void TextFormSize::TextFormWidthSizeShort(TextForm *textForm, CDC *cdc)
 {
-	Long height;
-	Long textFormX;
-	Long textFormY;
-	Long textFormWidth;
-	Long textFormHeight;
-	Long rowHeight;
-	CFont fnt;
-	Long addTextFormHeight;
+	TextFormWidthSizeAction textFormWidthSizeAction;
+	textFormWidthSizeAction.TextFormWidthShort(textForm, cdc);
 
-	Long textWindowRato = 1.1;
+}
 
-	Long maxHeightSize = 600;
+void TextFormSize::TextFormHeightSizeLong(TextForm *textForm, CDC *cdc)
+{
+	TextFormHeightSizeAction textFormHeightSizeAction;
+	textFormHeightSizeAction.TextFormHeightLong(textForm, cdc);
+}
 
-	fnt.CreateFont(textForm->textFont->GetHeight(), textForm->textFont->GetWidth(), 0, 0, textForm->textFont->GetWeight(), textForm->textFont->GetItalic(), textForm->textFont->GetUnderline(), textForm->textFont->GetStrikeOut(), DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH, textForm->textFont->GetLpszFacename());
-	cdc->SelectObject(&fnt);
-	
-
-	height = textForm->textFont->GetHeight();
-	rowHeight = textForm->text->GetLength()*height;
-	
-	textFormX = this->x;
-	textFormY = this->y;
-	textFormWidth = this->width;
-	textFormHeight = this->height;
-	
-
-	if (rowHeight*textWindowRato > textFormHeight && rowHeight*textWindowRato<maxHeightSize)
-	{
-		addTextFormHeight = height * textWindowRato;
-		textFormHeight += addTextFormHeight;
-		textForm->MoveWindow(textFormX, textFormY, textFormWidth, textFormHeight);
-	}
-	this->height = textFormHeight;
-
-	fnt.DeleteObject();
+void TextFormSize::TextFormHeightSizeShort(TextForm *textForm, CDC *cdc)
+{
+	TextFormHeightSizeAction textFormHeightSizeAction;
+	textFormHeightSizeAction.TextFormHeightShort(textForm, cdc);
 }
 
 
