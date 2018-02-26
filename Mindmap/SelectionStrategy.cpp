@@ -32,60 +32,52 @@ void SelectionStrategy::OnLButtonDown(CPoint point, UINT nFlags, Selection *sele
 	branch = shape->GetOwnerBranch();
 	this->select->SelectBranch(selection, branch);
 
-	//테스트
-
-	//클릭된 좌표를 기억한다.
-	this->clicked = point;
-
-	//선택된 브랜치를 기억한다
-	Branch *selectedBranch;
-	Branch *copiedBranch;
+	//이동하기
 	Long i = 0;
+	Branch *selectedBranch;
+	this->selection = selection;
 
+	// 1.point를 기억한다.
+	this->clickedPoint = point;
+
+	// 2.선택된 브랜치 수만큼 반복한다.
 	while (i < selection->GetLength()) {
 		selectedBranch = selection->GetAt(i);
-		copiedBranch = new Branch(*selectedBranch);
-		this->unmovedBranches.Add(copiedBranch);
+		this->unmovedBranches.Add(new Branch(*selectedBranch)); //브랜치를 기억한다.
 		i++;
 	}
-
-	this->selection = selection;
 }
 
 void SelectionStrategy::OnMouseMove(CPoint point, UINT nFlags)
 {
-	if ((nFlags & MK_LBUTTON) == MK_LBUTTON) {
-		//얼마 움직였는지 값을 구한다.
-		Long movedX = this->clicked.x - point.x;
-		Long movedY = this->clicked.y - point.y;
+	Long movedX = 0;
+	Long movedY = 0;
+	Long i = 0;
+	Branch *copiedBranch;
+	Branch *selectedBranch;
+	Branch *ownerBranch;
 
-		//커서가 움직인만큼 이동한다.
+	if ((nFlags & MK_LBUTTON) == MK_LBUTTON)
+	{
+		//1.이동값을 구하다.
+		movedX = this->clickedPoint.x - point.x;
+		movedY = this->clickedPoint.y - point.y;
+
 		MoveVisitor visitor(movedX, movedY);
-		Branch *movedBranch;
-		Branch *selectedBranch;
-		Branch *ownerBranch;
-		Long index;
-		Long i = 0;
 
-		//ownerBranch = selectedBranch->GetOwnerBranch();
+		// 2.선택된 브랜치 수만큼 반복한다.
+		while (i < this->selection->GetLength()) {
+			//2.1 기억한 브랜치를 이동값만큼 이동한다.
+			copiedBranch = this->unmovedBranches.GetAt(i);
+			copiedBranch->Accept(visitor);
 
-		while (i < unmovedBranches.GetLength()) {
+			//2.2 선택된 브랜치를 기억한 브랜치로 바꾸다.
 			selectedBranch = this->selection->GetAt(i);
 			ownerBranch = selectedBranch->GetOwnerBranch();
+			ownerBranch->Replace(selectedBranch, copiedBranch);
 
-			movedBranch = (Branch*)this->unmovedBranches.GetAt(i);
-			movedBranch->Accept(visitor);
-
-			//브랜치 수정
-			index = ownerBranch->Find(selectedBranch);
-			ownerBranch->Correct(index, movedBranch);
-
-			//selection 수정
-			this->selection->Correct(i, movedBranch);
 			i++;
 		}
-
-		//
 	}
 }
 

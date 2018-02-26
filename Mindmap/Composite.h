@@ -16,6 +16,7 @@ public:
 
 	Long Add(Shape *shape);
 	Long Correct(Long index, Shape *shape);
+	void Replace(Shape *before, Shape *after);
 	Long Find(Shape *shape);
 	Shape* GetAt(Long index);
 	Composite& operator=(const Composite& source);

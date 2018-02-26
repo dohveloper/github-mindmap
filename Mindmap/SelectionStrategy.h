@@ -1,6 +1,7 @@
 #ifndef _SELECTIONSTRATEGY_H
 #define _SELECTIONSTRATEGY_H
 #include "MouseStrategy.h"
+#include "BranchArray.h"
 class Branch;
 class Select;
 
@@ -15,8 +16,8 @@ public:
 private:
 	Select * select;
 	Selection *selection;
-	CPoint clicked;
-	Branch unmovedBranches;
+	CPoint clickedPoint;
+	BranchArray unmovedBranches;
 };
 
 #endif

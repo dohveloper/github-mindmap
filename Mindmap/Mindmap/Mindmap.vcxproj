@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Branch.cpp" />
+    <ClCompile Include="..\BranchArray.cpp" />
     <ClCompile Include="..\BranchIterator.cpp" />
     <ClCompile Include="..\BranchTraverser.cpp" />
     <ClCompile Include="..\Caret.cpp" />
@@ -81,6 +82,7 @@
   <ItemGroup>
     <ClInclude Include="..\Array.h" />
     <ClInclude Include="..\Branch.h" />
+    <ClInclude Include="..\BranchArray.h" />
     <ClInclude Include="..\BranchIterator.h" />
     <ClInclude Include="..\BranchTraverser.h" />
     <ClInclude Include="..\Caret.h" />

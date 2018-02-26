@@ -43,6 +43,13 @@ Long Composite::Correct(Long index, Shape *shape)
 	return index;
 }
 
+void Composite::Replace(Shape * before, Shape * after)
+{
+	Long index;
+	index = this->shapes.LinearSearchUnique(&before, CompareShapes);
+	this->shapes.Modify(index, after);
+}
+
 Long Composite::Find(Shape * shape)
 {
 	Long index;
