@@ -39,6 +39,9 @@
     <ClInclude Include="..\Composite.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="..\DeleteKey.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
     <ClInclude Include="..\DeleteVisitor.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -76,6 +79,12 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="..\Iterator.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\KeyAction.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\KeyBoard.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="..\Line.h">
@@ -252,6 +261,12 @@
     <ClInclude Include="..\WriteVisitor.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="CopyKey.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="PasteKey.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Branch.cpp">
@@ -273,6 +288,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="..\Composite.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\DeleteKey.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="..\DeleteVisitor.cpp">
@@ -309,6 +327,12 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="..\Iterator.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\KeyAction.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\KeyBoard.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="..\Line.cpp">
@@ -483,6 +507,12 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="..\WriteVisitor.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CopyKey.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="PasteKey.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
