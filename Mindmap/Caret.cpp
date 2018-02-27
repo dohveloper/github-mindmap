@@ -2,6 +2,7 @@
 #include "Caret.h"
 #include "Text.h"
 #include "TextFont.h"
+#include "TextFormSize.h"
 
 Caret::Caret() {
 	this->currentX = 0;
@@ -72,8 +73,8 @@ Caret* Caret::MoveToPoint(TextForm *textForm, CDC *cdc,CPoint point) {
 }
 
 Caret* Caret::MoveToIndex(TextForm *textForm,CDC *cdc) {
-	this->currentX = textForm->text->GetAt(this->rowIndex)->GetRowWidth(cdc, 0,this->characterIndex);
-	
+	this->currentX = textForm->text->GetAt(this->rowIndex)->GetRowWidth(cdc, 0, this->characterIndex);
+ 
 	this->currentY = this->rowIndex * textForm->textFont->GetHeight();
 
 	if (textForm->compose == FALSE)
@@ -82,9 +83,7 @@ Caret* Caret::MoveToIndex(TextForm *textForm,CDC *cdc) {
 	}
 	else
 	{
-		string word = textForm->text->GetAt(this->rowIndex)->GetAt(this->characterIndex)->MakeString();
-		CSize size = cdc->GetTextExtent((CString)word.c_str());
-		textForm->CreateSolidCaret(size.cx, textForm->textFont->GetHeight());
+		textForm->CreateSolidCaret(textForm->textFont->GetWidth()*2, textForm->textFont->GetHeight());
 	}
 	textForm->SetCaretPos(CPoint(this->currentX,this->currentY));
 
@@ -111,7 +110,6 @@ Long Caret::SetCharacterIndex(Long index) {
 
 	return this->characterIndex;
 }
-
 
 Long Caret::SetRowIndex(Long index) {
 	this->rowIndex = index;

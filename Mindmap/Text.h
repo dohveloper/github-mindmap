@@ -14,6 +14,7 @@ public:
 	virtual ~Text();
 
 	string MakeString();
+	Text* Clone();
 
 	virtual void Accept(TextVisitor& textVisitor);
 

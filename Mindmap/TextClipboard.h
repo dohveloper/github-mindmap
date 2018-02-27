@@ -4,6 +4,7 @@
 #define TEXTCLIPBOARD_H
 
 #include "Array.h"
+#include <afxwin.h>
 
 typedef signed long int Long;
 

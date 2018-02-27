@@ -43,8 +43,10 @@ TextForm::TextForm() {
 	this->selectText = NULL;
 	this->textFormSize = NULL;
 	this->textFont = NULL;
+	this->textClipboard = NULL;
 	this->hangul = FALSE;
 	this->compose = FALSE;
+	this->wordWrapCount = 0;
 }
 
 int TextForm::OnCreate(LPCREATESTRUCT lpCreateStruct) {
@@ -55,6 +57,7 @@ int TextForm::OnCreate(LPCREATESTRUCT lpCreateStruct) {
 	this->textFormSize = new TextFormSize;
 	this->writeKorean = new WriteKorean;
 	this->writeEnglish = new WriteEnglish;
+	this->textClipboard = new TextClipboard;
 	this->textFont = new TextFont(30,15, FW_NORMAL, FALSE, FALSE, FALSE,"±¼¸²Ã¼");
 
 	this->text->Write(new Row);
@@ -189,9 +192,36 @@ bool TextForm::OnNotify() {
 }
 
 void TextForm::OnKeyDown(WPARAM wParam) {
+	Long i = 0;
+	Long length = 0;
+	Character *character;
 	if (wParam == VK_RETURN) {
-		Row *row = new Row;
-		this->text->Write(row);
+		if (this->caret->GetCharacterIndex() == 0)
+		{
+			this->text->Insert(this->caret->GetRowIndex(), new Row);
+		}
+		else
+		{
+			this->text->Insert(this->caret->GetRowIndex() + 1, new Row);
+			i = this->caret->GetCharacterIndex();
+
+			while (i < this->text->GetAt(this->caret->GetRowIndex())->GetLength())
+			{
+				character = this->text->GetAt(this->caret->GetRowIndex())->GetAt(i);
+
+				this->text->GetAt(this->caret->GetRowIndex()+1)->Write(character);
+
+				i++;
+			}
+			i = this->caret->GetCharacterIndex();
+			length = this->text->GetAt(this->caret->GetRowIndex())->GetLength();
+			while (i < length)
+			{
+				this->text->GetAt(this->caret->GetRowIndex())->Delete(i);
+
+				i++;
+			}
+		}
 		this->caret->MoveToDown();
 		CDC *cdc = GetDC();
 		this->textFormSize->TextFormHeightSizeLong(this, cdc);

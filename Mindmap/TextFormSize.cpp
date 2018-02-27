@@ -100,7 +100,3 @@ TextFormSize& TextFormSize::operator=(const TextFormSize& source)
 
 	return *this;
 }
-
-
-
-
