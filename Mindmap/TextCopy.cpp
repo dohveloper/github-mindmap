@@ -36,8 +36,6 @@ void TextCopy::Copy(TextForm *textForm)
 				startCharacterIndex++;
 			}
 		}
-		Long i = 0;
-		CString a;
-		a.Format("%d", textForm->textClipboard->GetAt(startRowIndex)->GetAt(0)->GetCharacter());
-		textForm->MessageBox(a);
+
+		textForm->MessageBox((CString)textForm->textClipboard->GetAt(0)->GetAt(0)->MakeString().c_str());
 }

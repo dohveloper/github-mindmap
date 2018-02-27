@@ -8,6 +8,7 @@
 #include "Caret.h"
 #include "Text.h"
 #include "TextFont.h"
+#include "WordWrap.h"
 #include <string>
 using namespace std;
 
@@ -47,6 +48,12 @@ void TextFormWidthSizeAction::TextFormWidthLong(TextForm *textForm, CDC *cdc)
 		textFormWidth = width+6;
 		textForm->MoveWindow(textFormX, textFormY, textFormWidth, textFormHeight);
 		textForm->textFormSize->SetWidth(textFormWidth);
+	}
+	if (width >= maxWidthSize)
+	{
+		WordWrap wordWrap;
+
+		wordWrap.Writing(textForm,cdc);
 	}
 	fnt.DeleteObject();
 }

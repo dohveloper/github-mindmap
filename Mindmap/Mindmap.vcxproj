@@ -70,6 +70,7 @@
     <ClInclude Include="TextSelectDelete.h" />
     <ClInclude Include="TextVisitor.h" />
     <ClInclude Include="Topic.h" />
+    <ClInclude Include="WordWrap.h" />
     <ClInclude Include="WriteEnglish.h" />
     <ClInclude Include="WriteKorean.h" />
     <ClInclude Include="WriteVisitor.h" />
@@ -124,6 +125,7 @@
     <ClCompile Include="TextSelectDelete.cpp" />
     <ClCompile Include="TextVisitor.cpp" />
     <ClCompile Include="Topic.cpp" />
+    <ClCompile Include="WordWrap.cpp" />
     <ClCompile Include="WriteEnglish.cpp" />
     <ClCompile Include="WriteKorean.cpp" />
     <ClCompile Include="WriteVisitor.cpp" />

@@ -43,6 +43,7 @@ TextForm::TextForm() {
 	this->selectText = NULL;
 	this->textFormSize = NULL;
 	this->textFont = NULL;
+	this->textClipboard = NULL;
 	this->hangul = FALSE;
 	this->compose = FALSE;
 	this->wordWrapCount = 0;
@@ -56,6 +57,7 @@ int TextForm::OnCreate(LPCREATESTRUCT lpCreateStruct) {
 	this->textFormSize = new TextFormSize;
 	this->writeKorean = new WriteKorean;
 	this->writeEnglish = new WriteEnglish;
+	this->textClipboard = new TextClipboard;
 	this->textFont = new TextFont(30,15, FW_NORMAL, FALSE, FALSE, FALSE,"±¼¸²Ã¼");
 
 	this->text->Write(new Row);
