@@ -56,3 +56,9 @@ void WordWrap::Writing(TextForm *textForm,CDC *cdc) {
 		textForm->caret->SetCharacterIndex(0);
 	}
 }
+
+void WordWrap::Deleting(TextForm *textForm, CDC *cdc) {
+	
+
+
+}
