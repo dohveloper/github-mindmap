@@ -19,6 +19,7 @@
 #include "TextSelectDelete.h"
 #include "TextCopy.h"
 #include "TextClipboard.h"
+#include "WordWrap.h"
 #include <imm.h>
 #pragma comment(lib, "imm32.LIB")
 
@@ -195,6 +196,12 @@ void TextForm::OnKeyDown(WPARAM wParam) {
 	Long i = 0;
 	Long length = 0;
 	Character *character;
+	CFont fnt;
+	CDC *cdc = GetDC();
+	fnt.CreateFont(this->textFont->GetHeight(), this->textFont->GetWidth(), 0, 0, this->textFont->GetWeight(), this->textFont->GetItalic(), this->textFont->GetUnderline(), this->textFont->GetStrikeOut(), DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH, _T(this->textFont->GetLpszFacename()));
+
+	cdc->SelectObject(&fnt);
+
 	if (wParam == VK_RETURN) {
 		if (this->caret->GetCharacterIndex() == 0)
 		{
@@ -223,23 +230,56 @@ void TextForm::OnKeyDown(WPARAM wParam) {
 			}
 		}
 		this->caret->MoveToDown();
-		CDC *cdc = GetDC();
 		this->textFormSize->TextFormHeightSizeLong(this, cdc);
 		this->caret->SetCharacterIndex(0);
+	}
+	else if (wParam == VK_UP)
+	{
+		Long i = 0;
+
+		if (this->caret->GetRowIndex() > 0)
+		{
+			while (i < this->text->GetAt(this->caret->GetRowIndex()-1)->GetLength() && 
+				  this->text->GetAt(this->caret->GetRowIndex())->GetRowWidth(cdc, 0, this->caret->GetCharacterIndex()) > this->text->GetAt(this->caret->GetRowIndex()-1)->GetRowWidth(cdc, 0, i))
+			{
+				i++;
+			}
+			this->caret->SetRowIndex(this->caret->GetRowIndex() - 1);
+			this->caret->SetCharacterIndex(i);
+		}
+	}
+	else if (wParam == VK_DOWN)
+	{
+		Long i = 0;
+
+		if (this->caret->GetRowIndex() < this->text->GetLength() - 1)
+		{
+			while (i < this->text->GetAt(this->caret->GetRowIndex() + 1)->GetLength() &&
+				   this->text->GetAt(this->caret->GetRowIndex())->GetRowWidth(cdc, 0, this->caret->GetCharacterIndex()) > this->text->GetAt(this->caret->GetRowIndex() + 1)->GetRowWidth(cdc, 0, i))
+			{
+				i++;
+			}
+			this->caret->SetRowIndex(this->caret->GetRowIndex() + 1);
+			this->caret->SetCharacterIndex(i);
+		}
+
 	}
 	else if (wParam == VK_BACK)
 	{
 		if (this->selectText->GetIsSelect() == true)
 		{
 			this->textSelectDelete->TextSelectDeleteAction(this);
-			CDC *cdc = GetDC();
 			this->textFormSize->TextFormWidthSizeShort(this, cdc);
 		}
-
-		else if (this->caret->GetCharacterIndex() - 1 >= 0)
+		else if (this->caret->GetRowIndex()>0 && this->caret->GetCharacterIndex() == 0)
+		{
+			this->text->Delete(this->caret->GetRowIndex());
+			this->caret->SetRowIndex(this->caret->GetRowIndex() - 1);
+			this->caret->SetCharacterIndex(this->text->GetAt(this->caret->GetRowIndex())->GetLength());
+		}
+		else if (this->caret->GetCharacterIndex() > 0)
 		{
 			this->text->GetAt(this->caret->GetRowIndex())->Delete(this->caret->GetCharacterIndex() - 1);
-			CDC *cdc = GetDC();
 			this->textFormSize->TextFormWidthSizeShort(this, cdc);
 			this->caret->MoveToLeft();
 		}
@@ -250,12 +290,22 @@ void TextForm::OnKeyDown(WPARAM wParam) {
 		{
 			this->caret->MoveToRight();
 		}
+		else if (this->caret->GetRowIndex() < this->text->GetLength()-1 && this->caret->GetCharacterIndex() == this->text->GetAt(this->caret->GetRowIndex())->GetLength())
+		{
+			this->caret->SetRowIndex(this->caret->GetRowIndex() + 1);
+			this->caret->SetCharacterIndex(0);
+		}
 	}
 	else if (wParam == VK_LEFT)
 	{
 		if (this->caret->GetCharacterIndex() >0)
 		{
 			this->caret->MoveToLeft();
+		}
+		else if (this->caret->GetRowIndex() > 0 && this->caret->GetCharacterIndex() == 0)
+		{
+			this->caret->SetRowIndex(this->caret->GetRowIndex()-1);
+			this->caret->SetCharacterIndex(this->text->GetAt(this->caret->GetRowIndex())->GetLength());
 		}
 	}
 	else if (wParam == VK_ESCAPE)
@@ -265,7 +315,6 @@ void TextForm::OnKeyDown(WPARAM wParam) {
 	}
 	else if (wParam == VK_TAB)
 	{
-		CDC *cdc = GetDC();
 		if (this->caret->GetCharacterIndex() > this->text->GetAt(this->caret->GetRowIndex())->GetLength() - 1)
 		{
 			this->text->GetAt(this->caret->GetRowIndex())->Write(new SingleByteCharacter('\t'));
@@ -283,6 +332,9 @@ void TextForm::OnKeyDown(WPARAM wParam) {
 	}
 	//선택해제
 	this->selectText->SetIsNotSelect();
+
+
+	fnt.DeleteObject();
 	RedrawWindow();
 }
 
