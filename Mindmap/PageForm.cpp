@@ -173,9 +173,9 @@ void PageForm::OnLButtonDblClk(UINT nFlags, CPoint point)
 
 void PageForm::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
-	Keyboard keyboard;
+	KeyBoard keyBoard;
 	
-	keyboard.KeyDown(this, nChar, nRepCnt, nFlags);
+	keyBoard.KeyDown(this, nChar, nRepCnt, nFlags);
 
 	RedrawWindow();
 	CFrameWnd::OnKeyDown(nChar, nRepCnt, nFlags);
