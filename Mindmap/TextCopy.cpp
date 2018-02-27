@@ -57,9 +57,11 @@ void TextCopy::Copy(TextForm *textForm)
 		{
 
 			textForm->textClipboard->Add((Row*)(textForm->text->GetAt(startRowIndex))->Clone());
-			while ()
+			while (startCharacterIndex<startRowLength)
 			{
+				textForm->textClipboard->GetAt(startRowIndex)->Write(textForm->text->GetAt(startRowIndex)->GetAt(startCharacterIndex)->Clone());
 
+				startCharacterIndex++;
 			}
 
 			while (startCharacterIndex < startRowLength)
