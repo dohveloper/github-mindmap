@@ -61,6 +61,11 @@ string SingleByteCharacter::MakeString() {
 	return word;
 }
 
+SingleByteCharacter* SingleByteCharacter::Clone()
+{
+	return new SingleByteCharacter(*this);
+}
+
 bool SingleByteCharacter::operator==(const SingleByteCharacter& other) {
 	bool ret= false;
 

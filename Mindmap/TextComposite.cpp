@@ -68,6 +68,11 @@ string TextComposite::MakeString() {
 	return 0;
 }
 
+TextComposite* TextComposite::Clone() {
+
+	return 0;
+}
+
 string TextComposite::MakeString(Long start, Long end) {
 	string text = "";
 	Character *character;

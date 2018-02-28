@@ -28,10 +28,29 @@ public:
 	virtual Long GetRowWidth(CDC *cdc,Long start, Long end);
 	virtual Long GetHeight(CDC *cdc, Long index);
 	virtual void Accept(TextVisitor& textVisitor);
+	virtual Character* Clone();
 	virtual char GetCharacter() const;
 	virtual string GetCharacters() const;
 	virtual Long GetLength() const;
 	virtual Long GetCapacity() const;
+	virtual bool GetIsWordWrap() const;
 };
+inline char Character::GetCharacter() const {
+	return 0;
+}
 
+inline string Character::GetCharacters() const {
+	return 0;
+}
+
+inline Long Character::GetCapacity() const {
+	return -1;
+}
+
+inline Long Character::GetLength() const {
+	return -1;
+}
+inline bool Character::GetIsWordWrap() const {
+	return 0;
+}
 #endif //_CHARACTER_H

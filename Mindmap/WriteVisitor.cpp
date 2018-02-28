@@ -6,6 +6,7 @@
 #include "Caret.h"
 #include "SingleByteCharacter.h"
 #include "DoubleByteCharacter.h"
+#include "TextFormSize.h"
 #include <afxdb.h>  
 #include "TextFont.h"
 #include "string"
@@ -30,13 +31,18 @@ void WriteVisitor::VisitText(Text *text) {
 	string word;
 	Long i = 0;
 	Long length;
-	
+	CRect rect;
+	Long x;
+
 	length = text->GetLength();
 
 	while (i < length) {
 		word = text->GetAt(i)->MakeString();
 
-		this->dc->TextOut(0, this->textForm->textFont->GetHeight() * i, (CString)word.c_str());
+		SetRect(&rect, 0, this->textForm->textFont->GetHeight() * i, this->textForm->textFormSize->GetWidth(), this->textForm->textFormSize->GetHeight());
+
+		x = this->dc->DrawText((CString)word.c_str(), &rect, DT_LEFT);
+
 		i++;
 	}
 }

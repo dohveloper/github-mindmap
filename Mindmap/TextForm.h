@@ -39,6 +39,7 @@ public:
 	TextClipboard *textClipboard;
 	bool hangul;
 	bool compose;
+	Long wordWrapCount;
 protected:
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnClose();

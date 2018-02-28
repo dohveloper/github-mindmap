@@ -59,6 +59,11 @@ string DoubleByteCharacter::MakeString() {
 	return word;
 }
 
+DoubleByteCharacter* DoubleByteCharacter::Clone()
+{
+	return new DoubleByteCharacter(*this);
+}
+
 bool DoubleByteCharacter::operator==(const DoubleByteCharacter& other) {
 	bool ret = false;
 	if (strcmp(this->characters, other.characters) == 0)

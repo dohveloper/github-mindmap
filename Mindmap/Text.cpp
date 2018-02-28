@@ -32,6 +32,11 @@ string Text::MakeString() {
 	return text;
 }
 
+Text* Text::Clone()
+{
+	return new Text(*this);
+}
+
 Text& Text::operator=(const Text& source)
 {
 	this->characters = source.characters;

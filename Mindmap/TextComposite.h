@@ -19,6 +19,8 @@ public:
 	Long Delete(Long index);
 	Character* GetAt(Long index);
 	virtual string MakeString();
+	virtual TextComposite* Clone();
+	virtual bool GetIsWordWrap() const;
 	string MakeString(Long start, Long end);
 	TextComposite& operator=(const TextComposite& source);
 
@@ -39,6 +41,10 @@ inline Long TextComposite::GetCapacity() const {
 
 inline Long TextComposite::GetLength() const {
 	return this->length;
+}
+
+inline bool TextComposite::GetIsWordWrap() const {
+	return 0;
 }
 
 #endif //_TEXTCOMPOSITE_H
