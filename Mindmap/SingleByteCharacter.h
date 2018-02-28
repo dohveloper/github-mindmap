@@ -14,6 +14,7 @@ public:
 	virtual ~SingleByteCharacter();
 	
 	void Accept(TextVisitor& textVisitor);
+	SingleByteCharacter* Clone();
 
 	bool IsEqual(const SingleByteCharacter& other);
 	bool IsNotEqual(const SingleByteCharacter& other);

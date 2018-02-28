@@ -15,6 +15,7 @@ public:
 	virtual ~DoubleByteCharacter();
 
 	void Accept(TextVisitor& textVisitor);
+	DoubleByteCharacter* Clone();
 
 	bool IsEqual(const DoubleByteCharacter& other);
 	bool IsNotEqual(const DoubleByteCharacter& other);
