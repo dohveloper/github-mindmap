@@ -38,7 +38,8 @@ BEGIN_MESSAGE_MAP(PageForm, CFrameWnd)
 END_MESSAGE_MAP()
 
 PageForm::PageForm()
-	:clipboard(&selection) {
+	:clipboard(&selection)
+{
 	this->movedX = 0;
 	this->movedY = 0;
 }

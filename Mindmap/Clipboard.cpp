@@ -1,6 +1,7 @@
 #include "Clipboard.h"
+#include "Selection.h"
 
-Clipboard::Clipboard(Selection *selectoin, Long capacity)
+Clipboard::Clipboard(Selection *selection, Long capacity)
 	:clipboard(capacity)
 {
 	this->selection = selection;
@@ -9,7 +10,7 @@ Clipboard::Clipboard(Selection *selectoin, Long capacity)
 Clipboard::Clipboard(const Clipboard & source)
 	: clipboard(source.clipboard)
 {
-	this->selection = selection;
+	this->selection = source.selection;
 }
 
 Clipboard::~Clipboard()
@@ -22,13 +23,15 @@ void Clipboard::Copy()
 	Long i = 0;
 	Branch *current;
 	Branch *clone;
-	clipboard.
-		while (i < selection->GetLength()) {
-			current = selection->GetAt(i);
-			clone = current->Clone();
-			this->clipboard.Add(clone);
-			i++;
-		}
+
+	clipboard.Clear();
+	this->selection->GetLength();
+	while (i < this->selection->GetLength()) {
+		current = selection->GetAt(i);
+		clone = current->Clone();
+		this->clipboard.Add(clone);
+		i++;
+	}
 }
 
 void Clipboard::Paste()

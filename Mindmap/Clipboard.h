@@ -1,8 +1,8 @@
 #ifndef _CLIPBOARD_H
 #define _CLIPBOARD_H
-#include "Selection.h"
 #include "BranchArray.h"
 
+class Selection;
 class Clipboard {
 public:
 	Clipboard(Selection *selection, Long capacity = 256);

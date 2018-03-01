@@ -4,6 +4,8 @@
 #include "KeyAction.h"
 #include "PageForm.h"
 #include "DeleteKey.h"
+#include "CopyKey.h"
+#include "PasteKey.h"
 
 KeyBoard::KeyBoard()
 {
@@ -57,6 +59,30 @@ void KeyBoard::KeyDown(PageForm *pageForm, UINT nChar, UINT nRepCnt, UINT nFlags
 	}
 	case VK_DOWN://아래쪽방향
 	{
+		break;
+	}
+	case 'C': // Ctrl + C
+	{
+		if (GetKeyState(VK_CONTROL) < 0) {
+			CopyKey copykey;
+			copykey.KeyPress(pageForm);
+		}
+		break;
+	}
+	case 'V': // Ctrl + V
+	{
+		if (GetKeyState(VK_CONTROL) < 0) {
+			PasteKey pastekey;
+			pastekey.KeyPress(pageForm);
+		}
+		break;
+	}
+	case 'X': // Ctrl + X
+	{
+		if (GetKeyState(VK_CONTROL) < 0) {
+			PasteKey pastekey;
+			pastekey.KeyPress(pageForm);
+		}
 		break;
 	}
 	/*
