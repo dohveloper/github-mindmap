@@ -12,6 +12,7 @@ public:
 
 	Long Add(Branch *branch);
 	Long Remove(Branch *branch);
+	void Clear();
 	Branch* GetLastBranchArray();
 	Branch* GetAt(Long index);
 
@@ -20,10 +21,9 @@ public:
 	Array<Branch*> GetBranches() const;
 	Long GetCapacity() const;
 	Long GetLength() const;
-public:
-	Array<Branch*> branches;
-private:
 
+private:
+	Array<Branch*> branches;
 	Long capacity;
 	Long length;
 };
