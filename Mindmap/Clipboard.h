@@ -14,10 +14,12 @@ public:
 	//void Cut(Selection *selection);
 
 	Clipboard& operator=(const Clipboard& source);
-
+	BranchArray GetClipboard() const;
 private:
 	BranchArray clipboard;
 	Selection *selection;
 };
-
+inline BranchArray Clipboard::GetClipboard() const {
+	return this->clipboard;
+}
 #endif //_Clipboard_H

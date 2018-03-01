@@ -9,7 +9,7 @@ Branch::Branch(Long capacity, Branch* branch)
 {
 }
 Branch::Branch(const Branch& source)
-	: Composite(source){
+	: Composite(source) {
 }
 Branch::~Branch()
 {
@@ -41,13 +41,13 @@ Mark* Branch::GetMark()
 	Long length;
 	Long i = 0;
 
-	length=this->shapes.GetLength();
+	length = this->shapes.GetLength();
 
 	while (i < length)
 	{
 		mark = this->shapes.GetAt(i);
 
-		if (typeid(*mark) == typeid(Mark)) 
+		if (typeid(*mark) == typeid(Mark))
 		{
 			i = length;
 		}
@@ -55,15 +55,13 @@ Mark* Branch::GetMark()
 	}
 	/*
 	mark = this->shapes.GetAt(1);
-	if (typeid(*mark) == typeid(Mark)) 
+	if (typeid(*mark) == typeid(Mark))
 	{
 		mark = this->shapes.GetAt(2);
 	}
 	*/
 	return (Mark*)mark;
 }
-
-
 
 void Branch::Accept(ShapeVisitor& visitor) {
 	visitor.VisitBranch(this);
