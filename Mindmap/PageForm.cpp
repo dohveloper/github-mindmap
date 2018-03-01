@@ -37,7 +37,8 @@ BEGIN_MESSAGE_MAP(PageForm, CFrameWnd)
 	ON_WM_LBUTTONDBLCLK()
 END_MESSAGE_MAP()
 
-PageForm::PageForm() {
+PageForm::PageForm()
+	:clipboard(&selection) {
 	this->movedX = 0;
 	this->movedY = 0;
 }

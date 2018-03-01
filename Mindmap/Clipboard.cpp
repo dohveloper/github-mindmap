@@ -22,13 +22,13 @@ void Clipboard::Copy()
 	Long i = 0;
 	Branch *current;
 	Branch *clone;
-
-	while (i < selection->GetLength()) {
-		current = selection->GetAt(i);
-		clone = current->Clone();
-		this->clipboard.Add(clone);
-		i++;
-	}
+	clipboard.
+		while (i < selection->GetLength()) {
+			current = selection->GetAt(i);
+			clone = current->Clone();
+			this->clipboard.Add(clone);
+			i++;
+		}
 }
 
 void Clipboard::Paste()

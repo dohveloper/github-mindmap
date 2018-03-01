@@ -14,4 +14,4 @@ public:
 	void KeyDown(PageForm *pageForm, UINT nChar, UINT nRepCnt, UINT nFlags);
 };
 
-#endif // !KEYBOARD_H
+#endif // _KEYBOARD_H

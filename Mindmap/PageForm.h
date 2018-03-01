@@ -7,7 +7,7 @@
 #include <string>
 #include "Array.h"
 #include "Selection.h"
-
+#include "Clipboard.h"
 using namespace std;
 
 typedef signed long int Long;
@@ -24,10 +24,12 @@ public:
 	TextForm * textForm;
 	Branch *branch;
 	Selection selection;
+	Clipboard clipboard;
 	MouseAction *mouseAction;
 	ScrollAction *scrollAction;
 	Long movedX;
 	Long movedY;
+
 protected:
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
