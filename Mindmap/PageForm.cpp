@@ -34,6 +34,7 @@ BEGIN_MESSAGE_MAP(PageForm, CFrameWnd)
 	ON_WM_HSCROLL()
 	ON_WM_VSCROLL()
 	ON_WM_MOUSEWHEEL()
+	ON_WM_LBUTTONDBLCLK()
 END_MESSAGE_MAP()
 
 PageForm::PageForm() {
@@ -141,37 +142,6 @@ void PageForm::OnClose()
 	CFrameWnd::OnClose();
 }
 
-void PageForm::OnLButtonDblClk(UINT nFlags, CPoint point)
-{
-	SingleSelect singleSelect;
-	Shape *clickedObject = NULL;
-	Topic *topic;
-
-	point.Offset(this->movedX, this->movedY);
-	clickedObject = this->mouseAction->GetClickedObject(this->branch, point);
-
-	if (clickedObject != NULL) {
-		//클릭된 브랜치를 선택한다.
-		singleSelect.SelectBranch(&this->selection, clickedObject->GetOwnerBranch());
-
-		//선택된 토픽을 구한다.
-		topic = (Topic*)this->selection.GetLastSelection()->GetTopic();
-
-		this->textForm = new TextForm;
-		this->textForm->CreateEx(WS_EX_CLIENTEDGE, TEXT("STATIC"), TEXT("DEMO"), WS_CHILD | WS_VISIBLE | WS_BORDER, topic->GetX(), topic->GetY(), topic->GetWidth() + 6, topic->GetHeight(), m_hWnd, (HMENU)2345);
-
-		this->textForm->textFormSize->SetX(topic->GetX());
-		this->textForm->textFormSize->SetY(topic->GetY());
-		this->textForm->textFormSize->SetWidth(topic->GetWidth());
-		this->textForm->textFormSize->SetHeight(topic->GetHeight());
-		this->textForm->ShowWindow(SW_SHOW);
-		this->textForm->UpdateWindow();
-		AfxGetApp()->m_pMainWnd = this->textForm;
-
-		this->textForm->SetCapture();
-	}
-}
-
 void PageForm::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 	KeyBoard keyBoard;
@@ -218,4 +188,35 @@ BOOL PageForm::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 	*/
 	RedrawWindow();
 	return CFrameWnd::OnMouseWheel(nFlags, zDelta, pt);
+}
+
+void PageForm::OnLButtonDblClk(UINT nFlags, CPoint point)
+{
+	SingleSelect singleSelect;
+	Shape *clickedObject = NULL;
+	Topic *topic;
+
+	point.Offset(this->movedX, this->movedY);
+	clickedObject = this->mouseAction->GetClickedObject(this->branch, point);
+	if (clickedObject != NULL) {
+		//클릭된 브랜치를 선택한다.
+		singleSelect.SelectBranch(&this->selection, clickedObject->GetOwnerBranch());
+
+		//선택된 토픽을 구한다.
+		topic = (Topic*)this->selection.GetLastSelection()->GetTopic();
+
+		this->textForm = new TextForm;
+		this->textForm->CreateEx(WS_EX_CLIENTEDGE, TEXT("STATIC"), TEXT("DEMO"), WS_CHILD | WS_VISIBLE | WS_BORDER, topic->GetX(), topic->GetY(), topic->GetWidth() + 6, topic->GetHeight(), m_hWnd, (HMENU)2345);
+
+		this->textForm->textFormSize->SetX(topic->GetX());
+		this->textForm->textFormSize->SetY(topic->GetY());
+		this->textForm->textFormSize->SetWidth(topic->GetWidth());
+		this->textForm->textFormSize->SetHeight(topic->GetHeight());
+		this->textForm->ShowWindow(SW_SHOW);
+		this->textForm->UpdateWindow();
+		AfxGetApp()->m_pMainWnd = this->textForm;
+
+		this->textForm->SetCapture();
+	}
+	CFrameWnd::OnLButtonDblClk(nFlags, point);
 }
