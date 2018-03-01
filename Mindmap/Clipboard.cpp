@@ -1,71 +1,57 @@
 #include "Clipboard.h"
 
-Clipboard::Clipboard(Long capacity)
+Clipboard::Clipboard(Selection *selectoin, Long capacity)
 	:clipboard(capacity)
 {
-	this->capacity = capacity;
-	this->length = 0;
+	this->selection = selection;
 }
 
 Clipboard::Clipboard(const Clipboard & source)
-	:clipboard(source.clipboard)
+	: clipboard(source.clipboard)
 {
-	this->capacity = source.capacity;
-	this->length = source.length;
+	this->selection = selection;
 }
 
 Clipboard::~Clipboard()
 {
 }
 
-void Clipboard::Copy(Selection *selection)
+void Clipboard::Copy()
 {
 	Long index;
-	Long i=0;
-	Branch *currentItem;
+	Long i = 0;
+	Branch *current;
 	Branch *clone;
-	
+
 	while (i < selection->GetLength()) {
-		currentItem = selection->GetAt(i);
-		clone = currentItem->Clone();
-		if (this->length < this->capacity) {
-			index = this->clipboard.Store(this->length, clone);
-		}
-		else {
-			index = this->clipboard.AppendFromRear(clone);
-			this->capacity++;
-		}
-		this->length++;
+		current = selection->GetAt(i);
+		clone = current->Clone();
+		this->clipboard.Add(clone);
 		i++;
 	}
-
 }
 
-void Clipboard::Paste(Selection *selection)
+void Clipboard::Paste()
 {
 	Long i = 0;
-	Branch *branch;
-	branch = selection->GetLastSelection();
+	Branch *targetBranch;//붙여넣어지는 브랜치
+	Branch *current; //복사한 브랜치
 
-	while (i < this->length) {
-		branch->Add(this->clipboard.GetAt(i));
+	targetBranch = this->selection->GetLastSelection();
+
+	while (i < this->selection->GetLength()) {
+		current = this->selection->GetAt(i);
+		targetBranch->Add(current);
 		i++;
 	}
 }
-
-
-
 
 Clipboard& Clipboard::operator=(const Clipboard & source)
 {
 	this->clipboard = source.clipboard;
-	this->capacity = source.capacity;
-	this->length = source.length;
-
+	this->selection = source.selection;
 	return *this;
 }
-
-
 
 /*
 #include <iostream>
@@ -74,7 +60,6 @@ Clipboard& Clipboard::operator=(const Clipboard & source)
 using namespace std;
 
 int main(int argc, char argv[]) {
-
 bool ret;
 //선택 생성
 Clipboard Clipboard;
@@ -145,7 +130,6 @@ cout << endl<< "Clipboard2 capacity: " << Clipboard2.GetCapacity() << "  length 
 cout << "content : " << Clipboard.GetLastClipboard()->GetTopic()->GetContent()  << endl;
 Clipboard2.Clear();
 cout<< "Clipboard2 capacity: " << Clipboard2.GetCapacity() << "  length :  " << Clipboard2.GetLength() << endl << endl;
-
 
 //Remove Test
 Clipboard.Remove(&subBranch2);

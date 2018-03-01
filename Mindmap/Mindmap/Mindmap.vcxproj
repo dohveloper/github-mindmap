@@ -19,8 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\..\Desktop\CopyKey.h" />
+    <ClInclude Include="..\..\..\..\..\Desktop\PasteKey.h" />
     <ClInclude Include="..\Array.h" />
     <ClInclude Include="..\Branch.h" />
+    <ClInclude Include="..\BranchArray.h" />
     <ClInclude Include="..\BranchIterator.h" />
     <ClInclude Include="..\BranchTraverser.h" />
     <ClInclude Include="..\Caret.h" />
@@ -103,7 +106,10 @@
     <ClInclude Include="..\WriteVisitor.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\..\Desktop\CopyKey.cpp" />
+    <ClCompile Include="..\..\..\..\..\Desktop\PasteKey.cpp" />
     <ClCompile Include="..\Branch.cpp" />
+    <ClCompile Include="..\BranchArray.cpp" />
     <ClCompile Include="..\BranchIterator.cpp" />
     <ClCompile Include="..\BranchTraverser.cpp" />
     <ClCompile Include="..\Caret.cpp" />
@@ -243,6 +249,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>C:\Users\a\source\repos\github-mindmap\Mindmap;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\a\source\repos\github-mindmap\Mindmap;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>

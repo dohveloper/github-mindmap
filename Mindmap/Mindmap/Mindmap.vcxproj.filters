@@ -81,9 +81,6 @@
     <ClInclude Include="..\Iterator.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="..\KeyAction.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="..\KeyBoard.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -261,6 +258,18 @@
     <ClInclude Include="..\WriteVisitor.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Desktop\CopyKey.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Desktop\PasteKey.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BranchArray.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\KeyAction.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Branch.cpp">
@@ -321,9 +330,6 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="..\Iterator.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="..\KeyAction.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="..\KeyBoard.cpp">
@@ -502,6 +508,18 @@
     </ClCompile>
     <ClCompile Include="..\WriteVisitor.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Desktop\CopyKey.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Desktop\PasteKey.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\BranchArray.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\KeyAction.cpp">
+      <Filter>헤더 파일</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

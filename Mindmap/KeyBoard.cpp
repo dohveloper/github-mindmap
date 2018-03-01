@@ -73,5 +73,4 @@ void KeyBoard::KeyDown(PageForm *pageForm, UINT nChar, UINT nRepCnt, UINT nFlags
 	default:
 		break;
 	}
-
 }

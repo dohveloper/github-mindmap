@@ -1,36 +1,23 @@
 #ifndef _CLIPBOARD_H
 #define _CLIPBOARD_H
 #include "Selection.h"
+#include "BranchArray.h"
 
 class Clipboard {
 public:
-	Clipboard(Long capacity = 256);
+	Clipboard(Selection *selection, Long capacity = 256);
 	Clipboard(const Clipboard& source);
 	~Clipboard();
 
-	void Copy(Selection *selection);
-	void Paste(Selection *selection);
+	void Copy();
+	void Paste();
 	//void Cut(Selection *selection);
-
 
 	Clipboard& operator=(const Clipboard& source);
 
-	Long GetCapacity() const;
-	Long GetLength() const;
-
 private:
-	Array<Branch*> clipboard;
-	Long capacity;
-	Long length;
-
+	BranchArray clipboard;
+	Selection *selection;
 };
-
-inline Long Clipboard::GetCapacity() const {
-	return this->capacity;
-}
-
-inline Long Clipboard::GetLength() const {
-	return this->length;
-}
 
 #endif //_Clipboard_H
