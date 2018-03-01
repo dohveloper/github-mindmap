@@ -147,6 +147,7 @@ void PageForm::OnLButtonDblClk(UINT nFlags, CPoint point)
 	Shape *clickedObject = NULL;
 	Topic *topic;
 
+	point.Offset(this->movedX, this->movedY);
 	clickedObject = this->mouseAction->GetClickedObject(this->branch, point);
 
 	if (clickedObject != NULL) {
@@ -174,7 +175,7 @@ void PageForm::OnLButtonDblClk(UINT nFlags, CPoint point)
 void PageForm::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 	KeyBoard keyBoard;
-	
+
 	keyBoard.KeyDown(this, nChar, nRepCnt, nFlags);
 
 	RedrawWindow();

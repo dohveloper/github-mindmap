@@ -2,10 +2,10 @@
 
 #ifndef _DELETEKEY_H
 #define _DELETEKEY_H
-#include "KeyAction.h"
+//#include "KeyAction.h"
 
 class PageForm;
-class DeleteKey :public KeyAction
+class DeleteKey //:public KeyAction
 {
 public:
 	DeleteKey();

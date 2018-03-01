@@ -11,9 +11,6 @@ public:
 	KeyAction();
 	virtual ~KeyAction() = 0;
 	void KeyPress(PageForm *pageForm);
-
-private:
-
 };
 
 #endif // _KEYACTION_H

@@ -101,8 +101,6 @@
     <ClInclude Include="..\WriteEnglish.h" />
     <ClInclude Include="..\WriteKorean.h" />
     <ClInclude Include="..\WriteVisitor.h" />
-    <ClInclude Include="CopyKey.h" />
-    <ClInclude Include="PasteKey.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Branch.cpp" />
@@ -185,8 +183,6 @@
     <ClCompile Include="..\WriteEnglish.cpp" />
     <ClCompile Include="..\WriteKorean.cpp" />
     <ClCompile Include="..\WriteVisitor.cpp" />
-    <ClCompile Include="CopyKey.cpp" />
-    <ClCompile Include="PasteKey.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
