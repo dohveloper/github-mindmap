@@ -4,7 +4,7 @@
 #include "Selection.h"
 
 Composite::Composite(Long capacity, Branch* branch)
-	:shapes(capacity) {
+	: shapes(capacity) {
 	this->capacity = capacity;
 	this->length = 0;
 	this->ownerBranch = branch;

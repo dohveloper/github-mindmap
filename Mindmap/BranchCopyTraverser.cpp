@@ -4,6 +4,8 @@
 #include "Line.h"
 #include "Mark.h"
 
+#include "PageForm.h"
+
 BranchCopyTraverser::BranchCopyTraverser(Branch *branch)
 	:BranchTraverser(branch)
 {
@@ -77,9 +79,11 @@ int main(int argc, char argv[]) {
 	Branch *currentBranch;
 	////////////////////////////브랜치, 토픽 생성//////////////////////////////
 	//0
+
 	Branch branch; Line line(0, 0, 0, 0, "line"); Topic topic(0, 0, 0, 0, "topic"); Mark mark(0, 0, 0, 0, "mark");
 	branch.Add(&line); branch.Add(&topic); branch.Add(&mark);
 	branch.SetContent("branch");
+	branch.SetIsShown(false);
 	//1
 	Branch branch1; Line line1(0, 0, 0, 0, "line1"); Topic topic1(0, 0, 0, 0, "topic1");  Mark mark1(0, 0, 0, 0, "mark1");
 	branch1.Add(&line1); branch1.Add(&topic1); branch1.Add(&mark1);
@@ -88,7 +92,7 @@ int main(int argc, char argv[]) {
 	Branch branch1_1; Line line1_1(0, 0, 0, 0, "line1_1"); Topic topic1_1(0, 0, 0, 0, "topic1_1"); Mark mark1_1(0, 0, 0, 0, "mark1_1");
 	branch1_1.Add(&line1_1); branch1_1.Add(&topic1_1); branch1_1.Add(&mark1_1);
 	branch1_1.SetContent("branch1_1");
-	branch1_1.SetIsShown(false);
+
 	//1_2
 	Branch branch1_2;	Line line1_2(0, 0, 0, 0, "line1_2");	Topic topic1_2(0, 0, 0, 0, "topic1_2");	Mark mark1_2(0, 0, 0, 0, "mark1_2");
 	branch1_2.Add(&line1_2); branch1_2.Add(&topic1_2); branch1_2.Add(&mark1_2);
@@ -215,28 +219,6 @@ int main(int argc, char argv[]) {
 		cout << endl;
 		i = 0;
 		j++;
-	}
-
-	//isShown 복사 테스트
-	Branch *copy_branch1_1;
-	BranchCopyTraverser testIsShown(&branch1_1);
-	testIsShown.Traverse();
-	copy_branch1_1 = traverser.GetCopiedBranch();
-
-	if (branch1_1.GetIsShown())
-	{
-		cout << " branch1_1 : isShown = true " << endl;
-	}
-	else {
-		cout << "branch1_1 : isShown = false " << endl;
-	}
-
-	if (copy_branch1_1->GetIsShown())
-	{
-		cout << "copy_branch1_1 : isShown = true " << endl;
-	}
-	else {
-		cout << "copy_branch1_1 : isShown = false " << endl;
 	}
 
 	return 0;
