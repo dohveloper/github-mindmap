@@ -29,7 +29,7 @@ void DeleteKey::KeyPress(PageForm * pageForm)
 	}
 
 	Branch *compare = NULL;
-	Branch *temp;
+	Branch *temp = NULL;
 
 	if (0 < length)
 	{

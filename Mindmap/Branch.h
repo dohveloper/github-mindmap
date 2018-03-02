@@ -17,6 +17,7 @@ public:
 	Long Add(Shape *shape);
 	void Sort();
 	Topic* GetTopic();
+	Line* GetLine();
 	Mark* GetMark();
 
 	virtual void Accept(ShapeVisitor& visitor);
@@ -25,6 +26,6 @@ public:
 	Branch& operator=(const Branch& source);
 };
 
-int CompareY(void *one, void *other);
+int CompareYs(void *one, void *other);
 
 #endif //TOPIC_H

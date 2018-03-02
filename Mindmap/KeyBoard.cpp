@@ -4,6 +4,7 @@
 #include "KeyAction.h"
 #include "PageForm.h"
 #include "DeleteKey.h"
+#include "ArrangeKey.h"
 
 Keyboard::Keyboard()
 {
@@ -21,6 +22,12 @@ void Keyboard::KeyDown(PageForm *pageForm, UINT nChar, UINT nRepCnt, UINT nFlags
 	{
 		DeleteKey deleteKey;
 		deleteKey.KeyPress(pageForm);
+		break;
+	}
+	case 0x41://A키 임시 정렬용 
+	{
+		ArrangeKey arrangeKey;
+		arrangeKey.KeyPress(pageForm);
 		break;
 	}
 	case VK_RETURN://엔터

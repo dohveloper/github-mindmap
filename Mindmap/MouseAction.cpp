@@ -41,7 +41,24 @@ void MouseAction::SetStrategy(Shape *shape)
 		this->mouseStrategy = new MarkStrategy();
 	}
 }
+void MouseAction::SetStrategy(string strategy)
+{
+	//할당해제
+	if (this->mouseStrategy != NULL) {
+		delete this->mouseStrategy;
+		this->mouseStrategy = NULL;
+	}
 
+	if (strategy == "DRAWING" || strategy == "Drawing" || strategy == "drawing") {
+		this->mouseStrategy = new DrawingStrategy();
+	}
+	if (strategy == "SELECTION" || strategy == "Selection" || strategy == "selection") {
+		this->mouseStrategy = new SelectionStrategy();
+	}
+	if (strategy == "MARK" || strategy == "Mark" || strategy == "mark") {
+		this->mouseStrategy = new MarkStrategy();
+	}
+}
 Shape * MouseAction::GetClickedObject(Branch *branch, CPoint point)
 {
 	Shape *ret = NULL;

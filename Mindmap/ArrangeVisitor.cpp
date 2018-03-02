@@ -3,7 +3,9 @@
 #include "ArrangeVisitor.h"
 #include "Branch.h"
 #include "Topic.h"
-#define hInterval 10
+#include "Line.h"
+#include "TotalHeightVisitor.h"
+#define hInterval 30
 #define vInterval 10
 
 
@@ -22,25 +24,28 @@ void ArrangeVisitor::VisitBranch(Branch *branch)
 	Shape *currentItem;
 	Long branchCount = 0;
 	Long branchPosition = 0;
-	Long mostLeft = 0;
+	Long mostLeft;
+	Long mostWidth;
 	Long tempX;
-	Long j = 0;
+	Long j;
 	Long totalHeight = 0;
-	Long mostUp = 0;
-	Long tempY;
 	Long centerY;
 	Long currentY;
-	Long selectTopic;
 	Array<Branch*> temp;
-	Long k = 0;
+	Long mostRight;
+	Long lineWidth;
+	Long lineHeight;
+	Long branchHeight;
 
-	length = branch->GetOwnerBranch()->GetLength();
+	length = branch->GetLength();
+
 
 	while (i < length)//브랜치개수, 브랜치 시작지점 찾기
 	{
-		currentItem = branch->GetOwnerBranch()->GetAt(i);
+		currentItem = branch->GetAt(i);
 		if (typeid(*currentItem) == typeid(Branch))
 		{
+			currentItem->Accept(*this);
 			branchCount++;//브랜치 개수
 		}
 		else
@@ -50,64 +55,285 @@ void ArrangeVisitor::VisitBranch(Branch *branch)
 		i++;
 	}
 
-	i = 0;
-	j = branchPosition;
-	while (i < branchCount / 2)//가장 왼쪽위치한 브랜치(토픽)찾기
+	if (typeid(*branch->GetAt(0)) == typeid(Topic))//메인의 하위브랜치 정렬
 	{
-		//오너브랜치의 브랜치들 중 가장 좌측의 브랜치 찾기
-		tempX = ((Branch*)branch->GetOwnerBranch()->GetAt(j))->GetTopic()->GetX() - hInterval - branch->GetTopic()->GetWidth();
+		//메인브랜치의 좌측 브랜치 정렬
+		i = 0;
+		j = branchPosition;
+		mostLeft = branch->GetTopic()->GetX();
 
-		if (tempX < mostLeft)
+		while (i < branchCount / 2)
 		{
-			mostLeft = tempX;
+			tempX = branch->GetTopic()->GetX() - hInterval - ((Branch*)branch->GetAt(j))->GetTopic()->GetWidth();//브랜치의 x좌표 - 간격- 하위브랜치의 위드
+
+			if (tempX < mostLeft)
+			{
+				mostLeft = tempX;
+				mostWidth= ((Branch*)branch->GetAt(j))->GetTopic()->GetWidth();
+			}
+			j++;
+			i++;
+		}
+		i = 0;
+		j = branchPosition;
+		while (i < branchCount / 2)//가로정렬
+		{
+			((Branch*)branch->GetAt(j))->GetTopic()->SetX(mostLeft + (mostWidth - ((Branch*)branch->GetAt(j))->GetTopic()->GetWidth()));
+			lineWidth = ((Branch*)branch->GetAt(j))->GetTopic()->GetX() + (((Branch*)branch->GetAt(j))->GetTopic()->GetWidth()) / 2 - ((Branch*)branch->GetAt(j))->GetLine()->GetX();
+			((Branch*)branch->GetAt(j))->GetLine()->SetWidth(lineWidth);
+			((Branch*)branch->GetAt(j))->GetMark()->SetX(mostLeft + (mostWidth - ((Branch*)branch->GetAt(j))->GetTopic()->GetWidth()) + 14 * (((Branch*)branch->GetAt(j))->GetTopic()->GetWidth()) / 15);
+			j++;
+			i++;
+		}
+
+		i = 0;
+		j = branchPosition;
+		while (i < branchCount / 2)//세로 총높이  ???하위 브랜치 있으면 계산해야함.
+		{
+			//branchHeight = ((Branch*)branch->GetAt(j))->GetTotalHeight();
+			totalHeight += ((Branch*)branch->GetAt(j))->GetTopic()->GetHeight();
+			j++;
+			i++;
+		}
+		/*
+		TotalHeightVisitor totalHeightVisitor;
+		branch->Accept(totalHeightVisitor);
+		totalHeight = totalHeightVisitor.GetTotalHeight();
+		totalHeight += vInterval * (branchCount / 2 - 1);
+		totalHeight = branch->GetTotalHeight();
+		*/
+
+
+		centerY = branch->GetTopic()->GetY() + branch->GetTopic()->GetHeight() / 2;
+		currentY = centerY - totalHeight / 2;
+
+		i = 0;
+		j = branchPosition;
+		while (i < branchCount / 2)
+		{
+			((Branch*)branch->GetAt(j))->GetTopic()->SetY(currentY);
+			lineHeight = currentY + (((Branch*)branch->GetAt(j))->GetTopic()->GetHeight()) / 2 - centerY;
+			((Branch*)branch->GetAt(j))->GetLine()->SetHeight(lineHeight);
+			((Branch*)branch->GetAt(j))->GetMark()->SetY(currentY + (((Branch*)branch->GetAt(j))->GetTopic()->GetHeight()) / 4);
+			currentY = currentY + ((Branch*)branch->GetAt(j))->GetTopic()->GetHeight() + vInterval;
+			j++;
+			i++;
+		}
+
+		//메인브랜치의 우측 브랜치 정렬
+
+		branchPosition = j;
+
+		mostRight = branch->GetTopic()->GetX() + branch->GetTopic()->GetWidth() + hInterval;
+		
+		i = branchPosition;
+		while (i < length)//가로정렬
+		{
+			((Branch*)branch->GetAt(i))->GetTopic()->SetX(mostRight);
+			lineWidth = mostRight + (((Branch*)branch->GetAt(i))->GetTopic()->GetWidth()) / 2 - ((Branch*)branch->GetAt(i))->GetLine()->GetX();
+			((Branch*)branch->GetAt(i))->GetLine()->SetWidth(lineWidth);
+			((Branch*)branch->GetAt(i))->GetMark()->SetX(mostRight + 14 * (((Branch*)branch->GetAt(i))->GetTopic()->GetWidth()) / 15);
+			i++;
+		}
+
+		/*
+		i = branchPosition;
+		while (i < length)
+		{
+			tempX = branch->GetTopic()->GetX() + branch->GetTopic()->GetWidth() + hInterval + ((Branch*)branch->GetAt(i))->GetTopic()->GetWidth();//브랜치의 x좌표 - 간격- 하위브랜치의 위드
+
+
+			if (tempX > mostRight)
+			{
+				mostRight = tempX;
+			}
+			i++;
+		}
+		*/
+		/*
+		TotalHeightVisitor totalHeightVisitor;
+		branch->Accept(totalHeightVisitor);
+		totalHeight = totalHeightVisitor.GetTotalHeight();
+		totalHeight += vInterval * (branchCount / 2 - 1);
+		totalHeight = branch->GetTotalHeight();
+		TotalHeightVisitor totalHeightVisitor;
+		if (branch->GetHeight() == 0)
+		{
+		branch->Accept(totalHeightVisitor);
+		}
+
+		totalHeight = branch->GetHeight();
+	    */
+
+		totalHeight = 0;
+		i = branchPosition;
+		while (i < length)//세로 총높이  ???하위 브랜치 있으면 계산해야함.
+		{
+
+			totalHeight += ((Branch*)branch->GetAt(i))->GetTopic()->GetHeight();
+			i++;
+		}	
+
+		totalHeight += vInterval * (branchCount / 2 - 1);
+
+		centerY = branch->GetTopic()->GetY() + branch->GetTopic()->GetHeight() / 2;
+		currentY = centerY - totalHeight / 2;
+
+		i = branchPosition;
+		while (i < length)
+		{
+			((Branch*)branch->GetAt(i))->GetTopic()->SetY(currentY);
+			lineHeight = currentY + (((Branch*)branch->GetAt(i))->GetTopic()->GetHeight()) / 2 - centerY;
+			((Branch*)branch->GetAt(i))->GetLine()->SetHeight(lineHeight);
+			((Branch*)branch->GetAt(i))->GetMark()->SetY(currentY + (((Branch*)branch->GetAt(i))->GetTopic()->GetHeight()) / 4);
+			currentY = currentY + ((Branch*)branch->GetAt(i))->GetTopic()->GetHeight() + vInterval;
+			i++;
+
+
+		}
+	}
+
+
+	/////////////////////////////
+	else if (branch->GetTopic()->GetX() < 487)//좌측쪽
+	{
+		i = 0;
+		j = branchPosition;
+		mostLeft = branch->GetTopic()->GetX();
+
+		while (i < branchCount)
+		{
+			tempX = branch->GetTopic()->GetX() - hInterval - ((Branch*)branch->GetAt(j))->GetTopic()->GetWidth();//브랜치의 x좌표 - 간격- 하위브랜치의 위드
+
+
+			if (tempX < mostLeft)
+			{
+				mostLeft = tempX;
+				mostWidth = ((Branch*)branch->GetAt(j))->GetTopic()->GetWidth();
+			}
+			j++;
+			i++;
+		}
+
+		i = 0;
+		j = branchPosition;
+		while (i < branchCount)//가로정렬
+		{
+			((Branch*)branch->GetAt(j))->GetTopic()->SetX(mostLeft + (mostWidth - ((Branch*)branch->GetAt(j))->GetTopic()->GetWidth()));
+			((Branch*)branch->GetAt(j))->GetLine()->SetX(branch->GetTopic()->GetX() + (branch->GetTopic()->GetWidth()) / 2);
+			lineWidth = ((Branch*)branch->GetAt(j))->GetTopic()->GetX() + (((Branch*)branch->GetAt(j))->GetTopic()->GetWidth()) / 2 - ((Branch*)branch->GetAt(j))->GetLine()->GetX();
+			((Branch*)branch->GetAt(j))->GetLine()->SetWidth(lineWidth);
+			((Branch*)branch->GetAt(j))->GetMark()->SetX(mostLeft + (mostWidth - ((Branch*)branch->GetAt(j))->GetTopic()->GetWidth()) + 14 * (((Branch*)branch->GetAt(j))->GetTopic()->GetWidth()) / 15);
+			j++;
+			i++;
+		}
+
+		i = 0;
+		j = branchPosition;
+		while (i < branchCount)//세로 총높이  ???하위 브랜치 있으면 계산해야함.
+		{
+			totalHeight += ((Branch*)branch->GetAt(j))->GetTopic()->GetHeight();
+			j++;
+			i++;
+		}
+
+		totalHeight += vInterval * (branchCount - 1);
+
+		centerY = branch->GetTopic()->GetY() + branch->GetTopic()->GetHeight() / 2;
+		currentY = centerY - totalHeight / 2;
+
+		i = 0;
+		j = branchPosition;
+		while (i < branchCount)
+		{
+			((Branch*)branch->GetAt(j))->GetTopic()->SetY(currentY);
+			((Branch*)branch->GetAt(j))->GetLine()->SetY(centerY);
+			lineHeight = currentY + (((Branch*)branch->GetAt(j))->GetTopic()->GetHeight()) / 2 - centerY;
+			((Branch*)branch->GetAt(j))->GetLine()->SetHeight(lineHeight);
+			((Branch*)branch->GetAt(j))->GetMark()->SetY(currentY + (((Branch*)branch->GetAt(j))->GetTopic()->GetHeight()) / 4);
+			currentY = currentY + ((Branch*)branch->GetAt(j))->GetTopic()->GetHeight() + vInterval;
+			j++;
+			i++;
+		}
+
+	}
+	//////////////////////////////////
+	else if (branch->GetTopic()->GetX() > 487)//우측쪽
+	{
+		mostRight = branch->GetTopic()->GetX() + branch->GetTopic()->GetWidth() + hInterval;
+
+		i = branchPosition;
+		while (i < length)//가로정렬
+		{
+			((Branch*)branch->GetAt(i))->GetTopic()->SetX(mostRight);
+			lineWidth = mostRight + (((Branch*)branch->GetAt(i))->GetTopic()->GetWidth()) / 2 - ((Branch*)branch->GetAt(i))->GetLine()->GetX();
+			((Branch*)branch->GetAt(i))->GetLine()->SetX(branch->GetTopic()->GetX() + (branch->GetTopic()->GetWidth()) / 2);
+			((Branch*)branch->GetAt(i))->GetLine()->SetWidth(lineWidth);
+			((Branch*)branch->GetAt(i))->GetMark()->SetX(mostRight + 14 * (((Branch*)branch->GetAt(i))->GetTopic()->GetWidth()) / 15);
+			i++;
+		}
+
+		/*
+		totalHeight = 0;
+		i = branchPosition;
+		while (i < length)//세로 총높이  ???하위 브랜치 있으면 계산해야함.
+		{
+
+			totalHeight += ((Branch*)branch->GetAt(i))->GetTopic()->GetHeight();
+			i++;
+		}
+		*/
+		
+		totalHeight = branch->GetHeight();
+		totalHeight += vInterval * (branchCount - 1);
+		
+		centerY = branch->GetTopic()->GetY() + branch->GetTopic()->GetHeight() / 2;
+		currentY = centerY - totalHeight / 2;
+
+		i = branchPosition;
+		while (i < length)
+		{
+			((Branch*)branch->GetAt(i))->GetTopic()->SetY(currentY);
+			lineHeight = currentY + (((Branch*)branch->GetAt(i))->GetTopic()->GetHeight()) / 2 - centerY;
+			((Branch*)branch->GetAt(i))->GetLine()->SetY(centerY);
+			((Branch*)branch->GetAt(i))->GetLine()->SetHeight(lineHeight);
+			((Branch*)branch->GetAt(i))->GetMark()->SetY(currentY + (((Branch*)branch->GetAt(i))->GetTopic()->GetHeight()) / 4);
+			
+			currentY = currentY + ((Branch*)branch->GetAt(i))->GetTopic()->GetHeight() + vInterval;
+			/*
+			if (branch->GetAt(i)->GetHeight() == 0 && 4 > length)
+			{
+				branchHeight = ((Branch*)branch->GetAt(i))->GetTopic()->GetHeight();
+			}
+			else
+			{
+				branchHeight = branch->GetHeight();
+			}
+			currentY = currentY + branchHeight + vInterval;
+			*/
+			
+			i++;
 		}
 	}
 
 	i = 0;
-	j = branchPosition;
-	while (i < branchCount / 2)//가로정렬
+	while (i < length)//하위브랜치 정렬
 	{
-		branch->GetOwnerBranch()->GetAt(j)->SetX(mostLeft);
-		j++;
-		i++;
-	}
-
-	/////////////////////
-
-	/*
-	i = 0;
-	j = branchPosition;
-	while (i < branchCount / 2)//세로 총높이  ???하위 브랜치 있으면 계산해야함.
-	{
-		totalHeight += branch->GetOwnerBranch()->GetAt(j)->GetHeight();
-		j++;
-		i++;
-	}
-
-	centerY = branch->GetOwnerBranch()->GetTopic()->GetY() + branch->GetOwnerBranch()->GetTopic()->GetHeight() / 2;
-	currentY = centerY + totalHeight / 2;
-	
-	i = 0;
-	j = branchPosition;
-	while (i < branchCount / 2)
-	{
-		tempY = branch->GetOwnerBranch()->GetAt(j)->GetY();
-
-
-		if (tempY > mostUp)
+		currentItem = branch->GetAt(i);
+		if (typeid(*currentItem) == typeid(Branch))
 		{
-			mostUp = tempY;
-			selectTopic = j;
-			temp[k] = ;
-
+			currentItem->Accept(*this);
 		}
-
+		i++;
 	}
-
-	branch->GetOwnerBranch()->GetAt(j)->SetY(currentY);
-
-	*/
-
-
-
+	i = 0;
+	while (i < length)//하위브랜치 정렬
+	{
+		currentItem = branch->GetAt(i);
+		if (typeid(*currentItem) == typeid(Branch))
+		{
+			currentItem->Accept(*this);
+		}
+		i++;
+	}
 }

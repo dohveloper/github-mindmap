@@ -14,6 +14,7 @@ public:
 	void OnLButtonUp(Selection *selection, UINT nFlags, Branch *branch);
 
 	void SetStrategy(Shape *shape);
+	void SetStrategy(string strategy);
 	Shape* GetClickedObject(Branch *branch, CPoint point);
 
 private:

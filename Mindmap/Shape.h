@@ -41,7 +41,8 @@ public:
 	void SetContent(string content);
 	void SetX(Long x);
 	void SetY(Long y);
-
+	void SetWidth(Long width);
+	void SetHeight(Long height);
 protected:
 	Long x;
 	Long y;
@@ -84,15 +85,20 @@ inline void Shape::SetContent(string content)
 {
 	this->content = content;
 }
-
 inline void Shape::SetX(Long x)
 {
 	this->x = x;
 }
-
 inline void Shape::SetY(Long y)
 {
 	this->y = y;
 }
-
+inline void Shape::SetWidth(Long width)
+{
+	this->width = width;
+}
+inline void Shape::SetHeight(Long height)
+{
+	this->height = height;
+}
 #endif //_SHAPE_H

@@ -4,13 +4,13 @@
 #include "Composite.h"
 #include "Topic.h"
 #include "Line.h"
-#include "Selection.h"
+#include "BranchArray.h"
 Branch::Branch(Long capacity, Branch* branch)
 	:Composite(capacity, branch)
 {
 }
 Branch::Branch(const Branch& source)
-	: Composite(source){
+	: Composite(source) {
 }
 Branch::~Branch()
 {
@@ -31,13 +31,13 @@ void Branch::Sort()
 	Shape *currentItem;
 	Long branchPosition = 0;
 	Long centerX;
-	Branch *temp;
+	Branch *branch;
 	Long x;
-	Branch leftBranches;
-	Branch rightBranches;
+	BranchArray leftBranches;
+	BranchArray rightBranches;
 
 	length = this->shapes.GetLength();
-	
+
 	currentItem = this->shapes.GetAt(i);
 	while (typeid(*currentItem) != typeid(Branch))
 	{
@@ -50,23 +50,22 @@ void Branch::Sort()
 	while (i < length)
 	{
 		centerX = this->GetTopic()->GetX() + this->GetTopic()->GetWidth() / 2;
-		temp = (Branch*)this->shapes.GetAt(i);
+		branch = (Branch*)this->shapes.GetAt(i);
 
-		x = temp->GetTopic()->GetX();
+		x = branch->GetTopic()->GetX();
 
 		if (x < centerX)
 		{
-			leftBranches.Add(temp);
+			leftBranches.Add(branch);
 		}
 		else
 		{
-			rightBranches.Add(temp);
+			rightBranches.Add(branch);
 		}
 		i++;
 	}
-	leftBranches.shapes.BubbleSort(CompareY);
-	//leftBranches.shapes.SelectionSort(CompareY);
-	rightBranches.shapes.BubbleSort(CompareY);
+	leftBranches.branches.InsertionSort(CompareYs);
+	rightBranches.branches.InsertionSort(CompareYs);
 
 	i = 0;
 	while (i < leftBranches.GetLength())
@@ -97,35 +96,56 @@ Topic* Branch::GetTopic()
 	return (Topic*)topic;
 }
 
-Mark* Branch::GetMark()
+Line* Branch::GetLine()
 {
-	Shape *mark;
+	Shape *line = NULL;
 	Long length;
 	Long i = 0;
 
-	length=this->shapes.GetLength();
+	length = this->shapes.GetLength();
+
+	line = this->shapes.GetAt(i);
+
+	while (i < length)
+	{
+		line = this->shapes.GetAt(i);
+
+		if (typeid(*line) == typeid(Line))
+		{
+			i = length;
+		}
+		i++;
+	}
+	return (Line*)line;
+}
+
+Mark* Branch::GetMark()
+{
+	Shape *mark = NULL;
+	Long length;
+	Long i = 0;
+
+	length = this->shapes.GetLength();
 
 	while (i < length)
 	{
 		mark = this->shapes.GetAt(i);
 
-		if (typeid(*mark) == typeid(Mark)) 
+		if (typeid(*mark) == typeid(Mark))
 		{
 			i = length;
 		}
 		i++;
 	}
 	/*
-	mark = this->shapes.GetAt(1);
-	if (typeid(*mark) == typeid(Mark)) 
+	while (typeid(*mark) == typeid(Mark))
 	{
-		mark = this->shapes.GetAt(2);
+		i++;
+		mark = this->shapes.GetAt(i);
 	}
 	*/
 	return (Mark*)mark;
 }
-
-
 
 void Branch::Accept(ShapeVisitor& visitor) {
 	visitor.VisitBranch(this);
@@ -145,21 +165,13 @@ Branch& Branch::operator=(const Branch& source)
 }
 
 
-int CompareY(void *one, void *other)
+int CompareYs(void *one, void *other)
 {
-	//Branch *frontBranch = (Branch*)one;
-	//Branch *rearBranch = (Branch*)other;
-	//Long front = frontBranch->GetTopic()->GetY();
-	//Long rear = rearBranch->GetTopic()->GetY();
 	int ret = 0;
-	//(*(Branch*)one).GetTopic()->GetY()
-	//((Branch*)one)->GetTopic()->GetY()
-	//(*(*(Branch*)one).GetTopic()).GetY();
-	
 
 	if ((*(Branch**)one)->GetTopic()->GetY() > (*(Branch**)other)->GetTopic()->GetY())
 	{
-		ret = -1;
+		ret = 1;
 	}
 	else if ((*(Branch**)one)->GetTopic()->GetY() == (*(Branch**)other)->GetTopic()->GetY())
 	{
@@ -167,15 +179,16 @@ int CompareY(void *one, void *other)
 	}
 	else if ((*(Branch**)one)->GetTopic()->GetY() < (*(Branch**)other)->GetTopic()->GetY())
 	{
-		ret = 1;
+		ret = -1;
 	}
 	return ret;
 }
 
-
+/*
 #include <iostream>
 #include "Topic.h"
 #include "Line.h"
+#include "ArrangeVisitor.h"
 int main(int argc, char *argv[])
 {
 	Long i = 0;
@@ -183,31 +196,52 @@ int main(int argc, char *argv[])
 	Long lenght;
 
 	Branch *branch = new Branch;
-	branch->Add(new Topic(287, 150, 200, 200, "메인토픽"));
+	branch->Add(new Topic(550, 200, 200, 200, "메인토픽"));
 	branch->Add(new Mark(573, 200));
 
 	cout << branch->GetAt(0)->GetX() << endl;
 
 	Branch *branch2 = new Branch;
-	branch2->Add(new Topic(400, 400, 100, 100, "토픽"));
+	branch2->Add(new Topic(300, 400, 200, 200, "토픽"));
 	branch2->Add(new Line(400, 400, 100, 100, "선"));
 
 	Branch *branch3 = new Branch;
-	branch3->Add(new Topic(100, 100, 100, 100, "토픽"));
-	branch3->Add(new Line(100, 500, 100, 100, "선"));
+	branch3->Add(new Topic(100, 200, 200, 200, "토픽"));
+	branch3->Add(new Line(200, 200, 200, 200, "선"));
 
 	Branch *branch4 = new Branch;
-	branch4->Add(new Topic(500, 500, 100, 100, "토픽"));
+	branch4->Add(new Topic(200, 500, 200, 200, "토픽"));
 	branch4->Add(new Line(500, 500, 100, 100, "선"));
 
 	Branch *branch5 = new Branch;
-	branch5->Add(new Topic(150, 150, 100, 100, "토픽"));
+	branch5->Add(new Topic(150, 150, 200, 200, "토픽"));
 	branch5->Add(new Line(150, 100, 100, 100, "선"));
+
+	Branch *branch6 = new Branch;
+	branch6->Add(new Topic(600, 600, 200, 200, "토픽"));
+	branch6->Add(new Line(200, 200, 200, 200, "선"));
+
+	Branch *branch7 = new Branch;
+	branch7->Add(new Topic(700, 700, 200, 200, "토픽"));
+	branch7->Add(new Line(200, 200, 200, 200, "선"));
+
+	Branch *branch8 = new Branch;
+	branch8->Add(new Topic(300, 300, 200, 200, "토픽"));
+	branch8->Add(new Line(200, 200, 200, 200, "선"));
+
+	Branch *branch9 = new Branch;
+	branch9->Add(new Topic(400, 400, 200, 200, "토픽"));
+	branch9->Add(new Line(200, 200, 200, 200, "선"));
+
 
 	branch->Add(branch2);
 	branch->Add(branch3);
 	branch->Add(branch4);
 	branch->Add(branch5);
+	branch->Add(branch6);
+	branch->Add(branch7);
+	branch->Add(branch8);
+	branch->Add(branch9);
 
 	lenght = branch->GetLength();
 	cout << lenght << endl;
@@ -244,6 +278,30 @@ int main(int argc, char *argv[])
 		i++;
 	}
 
+
+	ArrangeVisitor arrangeVisitor;
+	arrangeVisitor.VisitBranch(branch);
+
+
+	i = 0;
+	cout << "절취선" << endl;
+	while (i < lenght)
+	{
+		currentItem = branch->GetAt(i);
+		if (typeid(*currentItem) == typeid(Branch))
+		{
+			cout << currentItem->GetAt(0)->GetX() << "_" << currentItem->GetAt(0)->GetY() <<  "_" << currentItem->GetHeight() << endl;
+		}
+
+		else
+		{
+			cout << currentItem->GetX() << "__" << currentItem->GetY() << endl;
+		}
+		i++;
+	}
+
+
+
 	return 0;
 }
-
+*/
