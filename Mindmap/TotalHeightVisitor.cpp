@@ -23,6 +23,7 @@ void TotalHeightVisitor::VisitBranch(Branch *branch)
 	Long length;
 	Shape *currentItem;
 	Long branchCount = 0;
+	Long branchHeight;
 
 	length = branch->GetLength();
 
@@ -47,16 +48,23 @@ void TotalHeightVisitor::VisitBranch(Branch *branch)
 		i++;
 	}
 
-	if (branchCount > 0)
+	branchHeight = branch->GetHeight();// +vInterval * (branchCount - 1);
+	if (branchHeight >= branch->GetTopic()->GetHeight())
 	{
-		branch->GetOwnerBranch()->SetHeight(branch->GetOwnerBranch()->GetHeight() + branch->GetHeight() + vInterval * (branchCount / 2 - 1));
-		if (branch->GetOwnerBranch()->GetHeight() < branch->GetTopic()->GetHeight())
-		{
-			branch->GetOwnerBranch()->SetHeight(branch->GetTopic()->GetHeight());
-		}
+		branchHeight += branch->GetOwnerBranch()->GetHeight();
 	}
 	else
 	{
+		branchHeight = branch->GetOwnerBranch()->GetHeight() + branch->GetTopic()->GetHeight();
+	}
+
+	if (branchCount > 0)
+	{
+		branch->GetOwnerBranch()->SetHeight(branchHeight);
+	}
+	else
+	{
+		branch->SetHeight(branch->GetTopic()->GetHeight());
 		branch->GetOwnerBranch()->SetHeight(branch->GetOwnerBranch()->GetHeight() + branch->GetTopic()->GetHeight());
 	}
 }

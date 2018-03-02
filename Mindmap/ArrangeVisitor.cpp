@@ -29,8 +29,8 @@ void ArrangeVisitor::VisitBranch(Branch *branch)
 	Long tempX;
 	Long j;
 	Long totalHeight = 0;
-	Long centerY;
-	Long currentY;
+	Long centerY = 0;
+	Long currentY = 0;
 	Array<Branch*> temp;
 	Long mostRight;
 	Long lineWidth;
@@ -38,7 +38,6 @@ void ArrangeVisitor::VisitBranch(Branch *branch)
 	Long branchHeight;
 
 	length = branch->GetLength();
-
 
 	while (i < length)//브랜치개수, 브랜치 시작지점 찾기
 	{
@@ -285,11 +284,25 @@ void ArrangeVisitor::VisitBranch(Branch *branch)
 		*/
 		
 		totalHeight = branch->GetHeight();
-		totalHeight += vInterval * (branchCount - 1);
-		
-		centerY = branch->GetTopic()->GetY() + branch->GetTopic()->GetHeight() / 2;
-		currentY = centerY - totalHeight / 2;
 
+		centerY = branch->GetTopic()->GetY() + branch->GetTopic()->GetHeight() / 2;
+
+		if (branchCount > 0)
+		{
+			//totalHeight += vInterval * (branchCount - 1);
+			currentY = centerY - totalHeight / 2;
+		}
+		else
+		{
+			currentY = centerY;
+		}
+
+		if (branchCount == 1)
+		{
+			//totalHeight += vInterval * (branchCount - 1);
+			currentY = centerY - ((Branch*)branch->GetAt(branchPosition))->GetTopic()->GetHeight() / 2;
+		}
+		
 		i = branchPosition;
 		while (i < length)
 		{
@@ -299,33 +312,39 @@ void ArrangeVisitor::VisitBranch(Branch *branch)
 			((Branch*)branch->GetAt(i))->GetLine()->SetHeight(lineHeight);
 			((Branch*)branch->GetAt(i))->GetMark()->SetY(currentY + (((Branch*)branch->GetAt(i))->GetTopic()->GetHeight()) / 4);
 			
-			currentY = currentY + ((Branch*)branch->GetAt(i))->GetTopic()->GetHeight() + vInterval;
-			/*
-			if (branch->GetAt(i)->GetHeight() == 0 && 4 > length)
+			//currentY = currentY + ((Branch*)branch->GetAt(i))->GetTopic()->GetHeight() + vInterval;
+
+			
+			if (branch->GetAt(i)->GetHeight() > ((Branch*)branch->GetAt(i))->GetTopic()->GetHeight())
 			{
-				branchHeight = ((Branch*)branch->GetAt(i))->GetTopic()->GetHeight();
+				if (i + 1 < length)
+				{
+					branchHeight = branch->GetAt(i)->GetHeight() + branch->GetAt(i + 1)->GetHeight() / 2;
+				}
+				else
+				{
+					branchHeight = branch->GetAt(i)->GetHeight();
+				}
 			}
 			else
 			{
-				branchHeight = branch->GetHeight();
+				if (i + 1 < length)
+				{
+					branchHeight = ((Branch*)branch->GetAt(i))->GetTopic()->GetHeight() + branch->GetAt(i + 1)->GetHeight() / 2;
+				}
+				else
+				{
+					branchHeight = ((Branch*)branch->GetAt(i))->GetTopic()->GetHeight();
+				}
+				
 			}
 			currentY = currentY + branchHeight + vInterval;
-			*/
+
 			
 			i++;
 		}
 	}
 
-	i = 0;
-	while (i < length)//하위브랜치 정렬
-	{
-		currentItem = branch->GetAt(i);
-		if (typeid(*currentItem) == typeid(Branch))
-		{
-			currentItem->Accept(*this);
-		}
-		i++;
-	}
 	i = 0;
 	while (i < length)//하위브랜치 정렬
 	{
