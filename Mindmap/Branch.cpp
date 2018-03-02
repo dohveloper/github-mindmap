@@ -4,18 +4,16 @@
 #include "Composite.h"
 #include "Topic.h"
 #include "Line.h"
+#include "BranchCopyTraverser.h"
+
 Branch::Branch(Long capacity, Branch* branch)
 	:Composite(capacity, branch)
 {
 }
 Branch::Branch(const Branch& source)
-	: Composite(source) {
-	this->x = source.x;
-	this->y = source.y;
-	this->width = source.width;
-	this->height = source.height;
-	this->ownerBranch = source.ownerBranch;
-	this->isShown = source.isShown;
+	: Composite(source.capacity)
+{
+	Long i = 0;
 }
 Branch::~Branch()
 {

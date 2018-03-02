@@ -24,6 +24,9 @@ public:
 	Long GetCapacity() const;
 	Long GetLength() const;
 
+	void SetCapacity(Long capacity);
+	void SetLength(Long length);
+
 protected:
 	Array<Shape*> shapes;
 	Long capacity;
@@ -38,6 +41,16 @@ inline Long Composite::GetCapacity() const
 inline Long Composite::GetLength() const
 {
 	return this->length;
+}
+
+inline void Composite::SetCapacity(Long capacity)
+{
+	this->capacity = capacity;
+}
+
+inline void Composite::SetLength(Long length)
+{
+	this->length = length;
 }
 
 #endif //_COMPOSITE_H

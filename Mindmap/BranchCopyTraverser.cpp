@@ -4,19 +4,19 @@
 #include "Line.h"
 #include "Mark.h"
 
-#include "PageForm.h"
-
 BranchCopyTraverser::BranchCopyTraverser(Branch *branch)
 	:BranchTraverser(branch)
 {
+	Long capacity;
+	bool isShown;
 	Long x;
 	Long y;
 	Long width;
 	Long height;
 	string content;
-	bool isShown;
 
 	//기존 branch의 값들을 가져온다.
+	capacity = branch->GetCapacity();
 	x = branch->GetX();
 	y = branch->GetY();
 	width = branch->GetWidth();
@@ -25,9 +25,10 @@ BranchCopyTraverser::BranchCopyTraverser(Branch *branch)
 	isShown = branch->GetIsShown();
 
 	//새 브랜치를 할당한다.
-	this->copiedBranch = new Branch();
+	this->copiedBranch = new Branch(capacity);
 
 	//새 브랜치를 가져온값으로 설정한다.
+
 	copiedBranch->SetX(x);
 	copiedBranch->SetY(y);
 	copiedBranch->SetWidth(width);
