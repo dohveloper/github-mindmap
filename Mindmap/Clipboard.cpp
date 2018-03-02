@@ -55,7 +55,7 @@ Clipboard& Clipboard::operator=(const Clipboard & source)
 	this->selection = source.selection;
 	return *this;
 }
-
+/*
 #include <iostream>
 #include <string>
 #include "Topic.h"
@@ -111,3 +111,4 @@ int main(int argc, char argv[]) {
 
 	return 0;
 }
+*/

@@ -37,8 +37,14 @@ public:
 	string& GetContent() const;
 	Branch* GetOwnerBranch() const;
 	bool GetIsShown() const;
-	void SetOwnerBranch(Branch *branch);
+
+	void SetX(Long x);
+	void SetY(Long y);
+	void SetWidth(Long width);
+	void SetHeight(Long height);
 	void SetContent(string content);
+	void SetOwnerBranch(Branch *branch);
+	void SetIsShown(bool isShown);
 
 protected:
 	Long x;
@@ -74,13 +80,40 @@ inline bool Shape::GetIsShown() const
 {
 	return this->isShown;
 }
+
+inline void Shape::SetX(Long x)
+{
+	this->x = x;
+}
+
+inline void Shape::SetY(Long y)
+{
+	this->y = y;
+}
+
+inline void Shape::SetWidth(Long width)
+{
+	this->width = width;
+}
+
+inline void Shape::SetHeight(Long height)
+{
+	this->height = height;
+}
+
+inline void Shape::SetContent(string content)
+{
+	this->content = content;
+}
+
 inline void Shape::SetOwnerBranch(Branch *branch)
 {
 	this->ownerBranch = branch;
 }
-inline void Shape::SetContent(string content)
+
+inline void Shape::SetIsShown(bool isShown)
 {
-	this->content = content;
+	this->isShown = isShown;
 }
 
 #endif //_SHAPE_H

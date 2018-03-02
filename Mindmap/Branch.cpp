@@ -10,6 +10,12 @@ Branch::Branch(Long capacity, Branch* branch)
 }
 Branch::Branch(const Branch& source)
 	: Composite(source) {
+	this->x = source.x;
+	this->y = source.y;
+	this->width = source.width;
+	this->height = source.height;
+	this->ownerBranch = source.ownerBranch;
+	this->isShown = source.isShown;
 }
 Branch::~Branch()
 {

@@ -4,22 +4,20 @@
 #include "Selection.h"
 
 Composite::Composite(Long capacity, Branch* branch)
-:shapes(capacity) {
+	:shapes(capacity) {
 	this->capacity = capacity;
 	this->length = 0;
 	this->ownerBranch = branch;
 }
 
 Composite::Composite(const Composite& source)
-: shapes(source.shapes) {
+	: shapes(source.shapes) {
 	this->capacity = source.capacity;
 	this->length = source.length;
-	this->ownerBranch = source.ownerBranch;
 }
 
 Composite::~Composite()
 {
-
 }
 
 Long Composite::Add(Shape *shape)
@@ -48,6 +46,18 @@ Long Composite::Remove(Long index)
 	return index;
 }
 
+void Composite::Clear()
+{
+	Branch* branch;
+	Long i = 0;
+
+	while (i < this->length) {
+		this->shapes.Delete(i);
+		i++;
+	}
+	this->length = 0;
+}
+
 Long Composite::Correct(Long index, Shape *shape)
 {
 	index = this->shapes.Modify(index, shape);
@@ -68,6 +78,6 @@ Composite& Composite::operator=(const Composite& source)
 	this->shapes = source.shapes;
 	this->capacity = source.capacity;
 	this->length = source.length;
-	
+
 	return *this;
 }

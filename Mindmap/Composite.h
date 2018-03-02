@@ -8,14 +8,15 @@
 typedef signed long int Long;
 
 class Shape;
-class Composite : public Shape{
+class Composite : public Shape {
 public:
 	Composite(Long capacity = 256, Branch* branch = NULL);
 	Composite(const Composite& source);
-	virtual ~Composite()=0;
+	virtual ~Composite() = 0;
 
 	Long Add(Shape *shape);
 	Long Remove(Long index);
+	void Clear();
 	Long Correct(Long index, Shape *shape);
 	Shape* GetAt(Long index);
 	Composite& operator=(const Composite& source);
@@ -27,7 +28,6 @@ protected:
 	Array<Shape*> shapes;
 	Long capacity;
 	Long length;
-
 };
 
 inline Long Composite::GetCapacity() const
