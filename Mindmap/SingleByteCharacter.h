@@ -20,7 +20,6 @@ public:
 	bool IsNotEqual(const SingleByteCharacter& other);
 
 	string MakeString();
-	SingleByteCharacter* Clone();
 	bool operator==(const SingleByteCharacter& other);
 	bool operator!=(const SingleByteCharacter& other);
 
