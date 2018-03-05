@@ -52,6 +52,7 @@
     <ClInclude Include="..\MarkStrategy.h" />
     <ClInclude Include="..\MouseAction.h" />
     <ClInclude Include="..\MouseStrategy.h" />
+    <ClInclude Include="..\MoveVisitor.h" />
     <ClInclude Include="..\MultiLineDragAction.h" />
     <ClInclude Include="..\MultiSelect.h" />
     <ClInclude Include="..\OnHScrollLeft.h" />
@@ -138,6 +139,7 @@
     <ClCompile Include="..\MarkStrategy.cpp" />
     <ClCompile Include="..\MouseAction.cpp" />
     <ClCompile Include="..\MouseStrategy.cpp" />
+    <ClCompile Include="..\MoveVisitor.cpp" />
     <ClCompile Include="..\MultiLineDragAction.cpp" />
     <ClCompile Include="..\MultiSelect.cpp" />
     <ClCompile Include="..\OnHScrollLeft.cpp" />

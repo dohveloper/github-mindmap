@@ -75,6 +75,13 @@ Long Selection::RemoveSubBranch(Branch * branch)
 	return -1;
 }
 
+void Selection::Replace(Branch * before, Branch * after)
+{
+	Long index;
+	index = this->selections.LinearSearchUnique(&before, CompareBranches);
+	this->selections.Modify(index, after);
+}
+
 Long Selection::Correct(Long index, Branch * branch)
 {
 	index = this->selections.Modify(index, branch);

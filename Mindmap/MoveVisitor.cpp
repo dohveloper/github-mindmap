@@ -62,7 +62,7 @@ void MoveVisitor::VisitBranch(Branch *branch)
 		i++;
 	}
 }
-
+/*
 #include <iostream>
 #include "Mark.h"
 #include "Topic.h"
@@ -131,3 +131,4 @@ int main(int argc, char *argv[]) {
 
 	return 0;
 }
+*/

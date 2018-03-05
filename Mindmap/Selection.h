@@ -11,6 +11,7 @@ public:
 	Long Add(Branch *branch);
 	Long Remove(Branch *branch);
 	Long RemoveSubBranch(Branch *branch);
+	void Replace(Branch *before, Branch *after);
 	Long Correct(Long index, Branch *branch);
 	void Clear();
 	Branch* GetLastSelection();
