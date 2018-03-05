@@ -20,6 +20,8 @@ public:
 	void Accept(TextVisitor& textVisitor);
 	Row& operator=(const Row& source);
 
+	bool SetIsWordWrap(bool isWordWrap);
+
 	bool GetIsWordWrap() const;
 private:
 	bool isWordWrap;

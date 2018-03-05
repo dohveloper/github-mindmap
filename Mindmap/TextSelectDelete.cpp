@@ -57,7 +57,6 @@ void TextSelectDelete::TextSelectDeleteAction(TextForm *textForm)
 		}
 		textForm->selectText->SetIsNotSelect();
 	}
-
 	else
 	{
 		while (endCharacterIndex>=i)

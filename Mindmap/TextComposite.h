@@ -24,6 +24,8 @@ public:
 	string MakeString(Long start, Long end);
 	TextComposite& operator=(const TextComposite& source);
 
+	virtual bool SetIsWordWrap(bool isWordWrap);
+
 	Long GetRowWidth(CDC *cdc, Long start, Long end);
 	Long GetHeight(CDC *cdc, Long index);
 

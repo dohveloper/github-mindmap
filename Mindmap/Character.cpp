@@ -61,3 +61,6 @@ void Character::Accept(TextVisitor& textVisitor) {
 
 }
 
+bool Character::SetIsWordWrap(bool isWordWrap) {
+	return 0;
+}

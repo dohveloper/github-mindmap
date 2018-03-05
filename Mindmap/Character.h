@@ -34,6 +34,7 @@ public:
 	virtual Long GetLength() const;
 	virtual Long GetCapacity() const;
 	virtual bool GetIsWordWrap() const;
+	virtual bool SetIsWordWrap(bool isWordWrap);
 };
 inline char Character::GetCharacter() const {
 	return 0;

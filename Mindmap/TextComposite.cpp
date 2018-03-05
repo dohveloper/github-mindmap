@@ -92,6 +92,10 @@ string TextComposite::MakeString(Long start, Long end) {
 	return text;
 }
 
+bool TextComposite::SetIsWordWrap(bool isWordWrap) {
+	return 0;
+}
+
 Long TextComposite::GetRowWidth(CDC *cdc,Long start,Long end) {
 	string word;
 	Long width=0;

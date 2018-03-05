@@ -50,6 +50,12 @@ void Row::Accept(TextVisitor& textVisitor) {
 	textVisitor.VisitRow(this);
 }
 
+bool Row::SetIsWordWrap(bool isWordWrap) {
+	this->isWordWrap = isWordWrap;
+
+	return this->isWordWrap;
+}
+
 
 Row& Row::operator=(const Row& source)
 {

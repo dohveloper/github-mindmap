@@ -47,7 +47,6 @@ TextForm::TextForm() {
 	this->textClipboard = NULL;
 	this->hangul = FALSE;
 	this->compose = FALSE;
-	this->wordWrapCount = 0;
 }
 
 int TextForm::OnCreate(LPCREATESTRUCT lpCreateStruct) {
@@ -271,18 +270,29 @@ void TextForm::OnKeyDown(WPARAM wParam) {
 			this->textSelectDelete->TextSelectDeleteAction(this);
 			this->textFormSize->TextFormWidthSizeShort(this, cdc);
 		}
-		else if (this->caret->GetRowIndex()>0 && this->caret->GetCharacterIndex() == 0)
+		else if (this->caret->GetRowIndex()>0 && this->caret->GetCharacterIndex() == 0 && this->text->GetAt(this->caret->GetRowIndex())->GetIsWordWrap() == true)
 		{
-			this->text->Delete(this->caret->GetRowIndex());
+			this->text->GetAt(this->caret->GetRowIndex() - 1)->Delete(this->text->GetAt(this->caret->GetRowIndex() - 1)->GetLength() - 1);
+			this->caret->SetRowIndex(this->caret->GetRowIndex() - 1);
+			this->caret->SetCharacterIndex(this->text->GetAt(this->caret->GetRowIndex())->GetLength());
+		}
+		else if (this->caret->GetRowIndex() > 0 && this->caret->GetCharacterIndex() == 0 && this->text->GetAt(this->caret->GetRowIndex())->GetIsWordWrap() == false)
+		{
 			this->caret->SetRowIndex(this->caret->GetRowIndex() - 1);
 			this->caret->SetCharacterIndex(this->text->GetAt(this->caret->GetRowIndex())->GetLength());
 		}
 		else if (this->caret->GetCharacterIndex() > 0)
 		{
 			this->text->GetAt(this->caret->GetRowIndex())->Delete(this->caret->GetCharacterIndex() - 1);
-			this->textFormSize->TextFormWidthSizeShort(this, cdc);
 			this->caret->MoveToLeft();
 		}
+
+		if (this->text->GetLength()-1 != this->caret->GetRowIndex())
+		{
+			WordWrap wordWrap;
+			wordWrap.Deleting(this, cdc);
+		}
+	//	this->textFormSize->TextFormWidthSizeShort(this, cdc);
 	}
 	else if (wParam == VK_RIGHT)
 	{

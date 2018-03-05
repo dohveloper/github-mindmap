@@ -43,13 +43,13 @@ void TextFormWidthSizeAction::TextFormWidthLong(TextForm *textForm, CDC *cdc)
 	textFormWidth = textForm->textFormSize->GetWidth();
 	textFormHeight = textForm->textFormSize->GetHeight();
 
-	if (width > textFormWidth && width < maxWidthSize)
+	if (width > textFormWidth && width <= maxWidthSize)
 	{
 		textFormWidth = width+6;
 		textForm->MoveWindow(textFormX, textFormY, textFormWidth, textFormHeight);
 		textForm->textFormSize->SetWidth(textFormWidth);
 	}
-	if (width >= maxWidthSize)
+	if (width > maxWidthSize)
 	{
 		WordWrap wordWrap;
 
