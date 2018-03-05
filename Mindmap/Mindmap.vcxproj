@@ -67,6 +67,7 @@
     <ClInclude Include="TextFormHeightSizeAction.h" />
     <ClInclude Include="TextFormSize.h" />
     <ClInclude Include="TextFormWidthSizeAction.h" />
+    <ClInclude Include="TextPaste.h" />
     <ClInclude Include="TextSelectDelete.h" />
     <ClInclude Include="TextVisitor.h" />
     <ClInclude Include="Topic.h" />
@@ -122,6 +123,7 @@
     <ClCompile Include="TextFormHeightSizeAction.cpp" />
     <ClCompile Include="TextFormSize.cpp" />
     <ClCompile Include="TextFormWidthSizeAction.cpp" />
+    <ClCompile Include="TextPaste.cpp" />
     <ClCompile Include="TextSelectDelete.cpp" />
     <ClCompile Include="TextVisitor.cpp" />
     <ClCompile Include="Topic.cpp" />

@@ -28,6 +28,11 @@ void DoubleByteCharacter::Accept(TextVisitor& textVisitor) {
 	textVisitor.VisitDoubleByteCharacter(this);
 }
 
+DoubleByteCharacter* DoubleByteCharacter::Clone()
+{
+	return new DoubleByteCharacter(*this);
+}
+
 bool DoubleByteCharacter::IsEqual(const DoubleByteCharacter& other) {
 	bool ret = false;
 
@@ -52,11 +57,6 @@ string DoubleByteCharacter::MakeString() {
 	string word = this->characters;
 
 	return word;
-}
-
-DoubleByteCharacter* DoubleByteCharacter::Clone()
-{
-	return new DoubleByteCharacter(*this);
 }
 
 bool DoubleByteCharacter::operator==(const DoubleByteCharacter& other) {

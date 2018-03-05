@@ -14,12 +14,12 @@ public:
 	virtual ~SingleByteCharacter();
 	
 	void Accept(TextVisitor& textVisitor);
+	SingleByteCharacter* Clone();
 
 	bool IsEqual(const SingleByteCharacter& other);
 	bool IsNotEqual(const SingleByteCharacter& other);
 
 	string MakeString();
-	SingleByteCharacter* Clone();
 	bool operator==(const SingleByteCharacter& other);
 	bool operator!=(const SingleByteCharacter& other);
 

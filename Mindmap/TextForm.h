@@ -18,6 +18,7 @@ class TextFont;
 class TextSelectDelete;
 class TextClipboard;
 class TextCopy;
+class TextPaste;
 class TextForm :public CWnd{
 public:
 	TextForm();
@@ -37,6 +38,7 @@ public:
 	TextSelectDelete *textSelectDelete;
 	TextCopy *textCopy;
 	TextClipboard *textClipboard;
+	TextPaste *textPaste;
 	bool hangul;
 	bool compose;
 protected:

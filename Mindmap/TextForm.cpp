@@ -20,6 +20,7 @@
 #include "TextCopy.h"
 #include "TextClipboard.h"
 #include "WordWrap.h"
+#include "TextPaste.h"
 #include <imm.h>
 #pragma comment(lib, "imm32.LIB")
 
@@ -45,6 +46,9 @@ TextForm::TextForm() {
 	this->textFormSize = NULL;
 	this->textFont = NULL;
 	this->textClipboard = NULL;
+	this->textCopy = NULL;
+	this->wordWrapCount = 0;
+	this->textPaste = NULL;
 	this->hangul = FALSE;
 	this->compose = FALSE;
 }
@@ -59,8 +63,8 @@ int TextForm::OnCreate(LPCREATESTRUCT lpCreateStruct) {
 	this->writeEnglish = new WriteEnglish;
 	this->textClipboard = new TextClipboard;
 	this->textFont = new TextFont(30,15, FW_NORMAL, FALSE, FALSE, FALSE,"굴림체");
-
 	this->text->Write(new Row);
+	this->textPaste = new TextPaste;
 	return 0;
 }
 
@@ -80,6 +84,18 @@ void TextForm::OnClose() {
 	{
 		delete this->selectText;
 		this->selectText = NULL;
+	}
+
+	if (this->textCopy != NULL)
+	{
+		delete this->textCopy;
+		this->textCopy = NULL;
+	}
+
+	if (this->textPaste != NULL)
+	{
+		delete this->textPaste;
+		this->textPaste = NULL;
 	}
 	PageForm *pageForm;
 	pageForm = (PageForm*)this->GetParent();
@@ -336,12 +352,20 @@ void TextForm::OnKeyDown(WPARAM wParam) {
 		this->textFormSize->TextFormWidthSizeLong(this, cdc);
 		this->caret->MoveToRight();
 	}
-	else if (wParam == VK_CAPITAL)
+	else if (::GetKeyState(VK_CONTROL) < 0 && wParam == 67)//얜 선택해제 안되게 해야하는데 어떻게 하면 되려나?
 	{
 		this->textCopy->Copy(this);
 	}
+	else if (::GetKeyState(VK_CONTROL) < 0 && wParam == 86)
+	{
+		this->textPaste->Paste(this);
+		this->textFormSize->TextFormHeightSizeLong(this, cdc);
+		this->textFormSize->TextFormWidthSizeLong(this, cdc);
+	}
 	//선택해제
+
 	this->selectText->SetIsNotSelect();
+
 
 
 	fnt.DeleteObject();

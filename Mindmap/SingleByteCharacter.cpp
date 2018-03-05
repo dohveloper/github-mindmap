@@ -24,6 +24,11 @@ void SingleByteCharacter::Accept(TextVisitor& textVisitor) {
 	textVisitor.VisitSingleByteCharacter(this);
 }
 
+SingleByteCharacter* SingleByteCharacter::Clone()
+{
+	return new SingleByteCharacter(*this);
+}
+
 
 bool SingleByteCharacter::IsEqual(const SingleByteCharacter& other) {
 	bool ret = false;
@@ -56,10 +61,6 @@ string SingleByteCharacter::MakeString() {
 	return word;
 }
 
-SingleByteCharacter* SingleByteCharacter::Clone()
-{
-	return new SingleByteCharacter(*this);
-}
 
 bool SingleByteCharacter::operator==(const SingleByteCharacter& other) {
 	bool ret= false;
