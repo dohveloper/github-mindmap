@@ -4,6 +4,8 @@
 #include "Composite.h"
 #include "Topic.h"
 #include "Line.h"
+#include "BranchCopyTraverser.h"
+
 Branch::Branch(Long capacity, Branch* branch)
 	:Composite(capacity, branch)
 {
@@ -69,7 +71,11 @@ void Branch::Accept(ShapeVisitor& visitor) {
 
 Branch * Branch::Clone()
 {
-	return new Branch(*this);
+	Branch *clone;
+	BranchCopyTraverser traverser(this);
+	traverser.Traverse();
+	clone = traverser.GetClone();
+	return clone;
 }
 
 Branch& Branch::operator=(const Branch& source)
@@ -91,35 +97,35 @@ Branch branch;
 Long index;
 Long i = 0;
 
-//ownerBranch »ý¼º Å×½ºÆ®
+//ownerBranch ìƒì„± í…ŒìŠ¤íŠ¸
 Topic *topic1 = new Topic(0, 0, 0, 0,"");
 if (topic1->GetOwnerBranch() == NULL) {
-	cout << "ÅäÇÈ ³Î Á¦´ë·Î µÊ" << endl;
+	cout << "í† í”½ ë„ ì œëŒ€ë¡œ ë¨" << endl;
 }
 Line *line1 = new Line(0, 0, 0, 0, "");
 if (line1->GetOwnerBranch() == NULL) {
-	cout << "¶óÀÎ ³Î Á¦´ë·Î µÊ" << endl;
+	cout << "ë¼ì¸ ë„ ì œëŒ€ë¡œ ë¨" << endl;
 }
 
 Branch *branch1 = new Branch();
 if (branch1->GetOwnerBranch() == NULL) {
-	cout << "ºê·£Ä¡ ³Î Á¦´ë·Î µÊ" << endl;
+	cout << "ë¸Œëžœì¹˜ ë„ ì œëŒ€ë¡œ ë¨" << endl;
 }
-//OwnerBranch Add Å×½ºÆ®
+//OwnerBranch Add í…ŒìŠ¤íŠ¸
 Topic *topic2;
 topic2 = topic1->GetOwnerBranch()->GetTopic();
-cout << " ÅäÇÈ1 " << topic1->GetContent() << " ÅäÇÈ1 " << topic2->GetContent() << endl;
+cout << " í† í”½1 " << topic1->GetContent() << " í† í”½1 " << topic2->GetContent() << endl;
 Line *line2;
 line2 = (Line*)line1->GetOwnerBranch()->GetAt(1);
-cout << " ¶óÀÎ1 " << line1->GetContent() << " ¶óÀÎ2 " << line2->GetContent() << endl;
+cout << " ë¼ì¸1 " << line1->GetContent() << " ë¼ì¸2 " << line2->GetContent() << endl;
 Branch *branch2;
 branch2 = (Branch*)branch1->GetOwnerBranch()->GetAt(1);
-cout << " ¶óÀÎ1 " << branch1->GetContent() << " ¶óÀÎ2 " << branch1->GetContent() << endl;
+cout << " ë¼ì¸1 " << branch1->GetContent() << " ë¼ì¸2 " << branch1->GetContent() << endl;
 
-index = branch.Add(new Topic(10, 10, 10, 10, "°°ÀºÁö"));
+index = branch.Add(new Topic(10, 10, 10, 10, "ê°™ì€ì§€"));
 cout<<branch.GetAt(index)->GetX()<< branch.GetAt(index)->GetY()<< branch.GetAt(index)->GetWidth()<< branch.GetAt(index)->GetHeight() << branch.GetAt(index)->GetContent() <<endl;
 
-index = branch.Add(new Line(10, 10, 10, 10, "¶óÀÎ"));
+index = branch.Add(new Line(10, 10, 10, 10, "ë¼ì¸"));
 cout << branch.GetAt(index)->GetX() << branch.GetAt(index)->GetY() << branch.GetAt(index)->GetWidth() << branch.GetAt(index)->GetHeight() << branch.GetAt(index)->GetContent() << endl;
 
 Branch branch1(branch);

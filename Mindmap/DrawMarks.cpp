@@ -3,10 +3,12 @@
 #include "Shape.h"
 #include "Mark.h"
 
-DrawMarks::DrawMarks(Branch *branch, CPaintDC *dc)
+DrawMarks::DrawMarks(Branch *branch, CPaintDC *dc, Long movedX, Long movedY)
 	:BranchTraverser(branch)
 {
 	this->dc = dc;
+	this->movedX = movedX;
+	this->movedY = movedY;
 }
 
 bool DrawMarks::ProcessItem(Shape *shape)
@@ -25,8 +27,8 @@ bool DrawMarks::ProcessItem(Shape *shape)
 
 			//마크를 그리는 코드
 
-			x = shape->GetX();
-			y = shape->GetY();
+			x = shape->GetX() + this->movedX;
+			y = shape->GetY() + this->movedY;
 			width = shape->GetWidth();
 			height = shape->GetHeight();
 			content = shape->GetContent();
@@ -38,7 +40,7 @@ bool DrawMarks::ProcessItem(Shape *shape)
 
 	if (typeid(*shape) == typeid(Branch)) {
 		if ((((Branch*)shape))->GetIsShown() == true) {
-			DrawMarks drawLines((Branch*)shape, this->dc);
+			DrawMarks drawLines((Branch*)shape, this->dc, this->movedX, this->movedY);
 			drawLines.Traverse();
 		}
 	}
