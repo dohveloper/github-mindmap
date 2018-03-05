@@ -16,7 +16,7 @@ protected:
 private:
 	Branch * clone;
 };
-inline Branch* BranchCopyTraverser::GetCopiedBranch() const {
+inline Branch* BranchCopyTraverser::GetClone() const {
 	return const_cast<Branch*>(this->clone);
 }
 

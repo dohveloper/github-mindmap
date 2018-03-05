@@ -74,9 +74,9 @@ void Branch::Accept(ShapeVisitor& visitor) {
 Branch * Branch::Clone()
 {
 	Branch *clone;
-	BranchCopyTraverser traverser;
+	BranchCopyTraverser traverser(this);
 	traverser.Traverse();
-	clone=traverser.GetClone();
+	clone = traverser.GetClone();
 	return clone;
 }
 

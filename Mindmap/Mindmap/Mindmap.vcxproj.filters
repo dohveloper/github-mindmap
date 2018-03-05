@@ -515,9 +515,6 @@
     <ClCompile Include="..\BranchArray.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="..\KeyAction.cpp">
-      <Filter>헤더 파일</Filter>
-    </ClCompile>
     <ClCompile Include="..\CopyKey.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -525,6 +522,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="..\BranchCopyTraverser.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\KeyAction.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

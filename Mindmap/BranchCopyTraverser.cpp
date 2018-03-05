@@ -25,16 +25,16 @@ BranchCopyTraverser::BranchCopyTraverser(Branch *branch)
 	isShown = branch->GetIsShown();
 
 	//새 브랜치를 할당한다.
-	this->copiedBranch = new Branch(capacity);
+	this->clone = new Branch(capacity);
 
 	//새 브랜치를 가져온값으로 설정한다.
 
-	copiedBranch->SetX(x);
-	copiedBranch->SetY(y);
-	copiedBranch->SetWidth(width);
-	copiedBranch->SetHeight(height);
-	copiedBranch->SetContent(content);
-	copiedBranch->SetIsShown(isShown);
+	this->clone->SetX(x);
+	this->clone->SetY(y);
+	this->clone->SetWidth(width);
+	this->clone->SetHeight(height);
+	this->clone->SetContent(content);
+	this->clone->SetIsShown(isShown);
 }
 
 inline bool BranchCopyTraverser::ProcessItem(Shape * shape)
@@ -47,21 +47,21 @@ inline bool BranchCopyTraverser::ProcessItem(Shape * shape)
 
 	if (typeid(*shape) == typeid(Mark)) {
 		mark = new Mark(*(Mark*)shape);
-		copiedBranch->Add(mark);
+		this->clone->Add(mark);
 	}
 	if (typeid(*shape) == typeid(Topic)) {
 		topic = new Topic(*(Topic*)shape);
-		copiedBranch->Add(topic);
+		this->clone->Add(topic);
 	}
 	if (typeid(*shape) == typeid(Line)) {
 		line = new Line(*(Line*)shape);
-		copiedBranch->Add(line);
+		this->clone->Add(line);
 	}
 	if (typeid(*shape) == typeid(Branch)) {
 		BranchCopyTraverser traverser((Branch*)shape);
 		traverser.Traverse();
-		branch = traverser.GetCopiedBranch();
-		copiedBranch->Add(branch);
+		branch = traverser.GetClone();
+		this->clone->Add(branch);
 	}
 	return ret;
 }
@@ -125,19 +125,19 @@ int main(int argc, char argv[]) {
 	}
 
 	//복사
-	Branch *copiedBranch;
+	Branch *clone;
 	BranchCopyTraverser traverser(&branch);
 	traverser.Traverse();
-	copiedBranch = traverser.GetCopiedBranch();
-	copiedBranch->SetContent("copiedBranch");
+	clone = traverser.GetClone();
+	clone->SetContent("this->clone");
 
-	//copiedBranch 출력
+	//this->clone 출력
 
 	cout << "    복사된값" << endl;
 	branches.Clear();
 	j = 0;
 	i = 0;
-	branches.Add(copiedBranch);
+	branches.Add(clone);
 	while (j < branches.GetLength()) {
 		currentBranch = branches.GetAt(j);
 		cout << currentBranch->GetContent() << "  :  ";
@@ -158,14 +158,14 @@ int main(int argc, char argv[]) {
 	}
 	cout << endl << endl << endl << endl;
 
-	//copiedBranch 수정시 원래값 안바뀌는지 테스트
+	//this->clone 수정시 원래값 안바뀌는지 테스트
 
 	//복사된값 수정
 	cout << "복사된값 수정" << endl;
 	branches.Clear();
 	j = 0;
 	i = 0;
-	branches.Add(copiedBranch);
+	branches.Add(clone);
 	while (j < branches.GetLength()) {
 		currentBranch = branches.GetAt(j);
 		while (i < currentBranch->GetLength()) {
@@ -205,7 +205,7 @@ int main(int argc, char argv[]) {
 	branches.Clear();
 	j = 0;
 	i = 0;
-	branches.Add(copiedBranch);
+	branches.Add(clone);
 	while (j < branches.GetLength()) {
 		currentBranch = branches.GetAt(j);
 		cout << currentBranch->GetContent() << "  :  ";

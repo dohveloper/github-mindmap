@@ -1,6 +1,8 @@
 #include "Clipboard.h"
 #include "Selection.h"
 
+#include "afxwin.h"
+
 Clipboard::Clipboard(Selection *selection, Long capacity)
 	:clipboard(capacity)
 {
@@ -37,13 +39,15 @@ void Clipboard::Copy()
 void Clipboard::Paste()
 {
 	Long i = 0;
-	Branch *targetBranch;//붙여넣어지는 브랜치
+	Branch *targetBranch = NULL;//붙여넣어지는 브랜치
 	Branch *current; //복사한 브랜치
 
-	targetBranch = this->selection->GetLastSelection();
+	if (this->selection->GetLength() > 0) {
+		targetBranch = this->selection->GetLastSelection();
+	}
 
-	while (i < this->selection->GetLength()) {
-		current = this->selection->GetAt(i);
+	while (i < this->clipboard.GetLength() && targetBranch != NULL) {
+		current = this->clipboard.GetAt(i);
 		targetBranch->Add(current);
 		i++;
 	}
