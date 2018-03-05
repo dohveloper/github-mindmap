@@ -14,6 +14,7 @@ BranchCopyTraverser::BranchCopyTraverser(Branch *branch)
 	Long width;
 	Long height;
 	string content;
+	Branch* ownerBranch;
 
 	//기존 branch의 값들을 가져온다.
 	capacity = branch->GetCapacity();
@@ -23,6 +24,7 @@ BranchCopyTraverser::BranchCopyTraverser(Branch *branch)
 	height = branch->GetHeight();
 	content = branch->GetContent();
 	isShown = branch->GetIsShown();
+	ownerBranch = branch->GetOwnerBranch();
 
 	//새 브랜치를 할당한다.
 	this->clone = new Branch(capacity);
@@ -35,6 +37,7 @@ BranchCopyTraverser::BranchCopyTraverser(Branch *branch)
 	this->clone->SetHeight(height);
 	this->clone->SetContent(content);
 	this->clone->SetIsShown(isShown);
+	this->clone->SetOwnerBranch(ownerBranch);
 }
 
 inline bool BranchCopyTraverser::ProcessItem(Shape * shape)

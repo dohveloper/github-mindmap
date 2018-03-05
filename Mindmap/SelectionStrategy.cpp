@@ -38,13 +38,15 @@ void SelectionStrategy::OnLButtonDown(CPoint point, UINT nFlags, Selection *sele
 	Branch *clone;
 	this->selection = selection;
 
+	//값 초기화
+	this->unmovedBranches.Clear();
+
 	// 1.point를 기억한다.
 	this->clickedPoint = point;
 
 	// 2.선택된 브랜치 수만큼 반복한다.
 	while (i < selection->GetLength()) {
-		selectedBranch = selection->GetAt(i);
-		clone = selectedBranch->Clone();
+		clone = selection->GetAt(i)->Clone();
 		this->unmovedBranches.Add(clone); //브랜치를 기억한다.
 		i++;
 	}
@@ -73,12 +75,12 @@ void SelectionStrategy::OnMouseMove(CPoint point, UINT nFlags)
 			current = this->unmovedBranches.GetAt(i);
 			current->Accept(visitor);
 
-			//2.2 선택된 브랜치를 기억한 브랜치로 바꾸다.
-			selectedBranch = this->selection->GetAt(i);
-			ownerBranch = selectedBranch->GetOwnerBranch();
-			ownerBranch->Replace(selectedBranch, current);
-
-			i++;
+			//2.2 선택된 브랜치를 이동된 브랜치로 바꾸다.
+			//selectedBranch = this->selection->GetAt(i);
+			//ownerBranch = selectedBranch->GetOwnerBranch();
+			//ownerBranch->Replace(selectedBranch, current);
+			//selection->Replace(selectedBranch, current);
+			//i++;
 		}
 	}
 }

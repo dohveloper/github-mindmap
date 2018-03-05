@@ -152,7 +152,6 @@ int CompareBranches(void *one, void *other) {
 	}
 	return ret;
 }
-
 /*
 #include <iostream>
 #include <string>
@@ -169,23 +168,26 @@ int main(int argc, char argv[]) {
 	Topic mainTopic(1, 1, 1, 1, "mainTopic");
 	Topic subTopic1(1, 1, 1, 1, "subTopic1");
 	Topic subTopic2(1, 1, 1, 1, "subTopic2");
+	Topic replaceTopic(1, 1, 1, 1, "replace");
 
 	//브랜치생성
 	Branch mainBranch(111);
 	Branch subBranch1;
 	Branch subBranch2;
+	Branch replace;
 
 	//브랜치에 토픽추가
 	mainBranch.Add(&mainTopic);
 	subBranch1.Add(&subTopic1);
 	subBranch2.Add(&subTopic2);
+	replace.Add(&replaceTopic);
 
 	//선택 생성 확인
-	cout <<"selection capacity: " <<selection.GetCapacity() <<"  length :  "<< selection.GetLength()<< endl;
+	cout << "selection capacity: " << selection.GetCapacity() << "  length :  " << selection.GetLength() << endl;
 	cout << "selection2 capacity: " << selection2.GetCapacity() << "  length :  " << selection2.GetLength() << endl;
 
 	//Add ,IsSelected  Test
-	ret=selection.IsSelected(&mainBranch);
+	ret = selection.IsSelected(&mainBranch);
 	if (ret == true) {
 		cout << " 메인브랜치가 있습니다." << endl;
 	}
@@ -194,7 +196,7 @@ int main(int argc, char argv[]) {
 	}
 	selection.Add(&mainBranch);
 	cout << "selection capacity: " << selection.GetCapacity() << "  length :  " << selection.GetLength() << endl;
-	cout << "content : " << selection.GetLastSelection()->GetTopic()->GetContent()<< endl;
+	cout << "content : " << selection.GetLastSelection()->GetTopic()->GetContent() << endl;
 
 	ret = selection.IsSelected(&mainBranch);
 	if (ret == true) {
@@ -222,14 +224,20 @@ int main(int argc, char argv[]) {
 	}
 	selection.Add(&subBranch2);
 	cout << "selection capacity: " << selection.GetCapacity() << "  length :  " << selection.GetLength() << endl;
-	cout << "content : " << selection.GetLastSelection()->GetTopic()->GetContent() << endl;
+	cout << "content : " << selection.GetAt(2)->GetTopic()->GetContent() << endl;
+
+	//Replace 테스트
+
+	selection.Replace(&subBranch2, &replace);
+	cout << "selection capacity: " << selection.GetCapacity() << "  length :  " << selection.GetLength() << endl;
+	cout << "content : " << selection.GetAt(2)->GetTopic()->GetContent() << endl;
 
 	//복사생성자,Clear Test
 	selection2 = selection;
-	cout << endl<< "selection2 capacity: " << selection2.GetCapacity() << "  length :  " << selection2.GetLength()<<endl ;
-	cout << "content : " << selection.GetLastSelection()->GetTopic()->GetContent()  << endl;
+	cout << endl << "selection2 capacity: " << selection2.GetCapacity() << "  length :  " << selection2.GetLength() << endl;
+	cout << "content : " << selection.GetLastSelection()->GetTopic()->GetContent() << endl;
 	selection2.Clear();
-	cout<< "selection2 capacity: " << selection2.GetCapacity() << "  length :  " << selection2.GetLength() << endl << endl;
+	cout << "selection2 capacity: " << selection2.GetCapacity() << "  length :  " << selection2.GetLength() << endl << endl;
 
 	//Remove Test
 	selection.Remove(&subBranch2);
