@@ -14,7 +14,7 @@ BranchCopyTraverser::BranchCopyTraverser(Branch *branch)
 	string content;
 	bool isShown;
 
-	//±âÁ¸ branchÀÇ °ªµéÀ» °¡Á®¿Â´Ù.
+	//ï¿½ï¿½ï¿½ï¿½ branchï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Â´ï¿½.
 	x = branch->GetX();
 	y = branch->GetY();
 	width = branch->GetWidth();
@@ -22,16 +22,16 @@ BranchCopyTraverser::BranchCopyTraverser(Branch *branch)
 	content = branch->GetContent();
 	isShown = branch->GetIsShown();
 
-	//»õ ºê·£Ä¡¸¦ ÇÒ´çÇÑ´Ù.
-	this->copiedBranch = new Branch();
+	//ï¿½ï¿½ ï¿½ê·£Ä¡ï¿½ï¿½ ï¿½Ò´ï¿½ï¿½Ñ´ï¿½.
+	this->clone = new Branch();
 
-	//»õ ºê·£Ä¡¸¦ °¡Á®¿Â°ªÀ¸·Î ¼³Á¤ÇÑ´Ù.
-	copiedBranch->SetX(x);
-	copiedBranch->SetY(y);
-	copiedBranch->SetWidth(width);
-	copiedBranch->SetHeight(height);
-	copiedBranch->SetContent(content);
-	copiedBranch->SetIsShown(isShown);
+	//ï¿½ï¿½ ï¿½ê·£Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Â°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+	clone->SetX(x);
+	clone->SetY(y);
+	clone->SetWidth(width);
+	clone->SetHeight(height);
+	clone->SetContent(content);
+	clone->SetIsShown(isShown);
 }
 
 inline bool BranchCopyTraverser::ProcessItem(Shape * shape)
@@ -44,21 +44,21 @@ inline bool BranchCopyTraverser::ProcessItem(Shape * shape)
 
 	if (typeid(*shape) == typeid(Mark)) {
 		mark = new Mark(*(Mark*)shape);
-		copiedBranch->Add(mark);
+		clone->Add(mark);
 	}
 	if (typeid(*shape) == typeid(Topic)) {
 		topic = new Topic(*(Topic*)shape);
-		copiedBranch->Add(topic);
+		clone->Add(topic);
 	}
 	if (typeid(*shape) == typeid(Line)) {
 		line = new Line(*(Line*)shape);
-		copiedBranch->Add(line);
+		clone->Add(line);
 	}
 	if (typeid(*shape) == typeid(Branch)) {
 		BranchCopyTraverser traverser((Branch*)shape);
 		traverser.Traverse();
-		branch = traverser.GetCopiedBranch();
-		copiedBranch->Add(branch);
+		branch = traverser.Getclone();
+		clone->Add(branch);
 	}
 	return ret;
 }
@@ -75,7 +75,7 @@ int main(int argc, char argv[]) {
 	Long j = 0;
 	Shape *current;
 	Branch *currentBranch;
-	////////////////////////////ºê·£Ä¡, ÅäÇÈ »ý¼º//////////////////////////////
+	////////////////////////////ï¿½ê·£Ä¡, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½//////////////////////////////
 	//0
 	Branch branch; Line line(0, 0, 0, 0, "line"); Topic topic(0, 0, 0, 0, "topic"); Mark mark(0, 0, 0, 0, "mark");
 	branch.Add(&line); branch.Add(&topic); branch.Add(&mark);
@@ -94,13 +94,13 @@ int main(int argc, char argv[]) {
 	branch1_2.Add(&line1_2); branch1_2.Add(&topic1_2); branch1_2.Add(&mark1_2);
 	branch1_2.SetContent("branch1_2");
 
-	//branch¿¡ branch ³Ö±â
+	//branchï¿½ï¿½ branch ï¿½Ö±ï¿½
 	branch.Add(&branch1); branch1.Add(&branch1_1); branch1.Add(&branch1_2);
 	///////////////////////////////////////////////////////////////////////////////
 
-	//ÃÊ±â°ª Ãâ·Â( branch ÀüºÎ Ãâ·Â ÄÚµå)
+	//ï¿½Ê±â°ª ï¿½ï¿½ï¿½ï¿½( branch ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½)
 
-	cout << "    ÃÊ±â°ª" << endl;
+	cout << "    ï¿½Ê±â°ª" << endl;
 	BranchArray branches;
 	branches.Add(&branch);
 	while (j < branches.GetLength()) {
@@ -119,26 +119,26 @@ int main(int argc, char argv[]) {
 		j++;
 	}
 
-	//º¹»ç
-	Branch *copiedBranch;
+	//ï¿½ï¿½ï¿½ï¿½
+	Branch *clone;
 	BranchCopyTraverser traverser(&branch);
 	traverser.Traverse();
-	copiedBranch = traverser.GetCopiedBranch();
-	copiedBranch->SetContent("copiedBranch");
+	clone = traverser.GetClone();
+	clone->SetContent("clone");
 
-	//copiedBranch Ãâ·Â
+	//clone ï¿½ï¿½ï¿½ï¿½
 
-	cout << "    º¹»çµÈ°ª" << endl;
+	cout << "    ï¿½ï¿½ï¿½ï¿½ï¿½È°ï¿½" << endl;
 	branches.Clear();
 	j = 0;
 	i = 0;
-	branches.Add(copiedBranch);
+	branches.Add(clone);
 	while (j < branches.GetLength()) {
 		currentBranch = branches.GetAt(j);
 		cout << currentBranch->GetContent() << "  :  ";
 		while (i < currentBranch->GetLength()) {
 			current = currentBranch->GetAt(i);
-			//isShownÀÌ Æ®·ç¸é º¸ÀÌµµ·Ï
+			//isShownï¿½ï¿½ Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ï¿½ï¿½
 			if (current->GetOwnerBranch()->GetIsShown()) {
 				cout << current->GetContent() << " ";
 			}
@@ -153,19 +153,19 @@ int main(int argc, char argv[]) {
 	}
 	cout << endl << endl << endl << endl;
 
-	//copiedBranch ¼öÁ¤½Ã ¿ø·¡°ª ¾È¹Ù²î´ÂÁö Å×½ºÆ®
+	//clone ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½È¹Ù²ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×½ï¿½Æ®
 
-	//º¹»çµÈ°ª ¼öÁ¤
-	cout << "º¹»çµÈ°ª ¼öÁ¤" << endl;
+	//ï¿½ï¿½ï¿½ï¿½ï¿½È°ï¿½ ï¿½ï¿½ï¿½ï¿½
+	cout << "ï¿½ï¿½ï¿½ï¿½ï¿½È°ï¿½ ï¿½ï¿½ï¿½ï¿½" << endl;
 	branches.Clear();
 	j = 0;
 	i = 0;
-	branches.Add(copiedBranch);
+	branches.Add(clone);
 	while (j < branches.GetLength()) {
 		currentBranch = branches.GetAt(j);
 		while (i < currentBranch->GetLength()) {
 			current = currentBranch->GetAt(i);
-			current->SetContent("copied"); //°ª ¼öÁ¤
+			current->SetContent("copied"); //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			if (typeid(*current) == typeid(Branch)) {
 				branches.Add((Branch*)current);
 			}
@@ -176,7 +176,7 @@ int main(int argc, char argv[]) {
 		j++;
 	}
 
-	cout << "    ÃÊ±â°ª" << endl;
+	cout << "    ï¿½Ê±â°ª" << endl;
 	branches.Clear();
 	j = 0;
 	i = 0;
@@ -196,11 +196,11 @@ int main(int argc, char argv[]) {
 		i = 0;
 		j++;
 	}
-	cout << "    º¹»çµÈ°ª" << endl;
+	cout << "    ï¿½ï¿½ï¿½ï¿½ï¿½È°ï¿½" << endl;
 	branches.Clear();
 	j = 0;
 	i = 0;
-	branches.Add(copiedBranch);
+	branches.Add(clone);
 	while (j < branches.GetLength()) {
 		currentBranch = branches.GetAt(j);
 		cout << currentBranch->GetContent() << "  :  ";
@@ -217,11 +217,11 @@ int main(int argc, char argv[]) {
 		j++;
 	}
 
-	//isShown º¹»ç Å×½ºÆ®
+	//isShown ï¿½ï¿½ï¿½ï¿½ ï¿½×½ï¿½Æ®
 	Branch *copy_branch1_1;
 	BranchCopyTraverser testIsShown(&branch1_1);
 	testIsShown.Traverse();
-	copy_branch1_1 = traverser.GetCopiedBranch();
+	copy_branch1_1 = traverser.GetClone();
 
 	if (branch1_1.GetIsShown())
 	{

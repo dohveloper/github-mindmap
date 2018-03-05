@@ -8,16 +8,16 @@ class BranchCopyTraverser :public BranchTraverser {
 public:
 	BranchCopyTraverser(Branch *branch);
 
-	Branch* GetCopiedBranch() const;
+	Branch* GetClone() const;
 
 protected:
 	virtual bool ProcessItem(Shape* shape);
 
 private:
-	Branch * copiedBranch;
+	Branch * clone;
 };
 inline Branch* BranchCopyTraverser::GetCopiedBranch() const {
-	return const_cast<Branch*>(this->copiedBranch);
+	return const_cast<Branch*>(this->clone);
 }
 
 #endif _BRANCHCOPYTRAVERSER_H
