@@ -13,8 +13,11 @@ SelectionStrategy::~SelectionStrategy() {
 }
 void SelectionStrategy::OnLButtonDown(CPoint point, UINT nFlags, Selection *selection, Shape *shape) {
 	Branch *branch;
-
-	//ÇÒ´çÇØÁ¦
+	Branch *selectedBranch;
+	Branch *clone;
+	Long i = 0;
+	
+	//ï¿½Ò´ï¿½ï¿½ï¿½ï¿½ï¿½
 	if (this->select != NULL) {
 		delete this->select;
 		this->select = NULL;
@@ -32,20 +35,18 @@ void SelectionStrategy::OnLButtonDown(CPoint point, UINT nFlags, Selection *sele
 	branch = shape->GetOwnerBranch();
 	this->select->SelectBranch(selection, branch);
 
-	//Å×½ºÆ®
+	//ï¿½×½ï¿½Æ®
 
-	//Å¬¸¯µÈ ÁÂÇ¥¸¦ ±â¾ïÇÑ´Ù.
+	//Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 	this->clicked = point;
 
-	//¼±ÅÃµÈ ºê·£Ä¡¸¦ ±â¾ïÇÑ´Ù
-	Branch *selectedBranch;
-	Branch *copiedBranch;
-	Long i = 0;
+	//ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ê·£Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½
+
 
 	while (i < selection->GetLength()) {
 		selectedBranch = selection->GetAt(i);
-		copiedBranch = new Branch(*selectedBranch);
-		this->unmovedBranches.Add(copiedBranch);
+		clone = selectedBranch->Clone();
+		this->unmovedBranches.Add(clone);
 		i++;
 	}
 
@@ -55,11 +56,11 @@ void SelectionStrategy::OnLButtonDown(CPoint point, UINT nFlags, Selection *sele
 void SelectionStrategy::OnMouseMove(CPoint point, UINT nFlags)
 {
 	if ((nFlags & MK_LBUTTON) == MK_LBUTTON) {
-		//¾ó¸¶ ¿òÁ÷¿´´ÂÁö °ªÀ» ±¸ÇÑ´Ù.
+		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ñ´ï¿½.
 		Long movedX = this->clicked.x - point.x;
 		Long movedY = this->clicked.y - point.y;
 
-		//Ä¿¼­°¡ ¿òÁ÷ÀÎ¸¸Å­ ÀÌµ¿ÇÑ´Ù.
+		//Ä¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Î¸ï¿½Å­ ï¿½Ìµï¿½ï¿½Ñ´ï¿½.
 		MoveVisitor visitor(movedX, movedY);
 		Branch *movedBranch;
 		Branch *selectedBranch;
@@ -76,11 +77,11 @@ void SelectionStrategy::OnMouseMove(CPoint point, UINT nFlags)
 			movedBranch = (Branch*)this->unmovedBranches.GetAt(i);
 			movedBranch->Accept(visitor);
 
-			//ºê·£Ä¡ ¼öÁ¤
+			//ï¿½ê·£Ä¡ ï¿½ï¿½ï¿½ï¿½
 			index = ownerBranch->Find(selectedBranch);
 			ownerBranch->Correct(index, movedBranch);
 
-			//selection ¼öÁ¤
+			//selection ï¿½ï¿½ï¿½ï¿½
 			this->selection->Correct(i, movedBranch);
 			i++;
 		}
