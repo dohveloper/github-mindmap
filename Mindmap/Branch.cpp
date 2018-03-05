@@ -25,6 +25,21 @@ Long Branch::Add(Shape * shape)
 	return index;
 }
 
+Long Branch::Correct(Long index, Shape * shape)
+{
+	Long ret;
+	ret = Composite::Correct(index, shape);
+	shape->SetOwnerBranch(this);
+	return index;
+}
+
+void Branch::Replace(Shape * before, Shape * after)
+{
+	Long index;
+	Composite::Replace(before, after);
+	after->SetOwnerBranch(this);
+}
+
 Topic* Branch::GetTopic()
 {
 	Shape *topic;
@@ -217,6 +232,30 @@ int main(int argc, char *argv[]) {
 	i = 0;
 	j = 0;
 
+	branches.Add(&branch);
+	while (i < branches.GetLength()) {
+		currentBranch = branches.GetAt(i);
+		cout << currentBranch->GetContent() << "  :  " << endl << " x: " << currentBranch->GetX() << " y: " << currentBranch->GetY() << " width: " << currentBranch->GetWidth() << " height: " << currentBranch->GetHeight() << " isShown: " << currentBranch->GetIsShown() << "    CONTENT:   " << currentBranch->GetContent() << "   OWNERBRANCH:   " << currentBranch->GetOwnerBranch()->GetContent() << endl;
+		while (j < currentBranch->GetLength()) {
+			current = currentBranch->GetAt(j);
+			cout << "   L " << current->GetContent() << "  :  " << " x: " << current->GetX() << " y: " << current->GetY() << " width: " << current->GetWidth() << " height: " << current->GetHeight() << " isShown: " << current->GetIsShown() << "    CONTENT:   " << current->GetContent() << "   OWNERBRANCH:   " << current->GetOwnerBranch()->GetContent() << endl;
+			if (typeid(*current) == typeid(Branch)) {
+				branches.Add((Branch*)current);
+			}
+			j++;
+		}
+		cout << endl;
+		j = 0;
+		i++;
+	}
+
+	//Replace Test
+	cout << endl << endl << "REPLACE TEST" << endl << endl;
+	branch.Replace(&mark, clone);
+
+	branches.Clear();
+	i = 0;
+	j = 0;
 	branches.Add(&branch);
 	while (i < branches.GetLength()) {
 		currentBranch = branches.GetAt(i);

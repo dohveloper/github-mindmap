@@ -61,6 +61,8 @@ void SelectionStrategy::OnMouseMove(CPoint point, UINT nFlags)
 	Branch *selectedBranch;
 	Branch *ownerBranch;
 
+	Long index;
+
 	if ((nFlags & MK_LBUTTON) == MK_LBUTTON)
 	{
 		//1.이동값을 구하다.
@@ -76,11 +78,11 @@ void SelectionStrategy::OnMouseMove(CPoint point, UINT nFlags)
 			current->Accept(visitor);
 
 			//2.2 선택된 브랜치를 이동된 브랜치로 바꾸다.
-			//selectedBranch = this->selection->GetAt(i);
-			//ownerBranch = selectedBranch->GetOwnerBranch();
+			selectedBranch = this->selection->GetAt(i);
+			ownerBranch = selectedBranch->GetOwnerBranch();
 			//ownerBranch->Replace(selectedBranch, current);
 			//selection->Replace(selectedBranch, current);
-			//i++;
+			i++;
 		}
 	}
 }

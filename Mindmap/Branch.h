@@ -15,6 +15,8 @@ public:
 	virtual ~Branch();
 
 	Long Add(Shape *shape);
+	Long Correct(Long index, Shape *shape);
+	void Replace(Shape *before, Shape *after);
 	Topic* GetTopic();
 	Mark* GetMark();
 
