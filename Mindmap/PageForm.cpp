@@ -92,6 +92,7 @@ void PageForm::OnMouseMove(UINT nFlags, CPoint point) {
 	if ((nFlags & MK_LBUTTON) == MK_LBUTTON)
 	{
 		this->mouseAction->OnMouseMove(point, nFlags);
+		RedrawWindow();
 	}
 	CFrameWnd::OnMouseMove(nFlags, point);
 }
