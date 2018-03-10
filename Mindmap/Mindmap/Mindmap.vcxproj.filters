@@ -273,6 +273,9 @@
     <ClInclude Include="..\BranchCopyTraverser.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="MoveTraverser.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
     <ClInclude Include="..\MoveVisitor.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -528,6 +531,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="..\KeyAction.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveTraverser.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="..\MoveVisitor.cpp">

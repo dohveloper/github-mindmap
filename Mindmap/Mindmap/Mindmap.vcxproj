@@ -106,6 +106,7 @@
     <ClInclude Include="..\WriteEnglish.h" />
     <ClInclude Include="..\WriteKorean.h" />
     <ClInclude Include="..\WriteVisitor.h" />
+    <ClInclude Include="MoveTraverser.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Branch.cpp" />
@@ -193,6 +194,7 @@
     <ClCompile Include="..\WriteEnglish.cpp" />
     <ClCompile Include="..\WriteKorean.cpp" />
     <ClCompile Include="..\WriteVisitor.cpp" />
+    <ClCompile Include="MoveTraverser.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -283,7 +285,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

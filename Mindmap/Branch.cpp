@@ -104,6 +104,7 @@ Branch& Branch::operator=(const Branch& source)
 	return *this;
 }
 
+/*
 #include <iostream>
 #include "Topic.h"
 #include "Line.h"
@@ -273,3 +274,4 @@ int main(int argc, char *argv[]) {
 		i++;
 	}
 }
+*/
