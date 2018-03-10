@@ -55,6 +55,11 @@ Long BranchArray::Remove(Branch * branch)
 	return index;
 }
 
+void BranchArray::Correct(Long index, Branch * branch)
+{
+	index = this->branches.Modify(index, branch);
+}
+
 void BranchArray::Clear()
 {
 	Long i = 0;

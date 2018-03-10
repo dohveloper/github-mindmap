@@ -40,6 +40,7 @@
     <ClInclude Include="..\DrawLines.h" />
     <ClInclude Include="..\DrawMarks.h" />
     <ClInclude Include="..\DrawTopics.h" />
+    <ClInclude Include="..\FlipVisitor.h" />
     <ClInclude Include="..\FoldVisitor.h" />
     <ClInclude Include="..\HitTester.h" />
     <ClInclude Include="..\HitTestVisitor.h" />
@@ -107,6 +108,7 @@
     <ClInclude Include="..\WriteEnglish.h" />
     <ClInclude Include="..\WriteKorean.h" />
     <ClInclude Include="..\WriteVisitor.h" />
+    <ClInclude Include="..\FlipTraverser.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Branch.cpp" />
@@ -128,6 +130,7 @@
     <ClCompile Include="..\DrawLines.cpp" />
     <ClCompile Include="..\DrawMarks.cpp" />
     <ClCompile Include="..\DrawTopics.cpp" />
+    <ClCompile Include="..\FlipVisitor.cpp" />
     <ClCompile Include="..\FoldVisitor.cpp" />
     <ClCompile Include="..\HitTester.cpp" />
     <ClCompile Include="..\HitTestVisitor.cpp" />
@@ -195,6 +198,7 @@
     <ClCompile Include="..\WriteEnglish.cpp" />
     <ClCompile Include="..\WriteKorean.cpp" />
     <ClCompile Include="..\WriteVisitor.cpp" />
+    <ClCompile Include="..\FlipTraverser.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

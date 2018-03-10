@@ -4,10 +4,7 @@
 #include <afxwin.h>
 
 typedef signed long int Long;
-class Topic;
-class Line;
 class Branch;
-class Mark;
 
 class MoveVisitor : public ShapeVisitor {
 public:

@@ -61,6 +61,8 @@ void SelectionStrategy::OnMouseMove(CPoint point, UINT nFlags)
 	Branch *ownerBranch;
 
 	Branch *clone;
+	Long centerX;
+	Long centerY;
 
 	if ((nFlags & MK_LBUTTON) == MK_LBUTTON)
 	{
@@ -69,7 +71,6 @@ void SelectionStrategy::OnMouseMove(CPoint point, UINT nFlags)
 		movedY = this->clickedPoint.y - point.y;
 
 		MoveVisitor visitor(movedX, movedY);
-
 		// 2.선택된 브랜치 수만큼 반복한다.
 		while (i < this->selection->GetLength()) {
 			//2.1 기억한 브랜치를 이동값만큼 이동한다.
@@ -82,6 +83,7 @@ void SelectionStrategy::OnMouseMove(CPoint point, UINT nFlags)
 			ownerBranch = selectedBranch->GetOwnerBranch();
 			ownerBranch->Replace(selectedBranch, clone);
 			selection->Replace(selectedBranch, clone);
+
 			i++;
 		}
 	}
