@@ -57,7 +57,6 @@ Long BranchArray::Remove(Branch * branch)
 
 void BranchArray::Clear()
 {
-	Branch* branch;
 	Long i = 0;
 
 	while (i < this->length) {

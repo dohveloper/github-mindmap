@@ -34,7 +34,6 @@ void SelectionStrategy::OnLButtonDown(CPoint point, UINT nFlags, Selection *sele
 
 	//이동하기
 	Long i = 0;
-	Branch *selectedBranch;
 	Branch *clone;
 	this->selection = selection;
 

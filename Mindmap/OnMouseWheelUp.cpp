@@ -15,7 +15,6 @@ Long OnMouseWheelUp::Scroll(PageForm * pageForm, short zDelta)
 	int minimum;
 	int maximum;
 	Long current;
-	SCROLLINFO info;
 	Long movedPosition = 0;
 
 	pageForm->GetScrollRange(SB_VERT, &minimum, &maximum);

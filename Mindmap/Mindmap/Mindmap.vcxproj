@@ -52,6 +52,7 @@
     <ClInclude Include="..\MarkStrategy.h" />
     <ClInclude Include="..\MouseAction.h" />
     <ClInclude Include="..\MouseStrategy.h" />
+    <ClInclude Include="..\MoveTraverser.h" />
     <ClInclude Include="..\MoveVisitor.h" />
     <ClInclude Include="..\MultiLineDragAction.h" />
     <ClInclude Include="..\MultiSelect.h" />
@@ -106,7 +107,6 @@
     <ClInclude Include="..\WriteEnglish.h" />
     <ClInclude Include="..\WriteKorean.h" />
     <ClInclude Include="..\WriteVisitor.h" />
-    <ClInclude Include="MoveTraverser.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Branch.cpp" />
@@ -140,6 +140,7 @@
     <ClCompile Include="..\MarkStrategy.cpp" />
     <ClCompile Include="..\MouseAction.cpp" />
     <ClCompile Include="..\MouseStrategy.cpp" />
+    <ClCompile Include="..\MoveTraverser.cpp" />
     <ClCompile Include="..\MoveVisitor.cpp" />
     <ClCompile Include="..\MultiLineDragAction.cpp" />
     <ClCompile Include="..\MultiSelect.cpp" />
@@ -194,7 +195,6 @@
     <ClCompile Include="..\WriteEnglish.cpp" />
     <ClCompile Include="..\WriteKorean.cpp" />
     <ClCompile Include="..\WriteVisitor.cpp" />
-    <ClCompile Include="MoveTraverser.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -285,7 +285,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

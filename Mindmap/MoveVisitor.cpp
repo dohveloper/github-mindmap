@@ -6,6 +6,7 @@
 #include "MouseAction.h"
 #include "SelectionStrategy.h"
 #include "Shape.h"
+#include "MoveTraverser.h"
 
 MoveVisitor::MoveVisitor(Long x, Long y) {
 	this->x = x;
@@ -15,53 +16,33 @@ MoveVisitor::MoveVisitor(Long x, Long y) {
 MoveVisitor::~MoveVisitor() {
 }
 
-void MoveVisitor::VisitLine(Line *line)
-{
-	Long newX;
-	Long newY;
-	newX = line->GetX() - this->x;
-	newY = line->GetY() - this->y;
-
-	line->SetX(newX);
-	line->SetY(newY);
-}
-
-void MoveVisitor::VisitTopic(Topic *topic) {
-	Long newX;
-	Long newY;
-	newX = topic->GetX() - this->x;
-	newY = topic->GetY() - this->y;
-
-	topic->SetX(newX);
-	topic->SetY(newY);
-}
-
-void MoveVisitor::VisitMark(Mark * mark)
-{
-	Long newX;
-	Long newY;
-	newX = mark->GetX() - this->x;
-	newY = mark->GetY() - this->y;
-
-	mark->SetX(newX);
-	mark->SetY(newY);
-}
-
 void MoveVisitor::VisitBranch(Branch *branch)
 {
-	Long length;
-	Long i = 0;
-	Shape *current;
+	Long startX;
+	Long startY;
+	Long endX;
+	Long endY;
+	Long lineWidth;
+	Long lineHeight;
+	Line *line;
 
-	length = branch->GetLength();
+	// 이동시킨다.
+	MoveTraverser traverser(branch, this->x, this->y);
+	traverser.Traverse();
 
-	while (i < length)
-	{
-		current = branch->GetAt(i);
-		current->Accept(*this);
-		i++;
-	}
+	// 가장 앞 라인을 이동한다.
+	branch->GetOwnerBranch()->GetTopic()->GetCenter(&startX, &startY);
+	branch->GetTopic()->GetCenter(&endX, &endY);
+	lineWidth = endX - startX;
+	lineHeight = endY - startY;
+
+	line = branch->GetLine();
+	line->SetX(startX);
+	line->SetY(startY);
+	line->SetWidth(lineWidth);
+	line->SetHeight(lineHeight);
 }
+
 /*
 #include <iostream>
 #include "Mark.h"

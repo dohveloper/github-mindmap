@@ -21,7 +21,6 @@ Clipboard::~Clipboard()
 
 void Clipboard::Copy()
 {
-	Long index;
 	Long i = 0;
 	Branch *current;
 	Branch *clone;

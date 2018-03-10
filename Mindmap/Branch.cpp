@@ -52,6 +52,29 @@ Topic* Branch::GetTopic()
 	return (Topic*)topic;
 }
 
+Line* Branch::GetLine()
+{
+	Shape *shape;
+	Line *line = NULL;
+	Long length;
+	Long i = 0;
+
+	length = this->shapes.GetLength();
+
+	while (i < length)
+	{
+		shape = this->shapes.GetAt(i);
+
+		if (typeid(*shape) == typeid(Line))
+		{
+			line = (Line*)shape;
+			i = length;
+		}
+		i++;
+	}
+	return line;
+}
+
 Mark* Branch::GetMark()
 {
 	Shape *mark;

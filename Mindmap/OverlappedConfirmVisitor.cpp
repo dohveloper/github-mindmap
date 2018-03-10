@@ -43,11 +43,10 @@ void OverlappedConfirmVisitor::VisitBranch(Branch *branch)
 
 			CRect rectC(areaX1, areaY1, areaX2, areaY2);
 
-			if (this->rectB.IntersectRect(rectA, rectC) == true)
+			if (this->rectB.IntersectRect(rectA, rectC) == TRUE)
 			{
-				this->isOverlapped = true;
+				this->isOverlapped = TRUE;
 			}
-
 		}
 		if (typeid(*currentItem) == typeid(Branch))
 		{
@@ -55,5 +54,4 @@ void OverlappedConfirmVisitor::VisitBranch(Branch *branch)
 		}
 		i++;
 	}
-
 }

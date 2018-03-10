@@ -4,8 +4,6 @@
 #include "SingleByteCharacter.h"
 #include "DoubleByteCharacter.h"
 
-
-
 TextComposite::TextComposite(Long capacity)
 	:characters(capacity) {
 	this->capacity = capacity;
@@ -19,7 +17,6 @@ TextComposite::TextComposite(const TextComposite& source)
 }
 
 TextComposite::~TextComposite() {
-
 }
 
 Long TextComposite::Write(Character *character) {
@@ -64,13 +61,11 @@ Character* TextComposite::GetAt(Long index) {
 }
 
 string TextComposite::MakeString() {
-	
 	return 0;
 }
 
 string TextComposite::MakeString(Long start, Long end) {
 	string text = "";
-	Character *character;
 
 	while (start < end)
 	{
@@ -87,13 +82,13 @@ string TextComposite::MakeString(Long start, Long end) {
 	return text;
 }
 
-Long TextComposite::GetRowWidth(CDC *cdc,Long start,Long end) {
+Long TextComposite::GetRowWidth(CDC *cdc, Long start, Long end) {
 	string word;
-	Long width=0;
-	
+	Long width = 0;
+
 	while (start < end)
 	{
-		if (this->GetAt(start)->MakeString().compare("\t")==0)
+		if (this->GetAt(start)->MakeString().compare("\t") == 0)
 		{
 			word += "        ";
 		}
@@ -107,11 +102,11 @@ Long TextComposite::GetRowWidth(CDC *cdc,Long start,Long end) {
 	return width;
 }
 
-Long TextComposite::GetHeight(CDC *cdc, Long index) 
+Long TextComposite::GetHeight(CDC *cdc, Long index)
 {
 	string word;
 	Long i = 0;
-	Long height=0;
+	Long height = 0;
 
 	while (i < index)
 	{
@@ -122,7 +117,6 @@ Long TextComposite::GetHeight(CDC *cdc, Long index)
 
 	return height;
 }
-
 
 TextComposite& TextComposite::operator=(const TextComposite& source) {
 	this->characters = source.characters;

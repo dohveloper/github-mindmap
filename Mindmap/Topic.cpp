@@ -2,30 +2,32 @@
 
 #include "Topic.h"
 
-Topic::Topic() 
-:Shape()
+Topic::Topic()
+	:Shape()
 {
-
 }
 
 Topic::Topic(Long x, Long y, Long width, Long height, string content, Branch *branch)
-:Shape(x,y,width,height,content,branch)
+	: Shape(x, y, width, height, content, branch)
 {
-
 }
 
 Topic::Topic(const Topic& source)
 	: Shape(source.x, source.y, source.width, source.height, source.content, source.ownerBranch)
 {
-	
 }
 
 Topic::~Topic() {
-
 }
 
 void Topic::Accept(ShapeVisitor& visitor) {
 	visitor.VisitTopic(this);
+}
+
+void Topic::GetCenter(Long * centerX, Long * centerY)
+{
+	*centerX = this->x + this->width / 2;
+	*centerY = this->y + this->height / 2;
 }
 
 bool Topic::IsEqual(const Topic& other) {

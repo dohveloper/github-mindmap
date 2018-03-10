@@ -4,23 +4,19 @@
 #include "TextVisitor.h"
 
 Row::Row(Long capacity) {
-
 }
 
 Row::Row(const Row& source)
-	:TextComposite(source){
-
+	:TextComposite(source) {
 }
 
 Row::~Row()
 {
-
 }
 
 string Row::MakeString() {
 	string text = "";
 	Long i = 0;
-	Character *character;
 
 	while (i < this->length)
 	{
@@ -40,7 +36,6 @@ string Row::MakeString() {
 void Row::Accept(TextVisitor& textVisitor) {
 	textVisitor.VisitRow(this);
 }
-
 
 Row& Row::operator=(const Row& source)
 {
@@ -65,8 +60,6 @@ int main(int argc, char *argv[]) {
 
 	index = row.Write(new SingleByteCharacter('b'));
 	cout << row.GetAt(index)->GetCharacter() << endl;
-
-	
 
 	Row branch1(row);
 
@@ -112,7 +105,6 @@ int main(int argc, char *argv[]) {
 				cout << "aaa" << endl;
 			}
 			text = text + singleLink->GetCharacter();
-
 		}
 		else if (typeid(*character) == typeid(DoubleByteCharacter))
 		{

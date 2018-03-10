@@ -18,6 +18,7 @@ public:
 	Long Correct(Long index, Shape *shape);
 	void Replace(Shape *before, Shape *after);
 	Topic* GetTopic();
+	Line* GetLine();
 	Mark* GetMark();
 
 	virtual void Accept(ShapeVisitor& visitor);

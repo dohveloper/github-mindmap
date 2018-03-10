@@ -13,9 +13,6 @@ class MoveVisitor : public ShapeVisitor {
 public:
 	MoveVisitor(Long x, Long y);
 	virtual ~MoveVisitor();
-	virtual void VisitLine(Line *line);
-	virtual void VisitTopic(Topic *topic);
-	virtual void VisitMark(Mark *mark);
 	virtual void VisitBranch(Branch *branch);
 
 private:

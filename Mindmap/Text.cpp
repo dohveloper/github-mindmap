@@ -6,22 +6,18 @@
 
 Text::Text(Long capacity)
 {
-
 }
 Text::Text(const Text& source)
 	:TextComposite(source) {
-
 }
 
 Text::~Text()
 {
-
 }
 
 string Text::MakeString() {
 	string text = "";
 	Long i = 0;
-	Character *character;
 
 	while (i < this->length)
 	{
@@ -42,6 +38,5 @@ Text& Text::operator=(const Text& source)
 }
 
 void Text::Accept(TextVisitor& textVisitor) {
-	
 	textVisitor.VisitText(this);
 }

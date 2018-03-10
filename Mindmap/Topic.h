@@ -13,11 +13,13 @@ typedef signed long int Long;
 class Topic : public Shape {
 public:
 	Topic();
-	Topic(Long x,Long y,Long width,Long height,string content, Branch *branch = NULL);
+	Topic(Long x, Long y, Long width, Long height, string content, Branch *branch = NULL);
 	Topic(const Topic& source);
 	virtual ~Topic();
 
 	virtual void Accept(ShapeVisitor& visitor);
+
+	void GetCenter(Long *centerX, Long *centerY);
 
 	bool IsEqual(const Topic& other);
 	bool IsNotEqual(const Topic& other);
@@ -25,7 +27,6 @@ public:
 	bool operator==(const Topic& other);
 	bool operator!=(const Topic& other);
 	Topic& operator=(const Topic& other);
-
 };
 
 #endif //TOPIC_H
