@@ -4,6 +4,8 @@
 #include "Line.h"
 #include "Mark.h"
 
+#include "FlipVisitor.h"
+
 MoveTraverser::MoveTraverser(Branch *branch, Long x, Long y)
 	:BranchTraverser(branch)
 {
@@ -16,6 +18,13 @@ inline bool MoveTraverser::ProcessItem(Shape * shape)
 	bool ret = true;
 	Long movedX;
 	Long movedY;
+
+	Long centerX = 487;
+	Long flipChecker;
+	Long newX;
+	Long newY;
+	Long previousX;
+	Long previousY;
 
 	if (typeid(*shape) == typeid(Branch)) {
 		MoveTraverser traverser((Branch*)shape, this->x, this->y);
