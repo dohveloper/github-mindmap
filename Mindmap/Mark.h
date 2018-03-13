@@ -17,6 +17,8 @@ public:
 	Mark();
 	Mark(Long x, Long y, Long width = markWidth, Long height = markHeight, string content = "+", Branch *branch = NULL);
 	Mark(const Mark& source);
+
+	void UpdatePosition();
 	virtual ~Mark();
 
 	void Accept(ShapeVisitor& visitor);

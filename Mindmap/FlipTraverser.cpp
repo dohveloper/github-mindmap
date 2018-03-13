@@ -50,18 +50,7 @@ bool FlipTraverser::ProcessItem(Shape * shape)
 		shape->SetWidth(newWidth);
 	}
 	if (typeid(*shape) == typeid(Mark)) {
-		topic = shape->GetOwnerBranch()->GetTopic();
-		topicWidth = topic->GetWidth();
-
-		if (previousX - topicWidth < this->centerLine) {    //<previousX - topicWidth>는 < topic의 "previousX"> 와 같음  .  나중에 수정하게 되면 x말고 centerLine이용해서 수정할것
-			interval = this->centerLine - previousX - width;
-			newX = this->centerLine + interval + topicWidth;
-		}
-		else {
-			interval = previousX - this->centerLine - topicWidth;
-			newX = this->centerLine - interval - width;
-		}
-		shape->SetX(newX);
+		((Mark*)shape)->UpdatePosition();
 	}
 	if (typeid(*shape) == typeid(Branch)) {
 		FlipTraverser traverser((Branch*)shape, this->centerBranch);

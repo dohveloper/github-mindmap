@@ -20,6 +20,20 @@ Mark::Mark(const Mark& source)
 {
 }
 
+void Mark::UpdatePosition()
+{
+	//OwnerBranch의 토픽 값을 바탕으로 마크 위치 업데이트하는 연산
+
+	Topic *topic;
+
+	topic = this->GetOwnerBranch()->GetTopic();
+
+	//기존 마크 위치 그려지는 코드 바탕으로 작성 ( DrawingStrategy.cpp )
+
+	this->x = topic->GetX() + 14 * topic->GetWidth() / 15;
+	this->y = topic->GetY() + topic->GetHeight() / 4;
+}
+
 Mark::~Mark()
 {
 }
