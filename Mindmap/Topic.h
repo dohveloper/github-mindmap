@@ -19,7 +19,8 @@ public:
 
 	virtual void Accept(ShapeVisitor& visitor);
 
-	void GetCenter(Long *centerX, Long *centerY);
+	Long GetCenterX();
+	Long GetCenterY();
 
 	bool IsEqual(const Topic& other);
 	bool IsNotEqual(const Topic& other);

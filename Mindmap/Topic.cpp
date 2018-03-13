@@ -24,12 +24,19 @@ void Topic::Accept(ShapeVisitor& visitor) {
 	visitor.VisitTopic(this);
 }
 
-void Topic::GetCenter(Long * centerX, Long * centerY)
+Long Topic::GetCenterX()
 {
-	*centerX = this->x + this->width / 2;
-	*centerY = this->y + this->height / 2;
+	Long centerX;
+	centerX = this->x + this->width / 2;
+	return centerX;
 }
 
+Long Topic::GetCenterY()
+{
+	Long centerY;
+	centerY = this->y + this->height / 2;
+	return centerY;
+}
 bool Topic::IsEqual(const Topic& other) {
 	bool ret = false;
 

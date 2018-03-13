@@ -27,11 +27,11 @@ void MoveVisitor::VisitBranch(Branch *branch)
 	Long lineWidth;
 	Long lineHeight;
 	Line *line;
-	Long previousX;
-	Long newX;
+	Long previousCenterX;
+	Long newCenterX;
 
 	//이동시키기전 X를 기억한다.
-	previousX = branch->GetTopic()->GetX();
+	previousCenterX = branch->GetTopic()->GetCenterX();
 
 	// 이동시킨다.
 	MoveTraverser traverser(branch, this->x, this->y);
@@ -39,17 +39,19 @@ void MoveVisitor::VisitBranch(Branch *branch)
 
 	//중앙선을 넘어서면 좌우반전시킨다.
 	FlipVisitor visitor;
-	newX = previousX - this->x;
-	if (previousX < this->centerLine && newX > this->centerLine) {
+	newCenterX = previousCenterX - this->x;
+	if (previousCenterX < this->centerLine && newCenterX > this->centerLine) {
 		branch->Accept(visitor);
 	}
-	if (previousX > this->centerLine && newX < this->centerLine) {
+	if (previousCenterX > this->centerLine && newCenterX < this->centerLine) {
 		branch->Accept(visitor);
 	}
 
 	// 가장 앞 라인을 이동한다.
-	branch->GetOwnerBranch()->GetTopic()->GetCenter(&startX, &startY);
-	branch->GetTopic()->GetCenter(&endX, &endY);
+	startX = branch->GetOwnerBranch()->GetTopic()->GetCenterX();
+	startY = branch->GetOwnerBranch()->GetTopic()->GetCenterY();
+	endX = branch->GetTopic()->GetCenterX();
+	endY = branch->GetTopic()->GetCenterY();
 	lineWidth = endX - startX;
 	lineHeight = endY - startY;
 

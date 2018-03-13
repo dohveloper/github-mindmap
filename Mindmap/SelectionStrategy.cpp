@@ -6,7 +6,7 @@
 #include "MoveVisitor.h"
 #include "Topic.h"
 
-#define CENTERLINE 487
+#define CENTERLINE 700
 
 SelectionStrategy::SelectionStrategy() {
 	this->select = NULL;

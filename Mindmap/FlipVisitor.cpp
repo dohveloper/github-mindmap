@@ -13,18 +13,17 @@ FlipVisitor::~FlipVisitor()
 
 void FlipVisitor::VisitBranch(Branch * branch)
 {
-	Long centerX;
 	Shape *current;
 	Long length;
 	Long i = 0;
 	length = branch->GetLength();
 
-	centerX = branch->GetTopic()->GetX();
+	//centerLine = branch->GetTopic()->GetCenterX();
 
 	while (i < length) {
 		current = branch->GetAt(i);
 		if (typeid(*current) == typeid(Branch)) {
-			FlipTraverser traverser((Branch*)current, centerX);
+			FlipTraverser traverser((Branch*)current, branch);
 			traverser.Traverse();
 		}
 		i++;

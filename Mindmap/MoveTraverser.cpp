@@ -19,13 +19,6 @@ inline bool MoveTraverser::ProcessItem(Shape * shape)
 	Long movedX;
 	Long movedY;
 
-	Long centerX = 487;
-	Long flipChecker;
-	Long newX;
-	Long newY;
-	Long previousX;
-	Long previousY;
-
 	if (typeid(*shape) == typeid(Branch)) {
 		MoveTraverser traverser((Branch*)shape, this->x, this->y);
 		traverser.Traverse();

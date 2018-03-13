@@ -20,7 +20,6 @@ bool DrawTopics::ProcessItem(Shape *shape)
 	string content;
 
 	if (typeid(*shape) == typeid(Topic)) {
-
 		CFont fnt;
 		fnt.CreatePointFont(14, "system");
 		this->dc->SelectObject(&fnt);
