@@ -8,11 +8,12 @@ class Branch;
 
 class MoveVisitor : public ShapeVisitor {
 public:
-	MoveVisitor(Long x, Long y);
+	MoveVisitor(Long centerX, Long x, Long y);
 	virtual ~MoveVisitor();
 	virtual void VisitBranch(Branch *branch);
 
 private:
+	Long centerX;
 	Long x;
 	Long y;
 };

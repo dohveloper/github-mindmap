@@ -8,7 +8,8 @@
 #include "Shape.h"
 #include "MoveTraverser.h"
 
-MoveVisitor::MoveVisitor(Long x, Long y) {
+MoveVisitor::MoveVisitor(Long centerX, Long x, Long y) {
+	this->centerX = centerX;
 	this->x = x;
 	this->y = y;
 }
