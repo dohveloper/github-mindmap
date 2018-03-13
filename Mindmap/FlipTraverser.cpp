@@ -7,7 +7,7 @@
 FlipTraverser::FlipTraverser(Branch *branch, Long centerX)
 	:BranchTraverser(branch)
 {
-	this->centerX = centerX;
+	this->centerX = centerX;//중앙 토픽의 x값
 }
 
 bool FlipTraverser::ProcessItem(Shape * shape)
@@ -24,7 +24,7 @@ bool FlipTraverser::ProcessItem(Shape * shape)
 	width = shape->GetWidth();
 
 	if (typeid(*shape) == typeid(Topic)) {
-		newX = this->centerX * 2 - (x + width);  //centerX-newX-widthX = preX-centerX
+		newX = this->centerX * 2 - x;  //centerX-newX= preX-centerX
 		shape->SetX(newX);
 	}
 	if (typeid(*shape) == typeid(Line)) {

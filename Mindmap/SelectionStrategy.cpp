@@ -6,6 +6,8 @@
 #include "MoveVisitor.h"
 #include "Topic.h"
 
+#define CENTERLINE 487
+
 SelectionStrategy::SelectionStrategy() {
 	this->select = NULL;
 }
@@ -70,7 +72,7 @@ void SelectionStrategy::OnMouseMove(CPoint point, UINT nFlags)
 		movedX = this->clickedPoint.x - point.x;
 		movedY = this->clickedPoint.y - point.y;
 
-		MoveVisitor visitor(movedX, movedY);
+		MoveVisitor visitor(CENTERLINE, movedX, movedY);
 		// 2.선택된 브랜치 수만큼 반복한다.
 		while (i < this->selection->GetLength()) {
 			//2.1 기억한 브랜치를 이동값만큼 이동한다.

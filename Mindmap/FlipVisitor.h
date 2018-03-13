@@ -7,12 +7,11 @@ class Branch;
 
 class FlipVisitor : public ShapeVisitor {
 public:
-	FlipVisitor(Long centerX);
+	FlipVisitor();
 	virtual ~FlipVisitor();
 	virtual void VisitBranch(Branch *branch);
 
 private:
-	Long centerX;
 };
 
 #endif _FLIPVISITOR_H

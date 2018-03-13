@@ -13,7 +13,7 @@ public:
 	virtual void VisitBranch(Branch *branch);
 
 private:
-	Long centerX;
+	Long centerLine;
 	Long x;
 	Long y;
 };

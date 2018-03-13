@@ -7,9 +7,10 @@
 #include "SelectionStrategy.h"
 #include "Shape.h"
 #include "MoveTraverser.h"
+#include "FlipVisitor.h"
 
-MoveVisitor::MoveVisitor(Long centerX, Long x, Long y) {
-	this->centerX = centerX;
+MoveVisitor::MoveVisitor(Long centerLine, Long x, Long y) {
+	this->centerLine = centerLine;
 	this->x = x;
 	this->y = y;
 }
@@ -26,10 +27,25 @@ void MoveVisitor::VisitBranch(Branch *branch)
 	Long lineWidth;
 	Long lineHeight;
 	Line *line;
+	Long previousX;
+	Long newX;
+
+	//이동시키기전 X를 기억한다.
+	previousX = branch->GetTopic()->GetX();
 
 	// 이동시킨다.
 	MoveTraverser traverser(branch, this->x, this->y);
 	traverser.Traverse();
+
+	//중앙선을 넘어서면 좌우반전시킨다.
+	FlipVisitor visitor;
+	newX = previousX - this->x;
+	if (previousX < this->centerLine && newX > this->centerLine) {
+		branch->Accept(visitor);
+	}
+	if (previousX > this->centerLine && newX < this->centerLine) {
+		branch->Accept(visitor);
+	}
 
 	// 가장 앞 라인을 이동한다.
 	branch->GetOwnerBranch()->GetTopic()->GetCenter(&startX, &startY);
