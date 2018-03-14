@@ -9,16 +9,23 @@
 #define CENTERLINE 700
 
 SingleSelectionStrategy::SingleSelectionStrategy() {
+	this->isMoved = false;
 }
 SingleSelectionStrategy::~SingleSelectionStrategy() {
 }
 void SingleSelectionStrategy::OnLButtonDown(CPoint point, UINT nFlags, Selection *selection, Shape *shape) {
 	Branch *branch;
-
+	bool isSelected;
 	SingleSelect select;
 	//단일선택
+
 	branch = shape->GetOwnerBranch();
-	select.SelectBranch(selection, branch);
+	isSelected = selection->IsSelected(branch);
+	if (!isSelected)
+	{
+		select.SelectBranch(selection, branch);
+	}
+	this->clickedBranch = branch;
 
 	//이동하기
 	Long i = 0;
@@ -76,12 +83,16 @@ void SingleSelectionStrategy::OnMouseMove(CPoint point, UINT nFlags)
 			ownerBranch = selectedBranch->GetOwnerBranch();
 			ownerBranch->Replace(selectedBranch, clone);
 			selection->Replace(selectedBranch, clone);
+			i++;
 		}
-
-		i++;
+		this->isMoved = true;
 	}
 }
 
 void SingleSelectionStrategy::OnLButtonUp(Selection * selection, UINT nFlags, Branch * branch)
 {
+	SingleSelect select;
+	if (this->isMoved == false) {
+		select.SelectBranch(selection, this->clickedBranch);
+	}
 }

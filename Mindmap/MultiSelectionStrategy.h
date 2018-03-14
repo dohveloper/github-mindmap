@@ -18,6 +18,8 @@ private:
 	Selection *selection;
 	CPoint clickedPoint;
 	BranchArray unmovedBranches;
+	CPoint start;
+	CPoint end;
 };
 
 #endif //_MULTISELECTIONSTRATEGY_H
