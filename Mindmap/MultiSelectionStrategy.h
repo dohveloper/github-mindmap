@@ -14,12 +14,12 @@ public:
 	virtual void OnLButtonUp(Selection *selection, UINT nFlags, Branch *branch);
 
 private:
+	Branch * clickedBranch;
 	Select * select;
 	Selection *selection;
 	CPoint clickedPoint;
 	BranchArray unmovedBranches;
-	CPoint start;
-	CPoint end;
+	bool isMoved;
 };
 
 #endif //_MULTISELECTIONSTRATEGY_H

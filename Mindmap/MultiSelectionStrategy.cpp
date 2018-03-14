@@ -15,11 +15,18 @@ MultiSelectionStrategy::~MultiSelectionStrategy() {
 }
 void MultiSelectionStrategy::OnLButtonDown(CPoint point, UINT nFlags, Selection *selection, Shape *shape) {
 	Branch *branch;
+	bool isSelected;
 	MultiSelect select;
 
 	//다중선택
+
 	branch = shape->GetOwnerBranch();
-	select.SelectBranch(selection, branch);
+	isSelected = selection->IsSelected(branch);
+	if (!isSelected)
+	{
+		select.SelectBranch(selection, branch);
+	}
+	this->clickedBranch = branch;
 
 	//이동하기
 	Long i = 0;
@@ -77,12 +84,16 @@ void MultiSelectionStrategy::OnMouseMove(CPoint point, UINT nFlags)
 			ownerBranch = selectedBranch->GetOwnerBranch();
 			ownerBranch->Replace(selectedBranch, clone);
 			selection->Replace(selectedBranch, clone);
-
 			i++;
 		}
+		this->isMoved = true;
 	}
 }
 
 void MultiSelectionStrategy::OnLButtonUp(Selection * selection, UINT nFlags, Branch * branch)
 {
+	MultiSelect select;
+	if (this->isMoved == false) {
+		select.SelectBranch(selection, this->clickedBranch);
+	}
 }
