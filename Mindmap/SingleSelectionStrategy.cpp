@@ -1,4 +1,4 @@
-#include "SelectionStrategy.h"
+#include "SingleSelectionStrategy.h"
 #include "SingleSelect.h"
 #include "MultiSelect.h"
 #include "Select.h"
@@ -8,31 +8,17 @@
 
 #define CENTERLINE 700
 
-SelectionStrategy::SelectionStrategy() {
-	this->select = NULL;
+SingleSelectionStrategy::SingleSelectionStrategy() {
 }
-SelectionStrategy::~SelectionStrategy() {
+SingleSelectionStrategy::~SingleSelectionStrategy() {
 }
-void SelectionStrategy::OnLButtonDown(CPoint point, UINT nFlags, Selection *selection, Shape *shape) {
+void SingleSelectionStrategy::OnLButtonDown(CPoint point, UINT nFlags, Selection *selection, Shape *shape) {
 	Branch *branch;
 
-	//할당해제
-	if (this->select != NULL) {
-		delete this->select;
-		this->select = NULL;
-	}
-
-	if (nFlags == MK_CONTROL + MK_LBUTTON)
-	{
-		this->select = new MultiSelect;
-	}
-	else
-	{
-		this->select = new SingleSelect;
-	}
-
+	//단일선택
+	SingleSelect select;
 	branch = shape->GetOwnerBranch();
-	this->select->SelectBranch(selection, branch);
+	select.SelectBranch(selection, branch);
 
 	//이동하기
 	Long i = 0;
@@ -53,7 +39,7 @@ void SelectionStrategy::OnLButtonDown(CPoint point, UINT nFlags, Selection *sele
 	}
 }
 
-void SelectionStrategy::OnMouseMove(CPoint point, UINT nFlags)
+void SingleSelectionStrategy::OnMouseMove(CPoint point, UINT nFlags)
 {
 	Long movedX = 0;
 	Long movedY = 0;
@@ -91,6 +77,6 @@ void SelectionStrategy::OnMouseMove(CPoint point, UINT nFlags)
 	}
 }
 
-void SelectionStrategy::OnLButtonUp(Selection * selection, UINT nFlags, Branch * branch)
+void SingleSelectionStrategy::OnLButtonUp(Selection * selection, UINT nFlags, Branch * branch)
 {
 }

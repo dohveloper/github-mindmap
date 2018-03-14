@@ -1,14 +1,14 @@
-#ifndef _SELECTIONSTRATEGY_H
-#define _SELECTIONSTRATEGY_H
+﻿#ifndef _MULTISELECTIONSTRATEGY_H
+#define _MULTISELECTIONSTRATEGY_H
 #include "MouseStrategy.h"
 #include "BranchArray.h"
 class Branch;
 class Select;
 
-class SelectionStrategy : public MouseStrategy {
+class MultiSelectionStrategy : public MouseStrategy {
 public:
-	SelectionStrategy();
-	~SelectionStrategy();
+	MultiSelectionStrategy();
+	~MultiSelectionStrategy();
 	virtual void OnLButtonDown(CPoint point, UINT nFlags, Selection *selection, Shape *shape);
 	virtual void OnMouseMove(CPoint point, UINT nFlags);
 	virtual void OnLButtonUp(Selection *selection, UINT nFlags, Branch *branch);
@@ -20,4 +20,4 @@ private:
 	BranchArray unmovedBranches;
 };
 
-#endif
+#endif //_MULTISELECTIONSTRATEGY_H

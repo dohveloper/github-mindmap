@@ -189,9 +189,6 @@
     <ClInclude Include="..\SelectionMarkVisitor.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="..\SelectionStrategy.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="..\SelectText.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -283,6 +280,12 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="..\FlipTraverser.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SingleSelectionStrategy.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="MultiSelectionStrategy.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
@@ -455,9 +458,6 @@
     <ClCompile Include="..\SelectionMarkVIsitor.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="..\SelectionStrategy.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="..\SelectText.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -549,6 +549,12 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="..\FlipTraverser.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SingleSelectionStrategy.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="MultiSelectionStrategy.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

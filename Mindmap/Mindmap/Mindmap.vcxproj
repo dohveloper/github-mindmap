@@ -85,7 +85,7 @@
     <ClInclude Include="..\Select.h" />
     <ClInclude Include="..\Selection.h" />
     <ClInclude Include="..\SelectionMarkVisitor.h" />
-    <ClInclude Include="..\SelectionStrategy.h" />
+    <ClInclude Include="..\SingleSelectionStrategy.h" />
     <ClInclude Include="..\SelectText.h" />
     <ClInclude Include="..\Shape.h" />
     <ClInclude Include="..\ShapeVisitor.h" />
@@ -109,6 +109,7 @@
     <ClInclude Include="..\WriteKorean.h" />
     <ClInclude Include="..\WriteVisitor.h" />
     <ClInclude Include="..\FlipTraverser.h" />
+    <ClInclude Include="MultiSelectionStrategy.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Branch.cpp" />
@@ -175,7 +176,7 @@
     <ClCompile Include="..\Select.cpp" />
     <ClCompile Include="..\Selection.cpp" />
     <ClCompile Include="..\SelectionMarkVIsitor.cpp" />
-    <ClCompile Include="..\SelectionStrategy.cpp" />
+    <ClCompile Include="..\SingleSelectionStrategy.cpp" />
     <ClCompile Include="..\SelectText.cpp" />
     <ClCompile Include="..\Shape.cpp" />
     <ClCompile Include="..\ShapeVisitor.cpp" />
@@ -199,6 +200,7 @@
     <ClCompile Include="..\WriteKorean.cpp" />
     <ClCompile Include="..\WriteVisitor.cpp" />
     <ClCompile Include="..\FlipTraverser.cpp" />
+    <ClCompile Include="MultiSelectionStrategy.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
