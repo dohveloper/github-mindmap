@@ -17,6 +17,7 @@ public:
 	Long Add(Shape *shape);
 	Long Correct(Long index, Shape *shape);
 	void Replace(Shape *before, Shape *after);
+	bool IsMain();
 	Topic* GetTopic();
 	Line* GetLine();
 	Mark* GetMark();

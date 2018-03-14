@@ -40,6 +40,18 @@ void Branch::Replace(Shape * before, Shape * after)
 	after->SetOwnerBranch(this);
 }
 
+bool Branch::IsMain()
+{
+	//메인브랜치인지 확인하는 연산
+	bool ret = false;
+
+	if (this == this->ownerBranch)
+	{
+		ret = true;
+	}
+	return ret;
+}
+
 Topic* Branch::GetTopic()
 {
 	Shape *topic;

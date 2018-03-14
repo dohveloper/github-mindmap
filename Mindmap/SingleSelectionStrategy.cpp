@@ -23,6 +23,7 @@ void SingleSelectionStrategy::OnLButtonDown(CPoint point, UINT nFlags, Selection
 	//이동하기
 	Long i = 0;
 	Branch *clone;
+	Branch *current;
 	this->selection = selection;
 
 	//값 초기화
@@ -33,8 +34,12 @@ void SingleSelectionStrategy::OnLButtonDown(CPoint point, UINT nFlags, Selection
 
 	// 2.선택된 브랜치 수만큼 반복한다.
 	while (i < selection->GetLength()) {
-		clone = selection->GetAt(i)->Clone();
-		this->unmovedBranches.Add(clone); //브랜치를 기억한다.
+		current = selection->GetAt(i);
+		//메인브랜치를 제외하고 복사
+		if (!current->IsMain()) {
+			clone = selection->GetAt(i)->Clone();
+			this->unmovedBranches.Add(clone); //브랜치를 기억한다.
+		}
 		i++;
 	}
 }
@@ -60,7 +65,7 @@ void SingleSelectionStrategy::OnMouseMove(CPoint point, UINT nFlags)
 
 		MoveVisitor visitor(CENTERLINE, movedX, movedY);
 		// 2.선택된 브랜치 수만큼 반복한다.
-		while (i < this->selection->GetLength()) {
+		while (i < this->unmovedBranches.GetLength()) {
 			//2.1 기억한 브랜치를 이동값만큼 이동한다.
 			current = this->unmovedBranches.GetAt(i);
 			clone = current->Clone();
@@ -71,9 +76,9 @@ void SingleSelectionStrategy::OnMouseMove(CPoint point, UINT nFlags)
 			ownerBranch = selectedBranch->GetOwnerBranch();
 			ownerBranch->Replace(selectedBranch, clone);
 			selection->Replace(selectedBranch, clone);
-
-			i++;
 		}
+
+		i++;
 	}
 }
 
