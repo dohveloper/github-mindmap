@@ -23,7 +23,7 @@ void MouseAction::OnLButtonUp(Selection *selection, UINT nFlags, Branch *branch)
 	mouseStrategy->OnLButtonUp(selection, nFlags, branch);
 }
 
-void MouseAction::SetStrategy(Shape *shape)
+void MouseAction::SetStrategy(Shape *shape, UINT nFlags)
 {
 	//할당해제
 	if (this->mouseStrategy != NULL) {
@@ -34,8 +34,11 @@ void MouseAction::SetStrategy(Shape *shape)
 	if (shape == NULL) {
 		this->mouseStrategy = new DrawingStrategy();
 	}
-	else if (typeid(*shape) == typeid(Topic)) {
-		this->mouseStrategy = new SelectionStrategy();
+	else if (typeid(*shape) == typeid(Topic) && nFlags != MK_CONTROL) {
+		this->mouseStrategy = new SingleSelectionStrategy();
+	}
+	else if (typeid(*shape) == typeid(Topic) && nFlags == MK_CONTROL) {
+		this->mouseStrategy = new MultiSelectionStrategy();
 	}
 	else if (typeid(*shape) == typeid(Mark)) {
 		this->mouseStrategy = new MarkStrategy();

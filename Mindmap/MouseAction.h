@@ -13,7 +13,7 @@ public:
 	void OnMouseMove(CPoint point, UINT nFlags);
 	void OnLButtonUp(Selection *selection, UINT nFlags, Branch *branch);
 
-	void SetStrategy(Shape *shape);
+	void SetStrategy(Shape *shape, UINT nFlags);
 	void SetStrategy(string strategy);
 	Shape* GetClickedObject(Branch *branch, CPoint point);
 
