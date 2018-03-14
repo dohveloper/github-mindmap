@@ -285,7 +285,10 @@
     <ClInclude Include="..\SingleSelectionStrategy.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="MultiSelectionStrategy.h">
+    <ClInclude Include="..\MultiSelectionStrategy.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MoveStrategy.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
@@ -554,7 +557,10 @@
     <ClCompile Include="..\SingleSelectionStrategy.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="MultiSelectionStrategy.cpp">
+    <ClCompile Include="..\MultiSelectionStrategy.cpp">
+      <Filter>헤더 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\MoveStrategy.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

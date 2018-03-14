@@ -1,23 +1,21 @@
-﻿#include "MultiSelectionStrategy.h"
+﻿#include "MoveStrategy.h"
 #include "SingleSelect.h"
 #include "MultiSelect.h"
 #include "Select.h"
 #include "Selection.h"
 #include "MoveVisitor.h"
 #include "Topic.h"
-
 #define CENTERLINE 700
 
-MultiSelectionStrategy::MultiSelectionStrategy() {
-	this->select = NULL;
+MoveStrategy::MoveStrategy() {
 }
-MultiSelectionStrategy::~MultiSelectionStrategy() {
+MoveStrategy::~MoveStrategy() {
 }
-void MultiSelectionStrategy::OnLButtonDown(CPoint point, UINT nFlags, Selection *selection, Shape *shape) {
+void MoveStrategy::OnLButtonDown(CPoint point, UINT nFlags, Selection *selection, Shape *shape) {
 	Branch *branch;
 	MultiSelect select;
 
-	//단일선택
+	//다중선택
 	branch = shape->GetOwnerBranch();
 	select.SelectBranch(selection, branch);
 
@@ -40,7 +38,7 @@ void MultiSelectionStrategy::OnLButtonDown(CPoint point, UINT nFlags, Selection 
 	}
 }
 
-void MultiSelectionStrategy::OnMouseMove(CPoint point, UINT nFlags)
+void MoveStrategy::OnMouseMove(CPoint point, UINT nFlags)
 {
 	Long movedX = 0;
 	Long movedY = 0;
@@ -78,6 +76,6 @@ void MultiSelectionStrategy::OnMouseMove(CPoint point, UINT nFlags)
 	}
 }
 
-void MultiSelectionStrategy::OnLButtonUp(Selection * selection, UINT nFlags, Branch * branch)
+void MoveStrategy::OnLButtonUp(Selection * selection, UINT nFlags, Branch * branch)
 {
 }

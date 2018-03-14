@@ -11,7 +11,6 @@
 #include "TextFormSize.h"
 #include "MouseAction.h"
 #include "DrawingStrategy.h"
-#include "SelectionStrategy.h"
 #include "HitTestVisitor.h"
 #include "SelectionMarkVisitor.h"
 #include "DrawLines.h"
@@ -82,7 +81,7 @@ void PageForm::OnLButtonDown(UINT nFlags, CPoint point) {
 	point.Offset(this->movedX*-1, this->movedY *-1);
 
 	clickedObject = this->mouseAction->GetClickedObject(this->branch, point);
-	this->mouseAction->SetStrategy(clickedObject);
+	this->mouseAction->SetStrategy(clickedObject, nFlags);
 	this->mouseAction->OnLButtonDown(point, nFlags, &this->selection, clickedObject);
 	CFrameWnd::OnLButtonDown(nFlags, point);
 }

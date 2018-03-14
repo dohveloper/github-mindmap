@@ -3,7 +3,6 @@
 #include "Line.h"
 #include "Branch.h"
 #include "MouseAction.h"
-#include "SelectionStrategy.h"
 
 HitTestVisitor::HitTestVisitor() {
 }
@@ -14,17 +13,13 @@ HitTestVisitor::HitTestVisitor(CPoint point, Branch **clickedBranch)
 	this->clickedBranch = clickedBranch;
 }
 
-
 HitTestVisitor::~HitTestVisitor() {
-
 }
 void HitTestVisitor::VisitTopic(Topic *topic) {
-	
 }
 
 void HitTestVisitor::VisitBranch(Branch *branch)
 {
-	
 	Long length;
 	Long x;
 	Long y;
@@ -36,7 +31,7 @@ void HitTestVisitor::VisitBranch(Branch *branch)
 
 	length = branch->GetLength();
 
-	while (i < length && *(this->clickedBranch)==NULL)
+	while (i < length && *(this->clickedBranch) == NULL)
 	{
 		currentItem = branch->GetAt(i);
 		if (typeid(*currentItem) == typeid(Topic))
@@ -50,13 +45,11 @@ void HitTestVisitor::VisitBranch(Branch *branch)
 			{
 				*(this->clickedBranch) = branch;
 			}
-			
 		}
 		if (typeid(*currentItem) == typeid(Branch))
-		{	
+		{
 			currentItem->Accept(*this);
 		}
-		i++;  
+		i++;
 	}
-	
 }

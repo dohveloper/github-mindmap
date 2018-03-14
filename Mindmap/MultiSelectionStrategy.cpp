@@ -1,4 +1,4 @@
-#include "SingleSelectionStrategy.h"
+ï»¿#include "MultiSelectionStrategy.h"
 #include "SingleSelect.h"
 #include "MultiSelect.h"
 #include "Select.h"
@@ -8,38 +8,39 @@
 
 #define CENTERLINE 700
 
-SingleSelectionStrategy::SingleSelectionStrategy() {
+MultiSelectionStrategy::MultiSelectionStrategy() {
+	this->select = NULL;
 }
-SingleSelectionStrategy::~SingleSelectionStrategy() {
+MultiSelectionStrategy::~MultiSelectionStrategy() {
 }
-void SingleSelectionStrategy::OnLButtonDown(CPoint point, UINT nFlags, Selection *selection, Shape *shape) {
+void MultiSelectionStrategy::OnLButtonDown(CPoint point, UINT nFlags, Selection *selection, Shape *shape) {
 	Branch *branch;
+	MultiSelect select;
 
-	SingleSelect select;
-	//´ÜÀÏ¼±ÅÃ
+	//ë‹¤ì¤‘ì„ íƒ
 	branch = shape->GetOwnerBranch();
 	select.SelectBranch(selection, branch);
 
-	//ÀÌµ¿ÇÏ±â
+	//ì´ë™í•˜ê¸°
 	Long i = 0;
 	Branch *clone;
 	this->selection = selection;
 
-	//°ª ÃÊ±âÈ­
+	//ê°’ ì´ˆê¸°í™”
 	this->unmovedBranches.Clear();
 
-	// 1.point¸¦ ±â¾ïÇÑ´Ù.
+	// 1.pointë¥¼ ê¸°ì–µí•œë‹¤.
 	this->clickedPoint = point;
 
-	// 2.¼±ÅÃµÈ ºê·£Ä¡ ¼ö¸¸Å­ ¹İº¹ÇÑ´Ù.
+	// 2.ì„ íƒëœ ë¸Œëœì¹˜ ìˆ˜ë§Œí¼ ë°˜ë³µí•œë‹¤.
 	while (i < selection->GetLength()) {
 		clone = selection->GetAt(i)->Clone();
-		this->unmovedBranches.Add(clone); //ºê·£Ä¡¸¦ ±â¾ïÇÑ´Ù.
+		this->unmovedBranches.Add(clone); //ë¸Œëœì¹˜ë¥¼ ê¸°ì–µí•œë‹¤.
 		i++;
 	}
 }
 
-void SingleSelectionStrategy::OnMouseMove(CPoint point, UINT nFlags)
+void MultiSelectionStrategy::OnMouseMove(CPoint point, UINT nFlags)
 {
 	Long movedX = 0;
 	Long movedY = 0;
@@ -54,19 +55,19 @@ void SingleSelectionStrategy::OnMouseMove(CPoint point, UINT nFlags)
 
 	if ((nFlags & MK_LBUTTON) == MK_LBUTTON)
 	{
-		//1.ÀÌµ¿°ªÀ» ±¸ÇÏ´Ù.
+		//1.ì´ë™ê°’ì„ êµ¬í•˜ë‹¤.
 		movedX = this->clickedPoint.x - point.x;
 		movedY = this->clickedPoint.y - point.y;
 
 		MoveVisitor visitor(CENTERLINE, movedX, movedY);
-		// 2.¼±ÅÃµÈ ºê·£Ä¡ ¼ö¸¸Å­ ¹İº¹ÇÑ´Ù.
+		// 2.ì„ íƒëœ ë¸Œëœì¹˜ ìˆ˜ë§Œí¼ ë°˜ë³µí•œë‹¤.
 		while (i < this->selection->GetLength()) {
-			//2.1 ±â¾ïÇÑ ºê·£Ä¡¸¦ ÀÌµ¿°ª¸¸Å­ ÀÌµ¿ÇÑ´Ù.
+			//2.1 ê¸°ì–µí•œ ë¸Œëœì¹˜ë¥¼ ì´ë™ê°’ë§Œí¼ ì´ë™í•œë‹¤.
 			current = this->unmovedBranches.GetAt(i);
 			clone = current->Clone();
 			clone->Accept(visitor);
 
-			//2.2 ¼±ÅÃµÈ ºê·£Ä¡¸¦ ÀÌµ¿µÈ ºê·£Ä¡·Î ¹Ù²Ù´Ù.
+			//2.2 ì„ íƒëœ ë¸Œëœì¹˜ë¥¼ ì´ë™ëœ ë¸Œëœì¹˜ë¡œ ë°”ê¾¸ë‹¤.
 			selectedBranch = this->selection->GetAt(i);
 			ownerBranch = selectedBranch->GetOwnerBranch();
 			ownerBranch->Replace(selectedBranch, clone);
@@ -77,6 +78,6 @@ void SingleSelectionStrategy::OnMouseMove(CPoint point, UINT nFlags)
 	}
 }
 
-void SingleSelectionStrategy::OnLButtonUp(Selection * selection, UINT nFlags, Branch * branch)
+void MultiSelectionStrategy::OnLButtonUp(Selection * selection, UINT nFlags, Branch * branch)
 {
 }

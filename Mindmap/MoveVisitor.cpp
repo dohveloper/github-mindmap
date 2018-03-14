@@ -4,7 +4,6 @@
 #include "Branch.h"
 #include "Mark.h"
 #include "MouseAction.h"
-#include "SelectionStrategy.h"
 #include "Shape.h"
 #include "MoveTraverser.h"
 #include "FlipVisitor.h"

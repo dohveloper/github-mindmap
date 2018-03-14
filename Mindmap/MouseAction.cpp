@@ -2,7 +2,8 @@
 #include "Selection.h"
 #include "MouseStrategy.h"
 #include "DrawingStrategy.h"
-#include "SelectionStrategy.h"
+#include "SingleSelectionStrategy.h"
+#include "MultiSelectionStrategy.h"
 #include "MarkStrategy.h"
 #include "Topic.h"
 #include "Mark.h"
@@ -34,10 +35,10 @@ void MouseAction::SetStrategy(Shape *shape, UINT nFlags)
 	if (shape == NULL) {
 		this->mouseStrategy = new DrawingStrategy();
 	}
-	else if (typeid(*shape) == typeid(Topic) && nFlags != MK_CONTROL) {
+	else if (typeid(*shape) == typeid(Topic) && nFlags != MK_CONTROL + MK_LBUTTON) {
 		this->mouseStrategy = new SingleSelectionStrategy();
 	}
-	else if (typeid(*shape) == typeid(Topic) && nFlags == MK_CONTROL) {
+	else if (typeid(*shape) == typeid(Topic) && nFlags == MK_CONTROL + MK_LBUTTON) {
 		this->mouseStrategy = new MultiSelectionStrategy();
 	}
 	else if (typeid(*shape) == typeid(Mark)) {
@@ -55,8 +56,11 @@ void MouseAction::SetStrategy(string strategy)
 	if (strategy == "DRAWING" || strategy == "Drawing" || strategy == "drawing") {
 		this->mouseStrategy = new DrawingStrategy();
 	}
-	if (strategy == "SELECTION" || strategy == "Selection" || strategy == "selection") {
-		this->mouseStrategy = new SelectionStrategy();
+	if (strategy == "SINGLESELECTION" || strategy == "SingleSelection" || strategy == "singleselection") {
+		this->mouseStrategy = new SingleSelectionStrategy();
+	}
+	if (strategy == "MULTISELECTION" || strategy == "MultiSelection" || strategy == "multiselection") {
+		this->mouseStrategy = new MultiSelectionStrategy();
 	}
 	if (strategy == "MARK" || strategy == "Mark" || strategy == "mark") {
 		this->mouseStrategy = new MarkStrategy();
