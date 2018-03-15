@@ -29,6 +29,10 @@ BranchCopyTraverser::BranchCopyTraverser(Branch *branch)
 	//새 브랜치를 할당한다.
 	this->clone = new Branch(capacity);
 
+	if (ownerBranch == branch) {
+		ownerBranch = this->clone;
+	}
+
 	//새 브랜치를 가져온값으로 설정한다.
 
 	this->clone->SetX(x);
