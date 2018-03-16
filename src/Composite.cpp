@@ -48,7 +48,6 @@ Long Composite::Remove(Long index)
 
 void Composite::Clear()
 {
-	Branch* branch;
 	Long i = 0;
 
 	while (i < this->length) {

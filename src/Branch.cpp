@@ -35,7 +35,6 @@ Long Branch::Correct(Long index, Shape * shape)
 
 void Branch::Replace(Shape * before, Shape * after)
 {
-	Long index;
 	Composite::Replace(before, after);
 	after->SetOwnerBranch(this);
 }

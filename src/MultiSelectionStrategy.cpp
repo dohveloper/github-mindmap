@@ -17,7 +17,6 @@ MultiSelectionStrategy::~MultiSelectionStrategy() {
 }
 void MultiSelectionStrategy::OnLButtonDown(CPoint point, UINT nFlags, Selection *selection, Shape *shape) {
 	Branch *branch;
-	bool isSelected;
 	MultiSelect select;
 	Long i = 0;
 	Branch *clone;
@@ -59,10 +58,8 @@ void MultiSelectionStrategy::OnMouseMove(CPoint point, UINT nFlags)
 	Long j = 0;
 	Branch *current;
 	Branch *selectedBranch;
-	Branch *ownerBranch;
 
 	Branch *clone;
-	Branch *selection;
 	bool isMain = false;
 	bool isOwnerExist = false;
 
@@ -99,7 +96,6 @@ void MultiSelectionStrategy::OnMouseMove(CPoint point, UINT nFlags)
 void MultiSelectionStrategy::OnLButtonUp(Selection * selection, UINT nFlags, Branch * branch)
 {
 	MultiSelect select;
-	bool isSelected;
 	if (this->isSelected&&this->isMoved == false)
 	{
 		select.SelectBranch(selection, this->clickedBranch);

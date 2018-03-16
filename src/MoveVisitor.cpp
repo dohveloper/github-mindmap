@@ -28,7 +28,6 @@ void MoveVisitor::VisitBranch(Branch *branch)
 	Line *line;
 	Long previousCenterX;
 	Long newCenterX;
-	Branch *ownerBranch;
 
 	//이동시키기전 X를 기억한다.
 	previousCenterX = branch->GetTopic()->GetCenterX();

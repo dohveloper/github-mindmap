@@ -39,8 +39,6 @@ END_MESSAGE_MAP()
 PageForm::PageForm()
 	:clipboard(&selection)
 {
-	this->movedX = 0;
-	this->movedY = 0;
 }
 
 int PageForm::OnCreate(LPCREATESTRUCT lpCreateStruct)
@@ -78,7 +76,7 @@ void PageForm::SetScrolls() {
 void PageForm::OnLButtonDown(UINT nFlags, CPoint point) {
 	Shape *clickedObject = NULL;
 
-	point.Offset(this->movedX, this->movedY);
+	//this->view.GetRealPoint(&point);
 
 	clickedObject = this->mouseAction->GetClickedObject(this->branch, point);
 	this->mouseAction->SetStrategy(clickedObject, nFlags);
@@ -87,7 +85,7 @@ void PageForm::OnLButtonDown(UINT nFlags, CPoint point) {
 }
 
 void PageForm::OnMouseMove(UINT nFlags, CPoint point) {
-	point.Offset(this->movedX, this->movedY);
+	this->view.GetRealPoint(&point);
 	if ((nFlags & MK_LBUTTON) == MK_LBUTTON)
 	{
 		this->mouseAction->OnMouseMove(point, nFlags);
@@ -97,7 +95,7 @@ void PageForm::OnMouseMove(UINT nFlags, CPoint point) {
 }
 
 void PageForm::OnLButtonUp(UINT nFlags, CPoint point) {
-	point.Offset(this->movedX, this->movedY);
+	this->view.GetRealPoint(&point);
 	this->mouseAction->OnLButtonUp(&this->selection, nFlags, this->branch);
 
 	RedrawWindow();
@@ -111,7 +109,7 @@ void PageForm::OnPaint() {
 	CPen blackPen;
 
 	//선택표시하기
-	SelectionMarkVisitor selectionMarkVisitor(&this->selection, &dc, this->movedX, this->movedY);
+	SelectionMarkVisitor selectionMarkVisitor(&this->selection, &dc, this->view.GetStartX(), this->view.GetStartY());
 	while (i < this->selection.GetLength()) {
 		selectedTopic = this->selection.GetAt(i)->GetTopic();
 		selectedTopic->Accept(selectionMarkVisitor);
@@ -122,7 +120,7 @@ void PageForm::OnPaint() {
 	blackPen.CreatePen(PS_SOLID, 1, RGB(0, 0, 0));
 	dc.SelectObject(&blackPen);
 
-	DrawingVisitor visitor(&dc, this->movedX, this->movedY);
+	DrawingVisitor visitor(&dc, this->view.GetStartX(), this->view.GetStartY());
 
 	this->branch->Accept(visitor);
 }
@@ -156,32 +154,39 @@ void PageForm::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 void PageForm::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 {
+	Long startX;
 	Long movedPosition;
 	this->scrollAction->SetHScrollStrategy(nSBCode);
 	movedPosition = this->scrollAction->Scroll(this, nPos);
-	this->movedX -= movedPosition;
-
+	startX = this->view.GetStartX();
+	startX -= movedPosition;
+	this->view.SetStartX(startX);
 	RedrawWindow();
 	CFrameWnd::OnHScroll(nSBCode, nPos, pScrollBar);
 }
 
 void PageForm::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 {
+	Long startY;
 	Long movedPosition;
 	this->scrollAction->SetVScrollStrategy(nSBCode);
 	movedPosition = this->scrollAction->Scroll(this, nPos);
-	this->movedY -= movedPosition;
-
+	startY = this->view.GetStartY();
+	startY -= movedPosition;
+	this->view.SetStartY(startY);
 	RedrawWindow();
 	CFrameWnd::OnHScroll(nSBCode, nPos, pScrollBar);
 }
 
 BOOL PageForm::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 {
+	Long startY;
 	Long movedPosition;
 	this->scrollAction->SetHScrollStrategy(WM_MOUSEWHEEL);
 	movedPosition = this->scrollAction->Scroll(this, zDelta);
-	this->movedY -= movedPosition;
+	startY = this->view.GetStartY();
+	startY -= movedPosition;
+	this->view.SetStartY(startY);
 
 	/*
 		CString string;
@@ -198,7 +203,7 @@ void PageForm::OnLButtonDblClk(UINT nFlags, CPoint point)
 	Shape *clickedObject = NULL;
 	Topic *topic;
 
-	point.Offset(this->movedX, this->movedY);
+	this->view.GetRealPoint(&point);
 	clickedObject = this->mouseAction->GetClickedObject(this->branch, point);
 	if (clickedObject != NULL) {
 		//클릭된 브랜치를 선택한다.

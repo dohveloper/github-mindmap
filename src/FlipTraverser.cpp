@@ -16,16 +16,10 @@ bool FlipTraverser::ProcessItem(Shape * shape)
 {
 	bool ret = true;
 	Long previousX;
-	Long y;
 	Long width;
-	Long height;
 	Long newX;
 	Long newWidth;
-
 	Long interval;
-	Topic *topic;
-	Long centerX;
-	Long topicWidth;
 
 	previousX = shape->GetX();
 	width = shape->GetWidth();

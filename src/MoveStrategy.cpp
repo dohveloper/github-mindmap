@@ -48,8 +48,6 @@ void MoveStrategy::OnMouseMove(CPoint point, UINT nFlags)
 	Branch *ownerBranch;
 
 	Branch *clone;
-	Long centerX;
-	Long centerY;
 
 	if ((nFlags & MK_LBUTTON) == MK_LBUTTON)
 	{

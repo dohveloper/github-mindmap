@@ -8,6 +8,7 @@
 #include "Array.h"
 #include "Selection.h"
 #include "Clipboard.h"
+#include "View.h"
 using namespace std;
 
 typedef signed long int Long;
@@ -27,8 +28,7 @@ public:
 	Clipboard clipboard;
 	MouseAction *mouseAction;
 	ScrollAction *scrollAction;
-	Long movedX;
-	Long movedY;
+	View view;
 
 protected:
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
