@@ -6,15 +6,15 @@
 #include "DrawLines.h"
 #include "DrawTopics.h"
 #include "DrawMarks.h"
+#include "View.h"
 
 DrawingVisitor::DrawingVisitor() {
 }
 
-DrawingVisitor::DrawingVisitor(CPaintDC * dc, Long movedX, Long movedY)
+DrawingVisitor::DrawingVisitor(CPaintDC * dc, View *view)
 {
 	this->dc = dc;
-	this->movedX = movedX;
-	this->movedY = movedY;
+	this->view = view;
 }
 
 DrawingVisitor::~DrawingVisitor() {
@@ -22,12 +22,12 @@ DrawingVisitor::~DrawingVisitor() {
 
 void DrawingVisitor::VisitBranch(Branch *branch)
 {
-	DrawLines drawLines(branch, this->dc, this->movedX, this->movedY);
+	DrawLines drawLines(branch, this->dc, view);
 	drawLines.Traverse();
 
-	DrawTopics drawTopics(branch, this->dc, this->movedX, this->movedY);
+	DrawTopics drawTopics(branch, this->dc, view);
 	drawTopics.Traverse();
 
-	DrawMarks drawMarks(branch, this->dc, this->movedX, this->movedY);
+	DrawMarks drawMarks(branch, this->dc, view);
 	drawMarks.Traverse();
 }

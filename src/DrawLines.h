@@ -4,17 +4,18 @@
 #include <afxwin.h>
 typedef signed long int Long;
 
+class View;
+
 class DrawLines :public BranchTraverser {
 public:
-	DrawLines(Branch *branch, CPaintDC *dc, Long movedX, Long movedY);
+	DrawLines(Branch *branch, CPaintDC *dc, View *view);
 
 protected:
 	virtual bool ProcessItem(Shape* shape);
 
 private:
 	CPaintDC * dc;
-	Long movedX;
-	Long movedY;
+	View *view;
 };
 
 #endif _DRAWLINES_H

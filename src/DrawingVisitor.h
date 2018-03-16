@@ -9,17 +9,17 @@ typedef signed long int Long;
 
 class PageForm;
 class Branch;
-class DrawingVisitor: public ShapeVisitor{
+class View;
+class DrawingVisitor : public ShapeVisitor {
 public:
 	DrawingVisitor();
-	DrawingVisitor(CPaintDC *dc, Long movedX, Long movedY);
+	DrawingVisitor(CPaintDC *dc, View *view);
 	virtual ~DrawingVisitor();
 	virtual void VisitBranch(Branch *branch);
 
 private:
-	CPaintDC *dc;
-	Long movedX;
-	Long movedY;
+	CPaintDC * dc;
+	View *view;
 };
 
 #endif _DRAWINGVISITOR_H

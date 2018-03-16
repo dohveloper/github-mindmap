@@ -2,22 +2,27 @@
 #include "Branch.h"
 #include "Shape.h"
 #include "Topic.h"
+#include "View.h"
 
-DrawTopics::DrawTopics(Branch *branch, CPaintDC *dc, Long movedX, Long movedY)
+DrawTopics::DrawTopics(Branch *branch, CPaintDC *dc, View *view)
 	:BranchTraverser(branch)
 {
 	this->dc = dc;
-	this->movedX = movedX;
-	this->movedY = movedY;
+	this->view = view;
 }
 
 bool DrawTopics::ProcessItem(Shape *shape)
 {
+	Long startX;
+	Long startY;
 	Long x;
 	Long y;
 	Long width;
 	Long height;
 	string content;
+
+	startX = this->view->GetStartX();
+	startY = this->view->GetStartY();
 
 	if (typeid(*shape) == typeid(Topic)) {
 		CFont fnt;
@@ -26,8 +31,8 @@ bool DrawTopics::ProcessItem(Shape *shape)
 
 		//토픽을 그리는 코드
 
-		x = shape->GetX() - this->movedX;
-		y = shape->GetY() - this->movedY;
+		x = shape->GetX() - startX;
+		y = shape->GetY() - startY;
 		width = shape->GetWidth();
 		height = shape->GetHeight();
 		content = shape->GetContent();
@@ -38,8 +43,8 @@ bool DrawTopics::ProcessItem(Shape *shape)
 
 	if (typeid(*shape) == typeid(Branch)) {
 		if ((((Branch*)shape))->GetIsShown() == true) {
-			DrawTopics drawLines((Branch*)shape, this->dc, this->movedX, this->movedY);
-			drawLines.Traverse();
+			DrawTopics drawTopics((Branch*)shape, this->dc, this->view);
+			drawTopics.Traverse();
 		}
 	}
 

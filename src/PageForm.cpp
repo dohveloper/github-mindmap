@@ -120,7 +120,7 @@ void PageForm::OnPaint() {
 	blackPen.CreatePen(PS_SOLID, 1, RGB(0, 0, 0));
 	dc.SelectObject(&blackPen);
 
-	DrawingVisitor visitor(&dc, this->view.GetStartX(), this->view.GetStartY());
+	DrawingVisitor visitor(&dc, &this->view);
 
 	this->branch->Accept(visitor);
 }
