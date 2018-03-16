@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Array.h" />
+    <ClInclude Include="src\Branch.h" />
+    <ClInclude Include="src\BranchArray.h" />
+    <ClInclude Include="src\BranchCopyTraverser.h" />
+    <ClInclude Include="src\BranchIterator.h" />
+    <ClInclude Include="src\BranchTraverser.h" />
+    <ClInclude Include="src\Caret.h" />
+    <ClInclude Include="src\Character.h" />
+    <ClInclude Include="src\Clipboard.h" />
+    <ClInclude Include="src\Composite.h" />
+    <ClInclude Include="src\CopyKey.h" />
+    <ClInclude Include="src\DeleteKey.h" />
+    <ClInclude Include="src\DeleteVisitor.h" />
+    <ClInclude Include="src\DoubleByteCharacter.h" />
+    <ClInclude Include="src\DoubleLineDragAction.h" />
+    <ClInclude Include="src\DrawingMouse.h" />
+    <ClInclude Include="src\DrawingStrategy.h" />
+    <ClInclude Include="src\DrawingVisitor.h" />
+    <ClInclude Include="src\DrawLines.h" />
+    <ClInclude Include="src\DrawMarks.h" />
+    <ClInclude Include="src\DrawTopics.h" />
+    <ClInclude Include="src\FlipTraverser.h" />
+    <ClInclude Include="src\FlipVisitor.h" />
+    <ClInclude Include="src\FoldVisitor.h" />
+    <ClInclude Include="src\HitTester.h" />
+    <ClInclude Include="src\HitTestVisitor.h" />
+    <ClInclude Include="src\Iterator.h" />
+    <ClInclude Include="src\KeyAction.h" />
+    <ClInclude Include="src\KeyBoard.h" />
+    <ClInclude Include="src\Line.h" />
+    <ClInclude Include="src\Mark.h" />
+    <ClInclude Include="src\MarkHitTest.h" />
+    <ClInclude Include="src\MarkStrategy.h" />
+    <ClInclude Include="src\MouseAction.h" />
+    <ClInclude Include="src\MouseStrategy.h" />
+    <ClInclude Include="src\MoveStrategy.h" />
+    <ClInclude Include="src\MoveTraverser.h" />
+    <ClInclude Include="src\MoveVisitor.h" />
+    <ClInclude Include="src\MultiLineDragAction.h" />
+    <ClInclude Include="src\MultiSelect.h" />
+    <ClInclude Include="src\MultiSelectionStrategy.h" />
+    <ClInclude Include="src\OnHScrollLeft.h" />
+    <ClInclude Include="src\OnHScrollLineLeft.h" />
+    <ClInclude Include="src\OnHScrollLineRight.h" />
+    <ClInclude Include="src\OnHScrollPageLeft.h" />
+    <ClInclude Include="src\OnHScrollPageRight.h" />
+    <ClInclude Include="src\OnHScrollRight.h" />
+    <ClInclude Include="src\OnHThumb.h" />
+    <ClInclude Include="src\OnMouseWheel.h" />
+    <ClInclude Include="src\OnMouseWheelDown.h" />
+    <ClInclude Include="src\OnMouseWheelUp.h" />
+    <ClInclude Include="src\OnVScrollDown.h" />
+    <ClInclude Include="src\OnVScrollLineDown.h" />
+    <ClInclude Include="src\OnVScrollLineUp.h" />
+    <ClInclude Include="src\OnVScrollPageDown.h" />
+    <ClInclude Include="src\OnVScrollPageUp.h" />
+    <ClInclude Include="src\OnVScrollUp.h" />
+    <ClInclude Include="src\OnVThumb.h" />
+    <ClInclude Include="src\OverlappedConfirmVisitor.h" />
+    <ClInclude Include="src\OwnerCheckVisitor.h" />
+    <ClInclude Include="src\Page.h" />
+    <ClInclude Include="src\PageApp.h" />
+    <ClInclude Include="src\PageForm.h" />
+    <ClInclude Include="src\PasteKey.h" />
+    <ClInclude Include="src\Row.h" />
+    <ClInclude Include="src\ScrollAction.h" />
+    <ClInclude Include="src\ScrollStrategy.h" />
+    <ClInclude Include="src\Select.h" />
+    <ClInclude Include="src\Selection.h" />
+    <ClInclude Include="src\SelectionMarkVisitor.h" />
+    <ClInclude Include="src\SelectText.h" />
+    <ClInclude Include="src\Shape.h" />
+    <ClInclude Include="src\ShapeVisitor.h" />
+    <ClInclude Include="src\SingleByteCharacter.h" />
+    <ClInclude Include="src\SingleLineDragAction.h" />
+    <ClInclude Include="src\SingleSelect.h" />
+    <ClInclude Include="src\SingleSelectionStrategy.h" />
+    <ClInclude Include="src\SubBranchDeselect.h" />
+    <ClInclude Include="src\Text.h" />
+    <ClInclude Include="src\TextComposite.h" />
+    <ClInclude Include="src\TextDoubleClick.h" />
+    <ClInclude Include="src\TextDoubleClickSelectAction.h" />
+    <ClInclude Include="src\TextDrag.h" />
+    <ClInclude Include="src\TextFont.h" />
+    <ClInclude Include="src\TextForm.h" />
+    <ClInclude Include="src\TextFormSize.h" />
+    <ClInclude Include="src\TextVisitor.h" />
+    <ClInclude Include="src\Topic.h" />
+    <ClInclude Include="src\TopicHitTest.h" />
+    <ClInclude Include="src\UnFoldVisitor.h" />
+    <ClInclude Include="src\UpdateTraverser.h" />
+    <ClInclude Include="src\View.h" />
+    <ClInclude Include="src\WriteEnglish.h" />
+    <ClInclude Include="src\WriteKorean.h" />
+    <ClInclude Include="src\WriteVisitor.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Branch.cpp" />
+    <ClCompile Include="src\BranchArray.cpp" />
+    <ClCompile Include="src\BranchCopyTraverser.cpp" />
+    <ClCompile Include="src\BranchIterator.cpp" />
+    <ClCompile Include="src\BranchTraverser.cpp" />
+    <ClCompile Include="src\Caret.cpp" />
+    <ClCompile Include="src\Character.cpp" />
+    <ClCompile Include="src\Clipboard.cpp" />
+    <ClCompile Include="src\Composite.cpp" />
+    <ClCompile Include="src\CopyKey.cpp" />
+    <ClCompile Include="src\DeleteKey.cpp" />
+    <ClCompile Include="src\DeleteVisitor.cpp" />
+    <ClCompile Include="src\DoubleByteCharacter.cpp" />
+    <ClCompile Include="src\DoubleLineDragAction.cpp" />
+    <ClCompile Include="src\DrawingStrategy.cpp" />
+    <ClCompile Include="src\DrawingVisitor.cpp" />
+    <ClCompile Include="src\DrawLines.cpp" />
+    <ClCompile Include="src\DrawMarks.cpp" />
+    <ClCompile Include="src\DrawTopics.cpp" />
+    <ClCompile Include="src\FlipTraverser.cpp" />
+    <ClCompile Include="src\FlipVisitor.cpp" />
+    <ClCompile Include="src\FoldVisitor.cpp" />
+    <ClCompile Include="src\HitTester.cpp" />
+    <ClCompile Include="src\HitTestVisitor.cpp" />
+    <ClCompile Include="src\Iterator.cpp" />
+    <ClCompile Include="src\KeyAction.cpp" />
+    <ClCompile Include="src\KeyBoard.cpp" />
+    <ClCompile Include="src\Line.cpp" />
+    <ClCompile Include="src\Mark.cpp" />
+    <ClCompile Include="src\MarkHitTest.cpp" />
+    <ClCompile Include="src\MarkStrategy.cpp" />
+    <ClCompile Include="src\MouseAction.cpp" />
+    <ClCompile Include="src\MouseStrategy.cpp" />
+    <ClCompile Include="src\MoveStrategy.cpp" />
+    <ClCompile Include="src\MoveTraverser.cpp" />
+    <ClCompile Include="src\MoveVisitor.cpp" />
+    <ClCompile Include="src\MultiLineDragAction.cpp" />
+    <ClCompile Include="src\MultiSelect.cpp" />
+    <ClCompile Include="src\MultiSelectionStrategy.cpp" />
+    <ClCompile Include="src\OnHScrollLeft.cpp" />
+    <ClCompile Include="src\OnHScrollLineLeft.cpp" />
+    <ClCompile Include="src\OnHScrollLineRight.cpp" />
+    <ClCompile Include="src\OnHScrollPageLeft.cpp" />
+    <ClCompile Include="src\OnHScrollPageRight.cpp" />
+    <ClCompile Include="src\OnHScrollRight.cpp" />
+    <ClCompile Include="src\OnHThumb.cpp" />
+    <ClCompile Include="src\OnMouseWheel.cpp" />
+    <ClCompile Include="src\OnMouseWheelDown.cpp" />
+    <ClCompile Include="src\OnMouseWheelUp.cpp" />
+    <ClCompile Include="src\OnVScrollDown.cpp" />
+    <ClCompile Include="src\OnVScrollLineDown.cpp" />
+    <ClCompile Include="src\OnVScrollLineUp.cpp" />
+    <ClCompile Include="src\OnVScrollPageDown.cpp" />
+    <ClCompile Include="src\OnVScrollPageUp.cpp" />
+    <ClCompile Include="src\OnVScrollUp.cpp" />
+    <ClCompile Include="src\OnVThumb.cpp" />
+    <ClCompile Include="src\OverlappedConfirmVisitor.cpp" />
+    <ClCompile Include="src\OwnerCheckVisitor.cpp" />
+    <ClCompile Include="src\Page.cpp" />
+    <ClCompile Include="src\PageApp.cpp" />
+    <ClCompile Include="src\PageForm.cpp" />
+    <ClCompile Include="src\PasteKey.cpp" />
+    <ClCompile Include="src\Row.cpp" />
+    <ClCompile Include="src\ScrollAction.cpp" />
+    <ClCompile Include="src\ScrollStrategy.cpp" />
+    <ClCompile Include="src\Select.cpp" />
+    <ClCompile Include="src\Selection.cpp" />
+    <ClCompile Include="src\SelectionMarkVIsitor.cpp" />
+    <ClCompile Include="src\SelectText.cpp" />
+    <ClCompile Include="src\Shape.cpp" />
+    <ClCompile Include="src\ShapeVisitor.cpp" />
+    <ClCompile Include="src\SingleByteCharacter.cpp" />
+    <ClCompile Include="src\SingleLineDragAction.cpp" />
+    <ClCompile Include="src\SingleSelect.cpp" />
+    <ClCompile Include="src\SingleSelectionStrategy.cpp" />
+    <ClCompile Include="src\SubBranchDeselect.cpp" />
+    <ClCompile Include="src\Text.cpp" />
+    <ClCompile Include="src\TextComposite.cpp" />
+    <ClCompile Include="src\TextDoubleClick.cpp" />
+    <ClCompile Include="src\TextDoubleClickSelectAction.cpp" />
+    <ClCompile Include="src\TextDrag.cpp" />
+    <ClCompile Include="src\TextFont.cpp" />
+    <ClCompile Include="src\TextForm.cpp" />
+    <ClCompile Include="src\TextFormSize.cpp" />
+    <ClCompile Include="src\TextVisitor.cpp" />
+    <ClCompile Include="src\Topic.cpp" />
+    <ClCompile Include="src\TopicHitTest.cpp" />
+    <ClCompile Include="src\UnFoldVisitor.cpp" />
+    <ClCompile Include="src\UpdateTraverser.cpp" />
+    <ClCompile Include="src\View.cpp" />
+    <ClCompile Include="src\WriteEnglish.cpp" />
+    <ClCompile Include="src\WriteKorean.cpp" />
+    <ClCompile Include="src\WriteVisitor.cpp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{52FB8BCF-3EF5-4073-9F95-CA3920A7746F}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Mindmap</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>NotSet</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <SourcePath>C:\Users\a\source\repos\github-mindmap\src;$(SourcePath)</SourcePath>
+    <OutDir>$(SolutionDir)\build\</OutDir>
+    <IntDir>build\$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

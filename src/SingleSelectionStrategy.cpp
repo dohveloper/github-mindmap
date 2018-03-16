@@ -56,10 +56,8 @@ void SingleSelectionStrategy::OnMouseMove(CPoint point, UINT nFlags)
 	Long j = 0;
 	Branch *current;
 	Branch *selectedBranch;
-	Branch *ownerBranch;
 
 	Branch *clone;
-	Branch *selection;
 	bool isMain;
 	bool isOwnerExist = false;
 

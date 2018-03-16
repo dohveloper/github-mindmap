@@ -15,570 +15,570 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Array.h">
+    <ClInclude Include="src\Array.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Branch.h">
+    <ClInclude Include="src\Branch.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="BranchArray.h">
+    <ClInclude Include="src\BranchArray.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="BranchCopyTraverser.h">
+    <ClInclude Include="src\BranchCopyTraverser.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="BranchIterator.h">
+    <ClInclude Include="src\BranchIterator.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="BranchTraverser.h">
+    <ClInclude Include="src\BranchTraverser.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Caret.h">
+    <ClInclude Include="src\Caret.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Character.h">
+    <ClInclude Include="src\Character.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Clipboard.h">
+    <ClInclude Include="src\Clipboard.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Composite.h">
+    <ClInclude Include="src\Composite.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="CopyKey.h">
+    <ClInclude Include="src\CopyKey.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="DeleteKey.h">
+    <ClInclude Include="src\DeleteKey.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="DeleteVisitor.h">
+    <ClInclude Include="src\DeleteVisitor.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="DoubleByteCharacter.h">
+    <ClInclude Include="src\DoubleByteCharacter.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="DoubleLineDragAction.h">
+    <ClInclude Include="src\DoubleLineDragAction.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="DrawingMouse.h">
+    <ClInclude Include="src\DrawingMouse.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="DrawingStrategy.h">
+    <ClInclude Include="src\DrawingStrategy.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="DrawingVisitor.h">
+    <ClInclude Include="src\DrawingVisitor.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="DrawLines.h">
+    <ClInclude Include="src\DrawLines.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="DrawMarks.h">
+    <ClInclude Include="src\DrawMarks.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="DrawTopics.h">
+    <ClInclude Include="src\DrawTopics.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="FlipTraverser.h">
+    <ClInclude Include="src\FlipTraverser.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="FlipVisitor.h">
+    <ClInclude Include="src\FlipVisitor.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="FoldVisitor.h">
+    <ClInclude Include="src\FoldVisitor.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="HitTester.h">
+    <ClInclude Include="src\HitTester.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="HitTestVisitor.h">
+    <ClInclude Include="src\HitTestVisitor.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Iterator.h">
+    <ClInclude Include="src\Iterator.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="KeyAction.h">
+    <ClInclude Include="src\KeyAction.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="KeyBoard.h">
+    <ClInclude Include="src\KeyBoard.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Line.h">
+    <ClInclude Include="src\Line.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Mark.h">
+    <ClInclude Include="src\Mark.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="MarkHitTest.h">
+    <ClInclude Include="src\MarkHitTest.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="MarkStrategy.h">
+    <ClInclude Include="src\MarkStrategy.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="MouseAction.h">
+    <ClInclude Include="src\MouseAction.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="MouseStrategy.h">
+    <ClInclude Include="src\MouseStrategy.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="MoveStrategy.h">
+    <ClInclude Include="src\MoveStrategy.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="MoveTraverser.h">
+    <ClInclude Include="src\MoveTraverser.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="MoveVisitor.h">
+    <ClInclude Include="src\MoveVisitor.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="MultiLineDragAction.h">
+    <ClInclude Include="src\MultiLineDragAction.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="MultiSelect.h">
+    <ClInclude Include="src\MultiSelect.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="MultiSelectionStrategy.h">
+    <ClInclude Include="src\MultiSelectionStrategy.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="OnHScrollLeft.h">
+    <ClInclude Include="src\OnHScrollLeft.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="OnHScrollLineLeft.h">
+    <ClInclude Include="src\OnHScrollLineLeft.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="OnHScrollLineRight.h">
+    <ClInclude Include="src\OnHScrollLineRight.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="OnHScrollPageLeft.h">
+    <ClInclude Include="src\OnHScrollPageLeft.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="OnHScrollPageRight.h">
+    <ClInclude Include="src\OnHScrollPageRight.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="OnHScrollRight.h">
+    <ClInclude Include="src\OnHScrollRight.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="OnHThumb.h">
+    <ClInclude Include="src\OnHThumb.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="OnMouseWheel.h">
+    <ClInclude Include="src\OnMouseWheel.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="OnMouseWheelDown.h">
+    <ClInclude Include="src\OnMouseWheelDown.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="OnMouseWheelUp.h">
+    <ClInclude Include="src\OnMouseWheelUp.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="OnVScrollDown.h">
+    <ClInclude Include="src\OnVScrollDown.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="OnVScrollLineDown.h">
+    <ClInclude Include="src\OnVScrollLineDown.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="OnVScrollLineUp.h">
+    <ClInclude Include="src\OnVScrollLineUp.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="OnVScrollPageDown.h">
+    <ClInclude Include="src\OnVScrollPageDown.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="OnVScrollPageUp.h">
+    <ClInclude Include="src\OnVScrollPageUp.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="OnVScrollUp.h">
+    <ClInclude Include="src\OnVScrollUp.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="OnVThumb.h">
+    <ClInclude Include="src\OnVThumb.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="OverlappedConfirmVisitor.h">
+    <ClInclude Include="src\OverlappedConfirmVisitor.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="OwnerCheckVisitor.h">
+    <ClInclude Include="src\OwnerCheckVisitor.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Page.h">
+    <ClInclude Include="src\Page.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="PageApp.h">
+    <ClInclude Include="src\PageApp.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="PageForm.h">
+    <ClInclude Include="src\PageForm.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="PasteKey.h">
+    <ClInclude Include="src\PasteKey.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Row.h">
+    <ClInclude Include="src\Row.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="ScrollAction.h">
+    <ClInclude Include="src\ScrollAction.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="ScrollStrategy.h">
+    <ClInclude Include="src\ScrollStrategy.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Select.h">
+    <ClInclude Include="src\Select.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Selection.h">
+    <ClInclude Include="src\Selection.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="SelectionMarkVisitor.h">
+    <ClInclude Include="src\SelectionMarkVisitor.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="SelectText.h">
+    <ClInclude Include="src\SelectText.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Shape.h">
+    <ClInclude Include="src\Shape.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="ShapeVisitor.h">
+    <ClInclude Include="src\ShapeVisitor.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="SingleByteCharacter.h">
+    <ClInclude Include="src\SingleByteCharacter.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="SingleLineDragAction.h">
+    <ClInclude Include="src\SingleLineDragAction.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="SingleSelect.h">
+    <ClInclude Include="src\SingleSelect.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="SingleSelectionStrategy.h">
+    <ClInclude Include="src\SingleSelectionStrategy.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="SubBranchDeselect.h">
+    <ClInclude Include="src\SubBranchDeselect.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Text.h">
+    <ClInclude Include="src\Text.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="TextComposite.h">
+    <ClInclude Include="src\TextComposite.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="TextDoubleClick.h">
+    <ClInclude Include="src\TextDoubleClick.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="TextDoubleClickSelectAction.h">
+    <ClInclude Include="src\TextDoubleClickSelectAction.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="TextDrag.h">
+    <ClInclude Include="src\TextDrag.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="TextFont.h">
+    <ClInclude Include="src\TextFont.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="TextForm.h">
+    <ClInclude Include="src\TextForm.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="TextFormSize.h">
+    <ClInclude Include="src\TextFormSize.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="TextVisitor.h">
+    <ClInclude Include="src\TextVisitor.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Topic.h">
+    <ClInclude Include="src\Topic.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="TopicHitTest.h">
+    <ClInclude Include="src\TopicHitTest.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="UnFoldVisitor.h">
+    <ClInclude Include="src\UnFoldVisitor.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="UpdateTraverser.h">
+    <ClInclude Include="src\UpdateTraverser.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="WriteEnglish.h">
+    <ClInclude Include="src\View.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="WriteKorean.h">
+    <ClInclude Include="src\WriteEnglish.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="WriteVisitor.h">
+    <ClInclude Include="src\WriteKorean.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="View.h">
+    <ClInclude Include="src\WriteVisitor.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Branch.cpp">
+    <ClCompile Include="src\Branch.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="BranchArray.cpp">
+    <ClCompile Include="src\BranchArray.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="BranchCopyTraverser.cpp">
+    <ClCompile Include="src\BranchCopyTraverser.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="BranchIterator.cpp">
+    <ClCompile Include="src\BranchIterator.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="BranchTraverser.cpp">
+    <ClCompile Include="src\BranchTraverser.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Caret.cpp">
+    <ClCompile Include="src\Caret.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Character.cpp">
+    <ClCompile Include="src\Character.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Clipboard.cpp">
+    <ClCompile Include="src\Clipboard.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Composite.cpp">
+    <ClCompile Include="src\Composite.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="CopyKey.cpp">
+    <ClCompile Include="src\CopyKey.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="DeleteKey.cpp">
+    <ClCompile Include="src\DeleteKey.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="DeleteVisitor.cpp">
+    <ClCompile Include="src\DeleteVisitor.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="DoubleByteCharacter.cpp">
+    <ClCompile Include="src\DoubleByteCharacter.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="DoubleLineDragAction.cpp">
+    <ClCompile Include="src\DoubleLineDragAction.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="DrawingStrategy.cpp">
+    <ClCompile Include="src\DrawingStrategy.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="DrawingVisitor.cpp">
+    <ClCompile Include="src\DrawingVisitor.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="DrawLines.cpp">
+    <ClCompile Include="src\DrawLines.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="DrawMarks.cpp">
+    <ClCompile Include="src\DrawMarks.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="DrawTopics.cpp">
+    <ClCompile Include="src\DrawTopics.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="FlipTraverser.cpp">
+    <ClCompile Include="src\FlipTraverser.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="FlipVisitor.cpp">
+    <ClCompile Include="src\FlipVisitor.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="FoldVisitor.cpp">
+    <ClCompile Include="src\FoldVisitor.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="HitTester.cpp">
+    <ClCompile Include="src\HitTester.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="HitTestVisitor.cpp">
+    <ClCompile Include="src\HitTestVisitor.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Iterator.cpp">
+    <ClCompile Include="src\Iterator.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="KeyAction.cpp">
+    <ClCompile Include="src\KeyAction.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="KeyBoard.cpp">
+    <ClCompile Include="src\KeyBoard.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Line.cpp">
+    <ClCompile Include="src\Line.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Mark.cpp">
+    <ClCompile Include="src\Mark.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="MarkHitTest.cpp">
+    <ClCompile Include="src\MarkHitTest.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="MarkStrategy.cpp">
+    <ClCompile Include="src\MarkStrategy.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="MouseAction.cpp">
+    <ClCompile Include="src\MouseAction.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="MouseStrategy.cpp">
+    <ClCompile Include="src\MouseStrategy.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="MoveStrategy.cpp">
+    <ClCompile Include="src\MoveStrategy.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="MoveTraverser.cpp">
+    <ClCompile Include="src\MoveTraverser.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="MoveVisitor.cpp">
+    <ClCompile Include="src\MoveVisitor.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="MultiLineDragAction.cpp">
+    <ClCompile Include="src\MultiLineDragAction.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="MultiSelect.cpp">
+    <ClCompile Include="src\MultiSelect.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="MultiSelectionStrategy.cpp">
+    <ClCompile Include="src\MultiSelectionStrategy.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="OnHScrollLeft.cpp">
+    <ClCompile Include="src\OnHScrollLeft.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="OnHScrollLineLeft.cpp">
+    <ClCompile Include="src\OnHScrollLineLeft.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="OnHScrollLineRight.cpp">
+    <ClCompile Include="src\OnHScrollLineRight.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="OnHScrollPageLeft.cpp">
+    <ClCompile Include="src\OnHScrollPageLeft.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="OnHScrollPageRight.cpp">
+    <ClCompile Include="src\OnHScrollPageRight.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="OnHScrollRight.cpp">
+    <ClCompile Include="src\OnHScrollRight.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="OnHThumb.cpp">
+    <ClCompile Include="src\OnHThumb.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="OnMouseWheel.cpp">
+    <ClCompile Include="src\OnMouseWheel.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="OnMouseWheelDown.cpp">
+    <ClCompile Include="src\OnMouseWheelDown.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="OnMouseWheelUp.cpp">
+    <ClCompile Include="src\OnMouseWheelUp.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="OnVScrollDown.cpp">
+    <ClCompile Include="src\OnVScrollDown.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="OnVScrollLineDown.cpp">
+    <ClCompile Include="src\OnVScrollLineDown.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="OnVScrollLineUp.cpp">
+    <ClCompile Include="src\OnVScrollLineUp.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="OnVScrollPageDown.cpp">
+    <ClCompile Include="src\OnVScrollPageDown.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="OnVScrollPageUp.cpp">
+    <ClCompile Include="src\OnVScrollPageUp.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="OnVScrollUp.cpp">
+    <ClCompile Include="src\OnVScrollUp.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="OnVThumb.cpp">
+    <ClCompile Include="src\OnVThumb.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="OverlappedConfirmVisitor.cpp">
+    <ClCompile Include="src\OverlappedConfirmVisitor.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="OwnerCheckVisitor.cpp">
+    <ClCompile Include="src\OwnerCheckVisitor.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Page.cpp">
+    <ClCompile Include="src\Page.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="PageApp.cpp">
+    <ClCompile Include="src\PageApp.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="PageForm.cpp">
+    <ClCompile Include="src\PageForm.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="PasteKey.cpp">
+    <ClCompile Include="src\PasteKey.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Row.cpp">
+    <ClCompile Include="src\Row.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="ScrollAction.cpp">
+    <ClCompile Include="src\ScrollAction.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="ScrollStrategy.cpp">
+    <ClCompile Include="src\ScrollStrategy.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Select.cpp">
+    <ClCompile Include="src\Select.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Selection.cpp">
+    <ClCompile Include="src\Selection.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="SelectionMarkVIsitor.cpp">
+    <ClCompile Include="src\SelectionMarkVIsitor.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="SelectText.cpp">
+    <ClCompile Include="src\SelectText.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Shape.cpp">
+    <ClCompile Include="src\Shape.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="ShapeVisitor.cpp">
+    <ClCompile Include="src\ShapeVisitor.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="SingleByteCharacter.cpp">
+    <ClCompile Include="src\SingleByteCharacter.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="SingleLineDragAction.cpp">
+    <ClCompile Include="src\SingleLineDragAction.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="SingleSelect.cpp">
+    <ClCompile Include="src\SingleSelect.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="SingleSelectionStrategy.cpp">
+    <ClCompile Include="src\SingleSelectionStrategy.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="SubBranchDeselect.cpp">
+    <ClCompile Include="src\SubBranchDeselect.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Text.cpp">
+    <ClCompile Include="src\Text.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="TextComposite.cpp">
+    <ClCompile Include="src\TextComposite.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="TextDoubleClick.cpp">
+    <ClCompile Include="src\TextDoubleClick.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="TextDoubleClickSelectAction.cpp">
+    <ClCompile Include="src\TextDoubleClickSelectAction.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="TextDrag.cpp">
+    <ClCompile Include="src\TextDrag.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="TextFont.cpp">
+    <ClCompile Include="src\TextFont.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="TextForm.cpp">
+    <ClCompile Include="src\TextForm.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="TextFormSize.cpp">
+    <ClCompile Include="src\TextFormSize.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="TextVisitor.cpp">
+    <ClCompile Include="src\TextVisitor.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Topic.cpp">
+    <ClCompile Include="src\Topic.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="TopicHitTest.cpp">
+    <ClCompile Include="src\TopicHitTest.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="UnFoldVisitor.cpp">
+    <ClCompile Include="src\UnFoldVisitor.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="UpdateTraverser.cpp">
+    <ClCompile Include="src\UpdateTraverser.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="WriteEnglish.cpp">
+    <ClCompile Include="src\View.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="WriteKorean.cpp">
+    <ClCompile Include="src\WriteEnglish.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="WriteVisitor.cpp">
+    <ClCompile Include="src\WriteKorean.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="View.cpp">
+    <ClCompile Include="src\WriteVisitor.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
