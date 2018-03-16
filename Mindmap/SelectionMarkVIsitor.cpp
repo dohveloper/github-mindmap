@@ -16,15 +16,12 @@ SelectionMarkVisitor::SelectionMarkVisitor(Selection *selection, CPaintDC *dc, L
 	this->movedY = movedY;
 }
 
-
-
 SelectionMarkVisitor::~SelectionMarkVisitor()
 {
 }
 
 void SelectionMarkVisitor::VisitTopic(Topic * topic)
 {
-	
 	CPen bluePen;
 	Long x;
 	Long y;
@@ -33,10 +30,9 @@ void SelectionMarkVisitor::VisitTopic(Topic * topic)
 
 	bluePen.CreatePen(PS_DOT, 1, RGB(0, 0, 255));
 	this->dc->SelectObject(&bluePen);
-	x = topic->GetX() + this->movedX;
-	y = topic->GetY() + this->movedY;
+	x = topic->GetX() - this->movedX;
+	y = topic->GetY() - this->movedY;
 	width = topic->GetWidth();
 	height = topic->GetHeight();
 	this->dc->Ellipse(x - SELECTONMARKGAP, y - SELECTONMARKGAP, x + width + SELECTONMARKGAP, y + height + SELECTONMARKGAP);
-	
 }

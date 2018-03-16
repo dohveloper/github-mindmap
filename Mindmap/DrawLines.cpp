@@ -19,8 +19,8 @@ bool DrawLines::ProcessItem(Shape *shape)
 	Long height;
 
 	if (typeid(*shape) == typeid(Line)) {
-		x = shape->GetX() + this->movedX;
-		y = shape->GetY() + this->movedY;
+		x = shape->GetX() - this->movedX;
+		y = shape->GetY() - this->movedY;
 		width = shape->GetWidth();
 		height = shape->GetHeight();
 		this->dc->MoveTo(x, y);
@@ -29,7 +29,7 @@ bool DrawLines::ProcessItem(Shape *shape)
 
 	if (typeid(*shape) == typeid(Branch)) {
 		if ((((Branch*)shape))->GetIsShown() == true) {
-			DrawLines drawLines((Branch*)shape,this->dc, this->movedX, this->movedY);
+			DrawLines drawLines((Branch*)shape, this->dc, this->movedX, this->movedY);
 			drawLines.Traverse();
 		}
 	}

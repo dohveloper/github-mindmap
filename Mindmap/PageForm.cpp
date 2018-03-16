@@ -78,7 +78,7 @@ void PageForm::SetScrolls() {
 void PageForm::OnLButtonDown(UINT nFlags, CPoint point) {
 	Shape *clickedObject = NULL;
 
-	point.Offset(this->movedX*-1, this->movedY *-1);
+	point.Offset(this->movedX, this->movedY);
 
 	clickedObject = this->mouseAction->GetClickedObject(this->branch, point);
 	this->mouseAction->SetStrategy(clickedObject, nFlags);
@@ -87,7 +87,7 @@ void PageForm::OnLButtonDown(UINT nFlags, CPoint point) {
 }
 
 void PageForm::OnMouseMove(UINT nFlags, CPoint point) {
-	point.Offset(this->movedX*-1, this->movedY* -1);
+	point.Offset(this->movedX, this->movedY);
 	if ((nFlags & MK_LBUTTON) == MK_LBUTTON)
 	{
 		this->mouseAction->OnMouseMove(point, nFlags);
@@ -159,7 +159,7 @@ void PageForm::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 	Long movedPosition;
 	this->scrollAction->SetHScrollStrategy(nSBCode);
 	movedPosition = this->scrollAction->Scroll(this, nPos);
-	this->movedX += movedPosition;
+	this->movedX -= movedPosition;
 
 	RedrawWindow();
 	CFrameWnd::OnHScroll(nSBCode, nPos, pScrollBar);
@@ -170,7 +170,7 @@ void PageForm::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 	Long movedPosition;
 	this->scrollAction->SetVScrollStrategy(nSBCode);
 	movedPosition = this->scrollAction->Scroll(this, nPos);
-	this->movedY += movedPosition;
+	this->movedY -= movedPosition;
 
 	RedrawWindow();
 	CFrameWnd::OnHScroll(nSBCode, nPos, pScrollBar);
@@ -181,7 +181,7 @@ BOOL PageForm::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 	Long movedPosition;
 	this->scrollAction->SetHScrollStrategy(WM_MOUSEWHEEL);
 	movedPosition = this->scrollAction->Scroll(this, zDelta);
-	this->movedY += movedPosition;
+	this->movedY -= movedPosition;
 
 	/*
 		CString string;

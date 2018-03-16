@@ -26,8 +26,8 @@ bool DrawTopics::ProcessItem(Shape *shape)
 
 		//토픽을 그리는 코드
 
-		x = shape->GetX() + this->movedX;
-		y = shape->GetY() + this->movedY;
+		x = shape->GetX() - this->movedX;
+		y = shape->GetY() - this->movedY;
 		width = shape->GetWidth();
 		height = shape->GetHeight();
 		content = shape->GetContent();

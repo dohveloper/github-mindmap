@@ -27,8 +27,8 @@ bool DrawMarks::ProcessItem(Shape *shape)
 
 			//마크를 그리는 코드
 
-			x = shape->GetX() + this->movedX;
-			y = shape->GetY() + this->movedY;
+			x = shape->GetX() - this->movedX;
+			y = shape->GetY() - this->movedY;
 			width = shape->GetWidth();
 			height = shape->GetHeight();
 			content = shape->GetContent();
