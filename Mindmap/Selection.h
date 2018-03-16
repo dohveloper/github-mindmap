@@ -17,6 +17,7 @@ public:
 	Branch* GetLastSelection();
 	Branch* GetAt(Long index);
 	bool IsSelected(Branch *branch);
+	bool IsOwnerExist(Long index);
 
 	Selection& operator=(const Selection& source);
 

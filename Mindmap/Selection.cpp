@@ -1,5 +1,6 @@
 #include "Selection.h"
 #include "SubBranchDeselect.h"
+#include "OwnerCheckVisitor.h"
 
 Selection::Selection(Long capacity)
 	:selections(capacity)
@@ -133,6 +134,23 @@ bool Selection::IsSelected(Branch *branch)
 	if (index != -1) {
 		ret = true;
 	}
+	return ret;
+}
+
+bool Selection::IsOwnerExist(Long index)
+{
+	//해당 index에 있는 브랜치의 ownerBranch가 selection에 있는지 확인하는 연산 (토픽이동에서 사용)
+	bool ret = false;
+	Branch *branch;
+
+	branch = this->selections.GetAt(index);
+	OwnerCheckVisitor visitor(&this->selections);
+	branch->Accept(visitor);
+	if (visitor.GetIsOwner())
+	{
+		ret = true;
+	}
+
 	return ret;
 }
 

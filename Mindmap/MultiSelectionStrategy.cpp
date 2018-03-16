@@ -5,11 +5,13 @@
 #include "Selection.h"
 #include "MoveVisitor.h"
 #include "Topic.h"
+#include "UpdateTraverser.h"
 
 #define CENTERLINE 700
 
 MultiSelectionStrategy::MultiSelectionStrategy() {
 	this->select = NULL;
+	this->isMoved = false;
 }
 MultiSelectionStrategy::~MultiSelectionStrategy() {
 }
@@ -24,8 +26,8 @@ void MultiSelectionStrategy::OnLButtonDown(CPoint point, UINT nFlags, Selection 
 	//다중선택
 
 	branch = shape->GetOwnerBranch();
-	isSelected = selection->IsSelected(branch);
-	if (!isSelected)
+	this->isSelected = selection->IsSelected(branch);
+	if (!this->isSelected)
 	{
 		select.SelectBranch(selection, branch);
 	}
@@ -33,6 +35,7 @@ void MultiSelectionStrategy::OnLButtonDown(CPoint point, UINT nFlags, Selection 
 
 	//값 초기화
 	this->unmovedBranches.Clear();
+	this->isMoved = false;
 
 	//이동하기
 	// 1.기억한다.
@@ -42,11 +45,8 @@ void MultiSelectionStrategy::OnLButtonDown(CPoint point, UINT nFlags, Selection 
 	// 2.선택된 브랜치 수만큼 반복한다.
 	while (i < selection->GetLength()) {
 		current = selection->GetAt(i);
-		//메인브랜치를 제외하고 복사
-		if (!current->IsMain()) {
-			clone = current->Clone();
-			this->unmovedBranches.Add(clone); //브랜치를 기억한다.
-		}
+		clone = selection->GetAt(i)->Clone();
+		this->unmovedBranches.Add(clone); //브랜치를 기억한다.
 		i++;
 	}
 }
@@ -56,11 +56,15 @@ void MultiSelectionStrategy::OnMouseMove(CPoint point, UINT nFlags)
 	Long movedX = 0;
 	Long movedY = 0;
 	Long i = 0;
+	Long j = 0;
 	Branch *current;
 	Branch *selectedBranch;
 	Branch *ownerBranch;
 
 	Branch *clone;
+	Branch *selection;
+	bool isMain = false;
+	bool isOwnerExist = false;
 
 	if ((nFlags & MK_LBUTTON) == MK_LBUTTON)
 	{
@@ -71,17 +75,21 @@ void MultiSelectionStrategy::OnMouseMove(CPoint point, UINT nFlags)
 		MoveVisitor visitor(CENTERLINE, movedX, movedY);
 		// 2.선택된 브랜치 수만큼 반복한다.
 		while (i < this->unmovedBranches.GetLength()) {
-			//2.1 기억한 브랜치를 이동값만큼 이동한다.
 			current = this->unmovedBranches.GetAt(i);
-			clone = current->Clone();
-			clone->Accept(visitor);
 
-			//2.2 선택된 브랜치를 이동된 브랜치로 바꾸다.
-			selectedBranch = this->selection->GetAt(i);
-			ownerBranch = selectedBranch->GetOwnerBranch();
-			ownerBranch->Replace(selectedBranch, clone);
-			this->selection->Replace(selectedBranch, clone);
+			//[ 1.메인브랜치인 경우 2. 선택된 브랜치의 Owner가 selection에 있는 경우 ] 에는  이동하면 안됨
+			isMain = current->IsMain();
+			isOwnerExist = this->selection->IsOwnerExist(i);
+			if (!isMain && !isOwnerExist) {
+				//2.1 이동한다.
+				clone = current->Clone();
+				clone->Accept(visitor);
 
+				//2.2 이동된 브랜치로 업데이트
+				selectedBranch = this->selection->GetAt(i);
+				UpdateTraverser traverser(selectedBranch, clone);
+				traverser.Traverse();
+			}
 			i++;
 		}
 		this->isMoved = true;
@@ -91,7 +99,9 @@ void MultiSelectionStrategy::OnMouseMove(CPoint point, UINT nFlags)
 void MultiSelectionStrategy::OnLButtonUp(Selection * selection, UINT nFlags, Branch * branch)
 {
 	MultiSelect select;
-	if (this->isMoved == false) {
+	bool isSelected;
+	if (this->isSelected&&this->isMoved == false)
+	{
 		select.SelectBranch(selection, this->clickedBranch);
 	}
 }

@@ -294,6 +294,9 @@
     <ClInclude Include="..\UpdateTraverser.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="..\OwnerCheckVisitor.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Branch.cpp">
@@ -567,6 +570,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="..\UpdateTraverser.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\OwnerCheckVisitor.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

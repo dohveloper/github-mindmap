@@ -20,6 +20,7 @@ private:
 	CPoint clickedPoint;
 	BranchArray unmovedBranches;
 	bool isMoved;
+	bool isSelected;
 };
 
 #endif //_MULTISELECTIONSTRATEGY_H

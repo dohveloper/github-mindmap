@@ -77,6 +77,7 @@
     <ClInclude Include="..\OnVScrollUp.h" />
     <ClInclude Include="..\OnVThumb.h" />
     <ClInclude Include="..\OverlappedConfirmVisitor.h" />
+    <ClInclude Include="..\OwnerCheckVisitor.h" />
     <ClInclude Include="..\Page.h" />
     <ClInclude Include="..\PageApp.h" />
     <ClInclude Include="..\PageForm.h" />
@@ -170,6 +171,7 @@
     <ClCompile Include="..\OnVScrollUp.cpp" />
     <ClCompile Include="..\OnVThumb.cpp" />
     <ClCompile Include="..\OverlappedConfirmVisitor.cpp" />
+    <ClCompile Include="..\OwnerCheckVisitor.cpp" />
     <ClCompile Include="..\Page.cpp" />
     <ClCompile Include="..\PageApp.cpp" />
     <ClCompile Include="..\PageForm.cpp" />
@@ -295,7 +297,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
