@@ -1,142 +1,82 @@
-//Branch.cpp
-#include "Shape.h"
+#include "UpdateTraverser.h"
 #include "Branch.h"
-#include "Composite.h"
 #include "Topic.h"
 #include "Line.h"
-#include "BranchCopyTraverser.h"
+#include "Mark.h"
 
-Branch::Branch(Long capacity, Branch* branch)
-	:Composite(capacity, branch)
+UpdateTraverser::UpdateTraverser(Branch *before, Branch *after)
+	:BranchTraverser(before)
 {
-}
-Branch::Branch(const Branch& source)
-	: Composite(source) {
-}
-Branch::~Branch()
-{
+	Long capacity;
+	Long length;
+	Long x;
+	Long y;
+	Long width;
+	Long height;
+	string content;
+	bool isShown;
+
+	this->after = after;
+
+	//¹Ù²Ü branchÀÇ °ªµéÀ» °¡Á®¿Â´Ù.
+	capacity = this->after->GetCapacity();
+	length = this->after->GetLength();
+	x = this->after->GetX();
+	y = this->after->GetY();
+	width = this->after->GetWidth();
+	height = this->after->GetHeight();
+	content = this->after->GetContent();
+	isShown = this->after->GetIsShown();
+
+	//¹Ù²Û´Ù.
+	before->SetCapacity(capacity);
+	before->SetLength(length);
+	before->SetX(x);
+	before->SetY(y);
+	before->SetWidth(width);
+	before->SetHeight(height);
+	before->SetContent(content);
+	before->SetIsShown(isShown);
 }
 
-Long Branch::Add(Shape * shape)
+inline bool UpdateTraverser::ProcessItem(Shape * shape)
 {
-	Long index;
-	index = Composite::Add(shape);
-	shape->SetOwnerBranch(this);
-	return index;
-}
+	bool ret = true;
 
-Long Branch::Correct(Long index, Shape * shape)
-{
-	Long ret;
-	ret = Composite::Correct(index, shape);
-	shape->SetOwnerBranch(this);
-	return index;
-}
+	Branch *after;
+	Long current;
+	Long x;
+	Long y;
+	Long width;
+	Long height;
+	string content;
+	bool isShown;
 
-void Branch::Replace(Shape * before, Shape * after)
-{
-	Long index;
-	Composite::Replace(before, after);
-	after->SetOwnerBranch(this);
-}
+	current = this->iterator.GetCurrent();
+	after = (Branch*)this->after->GetAt(current);
 
-bool Branch::IsMain()
-{
-	//ë©”ì¸ë¸Œëžœì¹˜ì¸ì§€ í™•ì¸í•˜ëŠ” ì—°ì‚°
-	bool ret = false;
+	//¹Ù²Ü branchÀÇ °ªµéÀ» °¡Á®¿Â´Ù.
+	x = after->GetX();
+	y = after->GetY();
+	width = after->GetWidth();
+	height = after->GetHeight();
+	content = after->GetContent();
+	isShown = after->GetIsShown();
 
-	if (this == this->ownerBranch)
-	{
-		ret = true;
+	//¾÷µ¥ÀÌÆ®ÇÑ´Ù.
+
+	shape->SetX(x);
+	shape->SetY(y);
+	shape->SetWidth(width);
+	shape->SetHeight(height);
+	shape->SetContent(content);
+	shape->SetIsShown(isShown);
+
+	if (typeid(*shape) == typeid(Branch)) {
+		UpdateTraverser traverser((Branch*)shape, after);
+		traverser.Traverse();
 	}
 	return ret;
-}
-
-Topic* Branch::GetTopic()
-{
-	Shape *topic;
-
-	topic = this->shapes.GetAt(0);
-	if (typeid(*topic) != typeid(Topic)) {
-		topic = this->shapes.GetAt(1);
-	}
-
-	return (Topic*)topic;
-}
-
-Line* Branch::GetLine()
-{
-	Shape *shape;
-	Line *line = NULL;
-	Long length;
-	Long i = 0;
-
-	length = this->shapes.GetLength();
-
-	while (i < length)
-	{
-		shape = this->shapes.GetAt(i);
-
-		if (typeid(*shape) == typeid(Line))
-		{
-			line = (Line*)shape;
-			i = length;
-		}
-		i++;
-	}
-	return line;
-}
-
-Mark* Branch::GetMark()
-{
-	Shape *mark;
-	Long length;
-	Long i = 0;
-
-	length = this->shapes.GetLength();
-
-	while (i < length)
-	{
-		mark = this->shapes.GetAt(i);
-
-		if (typeid(*mark) == typeid(Mark))
-		{
-			i = length;
-		}
-		i++;
-	}
-	/*
-	mark = this->shapes.GetAt(1);
-	if (typeid(*mark) == typeid(Mark))
-	{
-		mark = this->shapes.GetAt(2);
-	}
-	*/
-	return (Mark*)mark;
-}
-
-void Branch::Accept(ShapeVisitor& visitor) {
-	visitor.VisitBranch(this);
-}
-
-Branch * Branch::Clone()
-{
-	Branch *clone;
-	BranchCopyTraverser traverser(this);
-	traverser.Traverse();
-	clone = traverser.GetClone();
-	return clone;
-}
-
-Branch& Branch::operator=(const Branch& source)
-{
-	this->ownerBranch = source.ownerBranch;
-	this->isShown = source.isShown;
-
-	this->shapes = source.shapes;
-	this->capacity = source.capacity;
-	this->length = source.length;
-	return *this;
 }
 /*
 
@@ -149,7 +89,7 @@ int main(int argc, char *argv[]) {
 	Long i = 0;
 	Long j = 0;
 
-	//Branch Clone í…ŒìŠ¤íŠ¸
+	//Branch Clone Å×½ºÆ®
 	Branch ownerBranch;
 	Branch branch;
 	Topic topic(2, 2, 2, 2, "topic");
@@ -177,7 +117,8 @@ int main(int argc, char *argv[]) {
 	branch.SetIsShown(false);
 	branch.SetOwnerBranch(&ownerBranch);
 
-	//ì´ˆê¸°ê°’
+	//ÃÊ±â°ª
+	cout << "<ºê·£Ä¡ A > " << endl;
 
 	branches.Add(&branch);
 	while (i < branches.GetLength()) {
@@ -200,42 +141,24 @@ int main(int argc, char *argv[]) {
 	i = 0;
 	j = 0;
 
-	//ë³µì‚¬
+	//°ª¼öÁ¤Å×½ºÆ®
+	cout << "<ºê·£Ä¡B (°ª¼öÁ¤)> " << endl;
 
-	clone = branch.Clone();
-	branches.Add(clone);
-	while (i < branches.GetLength()) {
-		currentBranch = branches.GetAt(i);
-		cout << currentBranch->GetContent() << "  :  " << endl << " x: " << currentBranch->GetX() << " y: " << currentBranch->GetY() << " width: " << currentBranch->GetWidth() << " height: " << currentBranch->GetHeight() << " isShown: " << currentBranch->GetIsShown() << "    CONTENT:   " << currentBranch->GetContent() << "   OWNERBRANCH:   " << currentBranch->GetOwnerBranch()->GetContent() << endl;
-		while (j < currentBranch->GetLength()) {
-			current = currentBranch->GetAt(j);
-			cout << "   L " << current->GetContent() << "  :  " << " x: " << current->GetX() << " y: " << current->GetY() << " width: " << current->GetWidth() << " height: " << current->GetHeight() << " isShown: " << current->GetIsShown() << "    CONTENT:   " << current->GetContent() << "   OWNERBRANCH:   " << current->GetOwnerBranch()->GetContent() << endl;
-			if (typeid(*current) == typeid(Branch)) {
-				branches.Add((Branch*)current);
-			}
-			j++;
-		}
-		cout << endl;
-		j = 0;
-		i++;
-	}
-
-	//ê°’ìˆ˜ì •í…ŒìŠ¤íŠ¸
 	branches.Clear();
 	i = 0;
 	j = 0;
-
+	Long value = 1000;
 	clone = branch.Clone();
 	branches.Add(clone);
 	while (i < branches.GetLength()) {
 		currentBranch = branches.GetAt(i);
-		//ê°’ ìˆ˜ì • í…ŒìŠ¤íŠ¸
+		//°ª ¼öÁ¤ Å×½ºÆ®
 		currentBranch->SetCapacity(10000);
 		currentBranch->SetX(10000);
 		currentBranch->SetY(10000);
 		currentBranch->SetWidth(10000);
 		currentBranch->SetHeight(10000);
-		currentBranch->SetContent("copy");
+		currentBranch->SetContent("update");
 		currentBranch->SetIsShown(false);
 		currentBranch->SetOwnerBranch(&ownerBranch);
 
@@ -243,15 +166,15 @@ int main(int argc, char *argv[]) {
 		while (j < currentBranch->GetLength()) {
 			current = currentBranch->GetAt(j);
 
-			//ê°’ ìˆ˜ì • í…ŒìŠ¤íŠ¸
-			current->SetX(10000);
-			current->SetY(10000);
-			current->SetWidth(10000);
-			current->SetHeight(10000);
-			current->SetContent("copy");
+			//°ª ¼öÁ¤ Å×½ºÆ®
+			current->SetX(value);
+			current->SetY(value);
+			current->SetWidth(value);
+			current->SetHeight(value);
+			//current->SetContent("update");
 			current->SetIsShown(false);
-			current->SetOwnerBranch(&ownerBranch);
-
+			//current->SetOwnerBranch(&ownerBranch);
+			value += 1000;
 			cout << "   L " << current->GetContent() << "  :  " << " x: " << current->GetX() << " y: " << current->GetY() << " width: " << current->GetWidth() << " height: " << current->GetHeight() << " isShown: " << current->GetIsShown() << "    CONTENT:   " << current->GetContent() << "   OWNERBRANCH:   " << current->GetOwnerBranch()->GetContent() << endl;
 			if (typeid(*current) == typeid(Branch)) {
 				branches.Add((Branch*)current);
@@ -263,7 +186,36 @@ int main(int argc, char *argv[]) {
 		i++;
 	}
 
-	//ì›ëž˜ê°’ ë‹¤ì‹œ í™•ì¸
+	///// UpdateTraverser Å×½ºÆ®
+
+	cout << "¤±¤±¤±¤±¤±¤±¤±¤±ºê·£Ä¡A ¸¦ ºê·£Ä¡B·Î ¾÷µ¥ÀÌÆ®¤±¤±¤±¤±¤±¤±¤±¤±¤± " << endl << endl;
+
+	//ÃÊ±â°ª
+	cout << "<ºê·£Ä¡ A (ÃÊ±â°ª) > " << endl;
+
+	branches.Add(&branch);
+	while (i < branches.GetLength()) {
+		currentBranch = branches.GetAt(i);
+		cout << currentBranch->GetContent() << "  :  " << endl << " x: " << currentBranch->GetX() << " y: " << currentBranch->GetY() << " width: " << currentBranch->GetWidth() << " height: " << currentBranch->GetHeight() << " isShown: " << currentBranch->GetIsShown() << "    CONTENT:   " << currentBranch->GetContent() << "   OWNERBRANCH:   " << currentBranch->GetOwnerBranch()->GetContent() << endl;
+		while (j < currentBranch->GetLength()) {
+			current = currentBranch->GetAt(j);
+			cout << "   L " << current->GetContent() << "  :  " << " x: " << current->GetX() << " y: " << current->GetY() << " width: " << current->GetWidth() << " height: " << current->GetHeight() << " isShown: " << current->GetIsShown() << "    CONTENT:   " << current->GetContent() << "   OWNERBRANCH:   " << current->GetOwnerBranch()->GetContent() << endl;
+			if (typeid(*current) == typeid(Branch)) {
+				branches.Add((Branch*)current);
+			}
+			j++;
+		}
+		cout << endl;
+		j = 0;
+		i++;
+	}
+
+	//¿ø·¡°ªÀ» Å¬·ÐÀ¸·Î Update
+	UpdateTraverser traverser(&branch, clone);
+	traverser.Traverse();
+
+	//°á°ú È®ÀÎ
+	cout << "<ºê·£Ä¡ A (ºê·£Ä¡B·Î ¾÷µ¥ÀÌÆ®ÇÑ °ª)> " << endl;
 	branches.Clear();
 	i = 0;
 	j = 0;
@@ -285,28 +237,6 @@ int main(int argc, char *argv[]) {
 		i++;
 	}
 
-	//Replace Test
-	cout << endl << endl << "REPLACE TEST" << endl << endl;
-	branch.Replace(&mark, clone);
-
-	branches.Clear();
-	i = 0;
-	j = 0;
-	branches.Add(&branch);
-	while (i < branches.GetLength()) {
-		currentBranch = branches.GetAt(i);
-		cout << currentBranch->GetContent() << "  :  " << endl << " x: " << currentBranch->GetX() << " y: " << currentBranch->GetY() << " width: " << currentBranch->GetWidth() << " height: " << currentBranch->GetHeight() << " isShown: " << currentBranch->GetIsShown() << "    CONTENT:   " << currentBranch->GetContent() << "   OWNERBRANCH:   " << currentBranch->GetOwnerBranch()->GetContent() << endl;
-		while (j < currentBranch->GetLength()) {
-			current = currentBranch->GetAt(j);
-			cout << "   L " << current->GetContent() << "  :  " << " x: " << current->GetX() << " y: " << current->GetY() << " width: " << current->GetWidth() << " height: " << current->GetHeight() << " isShown: " << current->GetIsShown() << "    CONTENT:   " << current->GetContent() << "   OWNERBRANCH:   " << current->GetOwnerBranch()->GetContent() << endl;
-			if (typeid(*current) == typeid(Branch)) {
-				branches.Add((Branch*)current);
-			}
-			j++;
-		}
-		cout << endl;
-		j = 0;
-		i++;
-	}
+	return 0;
 }
 */

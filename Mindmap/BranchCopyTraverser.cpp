@@ -8,13 +8,13 @@ BranchCopyTraverser::BranchCopyTraverser(Branch *branch)
 	:BranchTraverser(branch)
 {
 	Long capacity;
-	bool isShown;
 	Long x;
 	Long y;
 	Long width;
 	Long height;
 	string content;
 	Branch* ownerBranch;
+	bool isShown;
 
 	//기존 branch의 값들을 가져온다.
 	capacity = branch->GetCapacity();

@@ -1,6 +1,7 @@
 ﻿#ifndef _BRANCHTRAVERSER_H
 #define _BRANCHTRAVERSER_H
 #include "BranchIterator.h"
+typedef signed long int Long;
 
 class BranchTraverser {
 public:
@@ -10,7 +11,6 @@ public:
 protected:
 	virtual bool ProcessItem(Shape*) = 0;
 
-private:
 	BranchIterator iterator;
 };
 

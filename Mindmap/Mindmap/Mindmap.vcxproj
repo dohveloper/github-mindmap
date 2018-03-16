@@ -107,6 +107,7 @@
     <ClInclude Include="..\Topic.h" />
     <ClInclude Include="..\TopicHitTest.h" />
     <ClInclude Include="..\UnFoldVisitor.h" />
+    <ClInclude Include="..\UpdateTraverser.h" />
     <ClInclude Include="..\WriteEnglish.h" />
     <ClInclude Include="..\WriteKorean.h" />
     <ClInclude Include="..\WriteVisitor.h" />
@@ -199,6 +200,7 @@
     <ClCompile Include="..\Topic.cpp" />
     <ClCompile Include="..\TopicHitTest.cpp" />
     <ClCompile Include="..\UnFoldVisitor.cpp" />
+    <ClCompile Include="..\UpdateTraverser.cpp" />
     <ClCompile Include="..\WriteEnglish.cpp" />
     <ClCompile Include="..\WriteKorean.cpp" />
     <ClCompile Include="..\WriteVisitor.cpp" />
@@ -293,7 +295,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

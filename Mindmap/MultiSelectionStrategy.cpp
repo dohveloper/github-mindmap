@@ -17,6 +17,9 @@ void MultiSelectionStrategy::OnLButtonDown(CPoint point, UINT nFlags, Selection 
 	Branch *branch;
 	bool isSelected;
 	MultiSelect select;
+	Long i = 0;
+	Branch *clone;
+	Branch *current;
 
 	//다중선택
 
@@ -28,24 +31,20 @@ void MultiSelectionStrategy::OnLButtonDown(CPoint point, UINT nFlags, Selection 
 	}
 	this->clickedBranch = branch;
 
-	//이동하기
-	Long i = 0;
-	Branch *clone;
-	Branch *current;
-	this->selection = selection;
-
 	//값 초기화
 	this->unmovedBranches.Clear();
 
-	// 1.point를 기억한다.
+	//이동하기
+	// 1.기억한다.
 	this->clickedPoint = point;
+	this->selection = selection;
 
 	// 2.선택된 브랜치 수만큼 반복한다.
 	while (i < selection->GetLength()) {
 		current = selection->GetAt(i);
 		//메인브랜치를 제외하고 복사
 		if (!current->IsMain()) {
-			clone = selection->GetAt(i)->Clone();
+			clone = current->Clone();
 			this->unmovedBranches.Add(clone); //브랜치를 기억한다.
 		}
 		i++;
@@ -62,8 +61,6 @@ void MultiSelectionStrategy::OnMouseMove(CPoint point, UINT nFlags)
 	Branch *ownerBranch;
 
 	Branch *clone;
-	Long centerX;
-	Long centerY;
 
 	if ((nFlags & MK_LBUTTON) == MK_LBUTTON)
 	{
@@ -83,7 +80,8 @@ void MultiSelectionStrategy::OnMouseMove(CPoint point, UINT nFlags)
 			selectedBranch = this->selection->GetAt(i);
 			ownerBranch = selectedBranch->GetOwnerBranch();
 			ownerBranch->Replace(selectedBranch, clone);
-			selection->Replace(selectedBranch, clone);
+			this->selection->Replace(selectedBranch, clone);
+
 			i++;
 		}
 		this->isMoved = true;

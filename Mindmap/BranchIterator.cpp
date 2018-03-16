@@ -2,8 +2,8 @@
 #include "Shape.h"
 #include "Branch.h"
 
-BranchIterator::BranchIterator(Branch* branch) 
-:Iterator(){
+BranchIterator::BranchIterator(Branch* branch)
+	:Iterator() {
 	this->branch = branch;
 	current = 0;
 }
@@ -26,7 +26,12 @@ bool BranchIterator::IsDone() const
 Shape * BranchIterator::CurrentItem() const
 {
 	Shape* currentItem;
-	currentItem=this->branch->GetAt(this->current);
-	
+	currentItem = this->branch->GetAt(this->current);
+
 	return currentItem;
+}
+
+Long BranchIterator::GetCurrent()
+{
+	return this->current;
 }

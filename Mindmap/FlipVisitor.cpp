@@ -18,8 +18,6 @@ void FlipVisitor::VisitBranch(Branch * branch)
 	Long i = 0;
 	length = branch->GetLength();
 
-	//centerLine = branch->GetTopic()->GetCenterX();
-
 	while (i < length) {
 		current = branch->GetAt(i);
 		if (typeid(*current) == typeid(Branch)) {
