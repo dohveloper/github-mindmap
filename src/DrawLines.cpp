@@ -13,21 +13,18 @@ DrawLines::DrawLines(Branch *branch, CPaintDC *dc, View *view)
 
 bool DrawLines::ProcessItem(Shape *shape)
 {
-	Long startX;
-	Long startY;
 	Long x;
 	Long y;
 	Long width;
 	Long height;
-
-	startX = this->view->GetStartX();
-	startY = this->view->GetStartY();
-
+	Long scale;
 	if (typeid(*shape) == typeid(Line)) {
-		x = shape->GetX() - startX;
-		y = shape->GetY() - startY;
-		width = shape->GetWidth();
-		height = shape->GetHeight();
+		x = shape->GetX();
+		y = shape->GetY();
+		view->ConvertToViewPoint(&x, &y);
+		scale = this->view->GetScale();
+		width = shape->GetWidth()*scale;
+		height = shape->GetHeight()*scale;
 		this->dc->MoveTo(x, y);
 		this->dc->LineTo(x + width, y + height);
 	}

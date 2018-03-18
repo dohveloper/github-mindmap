@@ -13,32 +13,34 @@ DrawTopics::DrawTopics(Branch *branch, CPaintDC *dc, View *view)
 
 bool DrawTopics::ProcessItem(Shape *shape)
 {
-	Long startX;
-	Long startY;
+	Long scale;
 	Long x;
 	Long y;
 	Long width;
 	Long height;
 	string content;
-
-	startX = this->view->GetStartX();
-	startY = this->view->GetStartY();
+	CFont font;
+	Long fontSize;
 
 	if (typeid(*shape) == typeid(Topic)) {
-		CFont fnt;
-		fnt.CreatePointFont(14, "system");
-		this->dc->SelectObject(&fnt);
-
 		//토픽을 그리는 코드
 
-		x = shape->GetX() - startX;
-		y = shape->GetY() - startY;
-		width = shape->GetWidth();
-		height = shape->GetHeight();
+		x = shape->GetX();
+		y = shape->GetY();
+		view->ConvertToViewPoint(&x, &y);
+		scale = this->view->GetScale();
+		width = shape->GetWidth()*scale;
+		height = shape->GetHeight()*scale;
 		content = shape->GetContent();
 
+		fontSize = 14 * scale;
+		font.CreateFont(fontSize, 0, 0, 0, FW_NORMAL, FALSE, FALSE, 0,
+			DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS,
+			DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, "굴림체");
+		dc->SelectObject(&font);
+
 		this->dc->Ellipse(x, y, x + width, y + height);
-		this->dc->TextOut(x + width / 2 - 30, y + height / 2, (CString)content.c_str());
+		this->dc->TextOut(x + width / 3, y + height / 2, (CString)content.c_str());
 	}
 
 	if (typeid(*shape) == typeid(Branch)) {

@@ -6,11 +6,13 @@ typedef signed long int Long;
 class View
 {
 public:
-	View();
+	View(HWND hWnd);
 	~View();
 
 	void Zoom(short zDelta);
-	void GetRealPoint(CPoint *point);
+	void ConvertToDocumentPoint(CPoint *point);
+	void ConvertToViewPoint(Long *x, Long *y);
+	void SetScrolls();
 
 	void SetStartX(Long x);
 	void SetStartY(Long y);
@@ -29,6 +31,10 @@ public:
 	Long GetCenterY() const;
 
 private:
+	HWND hWnd;
+	SCROLLINFO vertical;
+	SCROLLINFO horizontal;
+
 	Long startX; // Ω√¿€¡°
 	Long startY;
 	Long scale;

@@ -9,19 +9,19 @@ class Topic;
 class Line;
 class Branch;
 class MouseAction;
+class View;
 
 class SelectionMarkVisitor : public ShapeVisitor {
 public:
 	SelectionMarkVisitor();
-	SelectionMarkVisitor(Selection *selection,CPaintDC *dc, Long movedX, Long movedY);
+	SelectionMarkVisitor(Selection *selection, CPaintDC *dc, View *view);
 	virtual ~SelectionMarkVisitor();
 	virtual void VisitTopic(Topic *topic);
 
 private:
-	CPaintDC *dc;
+	CPaintDC * dc;
 	Selection *selection;
-	Long movedX;
-	Long movedY;
+	View *view;
 };
 
 #endif _SelectionMarkVisitor_H

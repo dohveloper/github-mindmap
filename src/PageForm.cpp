@@ -43,6 +43,8 @@ PageForm::PageForm()
 
 int PageForm::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
+	HWND hWnd = ::FindWindow(NULL, "마인드 맵");
+
 	CFrameWnd::OnCreate(lpCreateStruct);
 	this->branch = new Branch;
 	this->branch->Add(new Topic(600, 250, 200, 200, "메인토픽"));
@@ -51,32 +53,17 @@ int PageForm::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	this->mouseAction = new MouseAction();
 	this->branch->SetOwnerBranch(this->branch);//메인 브랜치의 오너브랜치는 자기자신
 	this->scrollAction = new ScrollAction;
+	this->view = new View(hWnd);
+
+	this->view->SetScrolls();
+
 	return 0;
-}
-
-void PageForm::SetScrolls() {
-	//스크롤 생성
-	SCROLLINFO scrollInfo;
-
-	scrollInfo.cbSize = sizeof(SCROLLINFO);
-	scrollInfo.fMask = SIF_PAGE | SIF_RANGE;
-	scrollInfo.nPage = 1200;
-	scrollInfo.nMin = 0;
-	scrollInfo.nMax = 10000;
-	SetScrollInfo(SB_HORZ, &scrollInfo, TRUE);
-
-	scrollInfo.cbSize = sizeof(SCROLLINFO);
-	scrollInfo.fMask = SIF_PAGE | SIF_RANGE;
-	scrollInfo.nPage = 600;
-	scrollInfo.nMin = 0;
-	scrollInfo.nMax = 8000;
-	SetScrollInfo(SB_VERT, &scrollInfo, TRUE);
 }
 
 void PageForm::OnLButtonDown(UINT nFlags, CPoint point) {
 	Shape *clickedObject = NULL;
 
-	//this->view.GetRealPoint(&point);
+	this->view->ConvertToDocumentPoint(&point);
 
 	clickedObject = this->mouseAction->GetClickedObject(this->branch, point);
 	this->mouseAction->SetStrategy(clickedObject, nFlags);
@@ -85,7 +72,7 @@ void PageForm::OnLButtonDown(UINT nFlags, CPoint point) {
 }
 
 void PageForm::OnMouseMove(UINT nFlags, CPoint point) {
-	this->view.GetRealPoint(&point);
+	this->view->ConvertToDocumentPoint(&point);
 	if ((nFlags & MK_LBUTTON) == MK_LBUTTON)
 	{
 		this->mouseAction->OnMouseMove(point, nFlags);
@@ -95,7 +82,7 @@ void PageForm::OnMouseMove(UINT nFlags, CPoint point) {
 }
 
 void PageForm::OnLButtonUp(UINT nFlags, CPoint point) {
-	this->view.GetRealPoint(&point);
+	this->view->ConvertToDocumentPoint(&point);
 	this->mouseAction->OnLButtonUp(&this->selection, nFlags, this->branch);
 
 	RedrawWindow();
@@ -107,9 +94,17 @@ void PageForm::OnPaint() {
 	Topic *selectedTopic;
 	CPaintDC dc(this);
 	CPen blackPen;
+	Long fontSize;
+	Long scale;
+	CFont font;
+
+	scale = this->view->GetScale();
+	fontSize = 14 * scale;
+	font.CreatePointFont(100, "system");
+	dc.SelectObject(&font);
 
 	//선택표시하기
-	SelectionMarkVisitor selectionMarkVisitor(&this->selection, &dc, this->view.GetStartX(), this->view.GetStartY());
+	SelectionMarkVisitor selectionMarkVisitor(&this->selection, &dc, this->view);
 	while (i < this->selection.GetLength()) {
 		selectedTopic = this->selection.GetAt(i)->GetTopic();
 		selectedTopic->Accept(selectionMarkVisitor);
@@ -120,7 +115,7 @@ void PageForm::OnPaint() {
 	blackPen.CreatePen(PS_SOLID, 1, RGB(0, 0, 0));
 	dc.SelectObject(&blackPen);
 
-	DrawingVisitor visitor(&dc, &this->view);
+	DrawingVisitor visitor(&dc, this->view);
 
 	this->branch->Accept(visitor);
 }
@@ -158,9 +153,9 @@ void PageForm::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 	Long movedPosition;
 	this->scrollAction->SetHScrollStrategy(nSBCode);
 	movedPosition = this->scrollAction->Scroll(this, nPos);
-	startX = this->view.GetStartX();
+	startX = this->view->GetStartX();
 	startX -= movedPosition;
-	this->view.SetStartX(startX);
+	this->view->SetStartX(startX);
 	RedrawWindow();
 	CFrameWnd::OnHScroll(nSBCode, nPos, pScrollBar);
 }
@@ -171,28 +166,26 @@ void PageForm::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 	Long movedPosition;
 	this->scrollAction->SetVScrollStrategy(nSBCode);
 	movedPosition = this->scrollAction->Scroll(this, nPos);
-	startY = this->view.GetStartY();
+	startY = this->view->GetStartY();
 	startY -= movedPosition;
-	this->view.SetStartY(startY);
+	this->view->SetStartY(startY);
 	RedrawWindow();
 	CFrameWnd::OnHScroll(nSBCode, nPos, pScrollBar);
 }
 
 BOOL PageForm::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 {
-	Long startY;
 	Long movedPosition;
-	this->scrollAction->SetHScrollStrategy(WM_MOUSEWHEEL);
-	movedPosition = this->scrollAction->Scroll(this, zDelta);
-	startY = this->view.GetStartY();
-	startY -= movedPosition;
-	this->view.SetStartY(startY);
+	movedPosition = this->scrollAction->Scroll(this, nFlags, zDelta);
 
 	/*
-		CString string;
-		string.Format(_T("zdelta : %d "), zDelta);
-		AfxMessageBox(string);
+	Long scaleTest;
+	scaleTest = this->view->GetScale();
+	CString string;
+	string.Format(_T("scale : %d "), scaleTest);
+	AfxMessageBox(string);
 	*/
+
 	RedrawWindow();
 	return CFrameWnd::OnMouseWheel(nFlags, zDelta, pt);
 }
@@ -203,7 +196,7 @@ void PageForm::OnLButtonDblClk(UINT nFlags, CPoint point)
 	Shape *clickedObject = NULL;
 	Topic *topic;
 
-	this->view.GetRealPoint(&point);
+	this->view->ConvertToDocumentPoint(&point);
 	clickedObject = this->mouseAction->GetClickedObject(this->branch, point);
 	if (clickedObject != NULL) {
 		//클릭된 브랜치를 선택한다.

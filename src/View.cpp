@@ -1,6 +1,6 @@
 #include "View.h"
 
-View::View()
+View::View(HWND hWnd)
 {
 	this->startX = 0;
 	this->startY = 0;
@@ -9,6 +9,23 @@ View::View()
 	this->height = 720;
 	this->centerX = this->width * 1 / 2;
 	this->centerY = this->height * 1 / 2;
+	this->hWnd = hWnd;
+
+	//세로
+	this->vertical.cbSize = sizeof(this->vertical);
+	this->vertical.fMask = SIF_PAGE | SIF_RANGE;
+	this->vertical.nMin = 0;
+	this->vertical.nPage = 600;
+	this->vertical.nMax = 8000;
+	SetScrollInfo(this->hWnd, SB_VERT, &this->vertical, TRUE);
+
+	//가로
+	this->horizontal.cbSize = sizeof(this->horizontal);
+	this->horizontal.fMask = SIF_PAGE | SIF_RANGE;
+	this->horizontal.nMin = 0;
+	this->horizontal.nPage = 1200;
+	this->horizontal.nMax = 10000;
+	SetScrollInfo(this->hWnd, SB_HORZ, &this->horizontal, TRUE);
 }
 
 View::~View()
@@ -17,24 +34,66 @@ View::~View()
 
 void View::Zoom(short zDelta)
 {
-	Long newX;
-	Long newY;
-
 	//스케일을 바꾼다.
-	this->scale += zDelta;
+	if (zDelta > 0) {
+		this->scale += zDelta / 120;
+	}
+	else {
+		if (this->scale >= 2) {
+			this->scale += zDelta / 120;
+		}
+	}
 
-	//시작점을 조정한다.
-	newX = this->startX + this->width / 2 - this->width / 2 / scale;
-	newY = this->startY + this->height / 2 - this->height / 2 / scale;
-	this->startX = newX;
-	this->startY = newY;
-
-	//스크롤바 크기를 조정한다.
+	//스크롤을 설정한다.
+	this->vertical.nPage = 600 / this->scale;
+	this->horizontal.nPage = 1200 / this->scale;
+	SetScrollInfo(this->hWnd, SB_VERT, &this->vertical, TRUE);
+	SetScrollInfo(this->hWnd, SB_HORZ, &this->horizontal, TRUE);
 }
 
-void View::GetRealPoint(CPoint *point)
+void View::ConvertToDocumentPoint(CPoint *point)
 {
-	point->Offset(this->startX, this->startY);
+	//뷰 좌표를 입력받아 문서 좌표를 구하는 연산
+	Long documentX;
+	Long documentY;
+
+	//scale을 1로 되돌리기
+	documentX = (point->x - this->centerX) / this->scale + this->centerX;
+	documentY = (point->y - this->centerY) / this->scale + this->centerY;
+
+	//스크롤
+	documentX += this->startX;
+	documentY += this->startY;
+
+	//값설정
+	point->x = documentX;
+	point->y = documentY;
+}
+
+void View::ConvertToViewPoint(Long *x, Long *y)
+{
+	//문서 좌표를 입력받아 뷰 좌표를 구하는 연산
+	Long distance;
+	Long viewX;
+	Long viewY;
+
+	//스크롤되기 전 위치를 구함
+	*x -= this->startX;
+	*y -= this->startY;
+
+	//확대/축소
+	distance = this->centerX - *x;
+	viewX = this->centerX - distance * scale;
+	distance = this->centerY - *y;
+	viewY = this->centerY - distance * scale;
+
+	//값설정
+	*x = viewX;
+	*y = viewY;
+}
+
+void View::SetScrolls()
+{
 }
 
 void View::SetStartX(Long x)

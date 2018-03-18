@@ -45,22 +45,32 @@ Long ScrollAction::Scroll(PageForm *pageForm, UINT nPos)
 	return movedPosition;
 }
 
-Long ScrollAction::Scroll(PageForm * pageForm, short zDelta)
+Long ScrollAction::Scroll(PageForm * pageForm, UINT nFlags, short zDelta)
 {
-	Long movedPosition;
+	Long movedPosition = 0;
+	Long startY;
 	OnMouseWheel *onMouseWheel = NULL;
-
-	if (zDelta > 0) {
-		onMouseWheel = new OnMouseWheelUp();
-	}
-	else if (zDelta < 0) {
-		onMouseWheel = new OnMouseWheelDown();
+	if (nFlags == MK_CONTROL)
+	{
+		pageForm->view->Zoom(zDelta);
 	}
 
-	movedPosition = onMouseWheel->Scroll(pageForm, zDelta);
+	else {
+		if (zDelta > 0) {
+			onMouseWheel = new OnMouseWheelUp();
+		}
+		else {
+			onMouseWheel = new OnMouseWheelDown();
+		}
 
-	if (onMouseWheel != NULL) {
-		delete onMouseWheel;
+		movedPosition = onMouseWheel->Scroll(pageForm, zDelta);
+		startY = pageForm->view->GetStartY();
+		startY -= movedPosition;
+		pageForm->view->SetStartY(startY);
+
+		if (onMouseWheel != NULL) {
+			delete onMouseWheel;
+		}
 	}
 
 	return movedPosition;

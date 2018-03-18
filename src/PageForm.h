@@ -20,7 +20,6 @@ class ScrollAction;
 class PageForm :public CFrameWnd {
 public:
 	PageForm();
-	void SetScrolls();
 public:
 	TextForm * textForm;
 	Branch *branch;
@@ -28,7 +27,7 @@ public:
 	Clipboard clipboard;
 	MouseAction *mouseAction;
 	ScrollAction *scrollAction;
-	View view;
+	View *view;
 
 protected:
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
