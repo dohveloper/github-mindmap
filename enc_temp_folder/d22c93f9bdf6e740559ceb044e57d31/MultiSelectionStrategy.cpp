@@ -29,6 +29,7 @@ void MultiSelectionStrategy::OnLButtonDown(CPoint point, UINT nFlags, Selection 
 	if (!this->isSelected)
 	{
 		select.SelectBranch(selection, branch);
+		AfxMessageBox("");
 	}
 
 	this->clickedBranch = branch;
