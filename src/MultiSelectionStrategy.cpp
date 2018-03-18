@@ -7,7 +7,7 @@
 #include "Topic.h"
 #include "UpdateTraverser.h"
 
-#define CENTERLINE 700
+#define CENTERLINE 5000
 
 MultiSelectionStrategy::MultiSelectionStrategy() {
 	this->select = NULL;

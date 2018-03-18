@@ -2,30 +2,41 @@
 
 View::View(HWND hWnd)
 {
-	this->startX = 0;
-	this->startY = 0;
-	this->scale = 1;
-	this->width = 1280;
-	this->height = 720;
-	this->centerX = this->width * 1 / 2;
-	this->centerY = this->height * 1 / 2;
+	Long nPos;
+
 	this->hWnd = hWnd;
 
+	///스크롤
 	//세로
 	this->vertical.cbSize = sizeof(this->vertical);
 	this->vertical.fMask = SIF_PAGE | SIF_RANGE;
-	this->vertical.nMin = 0;
 	this->vertical.nPage = 600;
+	this->vertical.nMin = 0;
 	this->vertical.nMax = 8000;
+	nPos = (this->vertical.nMax - this->vertical.nPage) / 2;
 	SetScrollInfo(this->hWnd, SB_VERT, &this->vertical, TRUE);
+	SetScrollPos(this->hWnd, SB_VERT, nPos, false);
 
 	//가로
 	this->horizontal.cbSize = sizeof(this->horizontal);
 	this->horizontal.fMask = SIF_PAGE | SIF_RANGE;
-	this->horizontal.nMin = 0;
 	this->horizontal.nPage = 1200;
+	this->horizontal.nMin = 0;
 	this->horizontal.nMax = 10000;
+	nPos = (this->horizontal.nMax - this->horizontal.nPage) / 2;
 	SetScrollInfo(this->hWnd, SB_HORZ, &this->horizontal, TRUE);
+	SetScrollPos(this->hWnd, SB_HORZ, nPos, false);
+
+	this->startX = 0;
+	this->startY = 0;
+
+	this->startX = (10000 - 1280) / 2;
+	this->startY = (8000 - 720) / 2;
+	this->scale = 10;
+	this->width = 1280;
+	this->height = 720;
+	this->centerX = this->width * 1 / 2;
+	this->centerY = this->height * 1 / 2;
 }
 
 View::~View()

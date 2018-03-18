@@ -33,7 +33,7 @@ bool DrawTopics::ProcessItem(Shape *shape)
 		height = shape->GetHeight()*scale;
 		content = shape->GetContent();
 
-		fontSize = 14 * scale;
+		fontSize = 2 * scale;
 		font.CreateFont(fontSize, 0, 0, 0, FW_NORMAL, FALSE, FALSE, 0,
 			DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS,
 			DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, "굴림체");

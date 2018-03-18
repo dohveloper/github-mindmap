@@ -6,7 +6,7 @@
 #include "MoveVisitor.h"
 #include "Topic.h"
 #include "UpdateTraverser.h"
-#define CENTERLINE 700
+#define CENTERLINE 5000
 
 SingleSelectionStrategy::SingleSelectionStrategy() {
 	this->isMoved = false;

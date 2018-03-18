@@ -8,8 +8,8 @@
 #include "Selection.h"
 #include "UnFoldVisitor.h"
 #include "OverlappedConfirmVisitor.h"
-#define minimumTopicWidth 30
-#define minimumTopicHeight 30
+#define minimumTopicWidth 3
+#define minimumTopicHeight 3
 
 DrawingStrategy::DrawingStrategy() {
 	this->x = 0;

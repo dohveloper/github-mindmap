@@ -6,8 +6,8 @@
 #include "Shape.h"
 #include "ShapeVisitor.h"
 #include <string>
-#define markWidth 20
-#define markHeight 20
+#define markWidth 2
+#define markHeight 2
 
 using namespace std;
 typedef signed long int Long;
