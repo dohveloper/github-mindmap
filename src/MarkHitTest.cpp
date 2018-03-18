@@ -27,7 +27,7 @@ bool MarkHitTest::ProcessItem(Shape *shape)
 		a = shape->GetWidth() / 2;
 		b = shape->GetHeight() / -2;
 		value = ((x*x) / (a*a)) + ((y*y) / (b*b)); // 타원방정식 ((x*x) / (a*a)) + ((y*y) / (b*b)) =1
-		if (value <= 0.8)
+		if (value <= 1)
 		{
 			this->hitMark = (Mark*)shape;
 			this->isHit = true;

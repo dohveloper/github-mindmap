@@ -48,7 +48,7 @@ int PageForm::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	CFrameWnd::OnCreate(lpCreateStruct);
 	this->branch = new Branch;
 	this->branch->Add(new Topic(5000 - 10, 4000 - 10, 20, 20, "메인토픽"));
-	this->branch->Add(new Mark(1800, 1300));
+	this->branch->Add(new Mark(4991 + 14 * 20 / 15, 3990 + 5));
 	this->selection.Add(this->branch);
 	this->mouseAction = new MouseAction();
 	this->branch->SetOwnerBranch(this->branch);//메인 브랜치의 오너브랜치는 자기자신
