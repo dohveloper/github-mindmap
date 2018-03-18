@@ -21,6 +21,7 @@ bool DrawTopics::ProcessItem(Shape *shape)
 	string content;
 	CFont font;
 	Long fontSize;
+	CBrush brush;
 
 	if (typeid(*shape) == typeid(Topic)) {
 		//토픽을 그리는 코드
@@ -32,6 +33,9 @@ bool DrawTopics::ProcessItem(Shape *shape)
 		width = shape->GetWidth()*scale;
 		height = shape->GetHeight()*scale;
 		content = shape->GetContent();
+
+		brush.CreateSolidBrush(RGB(255, 255, 204));       // 채움색을 생성
+		dc->SelectObject(&brush);
 
 		fontSize = 2 * scale;
 		font.CreateFont(fontSize, 0, 0, 0, FW_NORMAL, FALSE, FALSE, 0,
