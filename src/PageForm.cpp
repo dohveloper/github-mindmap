@@ -91,30 +91,23 @@ void PageForm::OnLButtonUp(UINT nFlags, CPoint point) {
 }
 
 void PageForm::OnPaint() {
-	CPaintDC dc(this);
-	CFont font;
-	CPen blackPen;
-	Long fontSize;
-	Long scale;
 	Long i = 0;
 	Topic *selectedTopic;
 	//더블 버퍼링
+	CPaintDC dc(this);
 	CDC* pDC = GetDC();
 	CDC MemDC;
 	CBitmap* pOldBitmap;
 	CBitmap bitmap;
 
-	//폰트설정
-	scale = this->view->GetScale();
-	fontSize = 14 * scale;
-	font.CreatePointFont(100, "system");
-	dc.SelectObject(&font);
+	CRect screen;
+	CWnd::GetDesktopWindow()->GetWindowRect(screen);
 
 	// 메모리 DC 및 BITMAP과 현재 DC의 설정 일치.
 	MemDC.CreateCompatibleDC(pDC);
-	bitmap.CreateCompatibleBitmap(pDC, this->view->GetWidth(), this->view->GetHeight());
+	bitmap.CreateCompatibleBitmap(pDC, screen.Width(), screen.Height());
 	pOldBitmap = (CBitmap*)MemDC.SelectObject(&bitmap);
-	MemDC.PatBlt(0, 0, this->view->GetWidth(), this->view->GetHeight(), WHITENESS);
+	MemDC.PatBlt(0, 0, screen.Width(), screen.Height(), WHITENESS);
 
 	//선택표시하기
 	SelectionMarkVisitor selectionMarkVisitor(&this->selection, &MemDC, this->view);
@@ -124,15 +117,12 @@ void PageForm::OnPaint() {
 		i++;
 	}
 
-	//검정펜으로 다시 설정
-	blackPen.CreatePen(PS_SOLID, 1, RGB(0, 0, 0));
-	MemDC.SelectObject(&blackPen);
-
+	//그리기
 	DrawingVisitor visitor(&MemDC, this->view);
 	this->branch->Accept(visitor);
 
 	// 메모리 DC를 현재 DC에 복사.
-	pDC->BitBlt(0, 0, this->view->GetWidth(), this->view->GetHeight(), &MemDC, 0, 0, SRCCOPY);
+	pDC->BitBlt(0, 0, screen.Width(), screen.Height(), &MemDC, 0, 0, SRCCOPY);
 
 	// 사용된 메모리 DC 및 BITMAP의 삭제.
 	MemDC.SelectObject(pOldBitmap);

@@ -22,6 +22,20 @@ DrawingVisitor::~DrawingVisitor() {
 
 void DrawingVisitor::VisitBranch(Branch *branch)
 {
+	CPen blackPen;
+	CFont font;
+	Long fontSize;
+	Long scale;
+
+	//검정펜으로 설정
+	blackPen.CreatePen(PS_SOLID, 1, RGB(0, 0, 0));
+	this->dc->SelectObject(&blackPen);
+	//폰트설정
+	scale = this->view->GetScale();
+	fontSize = 14 * scale;
+	font.CreatePointFont(fontSize, "system");
+	this->dc->SelectObject(&font);
+
 	DrawLines drawLines(branch, this->dc, view);
 	drawLines.Traverse();
 
