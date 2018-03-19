@@ -17,6 +17,10 @@ void SingleSelectionStrategy::OnLButtonDown(CPoint point, UINT nFlags, Selection
 	Branch *branch;
 	bool isSelected;
 	SingleSelect select;
+	Long i = 0;
+	Branch *clone;
+	Branch *current;
+
 	//단일선택
 
 	branch = shape->GetOwnerBranch();
@@ -25,19 +29,16 @@ void SingleSelectionStrategy::OnLButtonDown(CPoint point, UINT nFlags, Selection
 	{
 		select.SelectBranch(selection, branch);
 	}
-	this->clickedBranch = branch;
 
-	//이동하기
-	Long i = 0;
-	Branch *clone;
-	Branch *current;
-	this->selection = selection;
+	this->clickedBranch = branch;
 
 	//값 초기화
 	this->unmovedBranches.Clear();
 
+	//이동하기
 	// 1.point를 기억한다.
 	this->clickedPoint = point;
+	this->selection = selection;
 
 	// 2.선택된 브랜치 수만큼 반복한다.
 	while (i < selection->GetLength()) {

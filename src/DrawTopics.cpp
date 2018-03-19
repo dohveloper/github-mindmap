@@ -34,7 +34,7 @@ bool DrawTopics::ProcessItem(Shape *shape)
 		height = shape->GetHeight()*scale;
 		content = shape->GetContent();
 
-		brush.CreateSolidBrush(RGB(255, 255, 204));       // 채움색을 생성
+		brush.CreateSolidBrush(RGB(255, 255, 240));       // 배경색
 		dc->SelectObject(&brush);
 
 		fontSize = 2 * scale;
