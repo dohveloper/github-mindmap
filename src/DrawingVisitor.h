@@ -13,12 +13,12 @@ class View;
 class DrawingVisitor : public ShapeVisitor {
 public:
 	DrawingVisitor();
-	DrawingVisitor(CPaintDC *dc, View *view);
+	DrawingVisitor(CDC *dc, View *view);
 	virtual ~DrawingVisitor();
 	virtual void VisitBranch(Branch *branch);
 
 private:
-	CPaintDC * dc;
+	CDC * dc;
 	View *view;
 };
 

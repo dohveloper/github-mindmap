@@ -14,12 +14,12 @@ class View;
 class SelectionMarkVisitor : public ShapeVisitor {
 public:
 	SelectionMarkVisitor();
-	SelectionMarkVisitor(Selection *selection, CPaintDC *dc, View *view);
+	SelectionMarkVisitor(Selection *selection, CDC *dc, View *view);
 	virtual ~SelectionMarkVisitor();
 	virtual void VisitTopic(Topic *topic);
 
 private:
-	CPaintDC * dc;
+	CDC * dc;
 	Selection *selection;
 	View *view;
 };

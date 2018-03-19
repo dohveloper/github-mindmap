@@ -4,7 +4,7 @@
 #include "Mark.h"
 #include "View.h"
 
-DrawMarks::DrawMarks(Branch *branch, CPaintDC *dc, View *view)
+DrawMarks::DrawMarks(Branch *branch, CDC *dc, View *view)
 	:BranchTraverser(branch)
 {
 	this->dc = dc;

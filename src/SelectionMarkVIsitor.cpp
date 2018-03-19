@@ -9,7 +9,7 @@ SelectionMarkVisitor::SelectionMarkVisitor()
 {
 }
 
-SelectionMarkVisitor::SelectionMarkVisitor(Selection *selection, CPaintDC *dc, View *view)
+SelectionMarkVisitor::SelectionMarkVisitor(Selection *selection, CDC *dc, View *view)
 {
 	this->selection = selection;
 	this->dc = dc;

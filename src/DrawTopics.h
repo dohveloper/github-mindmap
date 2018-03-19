@@ -7,13 +7,13 @@ typedef signed long int Long;
 class View;
 class DrawTopics :public BranchTraverser {
 public:
-	DrawTopics(Branch *branch, CPaintDC *dc, View *view);
+	DrawTopics(Branch *branch, CDC *dc, View *view);
 
 protected:
 	virtual bool ProcessItem(Shape*);
 
 private:
-	CPaintDC * dc;
+	CDC * dc;
 	View *view;
 };
 

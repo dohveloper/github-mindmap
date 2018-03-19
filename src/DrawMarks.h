@@ -8,13 +8,13 @@ class View;
 
 class DrawMarks :public BranchTraverser {
 public:
-	DrawMarks(Branch *branch, CPaintDC *dc, View *view);
+	DrawMarks(Branch *branch, CDC *dc, View *view);
 
 protected:
 	virtual bool ProcessItem(Shape*);
 
 private:
-	CPaintDC * dc;
+	CDC * dc;
 	View *view;
 };
 

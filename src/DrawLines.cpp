@@ -4,7 +4,7 @@
 #include "Line.h"
 #include "View.h"
 
-DrawLines::DrawLines(Branch *branch, CPaintDC *dc, View *view)
+DrawLines::DrawLines(Branch *branch, CDC *dc, View *view)
 	:BranchTraverser(branch)
 {
 	this->dc = dc;

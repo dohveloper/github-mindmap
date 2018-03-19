@@ -4,7 +4,7 @@
 #include "Topic.h"
 #include "View.h"
 
-DrawTopics::DrawTopics(Branch *branch, CPaintDC *dc, View *view)
+DrawTopics::DrawTopics(Branch *branch, CDC *dc, View *view)
 	:BranchTraverser(branch)
 {
 	this->dc = dc;

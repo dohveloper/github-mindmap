@@ -11,7 +11,7 @@
 DrawingVisitor::DrawingVisitor() {
 }
 
-DrawingVisitor::DrawingVisitor(CPaintDC * dc, View *view)
+DrawingVisitor::DrawingVisitor(CDC * dc, View *view)
 {
 	this->dc = dc;
 	this->view = view;
