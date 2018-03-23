@@ -18,6 +18,7 @@ public:
 	~TextClipboard();
 
 	Long Add(Character *character);
+	Long Delete(Long index);
 	Character* GetAt(Long index);
 
 	//TextClipboard& operator=(const TextClipboard& source);

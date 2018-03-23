@@ -47,7 +47,6 @@ TextForm::TextForm() {
 	this->textFont = NULL;
 	this->textClipboard = NULL;
 	this->textCopy = NULL;
-	this->wordWrapCount = 0;
 	this->textPaste = NULL;
 	this->hangul = FALSE;
 	this->compose = FALSE;
@@ -278,6 +277,7 @@ void TextForm::OnKeyDown(WPARAM wParam) {
 			this->caret->SetCharacterIndex(i);
 		}
 
+
 	}
 	else if (wParam == VK_BACK)
 	{
@@ -356,17 +356,17 @@ void TextForm::OnKeyDown(WPARAM wParam) {
 	{
 		this->textCopy->Copy(this);
 	}
-	else if (::GetKeyState(VK_CONTROL) < 0 && wParam == 86)
+	else if (wParam == VK_SHIFT)
 	{
 		this->textPaste->Paste(this);
 		this->textFormSize->TextFormHeightSizeLong(this, cdc);
 		this->textFormSize->TextFormWidthSizeLong(this, cdc);
+		this->textPaste->CaretMove(this);
+	
 	}
 	//선택해제
 
 	this->selectText->SetIsNotSelect();
-
-
 
 	fnt.DeleteObject();
 	RedrawWindow();

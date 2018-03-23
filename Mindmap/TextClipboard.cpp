@@ -40,6 +40,16 @@ Long TextClipboard::Add(Character *character) {
 	return index;
 }
 
+Long TextClipboard::Delete(Long index) {
+
+	
+	index = this->textClipboard.Delete(index);
+	
+	this->length--;
+
+	return index;
+}
+
 Character* TextClipboard::GetAt(Long index) 
 {
 	return this->textClipboard.GetAt(index);
