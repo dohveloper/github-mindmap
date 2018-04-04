@@ -22,34 +22,85 @@ TextFormWidthSizeAction::~TextFormWidthSizeAction()
 
 void TextFormWidthSizeAction::TextFormWidthLong(TextForm *textForm, CDC *cdc)
 {
-	Row* row;
-	Long length;
-	Long width;
+	Row* row1;
+	Row* row2;
+	Long length1;
+	Long length2;
+	Long width1;
+	Long width2;
 	Long textFormX;
 	Long textFormY;
 	Long textFormWidth;
 	Long textFormHeight;
+	Long textLength;
+	Long i=0;
+	Long j=1;
 	Long maxWidthSize = 600;
 	CFont fnt;
 	fnt.CreateFont(textForm->textFont->GetHeight(), textForm->textFont->GetWidth(), 0, 0, textForm->textFont->GetWeight(), textForm->textFont->GetItalic(), textForm->textFont->GetUnderline(), textForm->textFont->GetStrikeOut(), DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH, textForm->textFont->GetLpszFacename());
 	cdc->SelectObject(&fnt);
 
-	row = (Row*)textForm->text->GetAt(textForm->caret->GetRowIndex());
-	length = row->GetLength();
-	width = row->GetRowWidth(cdc, 0, length);
-
 	textFormX = textForm->textFormSize->GetX();
 	textFormY = textForm->textFormSize->GetY();
 	textFormWidth = textForm->textFormSize->GetWidth();
 	textFormHeight = textForm->textFormSize->GetHeight();
+	textLength = textForm->text->GetLength();
 
-	if (width > textFormWidth && width <= maxWidthSize)
+
+	if (textLength >= 2)
 	{
-		textFormWidth = width+6;
-		textForm->MoveWindow(textFormX, textFormY, textFormWidth, textFormHeight);
-		textForm->textFormSize->SetWidth(textFormWidth);
+		row1 = (Row*)textForm->text->GetAt(i);
+		length1 = row1->GetLength();
+		width1 = row1->GetRowWidth(cdc, 0, length1);
+		while (j < textLength)
+		{
+			row2 = (Row*)textForm->text->GetAt(j);
+			length2 = row2->GetLength();
+			width2 = row2->GetRowWidth(cdc, 0, length2);
+
+			if (width1 < width2)
+			{
+				width1 = width2;
+			}
+			j++;
+		}
+
+		if (width1 > textFormWidth && width1 <= maxWidthSize)
+		{
+			textFormWidth = width1 + 6;
+			textForm->MoveWindow(textFormX, textFormY, textFormWidth, textFormHeight);
+			textForm->textFormSize->SetWidth(textFormWidth);
+		}
+		else if (width1 > textFormWidth && width1 > maxWidthSize)
+		{
+			textFormWidth = maxWidthSize+6;
+			textForm->MoveWindow(textFormX, textFormY, textFormWidth, textFormHeight);
+			textForm->textFormSize->SetWidth(textFormWidth);
+		}
+		
 	}
-	if (width > maxWidthSize)
+	else
+	{
+		row1 = (Row*)textForm->text->GetAt(textForm->caret->GetRowIndex());
+		length1 = row1->GetLength();
+		width1 = row1->GetRowWidth(cdc, 0, length1);
+
+
+		if (width1 > textFormWidth && width1 <= maxWidthSize)
+		{
+			textFormWidth = width1 + 6;
+			textForm->MoveWindow(textFormX, textFormY, textFormWidth, textFormHeight);
+			textForm->textFormSize->SetWidth(textFormWidth);
+		}
+		else if (width1 > textFormWidth && width1 > maxWidthSize)
+		{
+			textFormWidth = maxWidthSize + 6;
+			textForm->MoveWindow(textFormX, textFormY, textFormWidth, textFormHeight);
+			textForm->textFormSize->SetWidth(textFormWidth);
+		}
+	}
+	
+	if (width1 > maxWidthSize)
 	{
 		WordWrap wordWrap;
 
@@ -61,23 +112,27 @@ void TextFormWidthSizeAction::TextFormWidthLong(TextForm *textForm, CDC *cdc)
 
 void TextFormWidthSizeAction::TextFormWidthShort(TextForm *textForm, CDC *cdc)
 {
-	Row* row;
-	Long length;
-	Long width;
+	Row* row1;
+	Row* row2;
+	Long length1;
+	Long length2;
+	Long width1;
+	Long width2;
+	Long textLength;
 	Long rightDirectionSelectWidth;
 	Long leftDirectionSelectWidth;
 	Long textFormX;
 	Long textFormY;
 	Long textFormWidth;
 	Long textFormHeight;
+	Long i = 0;
+	Long j = 1;
 	Long minWidthSize= 200;
 	CFont fnt;
 	fnt.CreateFont(textForm->textFont->GetHeight(), textForm->textFont->GetWidth(), 0, 0, textForm->textFont->GetWeight(), textForm->textFont->GetItalic(), textForm->textFont->GetUnderline(), textForm->textFont->GetStrikeOut(), DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH, textForm->textFont->GetLpszFacename());
 	cdc->SelectObject(&fnt);
 
-	row = (Row*)textForm->text->GetAt(textForm->caret->GetRowIndex());
-	length = row->GetLength();
-	width = row->GetRowWidth(cdc, 0, length);
+
 	//rightDirectionSelectWidth = row->GetRowWidth(cdc, );
 	//leftDirectionSelectWidth
 
@@ -85,13 +140,60 @@ void TextFormWidthSizeAction::TextFormWidthShort(TextForm *textForm, CDC *cdc)
 	textFormY = textForm->textFormSize->GetY();
 	textFormWidth = textForm->textFormSize->GetWidth();
 	textFormHeight = textForm->textFormSize->GetHeight();
+	textLength = textForm->text->GetLength();
 
-
-	if (width < textFormWidth && width > minWidthSize)
+	if (textLength >= 2)
 	{
-		textFormWidth = width+6;
-		textForm->MoveWindow(textFormX, textFormY, textFormWidth, textFormHeight);
-		textForm->textFormSize->SetWidth(textFormWidth);
+		row1 = (Row*)textForm->text->GetAt(i);
+		length1 = row1->GetLength();
+		width1 = row1->GetRowWidth(cdc, 0, length1);
+		while (j < textLength)
+		{
+			row2 = (Row*)textForm->text->GetAt(j);
+			length2 = row2->GetLength();
+			width2 = row2->GetRowWidth(cdc, 0, length2);
+
+			if (width1 < width2)
+			{
+				width1 = width2;
+			}
+			j++;
+		}
+
+		if (width1 < textFormWidth && width1 >= minWidthSize)
+		{
+			textFormWidth = width1 + 6;
+			textForm->MoveWindow(textFormX, textFormY, textFormWidth, textFormHeight);
+			textForm->textFormSize->SetWidth(textFormWidth);
+		}
+		else if (width1 > textFormWidth && width1 < minWidthSize)
+		{
+			textFormWidth = minWidthSize + 6;
+			textForm->MoveWindow(textFormX, textFormY, textFormWidth, textFormHeight);
+			textForm->textFormSize->SetWidth(textFormWidth);
+		}
+
 	}
+	else
+	{
+		row1 = (Row*)textForm->text->GetAt(textForm->caret->GetRowIndex());
+		length1 = row1->GetLength();
+		width1 = row1->GetRowWidth(cdc, 0, length1);
+
+
+		if (width1 < textFormWidth && width1 >= minWidthSize)
+		{
+			textFormWidth = width1 + 6;
+			textForm->MoveWindow(textFormX, textFormY, textFormWidth, textFormHeight);
+			textForm->textFormSize->SetWidth(textFormWidth);
+		}
+		else if (width1 > textFormWidth && width1 < minWidthSize)
+		{
+			textFormWidth = minWidthSize + 6;
+			textForm->MoveWindow(textFormX, textFormY, textFormWidth, textFormHeight);
+			textForm->textFormSize->SetWidth(textFormWidth);
+		}
+	}
+
 	fnt.DeleteObject();
 }

@@ -21,9 +21,9 @@ void TextSelectDelete::TextSelectDeleteAction(TextForm *textForm)
 	Long endRowIndex;
 	Long startCharacterIndex;
 	Long endCharacterIndex;
-	Long rowLength;
 	Long i = 0;
 	Long caretIndex;
+	Long deleteIndex;
 
 	startRowIndex = textForm->selectText->GetStartRowIndex();
 	endRowIndex = textForm->selectText->GetEndRowIndex();
@@ -46,7 +46,7 @@ void TextSelectDelete::TextSelectDeleteAction(TextForm *textForm)
 		}
 		else //한줄 선택이면서 우측에서 좌측으로 드래그했을때 히히
 		{
-				startCharacterIndex--;
+			startCharacterIndex--;
 			while (startCharacterIndex >= endCharacterIndex)
 			{
 				textForm->text->GetAt(startRowIndex)->Delete(startCharacterIndex);
@@ -55,38 +55,75 @@ void TextSelectDelete::TextSelectDeleteAction(TextForm *textForm)
 			caretIndex = textForm->selectText->GetEndCharacterIndex();
 			textForm->caret->SetCharacterIndex(caretIndex);
 		}
-		textForm->selectText->SetIsNotSelect();
 	}
 	else
 	{
-		while (endCharacterIndex>=i)
+		if (startRowIndex < endRowIndex)
 		{
-			textForm->text->GetAt(endRowIndex)->Delete(endCharacterIndex);
+			
 			endCharacterIndex--;
+			while (endCharacterIndex >= i)
+			{
+				textForm->text->GetAt(endRowIndex)->Delete(endCharacterIndex);
+				endCharacterIndex--;
+			}
+			endRowIndex--;
+		
+			while (endRowIndex != startRowIndex)
+			{
+				textForm->text->Delete(endRowIndex);
+				endRowIndex--;
+			}
+			deleteIndex = textForm->text->GetAt(startRowIndex)->GetLength() - 1;
+			while (deleteIndex >= startCharacterIndex)
+			{
+				textForm->text->GetAt(startRowIndex)->Delete(deleteIndex);
+				deleteIndex--;
+			}
+			textForm->caret->MoveToUp(endRowIndex - startRowIndex);
+			if (startCharacterIndex < endCharacterIndex)
+			{
+				textForm->caret->MoveToLeft(endCharacterIndex - startCharacterIndex);
+			}
+			else if (startCharacterIndex > endCharacterIndex)
+			{
+				textForm->caret->MoveToLeft(startCharacterIndex - endCharacterIndex);
+			}
 		}
-	
-		while (startRowIndex < endRowIndex)
+		else
 		{
+			i = 0;
 
-			startCharacterIndex = textForm->selectText->GetStartCharacterIndex();
-			rowLength = textForm->text->GetAt(startRowIndex)->GetLength();
-
-
-			while(startCharacterIndex < rowLength)
+			startCharacterIndex--;
+			while (startCharacterIndex >= i)
 			{
 				textForm->text->GetAt(startRowIndex)->Delete(startCharacterIndex);
-				startCharacterIndex++;
+				startCharacterIndex--;
 			}
-			startRowIndex++;
-		}
-		endCharacterIndex = textForm->selectText->GetEndCharacterIndex();
-		
-		while (i <= endCharacterIndex)
-		{
-			textForm->text->GetAt(endRowIndex)->Delete(i);
-			i++;
-		}
-		
+			startCharacterIndex--;
 
+			while (startRowIndex != endRowIndex)
+			{
+				textForm->text->Delete(startRowIndex);
+				startRowIndex--;
+			}
+			deleteIndex = textForm->text->GetAt(endRowIndex)->GetLength() - 1;
+			while (deleteIndex >= endCharacterIndex)
+			{
+				textForm->text->GetAt(endRowIndex)->Delete(deleteIndex);
+				deleteIndex--;
+			}
+			textForm->caret->MoveToUp(startRowIndex - endRowIndex);
+
+			if (endCharacterIndex < startCharacterIndex)
+			{
+				textForm->caret->MoveToLeft(startCharacterIndex - endCharacterIndex);
+			}
+			else if (endCharacterIndex > startCharacterIndex)
+			{
+				textForm->caret->MoveToLeft(endCharacterIndex - startCharacterIndex);
+			}
+		}
 	}
+	textForm->selectText->SetIsNotSelect();
 }

@@ -308,7 +308,7 @@ void TextForm::OnKeyDown(WPARAM wParam) {
 			WordWrap wordWrap;
 			wordWrap.Deleting(this, cdc);
 		}
-	//	this->textFormSize->TextFormWidthSizeShort(this, cdc);
+		this->textFormSize->TextFormWidthSizeShort(this, cdc);
 	}
 	else if (wParam == VK_RIGHT)
 	{
@@ -359,7 +359,7 @@ void TextForm::OnKeyDown(WPARAM wParam) {
 	else if (wParam == VK_SHIFT)
 	{
 		this->textPaste->Paste(this);
-		this->textFormSize->TextFormHeightSizeLong(this, cdc);
+		//this->textFormSize->TextFormHeightSizeLong(this, cdc);
 		this->textFormSize->TextFormWidthSizeLong(this, cdc);
 		this->textPaste->CaretMove(this);
 	

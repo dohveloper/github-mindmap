@@ -96,11 +96,13 @@ void TextPaste::Paste(TextForm *textForm)
 				this->isWrite = true;
 				while (j < textLength)
 				{
+					
 					textForm->text->GetAt(caretRowIndex)->Write(textForm->textClipboard->GetAt(i)->GetAt(j)->Clone());
 					j++;
 				}
+				
 				i++;
-
+				
 				if (caretRowIndex == textRowLastIndex)
 				{
 					while (i < rowLength )
@@ -122,6 +124,7 @@ void TextPaste::Paste(TextForm *textForm)
 						caretRowIndex++;
 					}
 				}
+				
 			}
 			else//여러줄(Row)붙여넣기인데 인설트일때
 			{
