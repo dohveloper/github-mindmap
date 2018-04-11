@@ -6,7 +6,7 @@
 #include "Line.h"
 #include "TotalHeightVisitor.h"
 #define hInterval 30
-#define vInterval 5
+#define vInterval 10
 
 ArrangeVisitor::ArrangeVisitor()
 {

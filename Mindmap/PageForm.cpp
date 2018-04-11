@@ -21,7 +21,7 @@
 #include "DeleteVisitor.h"
 #include "ScrollAction.h"
 #include "SingleSelect.h"
-#include "KeyBoard.h"
+#include "KeyAction.h"
 
 BEGIN_MESSAGE_MAP(PageForm, CFrameWnd)
 	ON_WM_CREATE()
@@ -173,9 +173,9 @@ void PageForm::OnLButtonDblClk(UINT nFlags, CPoint point)
 
 void PageForm::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
-	Keyboard keyboard;
+	KeyAction keyAction;
 
-	keyboard.KeyDown(this, nChar, nRepCnt, nFlags);
+	keyAction.KeyPress(this, nChar);
 
 	RedrawWindow();
 	CFrameWnd::OnKeyDown(nChar, nRepCnt, nFlags);

@@ -5,15 +5,13 @@
 #include <afxwin.h>
 
 class PageForm;
-class KeyAction;
 class Keyboard
 {
 public:
 	Keyboard();
-	~Keyboard();
-	void KeyDown(PageForm *pageForm, UINT nChar, UINT nRepCnt, UINT nFlags);
+	virtual ~Keyboard() = 0;
+	void KeyDown(PageForm *pageForm);
 
 };
 
-
-#endif // !KEYBOARD_H
+#endif // KEYBOARD_H

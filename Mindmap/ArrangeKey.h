@@ -2,14 +2,14 @@
 
 #ifndef _ARRANGEKEY_H
 #define _ARRANGEKEY_H
+#include "KeyBoard.h"
 
 class PageForm;
-class ArrangeKey
-{
+class ArrangeKey : public Keyboard {
 public:
 	ArrangeKey();
 	virtual ~ArrangeKey();
-	void KeyPress(PageForm *pageForm);
+	void KeyDown(PageForm *pageForm);
 
 };
 

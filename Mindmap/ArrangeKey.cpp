@@ -15,7 +15,7 @@ ArrangeKey::~ArrangeKey()
 {
 }
 
-void ArrangeKey::KeyPress(PageForm *pageForm)
+void ArrangeKey::KeyDown(PageForm *pageForm)
 {
 	
 	Long i = 0;

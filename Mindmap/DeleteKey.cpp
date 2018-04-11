@@ -13,7 +13,7 @@ DeleteKey::~DeleteKey()
 {
 }
 
-void DeleteKey::KeyPress(PageForm * pageForm)
+void DeleteKey::KeyDown(PageForm * pageForm)
 {
 	Long i = 0;
 	Long length;
