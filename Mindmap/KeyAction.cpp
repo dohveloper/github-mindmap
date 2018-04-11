@@ -5,6 +5,7 @@
 #include "PageForm.h"
 #include "DeleteKey.h"
 #include "ArrangeKey.h"
+#include "SearchKey.h"
 
 KeyAction::KeyAction()
 {
@@ -24,10 +25,16 @@ void KeyAction::KeyPress(PageForm *pageForm, UINT nChar)
 		deleteKey.KeyDown(pageForm);
 		break;
 	}
-	case 0x41://A키 임시 정렬용 
+	case 0x41://A키 정렬
 	{
 		ArrangeKey arrangeKey;
 		arrangeKey.KeyDown(pageForm);
+		break;
+	}
+	case 0x53://s키 찾기
+	{
+		SearchKey searchKey;
+		searchKey.KeyPress(pageForm);
 		break;
 	}
 	case VK_RETURN://엔터

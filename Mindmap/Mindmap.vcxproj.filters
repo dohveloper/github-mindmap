@@ -276,6 +276,12 @@
     <ClInclude Include="BranchTraverser.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="SearchKey.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="SearchVisitor.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ArrangeKey.cpp">
@@ -531,6 +537,12 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="WriteVisitor.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="SearchVisitor.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="SearchKey.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
