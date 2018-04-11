@@ -13,7 +13,7 @@ SearchKey::~SearchKey()
 {
 }
 
-void SearchKey::KeyPress(PageForm *pageForm)
+void SearchKey::KeyDown(PageForm *pageForm)
 {
 	//pageForm->branchArray->Clear();
 	SearchVisitor visitor(pageForm->branchArray);

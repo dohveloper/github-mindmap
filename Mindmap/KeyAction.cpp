@@ -34,7 +34,7 @@ void KeyAction::KeyPress(PageForm *pageForm, UINT nChar)
 	case 0x53://s키 찾기
 	{
 		SearchKey searchKey;
-		searchKey.KeyPress(pageForm);
+		searchKey.KeyDown(pageForm);
 		break;
 	}
 	case VK_RETURN://엔터

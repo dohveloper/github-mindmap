@@ -2,15 +2,15 @@
 
 #ifndef _SEARCHKEY_H
 #define _SEARCHKEY_H
-//#include "KeyAction.h"
+#include "KeyBoard.h"
 
 class PageForm;
-class SearchKey //:public KeyAction
+class SearchKey : public Keyboard 
 {
 public:
 	SearchKey();
 	virtual ~SearchKey();
-	void KeyPress(PageForm *pageForm);
+	void KeyDown(PageForm *pageForm);
 };
 
-#endif // _SEARCHKEY_H
+#endif // SEARCHKEY_H

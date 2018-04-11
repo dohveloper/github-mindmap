@@ -36,7 +36,7 @@ void SearchVisitor::VisitBranch(Branch *branch)
 		}
 		else if (typeid(*currentItem) == typeid(Topic))
 		{
-			if (currentItem->GetContent() == "메인토픽")
+			if (currentItem->GetContent() == "")
 			{
 				branchArray->Add(currentItem->GetOwnerBranch());
 			}
