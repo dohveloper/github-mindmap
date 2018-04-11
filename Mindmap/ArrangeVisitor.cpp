@@ -6,7 +6,7 @@
 #include "Line.h"
 #include "TotalHeightVisitor.h"
 #define hInterval 30
-#define vInterval 10
+#define vInterval 5
 
 ArrangeVisitor::ArrangeVisitor()
 {
@@ -38,10 +38,10 @@ void ArrangeVisitor::VisitBranch(Branch *branch)
 	Long leftHeight = 0;
 	Long centerY = 0;
 	Long currentY = 0;
+	Long realY;
 	Long mostRight;
 	Long lineWidth;
 	Long lineHeight;
-	Long branchHeight;
 	Long leftCount = 0;
 
 	length = branch->GetLength();
@@ -97,16 +97,19 @@ void ArrangeVisitor::VisitBranch(Branch *branch)
 
 		if (branchCount > 1)
 		{
-			currentY = centerY - totalHeight / 2;
+			realY = centerY - totalHeight / 2;
+			currentY = realY + branch->GetAt(branchPosition)->GetHeight() / 2 - ((Branch*)branch->GetAt(branchPosition))->GetTopic()->GetHeight() / 2;
 		}
 		else
 		{
-			currentY = centerY;
+			realY = centerY;
+			currentY = realY;
 		}
 
 		if (branchCount == 2)
 		{
-			currentY = centerY - ((Branch*)branch->GetAt(branchPosition))->GetTopic()->GetHeight() / 2;
+			realY = centerY - ((Branch*)branch->GetAt(branchPosition))->GetTopic()->GetHeight() / 2;
+			currentY = realY;
 		}
 
 		i = 0;
@@ -117,29 +120,16 @@ void ArrangeVisitor::VisitBranch(Branch *branch)
 			lineHeight = currentY + (((Branch*)branch->GetAt(j))->GetTopic()->GetHeight()) / 2 - centerY;
 			((Branch*)branch->GetAt(j))->GetLine()->SetHeight(lineHeight);
 			((Branch*)branch->GetAt(j))->GetMark()->SetY(currentY + (((Branch*)branch->GetAt(j))->GetTopic()->GetHeight()) / 4);
-			if (branch->GetAt(j)->GetHeight() >((Branch*)branch->GetAt(j))->GetTopic()->GetHeight())
+
+			if (j + 1 < length)
 			{
-				if (j + 1 < length)
-				{
-					branchHeight = branch->GetAt(j)->GetHeight() + branch->GetAt(j + 1)->GetHeight() / 2;
-				}
-				else
-				{
-					branchHeight = branch->GetAt(j)->GetHeight();
-				}
+				currentY = realY + branch->GetAt(j)->GetHeight() + branch->GetAt(j + 1)->GetHeight() / 2 - ((Branch*)branch->GetAt(j + 1))->GetTopic()->GetHeight() / 2 + vInterval;
 			}
 			else
 			{
-				if (j + 1 < length)
-				{
-					branchHeight = ((Branch*)branch->GetAt(j))->GetTopic()->GetHeight() + branch->GetAt(j + 1)->GetHeight() / 2;
-				}
-				else
-				{
-					branchHeight = ((Branch*)branch->GetAt(j))->GetTopic()->GetHeight();
-				}
+				currentY = realY + branch->GetAt(j)->GetHeight() + vInterval;
 			}
-			currentY = currentY + branchHeight + vInterval;
+			realY = realY + branch->GetAt(j)->GetHeight() + vInterval;
 			j++;
 			i++;
 		}
@@ -165,16 +155,19 @@ void ArrangeVisitor::VisitBranch(Branch *branch)
 
 		if (branchCount > 2)
 		{
-			currentY = centerY - totalHeight / 2;
+			realY = centerY - totalHeight / 2;
+			currentY = realY + branch->GetAt(branchPosition)->GetHeight() / 2 - ((Branch*)branch->GetAt(branchPosition))->GetTopic()->GetHeight() / 2;
 		}
 		else
 		{
-			currentY = centerY;
+			realY = centerY;
+			currentY = realY;
 		}
 
 		if (branchCount > 0 && branchCount < 3)
 		{
-			currentY = centerY - ((Branch*)branch->GetAt(branchPosition))->GetTopic()->GetHeight() / 2;
+			realY = centerY - ((Branch*)branch->GetAt(branchPosition))->GetTopic()->GetHeight() / 2;
+			currentY = realY;
 		}
 
 		i = branchPosition;
@@ -184,30 +177,16 @@ void ArrangeVisitor::VisitBranch(Branch *branch)
 			lineHeight = currentY + (((Branch*)branch->GetAt(i))->GetTopic()->GetHeight()) / 2 - centerY;
 			((Branch*)branch->GetAt(i))->GetLine()->SetHeight(lineHeight);
 			((Branch*)branch->GetAt(i))->GetMark()->SetY(currentY + (((Branch*)branch->GetAt(i))->GetTopic()->GetHeight()) / 4);
-			if (branch->GetAt(i)->GetHeight() >((Branch*)branch->GetAt(i))->GetTopic()->GetHeight())
+
+			if (i + 1 < length)
 			{
-				if (i + 1 < length)
-				{
-					branchHeight = branch->GetAt(i)->GetHeight() + branch->GetAt(i + 1)->GetHeight() / 2;
-				}
-				else
-				{
-					branchHeight = branch->GetAt(i)->GetHeight();
-				}
+				currentY = realY + branch->GetAt(i)->GetHeight() + branch->GetAt(i + 1)->GetHeight() / 2 - ((Branch*)branch->GetAt(i + 1))->GetTopic()->GetHeight() / 2 + vInterval;
 			}
 			else
 			{
-				if (i + 1 < length)
-				{
-					branchHeight = ((Branch*)branch->GetAt(i))->GetTopic()->GetHeight() + branch->GetAt(i + 1)->GetHeight() / 2;
-				}
-				else
-				{
-					branchHeight = ((Branch*)branch->GetAt(i))->GetTopic()->GetHeight();
-				}
-
+				currentY = realY + branch->GetAt(i)->GetHeight() + vInterval;
 			}
-			currentY = currentY + branchHeight + vInterval;
+			realY = realY + branch->GetAt(i)->GetHeight() + vInterval;
 			i++;
 		}
 	}
@@ -216,34 +195,30 @@ void ArrangeVisitor::VisitBranch(Branch *branch)
 	/////////////////////////////
 	else if (branch->GetTopic()->GetX() < this->x)//좌측쪽
 	{
-		i = 0;
-		j = branchPosition;
+		i = branchPosition;
 		mostLeft = branch->GetTopic()->GetX();
 
-		while (i < branchCount)
+		while (i < length)
 		{
-			tempX = branch->GetTopic()->GetX() - hInterval - ((Branch*)branch->GetAt(j))->GetTopic()->GetWidth();//브랜치의 x좌표 - 간격- 하위브랜치의 위드
+			tempX = branch->GetTopic()->GetX() - hInterval - ((Branch*)branch->GetAt(i))->GetTopic()->GetWidth();//브랜치의 x좌표 - 간격- 하위브랜치의 위드
 
 
 			if (tempX < mostLeft)
 			{
 				mostLeft = tempX;
-				mostWidth = ((Branch*)branch->GetAt(j))->GetTopic()->GetWidth();
+				mostWidth = ((Branch*)branch->GetAt(i))->GetTopic()->GetWidth();
 			}
-			j++;
 			i++;
 		}
 
-		i = 0;
-		j = branchPosition;
-		while (i < branchCount)//가로정렬
+		i = branchPosition;
+		while (i < length)//가로정렬
 		{
-			((Branch*)branch->GetAt(j))->GetTopic()->SetX(mostLeft + (mostWidth - ((Branch*)branch->GetAt(j))->GetTopic()->GetWidth()));
-			((Branch*)branch->GetAt(j))->GetLine()->SetX(branch->GetTopic()->GetX() + (branch->GetTopic()->GetWidth()) / 2);
-			lineWidth = ((Branch*)branch->GetAt(j))->GetTopic()->GetX() + (((Branch*)branch->GetAt(j))->GetTopic()->GetWidth()) / 2 - ((Branch*)branch->GetAt(j))->GetLine()->GetX();
-			((Branch*)branch->GetAt(j))->GetLine()->SetWidth(lineWidth);
-			((Branch*)branch->GetAt(j))->GetMark()->SetX(mostLeft + (mostWidth - ((Branch*)branch->GetAt(j))->GetTopic()->GetWidth()) + 14 * (((Branch*)branch->GetAt(j))->GetTopic()->GetWidth()) / 15);
-			j++;
+			((Branch*)branch->GetAt(i))->GetTopic()->SetX(mostLeft + (mostWidth - ((Branch*)branch->GetAt(i))->GetTopic()->GetWidth()));
+			((Branch*)branch->GetAt(i))->GetLine()->SetX(branch->GetTopic()->GetX() + (branch->GetTopic()->GetWidth()) / 2);
+			lineWidth = ((Branch*)branch->GetAt(i))->GetTopic()->GetX() + (((Branch*)branch->GetAt(i))->GetTopic()->GetWidth()) / 2 - ((Branch*)branch->GetAt(i))->GetLine()->GetX();
+			((Branch*)branch->GetAt(i))->GetLine()->SetWidth(lineWidth);
+			((Branch*)branch->GetAt(i))->GetMark()->SetX(mostLeft + (mostWidth - ((Branch*)branch->GetAt(i))->GetTopic()->GetWidth()) + 14 * (((Branch*)branch->GetAt(i))->GetTopic()->GetWidth()) / 15);
 			i++;
 		}
 
@@ -253,51 +228,41 @@ void ArrangeVisitor::VisitBranch(Branch *branch)
 
 		if (branchCount > 0)
 		{
-			currentY = centerY - totalHeight / 2;
-		}
-		else
-		{
-			currentY = centerY;
-		}
-
-		if (branchCount == 1)
-		{
-			currentY = centerY - ((Branch*)branch->GetAt(branchPosition))->GetTopic()->GetHeight() / 2;
-		}
-
-		i = 0;
-		j = branchPosition;
-		while (i < branchCount)
-		{
-			((Branch*)branch->GetAt(j))->GetTopic()->SetY(currentY);
-			((Branch*)branch->GetAt(j))->GetLine()->SetY(centerY);
-			lineHeight = currentY + (((Branch*)branch->GetAt(j))->GetTopic()->GetHeight()) / 2 - centerY;
-			((Branch*)branch->GetAt(j))->GetLine()->SetHeight(lineHeight);
-			((Branch*)branch->GetAt(j))->GetMark()->SetY(currentY + (((Branch*)branch->GetAt(j))->GetTopic()->GetHeight()) / 4);
-			if (branch->GetAt(j)->GetHeight() >((Branch*)branch->GetAt(j))->GetTopic()->GetHeight())
+			if (branchCount == 1)
 			{
-				if (j + 1 < length)
-				{
-					branchHeight = branch->GetAt(j)->GetHeight() + branch->GetAt(j + 1)->GetHeight() / 2;
-				}
-				else
-				{
-					branchHeight = branch->GetAt(j)->GetHeight();
-				}
+				realY = centerY - ((Branch*)branch->GetAt(branchPosition))->GetTopic()->GetHeight() / 2;
+				currentY = realY;
 			}
 			else
 			{
-				if (j + 1 < length)
-				{
-					branchHeight = ((Branch*)branch->GetAt(j))->GetTopic()->GetHeight() + branch->GetAt(j + 1)->GetHeight() / 2;
-				}
-				else
-				{
-					branchHeight = ((Branch*)branch->GetAt(j))->GetTopic()->GetHeight();
-				}
+				realY = centerY - totalHeight / 2;
+				currentY = realY + branch->GetAt(branchPosition)->GetHeight() / 2 - ((Branch*)branch->GetAt(branchPosition))->GetTopic()->GetHeight() / 2;
 			}
-			currentY = currentY + branchHeight + vInterval;
-			j++;
+		}
+		else
+		{
+			realY = centerY;
+			currentY = realY;
+		}
+
+		i = branchPosition;
+		while (i < length)//세로정렬
+		{
+			((Branch*)branch->GetAt(i))->GetTopic()->SetY(currentY);
+			((Branch*)branch->GetAt(i))->GetLine()->SetY(centerY);
+			lineHeight = currentY + (((Branch*)branch->GetAt(i))->GetTopic()->GetHeight()) / 2 - centerY;
+			((Branch*)branch->GetAt(i))->GetLine()->SetHeight(lineHeight);
+			((Branch*)branch->GetAt(i))->GetMark()->SetY(currentY + (((Branch*)branch->GetAt(i))->GetTopic()->GetHeight()) / 4);
+
+			if (i + 1 < length)
+			{
+				currentY = realY + branch->GetAt(i)->GetHeight() + branch->GetAt(i + 1)->GetHeight() / 2 - ((Branch*)branch->GetAt(i + 1))->GetTopic()->GetHeight() / 2 + vInterval;
+			}
+			else
+			{
+				currentY = realY + branch->GetAt(i)->GetHeight() + vInterval;
+			}
+			realY = realY + branch->GetAt(i)->GetHeight() + vInterval;
 			i++;
 		}
 	}
@@ -317,71 +282,47 @@ void ArrangeVisitor::VisitBranch(Branch *branch)
 			i++;
 		}
 
-		/*
-		totalHeight = 0;
-		i = branchPosition;
-		while (i < length)//세로 총높이  ???하위 브랜치 있으면 계산해야함.
-		{
-
-			totalHeight += ((Branch*)branch->GetAt(i))->GetTopic()->GetHeight();
-			i++;
-		}
-		*/
-		
 		totalHeight = branch->GetHeight();
 
 		centerY = branch->GetTopic()->GetY() + branch->GetTopic()->GetHeight() / 2;
 
 		if (branchCount > 0)
 		{
-			//totalHeight += vInterval * (branchCount - 1);
-			currentY = centerY - totalHeight / 2;
+			if (branchCount == 1)
+			{
+				realY = centerY - ((Branch*)branch->GetAt(branchPosition))->GetTopic()->GetHeight() / 2;
+				currentY = realY;
+			}
+			else
+			{
+				realY = centerY - totalHeight / 2;
+				currentY = realY + branch->GetAt(branchPosition)->GetHeight() / 2 - ((Branch*)branch->GetAt(branchPosition))->GetTopic()->GetHeight() / 2;
+			}
 		}
 		else
 		{
-			currentY = centerY;
+			realY = centerY;
+			currentY = realY;
 		}
 
-		if (branchCount == 1)
-		{
-			//totalHeight += vInterval * (branchCount - 1);
-			currentY = centerY - ((Branch*)branch->GetAt(branchPosition))->GetTopic()->GetHeight() / 2;
-		}
-		
 		i = branchPosition;
-		while (i < length)
+		while (i < length)//세로정렬
 		{
 			((Branch*)branch->GetAt(i))->GetTopic()->SetY(currentY);
 			lineHeight = currentY + (((Branch*)branch->GetAt(i))->GetTopic()->GetHeight()) / 2 - centerY;
 			((Branch*)branch->GetAt(i))->GetLine()->SetY(centerY);
 			((Branch*)branch->GetAt(i))->GetLine()->SetHeight(lineHeight);
 			((Branch*)branch->GetAt(i))->GetMark()->SetY(currentY + (((Branch*)branch->GetAt(i))->GetTopic()->GetHeight()) / 4);
-			
-			if (branch->GetAt(i)->GetHeight() > ((Branch*)branch->GetAt(i))->GetTopic()->GetHeight())
+
+			if (i + 1 < length)
 			{
-				if (i + 1 < length)
-				{
-					branchHeight = branch->GetAt(i)->GetHeight() + branch->GetAt(i + 1)->GetHeight() / 2;
-				}
-				else
-				{
-					branchHeight = branch->GetAt(i)->GetHeight();
-				}
+				currentY = realY + branch->GetAt(i)->GetHeight() + branch->GetAt(i + 1)->GetHeight() / 2 - ((Branch*)branch->GetAt(i + 1))->GetTopic()->GetHeight() / 2 + vInterval;
 			}
 			else
 			{
-				if (i + 1 < length)
-				{
-					branchHeight = ((Branch*)branch->GetAt(i))->GetTopic()->GetHeight() + branch->GetAt(i + 1)->GetHeight() / 2;
-				}
-				else
-				{
-					branchHeight = ((Branch*)branch->GetAt(i))->GetTopic()->GetHeight();
-				}
-				
+				currentY = realY + branch->GetAt(i)->GetHeight() + vInterval;
 			}
-			currentY = currentY + branchHeight + vInterval;
-
+			realY = realY + branch->GetAt(i)->GetHeight() + vInterval;
 			i++;
 		}
 	}
