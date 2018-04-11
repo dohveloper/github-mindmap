@@ -275,8 +275,8 @@ void ArrangeVisitor::VisitBranch(Branch *branch)
 		while (i < length)//가로정렬
 		{
 			((Branch*)branch->GetAt(i))->GetTopic()->SetX(mostRight);
-			lineWidth = mostRight + (((Branch*)branch->GetAt(i))->GetTopic()->GetWidth()) / 2 - ((Branch*)branch->GetAt(i))->GetLine()->GetX();
 			((Branch*)branch->GetAt(i))->GetLine()->SetX(branch->GetTopic()->GetX() + (branch->GetTopic()->GetWidth()) / 2);
+			lineWidth = mostRight + (((Branch*)branch->GetAt(i))->GetTopic()->GetWidth()) / 2 - ((Branch*)branch->GetAt(i))->GetLine()->GetX();
 			((Branch*)branch->GetAt(i))->GetLine()->SetWidth(lineWidth);
 			((Branch*)branch->GetAt(i))->GetMark()->SetX(mostRight + 14 * (((Branch*)branch->GetAt(i))->GetTopic()->GetWidth()) / 15);
 			i++;

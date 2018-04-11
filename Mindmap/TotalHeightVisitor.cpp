@@ -61,28 +61,4 @@ void TotalHeightVisitor::VisitBranch(Branch *branch)
 		branch->SetHeight(branch->GetTopic()->GetHeight());
 		branch->GetOwnerBranch()->SetHeight(branch->GetOwnerBranch()->GetHeight() + branch->GetTopic()->GetHeight());
 	}
-
-
-
-	/*
-	branchHeight = branch->GetHeight();// +vInterval * (branchCount - 1);
-	if (branchHeight >= branch->GetTopic()->GetHeight())
-	{
-		branchHeight += branch->GetOwnerBranch()->GetHeight();
-	}
-	else
-	{
-		branchHeight = branch->GetOwnerBranch()->GetHeight() + branch->GetTopic()->GetHeight();
-	}
-
-	if (branchCount > 0)
-	{
-		branch->GetOwnerBranch()->SetHeight(branchHeight);
-	}
-	else
-	{
-		branch->SetHeight(branch->GetTopic()->GetHeight());
-		branch->GetOwnerBranch()->SetHeight(branch->GetOwnerBranch()->GetHeight() + branch->GetTopic()->GetHeight());
-	}
-	*/
 }
