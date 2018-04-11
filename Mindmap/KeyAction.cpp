@@ -6,6 +6,7 @@
 #include "DeleteKey.h"
 #include "ArrangeKey.h"
 #include "SearchKey.h"
+#include "ReplaceKey.h"
 
 KeyAction::KeyAction()
 {
@@ -31,10 +32,17 @@ void KeyAction::KeyPress(PageForm *pageForm, UINT nChar)
 		arrangeKey.KeyDown(pageForm);
 		break;
 	}
-	case 0x53://s키 찾기
+	case 0x53://S키 찾기
 	{
 		SearchKey searchKey;
 		searchKey.KeyDown(pageForm);
+		break;
+	}
+
+	case 0x52://R키 바꾸기
+	{
+		ReplaceKey replaceKey;
+		replaceKey.KeyDown(pageForm);
 		break;
 	}
 	case VK_RETURN://엔터

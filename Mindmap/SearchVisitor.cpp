@@ -4,14 +4,15 @@
 #include "Branch.h"
 #include "Topic.h"
 #include "PageForm.h"
+#include "BranchArray.h"
 
 SearchVisitor::SearchVisitor()
 {
 }
 
-SearchVisitor::SearchVisitor(BranchArray *branchArray)
+SearchVisitor::SearchVisitor(PageForm *pageForm)
 {
-	this->branchArray = branchArray;
+	this->pageForm = pageForm;
 }
 
 SearchVisitor::~SearchVisitor()
@@ -36,9 +37,9 @@ void SearchVisitor::VisitBranch(Branch *branch)
 		}
 		else if (typeid(*currentItem) == typeid(Topic))
 		{
-			if (currentItem->GetContent() == "")
+			if (currentItem->GetContent() == "")//""대신에 찾을 검색어 넣기
 			{
-				branchArray->Add(currentItem->GetOwnerBranch());
+				this->pageForm->branchArray.Add(currentItem->GetOwnerBranch());
 			}
 		}
 		i++;

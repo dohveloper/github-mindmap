@@ -7,6 +7,7 @@
 #include <string>
 #include "Array.h"
 #include "Selection.h"
+#include "BranchArray.h"
 
 using namespace std;
 
@@ -24,6 +25,7 @@ public:
 	TextForm * textForm;
 	Branch *branch;
 	Selection selection;
+	BranchArray branchArray;
 	MouseAction *mouseAction;
 	ScrollAction *scrollAction;
 	Long movedX;

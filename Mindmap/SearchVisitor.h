@@ -8,18 +8,19 @@ typedef signed long int Long;
 
 
 class Branch;
-class BranchArray;
+//class BranchArray;
+class PageForm;
 class SearchVisitor : public ShapeVisitor
 {
 public:
 	SearchVisitor();
-	SearchVisitor(BranchArray *branchArray);
+	SearchVisitor(PageForm *pageForm);
 	virtual ~SearchVisitor();
 	virtual void VisitBranch(Branch *branch);
 
 
 private:
-	BranchArray *branchArray;
+	PageForm *pageForm;
 };
 
 

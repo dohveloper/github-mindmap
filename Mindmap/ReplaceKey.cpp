@@ -1,20 +1,21 @@
-//SearchKey.CPP
+//ReplaceKey.CPP
 
-#include "SearchKey.h"
+#include "ReplaceKey.h"
 #include "SearchVisitor.h"
 #include "Selection.h"
 #include "PageForm.h"
 #include "BranchArray.h"
+#include "Topic.h"
 
-SearchKey::SearchKey()
+ReplaceKey::ReplaceKey()
 {
 }
 
-SearchKey::~SearchKey()
+ReplaceKey::~ReplaceKey()
 {
 }
 
-void SearchKey::KeyDown(PageForm *pageForm)
+void ReplaceKey::KeyDown(PageForm *pageForm)
 {
 	pageForm->branchArray.Clear();
 
@@ -22,7 +23,8 @@ void SearchKey::KeyDown(PageForm *pageForm)
 	pageForm->branch->Accept(visitor);
 
 	if (pageForm->branchArray.GetLength() > 0)
-	{	
+	{
+		pageForm->branchArray.GetAt(0)->GetTopic()->SetContent("토픽");//이자리에 찾을 단어 넣는 수식 입력
 		pageForm->selection.Clear();
 		pageForm->selection.Add(pageForm->branchArray.GetAt(0));
 	}

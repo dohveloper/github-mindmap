@@ -55,6 +55,18 @@ Long BranchArray::Remove(Branch * branch)
 	return index;
 }
 
+void BranchArray::Clear()
+{
+	Long i = 0;
+
+	while (i < this->length)
+	{
+		this->branches.Delete(i);
+		i++;
+	}
+	this->length = 0;
+}
+
 Branch * BranchArray::GetLastBranchArray()
 {
 	Branch *selection = NULL;

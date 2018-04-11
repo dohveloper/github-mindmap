@@ -76,6 +76,7 @@
     <ClInclude Include="Page.h" />
     <ClInclude Include="PageApp.h" />
     <ClInclude Include="PageForm.h" />
+    <ClInclude Include="ReplaceKey.h" />
     <ClInclude Include="Row.h" />
     <ClInclude Include="ScrollAction.h" />
     <ClInclude Include="ScrollStrategy.h" />
@@ -165,6 +166,7 @@
     <ClCompile Include="Page.cpp" />
     <ClCompile Include="PageApp.cpp" />
     <ClCompile Include="PageForm.cpp" />
+    <ClCompile Include="ReplaceKey.cpp" />
     <ClCompile Include="Row.cpp" />
     <ClCompile Include="ScrollAction.cpp" />
     <ClCompile Include="ScrollStrategy.cpp" />

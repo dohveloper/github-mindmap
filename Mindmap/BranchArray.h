@@ -12,6 +12,7 @@ public:
 
 	Long Add(Branch *branch);
 	Long Remove(Branch *branch);
+	void Clear();
 	Branch* GetLastBranchArray();
 	Branch* GetAt(Long index);
 

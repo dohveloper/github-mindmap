@@ -22,6 +22,7 @@
 #include "ScrollAction.h"
 #include "SingleSelect.h"
 #include "KeyAction.h"
+#include "BranchArray.h"
 
 BEGIN_MESSAGE_MAP(PageForm, CFrameWnd)
 	ON_WM_CREATE()
